@@ -27,6 +27,15 @@ from pathlib import Path
 API = "https://api.modrinth.com/v2"
 USER_AGENT = "arcanopolis-pack/0.1.0 (modpack downloader)"
 
+# Корень репозитория — по расположению скрипта, а не рабочей папке.
+# Скрипт можно запускать откуда угодно (в т.ч. двойным щелчком).
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def repo_path(p: str) -> Path:
+    path = Path(p)
+    return path if path.is_absolute() else ROOT / path
+
 
 def api_get(url: str) -> object:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -78,10 +87,18 @@ def main() -> int:
     ap.add_argument("--required-only", action="store_true", help="только обязательные моды")
     ap.add_argument("--report", help="сохранить отчёт в файл")
     ap.add_argument("--sleep", type=float, default=0.4, help="пауза между запросами к API")
+    ap.add_argument("--no-pause", action="store_true",
+                    help="не ждать Enter в конце (Windows, запуск двойным щелчком)")
     args = ap.parse_args()
 
-    manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
-    out = Path(args.out)
+    manifest_path = repo_path(args.manifest)
+    if not manifest_path.exists():
+        print(f"ОШИБКА: не найден манифест модов: {manifest_path}")
+        print("Убедитесь, что файл mods/mods.json существует.")
+        return 1
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    out = repo_path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
     report: list[str] = []
@@ -181,11 +198,20 @@ def main() -> int:
         log("Файлы «вручную» скачайте по ссылкам выше (CurseForge/Modrinth) и положите в mods/.")
 
     if args.report:
-        Path(args.report).write_text("\n".join(report) + "\n", encoding="utf-8")
-        print(f"Отчёт сохранён: {args.report}")
+        report_path = repo_path(args.report)
+        report_path.write_text("\n".join(report) + "\n", encoding="utf-8")
+        print(f"Отчёт сохранён: {report_path}")
 
     return 0 if failed == 0 else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    code = main()
+    # При запуске двойным щелчком в Windows окно закрывается сразу —
+    # держим его открытым, пока пользователь не нажмёт Enter.
+    if sys.platform == "win32" and "--no-pause" not in sys.argv:
+        try:
+            input("\nГотово. Нажмите Enter, чтобы закрыть окно...")
+        except EOFError:
+            pass
+    sys.exit(code)

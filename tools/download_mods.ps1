@@ -1,12 +1,19 @@
-<#
+﻿<#
  download_mods.ps1 — загрузка модов «Арканополиса» через Modrinth API.
  Работает в Windows PowerShell 5.1+ без установки Python.
 
- Использование (из папки репозитория):
-   powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
-   powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1 -Side server
-   powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1 -RequiredOnly
-   powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1 -Report report.txt
+ Способы запуска (из любой папки!):
+   1. Двойной щелчок по файлу "Скачать_моды.bat" в корне репозитория.
+   2. PowerShell:  powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
+   3. Правый клик по download_mods.ps1 -> "Запуск от имени PowerShell"
+
+ Параметры:
+   -Manifest   путь к манифесту (по умолчанию mods\mods.json в корне репозитория)
+   -Out        папка для jar-файлов (по умолчанию mods\)
+   -Side       both | client | server  (server = без клиентских модов)
+   -RequiredOnly   только обязательные моды
+   -Report     сохранить отчёт в файл
+   -NoPause    не ждать Enter в конце (для автоматизации)
 #>
 [CmdletBinding()]
 param(
@@ -15,10 +22,21 @@ param(
     [ValidateSet("both", "client", "server")]
     [string]$Side = "both",
     [switch]$RequiredOnly,
-    [string]$Report
+    [string]$Report,
+    [switch]$NoPause
 )
 
 $ErrorActionPreference = "Continue"
+
+# --- Определяем корень репозитория по расположению самого скрипта ----------
+# Это позволяет запускать скрипт из ЛЮБОЙ рабочей папки (в т.ч. двойным кликом).
+$ToolsDir = $PSScriptRoot
+if (-not $ToolsDir) { $ToolsDir = Split-Path -Parent $MyInvocation.MyCommand.Path }
+$RepoRoot = Split-Path -Parent $ToolsDir
+
+if (-not [System.IO.Path]::IsPathRooted($Manifest)) { $Manifest = Join-Path $RepoRoot $Manifest }
+if (-not [System.IO.Path]::IsPathRooted($Out))      { $Out = Join-Path $RepoRoot $Out }
+if ($Report -and -not [System.IO.Path]::IsPathRooted($Report)) { $Report = Join-Path $RepoRoot $Report }
 
 # Windows PowerShell 5.1 по умолчанию может не включать TLS 1.2
 try {
@@ -34,17 +52,34 @@ function Log([string]$msg) {
     $lines.Add($msg) | Out-Null
 }
 
-if (-not (Test-Path $Manifest)) {
-    Write-Host "Не найден манифест: $Manifest (запустите скрипт из папки репозитория)"
-    exit 1
+function Finish([int]$code) {
+    if (-not $NoPause) {
+        Write-Host ""
+        Read-Host "Готово. Нажмите Enter, чтобы закрыть окно" | Out-Null
+    }
+    exit $code
 }
 
-$json = Get-Content -Raw -Encoding UTF8 $Manifest | ConvertFrom-Json
+# --- Манифест ---------------------------------------------------------------
+if (-not (Test-Path $Manifest)) {
+    Log "ОШИБКА: не найден манифест модов:"
+    Log "  $Manifest"
+    Log "Убедитесь, что рядом лежит папка mods\ с файлом mods.json"
+    Finish 1
+}
+
+try {
+    $json = Get-Content -Raw -Encoding UTF8 $Manifest | ConvertFrom-Json
+} catch {
+    Log "ОШИБКА: не удалось прочитать манифест (нарушение JSON): $($_.Exception.Message)"
+    Finish 1
+}
+
 New-Item -ItemType Directory -Force -Path $Out | Out-Null
 
 $mc = $json.pack.minecraft
-$loaderVersion = $json.pack.loader.version
-Log ("Сборка: {0} | Minecraft {1} | forge {2}" -f $json.pack.name, $mc, $loaderVersion)
+Log ("Сборка: {0} | Minecraft {1} | forge {2}" -f $json.pack.name, $mc, $json.pack.loader.version)
+Log ("Папка для модов: $Out")
 Log ""
 
 $gv = [uri]::EscapeDataString(('["{0}"]' -f $mc))
@@ -74,15 +109,14 @@ foreach ($mod in @($json.mods)) {
     try {
         $versions = @(Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $ua })
     } catch {
-        $code = ""
-        if ($_.Exception.Response) { $code = " (HTTP $([int]$_.Exception.Response.StatusCode))" }
-        if ($code -match "404") {
+        $msg = $_.Exception.Message
+        if ($msg -match "404") {
             $cf = $mod.curseforge
             if (-not $cf) { $cf = $mod.id }
             Log ("[ВРУЧНУЮ] {0}: проект '{1}' не найден в Modrinth -> https://www.curseforge.com/minecraft/mc-mods/{2}" -f $name, $slug, $cf)
             $manual++
         } else {
-            Log ("[ОШИБКА] {0}: {1}{2}" -f $name, $_.Exception.Message, $code)
+            Log ("[ОШИБКА] {0}: {1}" -f $name, $msg)
             $failed++
         }
         Start-Sleep -Milliseconds 400
@@ -151,7 +185,7 @@ foreach ($mod in @($json.mods)) {
 }
 
 Log ""
-Log ("Итог: скачано/есть — {0}, вручную — {1}, ошибок — {2}" -f $ok, $manual, $failed)
+Log ("Итог: скачано/есть - {0}, вручную - {1}, ошибок - {2}" -f $ok, $manual, $failed)
 if ($manual -gt 0) {
     Log "Файлы «вручную» скачайте по ссылкам выше и положите в папку mods\"
 }
@@ -161,4 +195,4 @@ if ($Report) {
     Write-Host "Отчёт сохранён: $Report"
 }
 
-if ($failed -gt 0) { exit 1 } else { exit 0 }
+if ($failed -gt 0) { Finish 1 } else { Finish 0 }

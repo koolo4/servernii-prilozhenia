@@ -49,7 +49,10 @@
 1. **Лаунчер**: установите Minecraft 1.20.1 и Forge 47.x (например, через Prism Launcher / GDLauncher / официальный лаунчер).
 2. **Моды**: скачайте jar-файлы в папку `mods/`:
 
-   **Windows (PowerShell, Python не нужен):**
+   **Windows — самый простой способ:** двойной щелчок по файлу **`Скачать_моды.bat`** в корне репозитория.
+   Окно не закроется само — будет виден весь процесс и результат.
+
+   **Windows (из открытого PowerShell):**
    ```powershell
    powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
    ```
@@ -59,12 +62,9 @@
    python3 tools/download_mods.py --manifest mods/mods.json --out mods/
    ```
 
-   **Если Python установлен в Windows** — используйте `python` или `py` (не `python3`):
-   ```powershell
-   python tools\download_mods.py --manifest mods\mods.json --out mods
-   ```
+   > Не запускайте `.py`/`.ps1` двойным щелчком напрямую: Windows открывает мимолётное окно, скрипт не находит файлы и окно закрывается. Используйте `Скачать_моды.bat` или команду в открытом PowerShell. Если Python установлен в Windows — используйте `python` или `py` (не `python3`, это заглушка Microsoft Store).
 
-   Либо скачайте вручную по списку из [`docs/03-mods.md`](docs/03-mods.md) (ссылки на CurseForge/Modrinth).
+   Либо скачайте моды вручную по списку из [`docs/03-mods.md`](docs/03-mods.md) (ссылки на CurseForge/Modrinth).
 3. **Конфигурация**: скопируйте папки `kubejs/` и `config/` в папку инстанса (туда же, куда положены моды).
 4. Запустите игру, создайте мир и откройте книгу квестов (кнопка FTB Quests в инвентаре или `FTB Quests` в меню).
 

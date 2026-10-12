@@ -4,7 +4,10 @@
 
 ## Способ 1: скрипт (рекомендуется)
 
-**Windows (PowerShell, Python не нужен):**
+**Windows — самый простой способ: двойной щелчок по `Скачать_моды.bat`** (в корне репозитория).
+Python не нужен, окно не закрывается, результат виден на экране.
+
+**Windows (из открытого PowerShell):**
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
 ```
@@ -18,7 +21,9 @@ powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1 -Side server
 python3 tools/download_mods.py --manifest mods/mods.json --out mods/
 ```
 
-> **Важно для Windows:** команда `python3` в PowerShell — это заглушка Microsoft Store (печатает «Python» и завершается). Если Python установлен, используйте `python` или `py`. Либо вообще обойдитесь PowerShell-скриптом выше.
+> **Важно для Windows:**
+> - не запускайте `.py`/`.ps1` двойным щелчком напрямую — окно закроется мгновенно, используйте `Скачать_моды.bat`;
+> - команда `python3` в PowerShell — заглушка Microsoft Store (печатает «Python» и завершается). Если Python установлен, используйте `python` или `py`.
 
 Скрипты:
 - подбирают версию каждого мода для Minecraft 1.20.1 + Forge через Modrinth API;
