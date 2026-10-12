@@ -47,11 +47,24 @@
 ## Быстрый старт
 
 1. **Лаунчер**: установите Minecraft 1.20.1 и Forge 47.x (например, через Prism Launcher / GDLauncher / официальный лаунчер).
-2. **Моды**: скачайте jar-файлы:
+2. **Моды**: скачайте jar-файлы в папку `mods/`:
+
+   **Windows (PowerShell, Python не нужен):**
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
+   ```
+
+   **Linux / macOS / Git Bash:**
    ```bash
    python3 tools/download_mods.py --manifest mods/mods.json --out mods/
    ```
-   либо вручную по списку из [`docs/03-mods.md`](docs/03-mods.md) (ссылки на CurseForge/Modrinth).
+
+   **Если Python установлен в Windows** — используйте `python` или `py` (не `python3`):
+   ```powershell
+   python tools\download_mods.py --manifest mods\mods.json --out mods
+   ```
+
+   Либо скачайте вручную по списку из [`docs/03-mods.md`](docs/03-mods.md) (ссылки на CurseForge/Modrinth).
 3. **Конфигурация**: скопируйте папки `kubejs/` и `config/` в папку инстанса (туда же, куда положены моды).
 4. Запустите игру, создайте мир и откройте книгу квестов (кнопка FTB Quests в инвентаре или `FTB Quests` в меню).
 

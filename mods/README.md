@@ -4,20 +4,26 @@
 
 ## Способ 1: скрипт (рекомендуется)
 
+**Windows (PowerShell, Python не нужен):**
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
+```
+Только серверный набор (без клиентских модов):
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1 -Side server
+```
+
+**Linux / macOS:**
 ```bash
 python3 tools/download_mods.py --manifest mods/mods.json --out mods/
 ```
 
-Скрипт:
-- подбирает версию каждого мода для Minecraft 1.20.1 + Forge через Modrinth API;
-- скачивает jar и проверяет контрольные суммы (SHA-1/SHA-512), если они опубликованы;
-- пишет отчёт о том, что скачано, а что нужно поставить вручную.
+> **Важно для Windows:** команда `python3` в PowerShell — это заглушка Microsoft Store (печатает «Python» и завершается). Если Python установлен, используйте `python` или `py`. Либо вообще обойдитесь PowerShell-скриптом выше.
 
-Только серверный набор (без клиентских модов):
-
-```bash
-python3 tools/download_mods.py --manifest mods/mods.json --out mods/ --side server
-```
+Скрипты:
+- подбирают версию каждого мода для Minecraft 1.20.1 + Forge через Modrinth API;
+- скачивают jar и проверяют контрольные суммы (SHA-1/SHA-512), если они опубликованы;
+- пишут отчёт о том, что скачано, а что нужно поставить вручную.
 
 ## Способ 2: вручную
 
