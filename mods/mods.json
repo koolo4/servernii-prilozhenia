@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "pack": {
+    "name": "Арканополис: Хартия нового мира",
+    "version": "0.1.0-alpha",
+    "minecraft": "1.20.1",
+    "loader": { "type": "forge", "version": "47.4.0" },
+    "pinned_at": "2026-10-12"
+  },
+  "mods": [
+    { "id": "architectury", "name": "Architectury API", "category": "library", "side": "both", "required": true, "modrinth": "architectury-api", "curseforge": "architectury-api", "version": "latest", "version_hint": "9.1.12+ for Forge 1.20.1", "deps": [] },
+    { "id": "curios", "name": "Curios API", "category": "library", "side": "both", "required": true, "modrinth": "curios-api", "curseforge": "curios", "version": "latest", "version_hint": "5.x (5.9.1+1.20.1)", "deps": [] },
+    { "id": "geckolib", "name": "GeckoLib", "category": "library", "side": "both", "required": true, "modrinth": "geckolib", "curseforge": "geckolib", "version": "latest", "version_hint": "4.4.4+ (forge 1.20.1)", "deps": [] },
+    { "id": "patchouli", "name": "Patchouli", "category": "library", "side": "both", "required": true, "modrinth": "patchouli", "curseforge": "patchouli", "version": "latest", "version_hint": "1.20.1-84-FORGE or above", "deps": [] },
+    { "id": "bookshelf", "name": "Bookshelf", "category": "library", "side": "both", "required": true, "modrinth": "bookshelf", "curseforge": "bookshelf", "version": "latest", "version_hint": "23.x for 1.20.1", "deps": [] },
+    { "id": "rhino", "name": "Rhino", "category": "library", "side": "both", "required": true, "modrinth": "rhino", "curseforge": "rhino", "version": "latest", "version_hint": "2001.2.x", "deps": [] },
+
+    { "id": "minecolonies", "name": "MineColonies", "category": "colony", "side": "both", "required": true, "modrinth": "minecolonies", "curseforge": "minecolonies", "version": "latest", "version_hint": "1.20.1-1.1.1301 (or above)", "deps": ["structurize", "blockui", "multipiston", "domum-ornamentum"] },
+    { "id": "structurize", "name": "Structurize", "category": "colony", "side": "both", "required": true, "modrinth": "structurize", "curseforge": "structurize", "version": "latest", "version_hint": "1.20.1-1.0.818 or above", "deps": [] },
+    { "id": "domum-ornamentum", "name": "Domum Ornamentum", "category": "colony", "side": "both", "required": true, "modrinth": "domum-ornamentum", "curseforge": "domum-ornamentum", "version": "latest", "version_hint": "1.20.1-1.0.288-snapshot or above", "deps": [] },
+    { "id": "blockui", "name": "BlockUI", "category": "colony", "side": "both", "required": true, "modrinth": "blockui", "curseforge": "blockui", "version": "latest", "version_hint": "1.20.1-1.0.190-snapshot or above", "deps": [] },
+    { "id": "multipiston", "name": "Multi-Piston", "category": "colony", "side": "both", "required": true, "modrinth": "multi-piston", "curseforge": "multipiston", "version": "latest", "version_hint": "1.20-1.2.30-ALPHA or above", "deps": [] },
+
+    { "id": "ftb-quests", "name": "FTB Quests", "category": "quest", "side": "both", "required": true, "modrinth": "ftb-quests", "curseforge": "ftb-quests", "version": "latest", "version_hint": "2001.4.x (e.g. 2001.4.22)", "deps": ["ftb-library", "ftb-teams", "architectury"] },
+    { "id": "ftb-library", "name": "FTB Library", "category": "quest", "side": "both", "required": true, "modrinth": "ftb-library", "curseforge": "ftb-library", "version": "latest", "version_hint": "2001.2.x", "deps": ["architectury"] },
+    { "id": "ftb-teams", "name": "FTB Teams", "category": "quest", "side": "both", "required": true, "modrinth": "ftb-teams", "curseforge": "ftb-teams", "version": "latest", "version_hint": "2001.3.x", "deps": ["ftb-library"] },
+    { "id": "ftb-ultimine", "name": "FTB Ultimine", "category": "quest", "side": "both", "required": false, "modrinth": "ftb-ultimine", "curseforge": "ftb-ultimine", "version": "latest", "version_hint": "2001.x for 1.20.1", "deps": ["ftb-library"], "note": "Опционально: настроить, чтобы не обесценивать шахтёров колонии" },
+
+    { "id": "create", "name": "Create", "category": "tech-create", "side": "both", "required": true, "modrinth": "create", "curseforge": "create", "version": "latest", "version_hint": "0.5.1.f", "deps": [], "note": "Flywheel встроен в jar с 0.5.1 — НЕ ставить отдельный Flywheel" },
+    { "id": "create-connected", "name": "Create: Connected", "category": "tech-create", "side": "both", "required": true, "modrinth": "create-connected", "curseforge": "create-connected", "version": "latest", "version_hint": "1.2.3-mc1.20.1 (0.5.1f-0.5.1j)", "deps": ["create"] },
+    { "id": "createaddition", "name": "Create Crafts & Additions", "category": "tech-create", "side": "both", "required": true, "modrinth": "createaddition", "curseforge": "createaddition", "version": "latest", "version_hint": "1.3.3 (forge 1.20.1)", "deps": ["create"] },
+    { "id": "create-steam-n-rails", "name": "Create: Steam 'n' Rails", "category": "tech-create", "side": "both", "required": true, "modrinth": "create-steam-n-rails", "curseforge": "create-steam-n-rails", "version": "latest", "version_hint": "1.7.3 (forge 1.20.1)", "deps": ["create"] },
+    { "id": "create-enchantment-industry", "name": "Create: Enchantment Industry", "category": "tech-create", "side": "both", "required": true, "modrinth": "create-enchantment-industry", "curseforge": "create-enchantment-industry", "version": "latest", "version_hint": "1.x for 1.20.1", "deps": ["create"] },
+    { "id": "slice-and-dice", "name": "Create: Slice & Dice", "category": "tech-create", "side": "both", "required": true, "modrinth": "slice-and-dice", "curseforge": "sliceanddice", "version": "latest", "version_hint": "3.x for 1.20.1", "deps": ["create"] },
+
+    { "id": "mekanism", "name": "Mekanism", "category": "tech-mekanism", "side": "both", "required": true, "modrinth": "mekanism", "curseforge": "mekanism", "version": "latest", "version_hint": "10.4.16.80", "deps": [] },
+    { "id": "mekanism-generators", "name": "Mekanism: Generators", "category": "tech-mekanism", "side": "both", "required": true, "modrinth": "mekanism-generators", "curseforge": "mekanism-generators", "version": "latest", "version_hint": "10.4.16.80 (same as core)", "deps": ["mekanism"] },
+    { "id": "mekanism-tools", "name": "Mekanism: Tools", "category": "tech-mekanism", "side": "both", "required": true, "modrinth": "mekanism-tools", "curseforge": "mekanism-tools", "version": "latest", "version_hint": "10.4.16.80 (same as core)", "deps": ["mekanism"] },
+    { "id": "mekanism-additions", "name": "Mekanism: Additions", "category": "tech-mekanism", "side": "both", "required": true, "modrinth": "mekanism-additions", "curseforge": "mekanism-additions", "version": "latest", "version_hint": "10.4.16.80 (same as core)", "deps": ["mekanism"] },
+    { "id": "applied-mekanistics", "name": "Applied Mekanistics", "category": "tech-ae2", "side": "both", "required": true, "modrinth": "applied-mekanistics", "curseforge": "applied-mekanistics", "version": "latest", "version_hint": "1.4.3", "deps": ["mekanism", "applied-energistics-2"] },
+
+    { "id": "cofh-core", "name": "CoFH Core", "category": "tech-thermal", "side": "both", "required": true, "modrinth": "cofh-core", "curseforge": "cofh-core", "version": "latest", "version_hint": "11.0.x", "deps": [] },
+    { "id": "thermal-foundation", "name": "Thermal Foundation", "category": "tech-thermal", "side": "both", "required": true, "modrinth": "thermal-foundation", "curseforge": "thermal-foundation", "version": "latest", "version_hint": "11.0.6.70", "deps": ["cofh-core"] },
+    { "id": "thermal-expansion", "name": "Thermal Expansion", "category": "tech-thermal", "side": "both", "required": true, "modrinth": "thermal-expansion", "curseforge": "thermal-expansion", "version": "latest", "version_hint": "11.0.1.29", "deps": ["cofh-core", "thermal-foundation"] },
+    { "id": "thermal-innovation", "name": "Thermal Innovation", "category": "tech-thermal", "side": "both", "required": true, "modrinth": "thermal-innovation", "curseforge": "thermal-innovation", "version": "latest", "version_hint": "11.0.x", "deps": ["cofh-core", "thermal-foundation"] },
+    { "id": "thermal-dynamics", "name": "Thermal Dynamics", "category": "tech-thermal", "side": "both", "required": true, "modrinth": "thermal-dynamics", "curseforge": "thermal-dynamics", "version": "latest", "version_hint": "11.0.1.23", "deps": ["cofh-core", "thermal-foundation"] },
+
+    { "id": "applied-energistics-2", "name": "Applied Energistics 2", "category": "tech-ae2", "side": "both", "required": true, "modrinth": "ae2", "curseforge": "applied-energistics-2", "version": "latest", "version_hint": "15.3.6 [FORGE]", "deps": [] },
+
+    { "id": "ars-nouveau", "name": "Ars Nouveau", "category": "magic", "side": "both", "required": true, "modrinth": "ars-nouveau", "curseforge": "ars-nouveau", "version": "latest", "version_hint": "4.x (4.12.4+)", "deps": ["curios", "geckolib", "patchouli"] },
+    { "id": "ars-elemental", "name": "Ars Elemental", "category": "magic", "side": "both", "required": true, "modrinth": "ars-elemental", "curseforge": "ars-elemental", "version": "latest", "version_hint": "1.20.1-0.6.8.0", "deps": ["ars-nouveau", "bookshelf"] },
+    { "id": "ars-creo", "name": "Ars Creo", "category": "magic", "side": "both", "required": true, "modrinth": "ars-creo", "curseforge": "ars-creo", "version": "latest", "version_hint": "1.20.1-4.3.0", "deps": ["ars-nouveau", "create"] },
+    { "id": "botania", "name": "Botania", "category": "magic", "side": "both", "required": true, "modrinth": "botania", "curseforge": "botania", "version": "latest", "version_hint": "1.20.1-444-FORGE", "deps": ["patchouli", "curios"] },
+    { "id": "blood-magic", "name": "Blood Magic", "category": "magic", "side": "both", "required": true, "modrinth": "blood-magic", "curseforge": "blood-magic", "version": "latest", "version_hint": "1.20.1-3.3.8-50 (или 3.3.3-45)", "deps": ["curios"] },
+    { "id": "eidolon-repraised", "name": "Eidolon: Repraised", "category": "magic", "side": "both", "required": true, "modrinth": "eidolon-repraised", "curseforge": "eidolon-repraised", "version": "latest", "version_hint": "0.3.9.x for Forge 1.20.1 — проверить!", "deps": ["geckolib"] },
+
+    { "id": "kubejs", "name": "KubeJS", "category": "scripting", "side": "both", "required": true, "modrinth": "kubejs", "curseforge": "kubejs", "version": "latest", "version_hint": "2001.6.5-build.26", "deps": ["rhino"] },
+    { "id": "kubejs-create", "name": "KubeJS Create", "category": "scripting", "side": "both", "required": true, "modrinth": "kubejs-create", "curseforge": "kubejs-create", "version": "latest", "version_hint": "1.x for 1.20.1", "deps": ["kubejs", "create"] },
+    { "id": "kubejs-mekanism", "name": "KubeJS Mekanism (Unofficial)", "category": "scripting", "side": "both", "required": true, "modrinth": "kubejs-mekanism", "curseforge": "kubejs-mekanism", "version": "latest", "version_hint": "1.x for 1.20.1 (unofficial port)", "deps": ["kubejs", "mekanism"] },
+    { "id": "kubejs-thermal", "name": "KubeJS Thermal", "category": "scripting", "side": "both", "required": true, "modrinth": "kubejs-thermal", "curseforge": "kubejs-thermal", "version": "latest", "version_hint": "1.x for 1.20.1", "deps": ["kubejs", "thermal-expansion"] },
+    { "id": "kubejs-botania", "name": "KubeJS Botania", "category": "scripting", "side": "both", "required": false, "modrinth": "kubejs-botania", "curseforge": "kubejs-botania", "version": "latest", "version_hint": "1.x for 1.20.1", "deps": ["kubejs", "botania"], "note": "Опционально: если понадобятся рецепты алтаря цветов" },
+
+    { "id": "jei", "name": "Just Enough Items (JEI)", "category": "ui", "side": "both", "required": true, "modrinth": "jei", "curseforge": "jei", "version": "latest", "version_hint": "15.x for Forge 1.20.1", "deps": [] },
+    { "id": "jade", "name": "Jade", "category": "ui", "side": "both", "required": true, "modrinth": "jade", "curseforge": "jade", "version": "latest", "version_hint": "11.x (11.8.0+)", "deps": [] },
+    { "id": "journeymap", "name": "JourneyMap", "category": "ui", "side": "both", "required": true, "modrinth": "journeymap", "curseforge": "journeymap", "version": "latest", "version_hint": "5.9.21+ (или 5.10.x) forge 1.20.1", "deps": [] },
+    { "id": "appleskin", "name": "AppleSkin", "category": "ui", "side": "client", "required": true, "modrinth": "appleskin", "curseforge": "appleskin", "version": "latest", "version_hint": "2.5.1", "deps": [] },
+    { "id": "mouse-tweaks", "name": "Mouse Tweaks", "category": "ui", "side": "client", "required": true, "modrinth": "mouse-tweaks", "curseforge": "mouse-tweaks", "version": "latest", "version_hint": "2.25", "deps": [] },
+    { "id": "polymorph", "name": "Polymorph", "category": "ui", "side": "both", "required": false, "modrinth": "polymorph", "curseforge": "polymorph", "version": "latest", "version_hint": "0.49.x for 1.20.1", "deps": [], "note": "Опционально: конфликты рецептов Thermal/Mekanism/Create" },
+    { "id": "almost-unified", "name": "Almost Unified", "category": "ui", "side": "both", "required": false, "modrinth": "almost-unified", "curseforge": "almost-unified", "version": "latest", "version_hint": "0.9.x for 1.20.1", "deps": [], "note": "Опционально: унификация тегов (сталь, слитки)" },
+
+    { "id": "embeddium", "name": "Embeddium", "category": "optimization", "side": "client", "required": true, "modrinth": "embeddium", "curseforge": "embeddium", "version": "latest", "version_hint": "0.3.31", "deps": [], "note": "Rubidium НЕ ставить" },
+    { "id": "modernfix", "name": "ModernFix", "category": "optimization", "side": "both", "required": true, "modrinth": "modernfix", "curseforge": "modernfix", "version": "latest", "version_hint": "5.20.x", "deps": [] },
+    { "id": "ferrite-core", "name": "FerriteCore", "category": "optimization", "side": "both", "required": true, "modrinth": "ferrite-core", "curseforge": "ferrite-core", "version": "latest", "version_hint": "6.0.x", "deps": [] },
+    { "id": "entityculling", "name": "Entity Culling", "category": "optimization", "side": "client", "required": true, "modrinth": "entityculling", "curseforge": "entityculling", "version": "latest", "version_hint": "1.6.x", "deps": [] },
+    { "id": "clumps", "name": "Clumps", "category": "optimization", "side": "both", "required": true, "modrinth": "clumps", "curseforge": "clumps", "version": "latest", "version_hint": "12.x", "deps": [] }
+  ]
+}

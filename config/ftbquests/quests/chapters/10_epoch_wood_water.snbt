@@ -1,0 +1,307 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "10_epoch_wood_water"
+	group: "A11A000000000001"
+	icon: "create:water_wheel"
+	id: "A11A020000000001"
+	order_index: 1
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["A11A010100000009"]
+			description: ["Дерево, вода и ремесло — первая технологическая эпоха.", "Город растёт, а Create начинает работать на него."]
+			id: "A11A020100000001"
+			tasks: [
+				{
+					id: "A11A020200000001"
+					title: "Приступить к эпохе ремесла"
+					type: "checkmark"
+				}
+			]
+			title: "Эпоха I"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A020100000001"]
+			description: ["Расширяйте центр колонии."]
+			id: "A11A020100000002"
+			tasks: [
+				{
+					id: "A11A020200000002"
+					title: "Улучшите ратушу до II уровня"
+					type: "checkmark"
+				}
+			]
+			title: "Ратуша II уровня"
+			x: -2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A020100000002"]
+			description: ["Городу нужны люди."]
+			id: "A11A020100000003"
+			tasks: [
+				{
+					id: "A11A020200000003"
+					title: "Доведите население до 8 жителей"
+					type: "checkmark"
+				}
+			]
+			title: "Восемь жителей"
+			x: -2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A020100000002"]
+			description: ["Древесина — основа строительства и ранней механики."]
+			id: "A11A020100000004"
+			tasks: [
+				{
+					id: "A11A020200000004"
+					title: "Постройте хижину лесоруба"
+					type: "checkmark"
+				}
+			]
+			title: "Лесоруб"
+			x: -4.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A020100000002"]
+			description: ["Руда нужна и колонии, и вашим механизмам."]
+			id: "A11A020100000005"
+			tasks: [
+				{
+					id: "A11A020200000005"
+					title: "Постройте хижину шахтёра"
+					type: "checkmark"
+				}
+			]
+			title: "Шахтёр"
+			x: -4.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A020100000002"]
+			description: ["Склад собирает ресурсы города в одном месте."]
+			id: "A11A020100000006"
+			tasks: [
+				{
+					id: "A11A020200000006"
+					title: "Постройте склад"
+					type: "checkmark"
+				}
+			]
+			title: "Склад"
+			x: -4.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A020100000006"]
+			description: ["Курьер развозит материалы по хижинам."]
+			id: "A11A020100000007"
+			tasks: [
+				{
+					id: "A11A020200000007"
+					title: "Наймите хотя бы одного курьера"
+					type: "checkmark"
+				}
+			]
+			title: "Курьер"
+			x: -4.0d
+			y: -3.0d
+		},
+		{
+			dependencies: ["A11A020100000001"]
+			description: ["Ферма или пекарня — пищевая инфраструктура города."]
+			id: "A11A020100000008"
+			tasks: [
+				{
+					id: "A11A020200000008"
+					title: "Запустите начальное производство пищи"
+					type: "checkmark"
+				}
+			]
+			title: "Производство пищи"
+			x: -2.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A020100000001"]
+			description: ["Первая энергия Create — сила воды."]
+			id: "A11A020100000009"
+			rewards: [
+				{
+					id: "A11A020300000001"
+					item: "create:cogwheel"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A020200000009"
+					item: "create:water_wheel"
+					type: "item"
+				}
+			]
+			title: "Водяное колесо"
+			x: 2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A020100000009"]
+			description: ["Без передачи энергии автоматизации не бывает."]
+			id: "A11A02010000000A"
+			tasks: [
+				{
+					id: "A11A02020000000A"
+					item: "create:shaft"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Валы и передачи"
+			x: 2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A02010000000A"]
+			description: ["Пресс делает пластины — основу деталей."]
+			id: "A11A02010000000B"
+			tasks: [
+				{
+					id: "A11A02020000000B"
+					item: "create:mechanical_press"
+					type: "item"
+				}
+			]
+			title: "Механический пресс"
+			x: 4.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A02010000000A"]
+			description: ["Пила ускоряет работу с деревом для стройки."]
+			id: "A11A02010000000C"
+			tasks: [
+				{
+					id: "A11A02020000000C"
+					item: "create:mechanical_saw"
+					type: "item"
+				}
+			]
+			title: "Механическая пила"
+			x: 4.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A020100000009"]
+			description: ["Вентилятор — дробление, смоление, охлаждение."]
+			id: "A11A02010000000D"
+			tasks: [
+				{
+					id: "A11A02020000000D"
+					item: "create:encased_fan"
+					type: "item"
+				}
+			]
+			title: "Вентиляторная обработка"
+			x: 4.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A02010000000B", "A11A02010000000C"]
+			description: ["Конвейерные линии связывают механизмы в производство."]
+			id: "A11A02010000000E"
+			tasks: [
+				{
+					id: "A11A02020000000E"
+					item: "create:belt_connector"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Простые линии"
+			x: 6.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A020100000001"]
+			description: ["Ars Nouveau — магия источника, которая работает на производство."]
+			id: "A11A02010000000F"
+			rewards: [
+				{
+					id: "A11A020300000002"
+					item: "minecraft:amethyst_shard"
+					count: 4
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A02020000000F"
+					title: "Создайте книгу заклинаний Ars Nouveau"
+					type: "checkmark"
+				}
+			]
+			title: "Книга заклинаний"
+			x: 2.0d
+			y: -3.0d
+		},
+		{
+			dependencies: ["A11A02010000000F"]
+			description: ["Самоцветы — топливо магии и компонент поздних рецептов.", "Их можно автоматизировать дробилкой Create (см. JEI)."]
+			id: "A11A020100000010"
+			tasks: [
+				{
+					id: "A11A020200000010"
+					item: "ars_nouveau:source_gem"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Самоцветы источника"
+			x: 4.0d
+			y: -3.0d
+		},
+		{
+			dependencies: ["A11A02010000000E", "A11A020100000008", "A11A020100000010", "A11A020100000007"]
+			description: ["Автоматизируйте производство строительных компонентов:", "доски, обработанный камень, железные пластины.", "Город должен получать их без вашего участия."]
+			id: "A11A020100000011"
+			rewards: [
+				{
+					id: "A11A020300000003"
+					item: "arcanopolis:seal_craftsmen"
+					type: "item"
+				},
+				{
+					id: "A11A020300000004"
+					item: "minecraft:emerald"
+					count: 16
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A020200000011"
+					title: "Мастерская автоматически производит доски, камень и пластины"
+					type: "checkmark"
+				},
+				{
+					id: "A11A020200000012"
+					item: "create:iron_sheet"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Ключевой проект: городская мастерская"
+			x: 8.0d
+			y: 0.0d
+		}
+	]
+	title: "Эпоха I. «Дерево, вода и ремесло»"
+}

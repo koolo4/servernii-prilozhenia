@@ -1,0 +1,125 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "73_side_engineering"
+	group: "A11A000000000002"
+	icon: "create:precision_mechanism"
+	id: "A11A0B0000000001"
+	order_index: 10
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [ ]
+			description: ["Альтернативные схемы фабрик и транспортных сетей."]
+			id: "A11A0B0100000001"
+			tasks: [
+				{
+					id: "A11A0B0200000001"
+					title: "Взять первую инженерную задачу"
+					type: "checkmark"
+				}
+			]
+			title: "Инженерные задачи"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A0B0100000001"]
+			description: ["Разместите полную производственную линию на минимальной площади."]
+			id: "A11A0B0100000002"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0B0300000001"
+					item: "create:precision_mechanism"
+					count: 4
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0B0200000002"
+					title: "Постройте компактную фабрику"
+					type: "checkmark"
+				}
+			]
+			title: "Компактная фабрика"
+			x: -2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A0B0100000001"]
+			description: ["Свяжите несколько цехов единой транспортной системой."]
+			id: "A11A0B0100000003"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0B0300000002"
+					item: "create:brass_casing"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0B0200000003"
+					title: "Постройте транспортную сеть между цехами"
+					type: "checkmark"
+				}
+			]
+			title: "Транспортная сеть"
+			x: 2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A0B0100000001"]
+			description: ["Передавайте энергию между удалёнными цехами."]
+			id: "A11A0B0100000004"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0B0300000003"
+					item: "minecraft:redstone_block"
+					count: 4
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0B0200000004"
+					title: "Создайте энергомост между цехами"
+					type: "checkmark"
+				}
+			]
+			title: "Энергомост"
+			x: -2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A0B0100000003"]
+			description: ["Автоматическая сортировка продукции города."]
+			id: "A11A0B0100000005"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0B0300000004"
+					item: "minecraft:hopper"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0B0200000005"
+					title: "Постройте сортировочную станцию"
+					type: "checkmark"
+				}
+			]
+			title: "Сортировочная станция"
+			x: 2.0d
+			y: 1.5d
+		}
+	]
+	title: "Необязательное: «Инженерные задачи»"
+}

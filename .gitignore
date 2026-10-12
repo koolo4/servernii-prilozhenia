@@ -1,0 +1,21 @@
+# Локальные jar-файлы модов (скачиваются через tools/download_mods.py)
+mods/*.jar
+downloads/
+.cache/
+
+# Игровые/сборочные артефакты
+run/
+out/
+build/
+logs/
+*.log
+crash-*.txt
+hs_err_*.log
+
+# Локальные настройки среды
+.idea/
+.vscode/
+*.iml
+.DS_Store
+__pycache__/
+*.pyc

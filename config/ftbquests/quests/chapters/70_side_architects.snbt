@@ -1,0 +1,124 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "70_side_architects"
+	group: "A11A000000000002"
+	icon: "minecraft:stone_bricks"
+	id: "A11A080000000001"
+	order_index: 7
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [ ]
+			description: ["Здания колонии, декор и оформление кварталов."]
+			id: "A11A080100000001"
+			tasks: [
+				{
+					id: "A11A080200000001"
+					title: "Приступить к развитию архитектуры"
+					type: "checkmark"
+				}
+			]
+			title: "Архитекторы"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A080100000001"]
+			description: ["Выберите единый архитектурный стиль колонии."]
+			id: "A11A080100000002"
+			optional: true
+			rewards: [
+				{
+					id: "A11A080300000001"
+					item: "minecraft:quartz_block"
+					count: 16
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A080200000002"
+					title: "Оформите ратушу и центр в едином стиле"
+					type: "checkmark"
+				}
+			]
+			title: "Стиль города"
+			x: -2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A080100000001"]
+			description: ["Жилой, ремесленный и торговый кварталы."]
+			id: "A11A080100000003"
+			optional: true
+			rewards: [
+				{
+					id: "A11A080300000002"
+					item: "minecraft:item_frame"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A080200000003"
+					title: "Выстройте три различимых квартала"
+					type: "checkmark"
+				}
+			]
+			title: "Три квартала"
+			x: 2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A080100000001"]
+			description: ["Зелёное пространство для жителей."]
+			id: "A11A080100000004"
+			optional: true
+			rewards: [
+				{
+					id: "A11A080300000003"
+					item: "minecraft:flowering_azalea"
+					count: 16
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A080200000004"
+					title: "Разбейте парк или площадь"
+					type: "checkmark"
+				}
+			]
+			title: "Городской парк"
+			x: -2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A080100000003"]
+			description: ["Памятник городу, который станет машиной."]
+			id: "A11A080100000005"
+			optional: true
+			rewards: [
+				{
+					id: "A11A080300000004"
+					item: "minecraft:bell"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A080200000005"
+					title: "Постройте городской монумент"
+					type: "checkmark"
+				}
+			]
+			title: "Монумент"
+			x: 2.0d
+			y: 1.5d
+		}
+	]
+	title: "Необязательное: «Архитекторы»"
+}

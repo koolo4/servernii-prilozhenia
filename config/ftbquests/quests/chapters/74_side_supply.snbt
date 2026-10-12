@@ -1,0 +1,100 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "74_side_supply"
+	group: "A11A000000000002"
+	icon: "minecraft:bread"
+	id: "A11A0C0000000001"
+	order_index: 11
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [ ]
+			description: ["Испытание на длительное автоматическое снабжение колонии."]
+			id: "A11A0C0100000001"
+			tasks: [
+				{
+					id: "A11A0C0200000001"
+					title: "Приступить к испытанию снабжения"
+					type: "checkmark"
+				}
+			]
+			title: "Город без дефицита"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A0C0100000001"]
+			description: ["Семь игровых дней колония живёт без ручной доставки."]
+			id: "A11A0C0100000002"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0C0300000001"
+					item: "minecraft:bread"
+					count: 32
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000002"
+					title: "7 игровых дней снабжение работает автоматически"
+					type: "checkmark"
+				}
+			]
+			title: "Неделя без участия"
+			x: 0.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A0C0100000002"]
+			description: ["Тридцать дней: еда, топливо, стройматериалы — всё в достатке."]
+			id: "A11A0C0100000003"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0C0300000002"
+					item: "minecraft:emerald_block"
+					count: 4
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000003"
+					title: "30 игровых дней без дефицита в колонии"
+					type: "checkmark"
+				}
+			]
+			title: "Месяц без дефицита"
+			x: 2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A0C0100000003"]
+			description: ["Город-машина работает сам."]
+			id: "A11A0C0100000004"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0C0300000003"
+					item: "arcanopolis:city_charter"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000004"
+					title: "Колония функционирует без вашего участия"
+					type: "checkmark"
+				}
+			]
+			title: "Трофей снабжения"
+			x: 2.0d
+			y: 0.0d
+		}
+	]
+	title: "Необязательное: «Город без дефицита»"
+}

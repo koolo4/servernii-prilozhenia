@@ -1,0 +1,125 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "72_side_schools"
+	group: "A11A000000000002"
+	icon: "botania:terrasteel_ingot"
+	id: "A11A0A0000000001"
+	order_index: 9
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [ ]
+			description: ["Дополнительные испытания для каждой магической школы."]
+			id: "A11A0A0100000001"
+			tasks: [
+				{
+					id: "A11A0A0200000001"
+					title: "Выбрать школу для углублённого изучения"
+					type: "checkmark"
+				}
+			]
+			title: "Магистры школы"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A0A0100000001"]
+			description: ["Освойте продвинутые заклинания и автоматизацию Ars Nouveau."]
+			id: "A11A0A0100000002"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0A0300000001"
+					item: "minecraft:amethyst_block"
+					count: 4
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0A0200000002"
+					title: "Завершите испытание школы Источника"
+					type: "checkmark"
+				}
+			]
+			title: "Магистр Источника"
+			x: -2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A0A0100000001"]
+			description: ["Продвинутая инфраструктура маны и преобразование ресурсов."]
+			id: "A11A0A0100000003"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0A0300000002"
+					item: "minecraft:diamond"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0A0200000003"
+					title: "Завершите испытание школы Маны"
+					type: "checkmark"
+				}
+			]
+			title: "Магистр Маны"
+			x: -2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A0A0100000001"]
+			description: ["Продвинутые ритуалы и кровавая алхимия."]
+			id: "A11A0A0100000004"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0A0300000003"
+					item: "minecraft:redstone_block"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0A0200000004"
+					title: "Завершите испытание школы Крови"
+					type: "checkmark"
+				}
+			]
+			title: "Магистр Крови"
+			x: 2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A0A0100000001"]
+			description: ["Продвинутая алхимия и ритуалы Eidolon."]
+			id: "A11A0A0100000005"
+			optional: true
+			rewards: [
+				{
+					id: "A11A0A0300000004"
+					item: "minecraft:gold_block"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0A0200000005"
+					title: "Завершите испытание школы Алхимии"
+					type: "checkmark"
+				}
+			]
+			title: "Магистр Алхимии"
+			x: 2.0d
+			y: 1.5d
+		}
+	]
+	title: "Необязательное: «Магистры школы»"
+}

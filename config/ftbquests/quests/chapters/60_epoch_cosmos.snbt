@@ -1,0 +1,173 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "60_epoch_cosmos"
+	group: "A11A000000000001"
+	icon: "arcanopolis:heart_of_arcanopolis"
+	id: "A11A070000000001"
+	order_index: 6
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["A11A060100000007"]
+			description: ["Финальная эпоха: организуйте город, производства и магические школы.", "Испытание — в сложности организации, а не в количестве слитков."]
+			id: "A11A070100000001"
+			tasks: [
+				{
+					id: "A11A070200000001"
+					title: "Приступить к финальной эпохе"
+					type: "checkmark"
+				}
+			]
+			title: "Эпоха VI"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A070100000001"]
+			description: ["Продвинутые системы Mekanism: поздние сплавы и энергетика."]
+			id: "A11A070100000002"
+			tasks: [
+				{
+					id: "A11A070200000002"
+					title: "Запустите поздние производства Mekanism"
+					type: "checkmark"
+				}
+			]
+			title: "Поздняя переработка"
+			x: -2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A070100000001"]
+			description: ["Сложные компоненты Create и Thermal на пике мощности."]
+			id: "A11A070100000003"
+			tasks: [
+				{
+					id: "A11A070200000003"
+					title: "Соберите продвинутые установки Thermal и Create"
+					type: "checkmark"
+				}
+			]
+			title: "Продвинутые установки"
+			x: -2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A070100000001"]
+			description: ["Редкие компоненты Ars Nouveau, Botania, Blood Magic и Eidolon."]
+			id: "A11A070100000004"
+			tasks: [
+				{
+					id: "A11A070200000004"
+					title: "Соберите редкие реагенты всех четырёх школ"
+					type: "checkmark"
+				}
+			]
+			title: "Редкие реагенты"
+			x: -2.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A070100000001"]
+			description: ["Постройте центральный комплекс колонии под Сердце Арканополиса."]
+			id: "A11A070100000005"
+			tasks: [
+				{
+					id: "A11A070200000005"
+					title: "Центральное сооружение подготовлено"
+					type: "checkmark"
+				}
+			]
+			title: "Центральное сооружение"
+			x: 2.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A070100000002", "A11A070100000004"]
+			description: ["Редкий энергетический реагент — смесь алхимии, эндерия,", "террасталя и атомарного сплава (см. JEI: верстак механизмов)."]
+			id: "A11A070100000006"
+			rewards: [
+				{
+					id: "A11A070300000001"
+					item: "minecraft:nether_star"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A070200000006"
+					item: "arcanopolis:primal_catalyst"
+					type: "item"
+				}
+			]
+			title: "Изначальный катализатор"
+			x: 2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A070100000006", "A11A070100000003"]
+			description: ["Финальная механическая сборка города-машины.", "Расходует Печать сети. См. рецепт в JEI."]
+			id: "A11A070100000007"
+			rewards: [
+				{
+					id: "A11A070300000002"
+					item: "minecraft:nether_star"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A070300000003"
+					item: "minecraft:experience_bottle"
+					count: 64
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A070200000007"
+					item: "arcanopolis:heart_of_arcanopolis"
+					type: "item"
+				}
+			]
+			title: "Сердце Арканополиса"
+			x: 4.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A070100000007", "A11A070100000005"]
+			description: ["Встройте Сердце в центральное сооружение колонии.", "Город работает, производство снабжает поселение,", "магия и технологии сходятся в единую систему.", "Добро пожаловать в Арканополис."]
+			id: "A11A070100000008"
+			rewards: [
+				{
+					id: "A11A070300000004"
+					item: "minecraft:totem_of_undying"
+					type: "item"
+				},
+				{
+					id: "A11A070300000005"
+					item: "minecraft:emerald_block"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A070200000008"
+					title: "Сердце встроено в центральное сооружение"
+					type: "checkmark"
+				},
+				{
+					id: "A11A070200000009"
+					title: "Колония обеспечивается без ручной доставки игроком"
+					type: "checkmark"
+				}
+			]
+			title: "Запуск проекта"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	title: "Эпоха VI. «Космический горизонт»"
+}

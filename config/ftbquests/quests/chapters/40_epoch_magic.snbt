@@ -1,0 +1,223 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "40_epoch_magic"
+	group: "A11A000000000001"
+	icon: "ars_nouveau:source_gem"
+	id: "A11A050000000001"
+	order_index: 4
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["A11A04010000000E"]
+			description: ["Магия — самостоятельная система производства", "со своими материалами, инфраструктурой и специализациями."]
+			id: "A11A050100000001"
+			tasks: [
+				{
+					id: "A11A050200000001"
+					title: "Приступить к эпохе магии"
+					type: "checkmark"
+				}
+			]
+			title: "Эпоха IV"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A050100000001"]
+			description: ["Освойте книгу заклинаний и сбор источника."]
+			id: "A11A050100000002"
+			tasks: [
+				{
+					id: "A11A050200000002"
+					title: "Освойте основы Ars Nouveau"
+					type: "checkmark"
+				}
+			]
+			title: "Источник и заклинания"
+			x: -4.0d
+			y: -2.0d
+		},
+		{
+			dependencies: ["A11A050100000002"]
+			description: ["Слуги и устройства Ars Nouveau обслуживают производство."]
+			id: "A11A050100000003"
+			tasks: [
+				{
+					id: "A11A050200000003"
+					title: "Автоматизируйте операции магическими помощниками"
+					type: "checkmark"
+				}
+			]
+			title: "Магические помощники"
+			x: -4.0d
+			y: -0.5d
+		},
+		{
+			dependencies: ["A11A050100000003"]
+			description: ["Свяжите Ars Nouveau с Create (Ars Creo)."]
+			id: "A11A050100000004"
+			optional: true
+			tasks: [
+				{
+					id: "A11A050200000004"
+					title: "Используйте интеграцию Ars Nouveau и Create"
+					type: "checkmark"
+				}
+			]
+			title: "Ars Creo: магия и механизмы"
+			x: -4.0d
+			y: 1.0d
+		},
+		{
+			dependencies: ["A11A050100000001"]
+			description: ["Начните цветочную инфраструктуру Botania."]
+			id: "A11A050100000005"
+			tasks: [
+				{
+					id: "A11A050200000005"
+					title: "Создайте мана-пул и первые цветы"
+					type: "checkmark"
+				}
+			]
+			title: "Мана-пул"
+			x: -2.0d
+			y: -2.0d
+		},
+		{
+			dependencies: ["A11A050100000005"]
+			description: ["Мана должна производиться автоматически."]
+			id: "A11A050100000006"
+			rewards: [
+				{
+					id: "A11A050300000001"
+					item: "minecraft:poppy"
+					count: 16
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A050200000006"
+					title: "Организуйте устойчивую автогенерацию маны"
+					type: "checkmark"
+				}
+			]
+			title: "Устойчивая генерация маны"
+			x: -2.0d
+			y: -0.5d
+		},
+		{
+			dependencies: ["A11A050100000001"]
+			description: ["Поставьте алтарь Blood Magic и развивайте его."]
+			id: "A11A050100000007"
+			tasks: [
+				{
+					id: "A11A050200000007"
+					title: "Создайте алтарь крови"
+					type: "checkmark"
+				}
+			]
+			title: "Алтарь крови"
+			x: 2.0d
+			y: -2.0d
+		},
+		{
+			dependencies: ["A11A050100000007"]
+			description: ["Первые компоненты прогрессии Blood Magic."]
+			id: "A11A050100000008"
+			tasks: [
+				{
+					id: "A11A050200000008"
+					item: "bloodmagic:blankslate"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Кровавые компоненты"
+			x: 2.0d
+			y: -0.5d
+		},
+		{
+			dependencies: ["A11A050100000008"]
+			description: ["Проведите ритуал как контрольное испытание школы."]
+			id: "A11A050100000009"
+			optional: true
+			tasks: [
+				{
+					id: "A11A050200000009"
+					title: "Завершите ритуал Blood Magic"
+					type: "checkmark"
+				}
+			]
+			title: "Ритуал"
+			x: 2.0d
+			y: 1.0d
+		},
+		{
+			dependencies: ["A11A050100000001"]
+			description: ["Освойте базовую алхимию Eidolon: Repraised."]
+			id: "A11A05010000000A"
+			tasks: [
+				{
+					id: "A11A05020000000A"
+					title: "Освойте базовую алхимию Eidolon"
+					type: "checkmark"
+				}
+			]
+			title: "Алхимия Eidolon"
+			x: 4.0d
+			y: -2.0d
+		},
+		{
+			dependencies: ["A11A05010000000A"]
+			description: ["Изготовьте несколько характерных компонентов школы.", "(ID предметов Eidolon сверьте в JEI)"]
+			id: "A11A05010000000B"
+			tasks: [
+				{
+					id: "A11A05020000000B"
+					title: "Изготовьте алхимические компоненты Eidolon"
+					type: "checkmark"
+				}
+			]
+			title: "Характерные компоненты"
+			x: 4.0d
+			y: -0.5d
+		},
+		{
+			dependencies: ["A11A050100000003", "A11A050100000006", "A11A050100000009", "A11A05010000000B"]
+			description: ["Постройте городскую арканную лабораторию:", "отдельные линии для источника, маны и ритуальных компонентов.", "Достаточно базового достижения в каждой школе."]
+			id: "A11A05010000000C"
+			rewards: [
+				{
+					id: "A11A050300000002"
+					item: "arcanopolis:seal_arcana"
+					type: "item"
+				},
+				{
+					id: "A11A050300000003"
+					item: "minecraft:experience_bottle"
+					count: 24
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A05020000000C"
+					title: "Арканная лаборатория построена и работает"
+					type: "checkmark"
+				},
+				{
+					id: "A11A05020000000D"
+					title: "Есть достижение в каждой из четырёх школ"
+					type: "checkmark"
+				}
+			]
+			title: "Ключевой проект: арканная лаборатория"
+			x: 0.0d
+			y: 2.0d
+		}
+	]
+	title: "Эпоха IV. «Расцвет магии»"
+}

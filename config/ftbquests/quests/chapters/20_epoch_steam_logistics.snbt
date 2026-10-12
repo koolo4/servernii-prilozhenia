@@ -1,0 +1,247 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "20_epoch_steam_logistics"
+	group: "A11A000000000001"
+	icon: "create:steam_engine"
+	id: "A11A030000000001"
+	order_index: 2
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["A11A020100000011"]
+			description: ["Пар и логистика: город переходит к промышленным методам."]
+			id: "A11A030100000001"
+			tasks: [
+				{
+					id: "A11A030200000001"
+					title: "Приступить к эпохе пара"
+					type: "checkmark"
+				}
+			]
+			title: "Эпоха II"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A030100000001"]
+			description: ["Продолжайте расширять центр колонии."]
+			id: "A11A030100000002"
+			tasks: [
+				{
+					id: "A11A030200000002"
+					title: "Улучшите ратушу до II–III уровня"
+					type: "checkmark"
+				}
+			]
+			title: "Ратуша II–III уровня"
+			x: -2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A030100000002"]
+			description: ["Продвинутый строитель возводит крупные здания."]
+			id: "A11A030100000003"
+			tasks: [
+				{
+					id: "A11A030200000003"
+					title: "Прокачайте строителя до III уровня"
+					type: "checkmark"
+				}
+			]
+			title: "Строитель III уровня"
+			x: -2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A030100000002"]
+			description: ["Растущий город требует большего склада."]
+			id: "A11A030100000004"
+			tasks: [
+				{
+					id: "A11A030200000004"
+					title: "Улучшите склад до II уровня"
+					type: "checkmark"
+				}
+			]
+			title: "Склад II уровня"
+			x: -4.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A030100000002"]
+			description: ["Город растёт."]
+			id: "A11A030100000005"
+			tasks: [
+				{
+					id: "A11A030200000005"
+					title: "Доведите население до 12 жителей"
+					type: "checkmark"
+				}
+			]
+			title: "Двенадцать жителей"
+			x: -2.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A030100000002"]
+			description: ["Городские исследования — условие будущих эпох.", "Постройте университет (или выбранное здание исследований)."]
+			id: "A11A030100000006"
+			rewards: [
+				{
+					id: "A11A030300000001"
+					item: "minecraft:experience_bottle"
+					count: 16
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A030200000006"
+					title: "Постройте университет"
+					type: "checkmark"
+				}
+			]
+			title: "Университет"
+			x: -4.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A030100000001"]
+			description: ["Производство пищи должно быть регулярным."]
+			id: "A11A030100000007"
+			tasks: [
+				{
+					id: "A11A030200000007"
+					title: "Обеспечьте стабильное производство пищи"
+					type: "checkmark"
+				}
+			]
+			title: "Стабильная еда"
+			x: -4.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A030100000001"]
+			description: ["Латунь Create — материал точных механизмов."]
+			id: "A11A030100000008"
+			tasks: [
+				{
+					id: "A11A030200000008"
+					item: "create:brass_ingot"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Латунная автоматизация"
+			x: 2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A030100000008"]
+			description: ["Паровая энергия питает тяжёлые механизмы."]
+			id: "A11A030100000009"
+			tasks: [
+				{
+					id: "A11A030200000009"
+					item: "create:steam_engine"
+					type: "item"
+				}
+			]
+			title: "Паровой двигатель"
+			x: 2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A030100000009"]
+			description: ["Точные механизмы — сердце автоматических линий."]
+			id: "A11A03010000000A"
+			tasks: [
+				{
+					id: "A11A03020000000A"
+					item: "create:precision_mechanism"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Точная механика"
+			x: 4.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A030100000009"]
+			description: ["Поезда или конвейеры — выбирайте транспорт города."]
+			id: "A11A03010000000B"
+			optional: true
+			rewards: [
+				{
+					id: "A11A030300000002"
+					item: "minecraft:rail"
+					count: 64
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A03020000000B"
+					title: "Организуйте железнодорожную или конвейерную логистику"
+					type: "checkmark"
+				}
+			]
+			title: "Железнодорожная логистика"
+			x: 4.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A030100000008"]
+			description: ["Источник и первые устройства Ars Nouveau обслуживают ремёсла."]
+			id: "A11A03010000000C"
+			tasks: [
+				{
+					id: "A11A03020000000C"
+					title: "Запустите первую автоматизацию Ars Nouveau"
+					type: "checkmark"
+				}
+			]
+			title: "Первая магическая автоматизация"
+			x: 2.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A03010000000A", "A11A030100000007", "A11A030100000006", "A11A03010000000C"]
+			description: ["Городская мастерская автоматически производит", "пластины, шестерни и стандартные строительные компоненты.", "Подтвердите централизованное снабжение рабочих."]
+			id: "A11A03010000000D"
+			rewards: [
+				{
+					id: "A11A030300000003"
+					item: "arcanopolis:seal_steam"
+					type: "item"
+				},
+				{
+					id: "A11A030300000004"
+					item: "minecraft:emerald"
+					count: 24
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A03020000000D"
+					title: "Мастерская производит пластины, шестерни и компоненты"
+					type: "checkmark"
+				},
+				{
+					id: "A11A03020000000E"
+					item: "create:brass_casing"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Ключевой проект: мастерская компонентов"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	title: "Эпоха II. «Пар и логистика»"
+}

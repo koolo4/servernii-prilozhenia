@@ -1,0 +1,138 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "50_epoch_network"
+	group: "A11A000000000001"
+	icon: "ae2:controller"
+	id: "A11A060000000001"
+	order_index: 5
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["A11A05010000000C"]
+			description: ["Applied Energistics 2 — управляющий слой производства:", "физические фабрики, городское снабжение и магические материалы", "объединяются в одной сети."]
+			id: "A11A060100000001"
+			tasks: [
+				{
+					id: "A11A060200000001"
+					title: "Приступить к эпохе сети"
+					type: "checkmark"
+				}
+			]
+			title: "Эпоха V"
+			x: 0.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A060100000001"]
+			description: ["Запустите контроллер, диски и терминалы."]
+			id: "A11A060100000002"
+			tasks: [
+				{
+					id: "A11A060200000002"
+					item: "ae2:controller"
+					type: "item"
+				}
+			]
+			title: "Сеть AE2"
+			x: 2.0d
+			y: 0.0d
+		},
+		{
+			dependencies: ["A11A060100000002"]
+			description: ["Ячейки и диски — централизованное хранение ресурсов."]
+			id: "A11A060100000003"
+			tasks: [
+				{
+					id: "A11A060200000003"
+					title: "Организуйте централизованное хранение ресурсов"
+					type: "checkmark"
+				}
+			]
+			title: "Хранение"
+			x: 2.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A060100000003"]
+			description: ["Настройте шаблоны и автоматическое выполнение заказов."]
+			id: "A11A060100000004"
+			tasks: [
+				{
+					id: "A11A060200000004"
+					title: "Автоматический крафт по шаблонам работает"
+					type: "checkmark"
+				}
+			]
+			title: "Шаблоны и заказы"
+			x: 4.0d
+			y: 1.5d
+		},
+		{
+			dependencies: ["A11A060100000002"]
+			description: ["Ресурсы Mekanism — в общей сети AE2."]
+			id: "A11A060100000005"
+			optional: true
+			tasks: [
+				{
+					id: "A11A060200000005"
+					title: "Интегрируйте Mekanism с сетью AE2"
+					type: "checkmark"
+				}
+			]
+			title: "Applied Mekanistics"
+			x: 2.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A060100000002"]
+			description: ["Сеть снабжает несколько производственных линий одновременно."]
+			id: "A11A060100000006"
+			tasks: [
+				{
+					id: "A11A060200000006"
+					title: "Настройте снабжение нескольких линий из сети"
+					type: "checkmark"
+				}
+			]
+			title: "Несколько линий"
+			x: 4.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A060100000004", "A11A060100000006", "A11A060100000005"]
+			description: ["Запустите автоматическое производство:", "от сырой руды до готового промышленного корпуса.", "Скрафтите Ядро автоматизации (расходует Печать расцвета)."]
+			id: "A11A060100000007"
+			rewards: [
+				{
+					id: "A11A060300000001"
+					item: "arcanopolis:seal_network"
+					type: "item"
+				},
+				{
+					id: "A11A060300000002"
+					item: "minecraft:diamond"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A060200000007"
+					title: "Автопроизводство «от руды до корпуса» работает"
+					type: "checkmark"
+				},
+				{
+					id: "A11A060200000008"
+					item: "arcanopolis:automation_core"
+					type: "item"
+				}
+			]
+			title: "Ключевой проект: «от руды до корпуса»"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	title: "Эпоха V. «Сеть и автоматизированное производство»"
+}
