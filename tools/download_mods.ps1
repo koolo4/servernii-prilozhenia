@@ -100,6 +100,41 @@ function Test-Hash([string]$dest, $hashes) {
     return $true
 }
 
+# --- Проверка, что файл — настоящий jar (ZIP с концом архива) -------------
+# Forge падает с "zip END header not found" на любом битом/обрезанном jar.
+function Test-JarFile([string]$path) {
+    try {
+        $fs = [System.IO.File]::OpenRead($path)
+        try {
+            $len = $fs.Length
+            if ($len -lt 22) { return "файл слишком мал ($len байт)" }
+            $buf = New-Object byte[] 4
+            $fs.Read($buf, 0, 4) | Out-Null
+            if ($buf[0] -ne 0x50 -or $buf[1] -ne 0x4B) {
+                return ("не ZIP: начинается с {0:X2}{1:X2}{2:X2}{3:X2} (HTML/текст?)" -f $buf[0], $buf[1], $buf[2], $buf[3])
+            }
+            # ищем сигнатуру конца архива (PK\x05\x06) в последних 66 КБ
+            $tail = [Math]::Min($len, 66000)
+            $fs.Seek($len - $tail, [System.IO.SeekOrigin]::Begin) | Out-Null
+            $data = New-Object byte[] $tail
+            $read = 0
+            while ($read -lt $tail) {
+                $n = $fs.Read($data, $read, $tail - $read)
+                if ($n -le 0) { break }
+                $read += $n
+            }
+            for ($i = $read - 4; $i -ge 0; $i--) {
+                if ($data[$i] -eq 0x50 -and $data[$i+1] -eq 0x4B -and $data[$i+2] -eq 0x05 -and $data[$i+3] -eq 0x06) {
+                    return $null
+                }
+            }
+            return "обрыв архива (нет конца ZIP)"
+        } finally { $fs.Close() }
+    } catch {
+        return "не удалось прочитать: $($_.Exception.Message)"
+    }
+}
+
 # --- Загрузка файла: пробуем все URL, затем curl.exe -----------------------
 function Save-File($urls, [string]$dest, $hashes) {
     $last = "нет ссылок"
@@ -112,8 +147,13 @@ function Save-File($urls, [string]$dest, $hashes) {
         try {
             Invoke-WebRequest -Uri $u -OutFile $dest -UserAgent $browserUA -Headers $headers -UseBasicParsing | Out-Null
             if ((Test-Path $dest) -and ((Get-Item $dest).Length -gt 0)) {
-                if (Test-Hash $dest $hashes) { return $null }
-                $last = "checksum mismatch [$u]"
+                if (Test-Hash $dest $hashes) {
+                    $bad = Test-JarFile $dest
+                    if (-not $bad) { return $null }
+                    $last = "$bad [$u]"
+                } else {
+                    $last = "checksum mismatch [$u]"
+                }
                 Remove-Item $dest -Force
             } else {
                 $last = "пустой файл [$u]"
@@ -131,8 +171,13 @@ function Save-File($urls, [string]$dest, $hashes) {
             if (-not $u) { continue }
             & $curl.Source -L -s -S -A $browserUA -e "https://www.curseforge.com/" -o $dest $u | Out-Null
             if (($LASTEXITCODE -eq 0) -and (Test-Path $dest) -and ((Get-Item $dest).Length -gt 0)) {
-                if (Test-Hash $dest $hashes) { return $null }
-                $last = "checksum mismatch (curl) [$u]"
+                if (Test-Hash $dest $hashes) {
+                    $bad = Test-JarFile $dest
+                    if (-not $bad) { return $null }
+                    $last = "$bad (curl) [$u]"
+                } else {
+                    $last = "checksum mismatch (curl) [$u]"
+                }
                 Remove-Item $dest -Force
             } elseif (Test-Path $dest) {
                 Remove-Item $dest -Force
@@ -416,6 +461,36 @@ function Get-CfFileUrls([string]$slug, [string]$fid) {
     $urls = New-Object System.Collections.Generic.List[string]
     $fname = $null
 
+    # Имя файла из API CurseForge — даёт прямые ссылки на CDN
+    $fn = $null
+    try {
+        $meta = $null
+        try { $meta = Get-WebJson ("https://www.curseforge.com/api/v1/mods/{0}/files/{1}" -f $slug, $fid) } catch { }
+        if (-not $meta) {
+            try {
+                $lst = Get-WebJson ("https://www.curseforge.com/api/v1/mods/{0}/files?index=0&pageSize=50" -f $slug)
+                $arr = $lst
+                if ($lst -and $lst.data) { $arr = $lst.data }
+                foreach ($ff in @(Get-Flat $arr)) {
+                    if ("$($ff.id)" -eq "$fid") { $meta = $ff; break }
+                }
+            } catch { }
+        }
+        if ($meta) {
+            if ($meta.fileName) { $fn = "$($meta.fileName)" }
+            elseif ($meta.data -and $meta.data.fileName) { $fn = "$($meta.data.fileName)" }
+        }
+    } catch { }
+    if ($fn) {
+        $fid64 = [int64]$fid
+        $p1 = [math]::Floor($fid64 / 1000)
+        $p2 = $fid64 % 1000
+        $esc = [uri]::EscapeDataString($fn)
+        $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
+        $urls.Add(("https://edge.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
+        $fname = $fn
+    }
+
     # Страница загрузки может содержать прямую ссылку на CDN (заодно узнаём имя файла)
     $pageUrl = "https://www.curseforge.com/minecraft/mc-mods/{0}/download/{1}" -f $slug, $fid
     try {
@@ -543,9 +618,14 @@ foreach ($mod in $modList) {
 
     $dest = Join-Path $Out $hit.filename
     if (Test-Path $dest) {
-        Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
-        $ok++
-        continue
+        $bad = Test-JarFile $dest
+        if (-not $bad) {
+            Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
+            $ok++
+            continue
+        }
+        Log ("[БИТЫЙ]  {0} — {1}; удаляю и скачиваю заново" -f $hit.filename, $bad)
+        Remove-Item $dest -Force
     }
 
     $err = Save-File $hit.urls $dest $hit.hashes
@@ -565,9 +645,30 @@ if ($manual -gt 0) {
     Log "Файлы «вручную» скачайте по ссылкам выше и положите в папку mods\"
 }
 
+# --- Проверка целостности всех jar в папке --------------------------------
+Log ""
+Log "Проверка целостности jar-файлов:"
+$broken = 0
+foreach ($f in (Get-ChildItem -Path $Out -File | Sort-Object Name)) {
+    if ($f.Name -notmatch '\.jar$') {
+        Log ("[ФАЙЛ]   {0} — не jar (Forge не загрузит; можно убрать из папки mods)" -f $f.Name)
+        continue
+    }
+    $bad = Test-JarFile $f.FullName
+    if ($bad) {
+        Log ("[БИТЫЙ]  {0} — {1}" -f $f.Name, $bad)
+        $broken++
+    }
+}
+if ($broken -gt 0) {
+    Log ("Битых jar: {0}. Удалите их вручную (если файл не из манифеста) и запустите скрипт ещё раз." -f $broken)
+} else {
+    Log "Все jar-файлы целые."
+}
+
 if ($Report) {
     $lines | Set-Content -Encoding UTF8 $Report
     Write-Host "Отчёт сохранён: $Report"
 }
 
-if ($failed -gt 0 -or $manual -gt 0) { Finish 1 } else { Finish 0 }
+if ($failed -gt 0 -or $manual -gt 0 -or $broken -gt 0) { Finish 1 } else { Finish 0 }
