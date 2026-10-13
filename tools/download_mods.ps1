@@ -514,7 +514,8 @@ function Get-CfFileUrls([string]$slug, [string]$fid, [string]$knownName = "") {
         $urls.Add(("https://edge.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
     }
 
-    # 4. Точки входа CurseForge: перехватываем редирект 302 -> настоящий CDN
+    # 4. Точки входа CurseForge: перехватываем редирект 302 -> настоящий CDN,
+    # сами адреса добавляем как запасные кандидаты
     foreach ($modKey in @($slug, $projId)) {
         if (-not $modKey) { continue }
         foreach ($ep in @('download', 'download-url')) {
@@ -535,6 +536,7 @@ function Get-CfFileUrls([string]$slug, [string]$fid, [string]$knownName = "") {
                     }
                 }
             }
+            if (-not $urls.Contains($apiUrl)) { $urls.Add($apiUrl) }
         }
     }
 
