@@ -135,6 +135,47 @@ function Test-JarFile([string]$path) {
     }
 }
 
+function Get-ModIds([string]$path) {
+    $ids = New-Object System.Collections.Generic.List[string]
+    try {
+        Add-Type -AssemblyName System.IO.Compression.FileSystem | Out-Null
+        $zip = [System.IO.Compression.ZipFile]::OpenRead($path)
+        try {
+            foreach ($entry in $zip.Entries) {
+                if ($entry.FullName -ieq 'META-INF/mods.toml') {
+                    $sr = New-Object System.IO.StreamReader($entry.Open())
+                    try { $txt = $sr.ReadToEnd() } finally { $sr.Close() }
+                    # modId самого мода — только до секции зависимостей
+                    $cut = $txt.IndexOf('[[dependencies')
+                    if ($cut -ge 0) { $txt = $txt.Substring(0, $cut) }
+                    foreach ($m in [regex]::Matches($txt, '(?im)^\s*modId\s*=\s*"([^"]+)"')) {
+                        $ids.Add($m.Groups[1].Value)
+                    }
+                }
+            }
+        } finally { $zip.Dispose() }
+    } catch { }
+    foreach ($i in $ids) { Write-Output $i }
+}
+
+# Удаляет устаревшие копии мода: если рядом лежит другой jar с тем же modId
+# (старая версия), он удалится автоматически — иначе Forge падает на дублях.
+function Remove-Superseded([string]$keepPath) {
+    $ids = @(Get-ModIds $keepPath)
+    if ($ids.Count -eq 0) { return }
+    $keepName = Split-Path -Leaf $keepPath
+    foreach ($f in (Get-ChildItem -Path $Out -File -Filter *.jar)) {
+        if ($f.FullName -eq $keepPath) { continue }
+        foreach ($mid in @(Get-ModIds $f.FullName)) {
+            if ($ids -contains $mid) {
+                Log ("[ЗАМЕНА] {0} — устаревшая копия мода '{1}', удалён (оставлен {2})" -f $f.Name, $mid, $keepName)
+                Remove-Item $f.FullName -Force
+                break
+            }
+        }
+    }
+}
+
 # --- Загрузка файла: пробуем все URL, затем curl.exe -----------------------
 function Save-File($urls, [string]$dest, $hashes) {
     $errs = New-Object System.Collections.Generic.List[string]
@@ -222,6 +263,12 @@ function Try-ModrinthProject([string]$slug, $mod, [string]$mc) {
         } else {
             foreach ($v in $versions) {
                 if ("$($v.version_number)" -eq $want) { $ver = $v; break }
+            }
+            # суффикс: "1.20.1-6.0.9" подходит под "6.0.9"
+            if (-not $ver) {
+                foreach ($v in $versions) {
+                    if ("$($v.version_number)" -like "*$want") { $ver = $v; break }
+                }
             }
             # запасной путь: совпадение по имени jar-файла (например Create 0.5.1.f)
             if (-not $ver) {
@@ -667,6 +714,7 @@ foreach ($mod in $modList) {
             if (-not $bad) {
                 Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
                 $ok++
+                Remove-Superseded $dest
                 $finished = $true
                 break
             }
@@ -678,6 +726,7 @@ foreach ($mod in $modList) {
         if (-not $err) {
             Log ("[OK]      {0}  <- {1} ({2}) [{3}]" -f $hit.filename, $name, $hit.version, $hit.source)
             $ok++
+            Remove-Superseded $dest
             $finished = $true
             break
         }
@@ -709,28 +758,6 @@ if ($manual -gt 0) {
 
 # --- Проверка целостности всех jar в папке --------------------------------
 # Заодно ищем дубликаты modId (два jar одного мода = краш Forge).
-function Get-ModIds([string]$path) {
-    $ids = New-Object System.Collections.Generic.List[string]
-    try {
-        Add-Type -AssemblyName System.IO.Compression.FileSystem | Out-Null
-        $zip = [System.IO.Compression.ZipFile]::OpenRead($path)
-        try {
-            foreach ($entry in $zip.Entries) {
-                if ($entry.FullName -ieq 'META-INF/mods.toml') {
-                    $sr = New-Object System.IO.StreamReader($entry.Open())
-                    try { $txt = $sr.ReadToEnd() } finally { $sr.Close() }
-                    # modId самого мода — только до секции зависимостей
-                    $cut = $txt.IndexOf('[[dependencies')
-                    if ($cut -ge 0) { $txt = $txt.Substring(0, $cut) }
-                    foreach ($m in [regex]::Matches($txt, '(?im)^\s*modId\s*=\s*"([^"]+)"')) {
-                        $ids.Add($m.Groups[1].Value)
-                    }
-                }
-            }
-        } finally { $zip.Dispose() }
-    } catch { }
-    foreach ($i in $ids) { Write-Output $i }
-}
 
 Log ""
 Log "Проверка целостности jar-файлов:"

@@ -9,6 +9,16 @@
 - Каскад источников в загрузчике: Modrinth → Maven (FTB) → GitHub → CurseForge (cfwidget). Теперь скачивается всё автоматически.
 - Закреплён **Create 0.5.1.f** (аддоны сборки рассчитаны на 0.5.1; не обновлять до 6.x).
 
+## [0.3.8-alpha] — 2026-10-13
+
+### Исправлено
+- **Create переведён с 0.5.1.f на 6.0.9** — линейка 6.x для 1.20.1, её требуют все скачанные аддоны (Connected, Crafts & Additions, Steam 'n' Rails, Slice and Dice, Ars Creo, KubeJS Create, Enchantment Industry). Пин 0.5.1.f был ошибочным.
+- Item Filters закреплён на `2001.1.0-build.55+` (FTB Quests отказывается работать с build.53).
+
+### Добавлено
+- Три недостающие зависимости: **Create: Dragons Plus** (для Enchantment Industry), **Kotlin for Forge** (для Slice and Dice), **GuideME** (для Applied Energistics 2). Всего 59 модов.
+- Авто-замена устаревших версий: старый jar с тем же modId (например create-1.20.1-0.5.1.f.jar) удаляется сам при появлении нового.
+
 ## [0.3.7-alpha] — 2026-10-13
 
 ### Исправлено

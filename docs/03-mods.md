@@ -42,8 +42,8 @@
 
 | Мод | Версия для 1.20.1 | Сторона | Заметки |
 |---|---|---|---|
-| **Create** | `0.5.1.f` | [B] | **Flywheel встроен в jar с 0.5.1 — не ставьте отдельный Flywheel** (конфликт/краш) |
-| **Create: Connected** | `1.2.3-mc1.20.1` | [B] | QoL-блоки и логистика. Для Create 0.5.1f–0.5.1j; 1.20.1 заморожен на 1.2.x |
+| **Create** | `6.0.9` | [B] | **Линейка 6.x для 1.20.1 — её требуют все аддоны.** Flywheel встроен в jar — не ставьте отдельный Flywheel |
+| **Create: Connected** | `1.2.3-mc1.20.1` | [B] | QoL-блоки и логистика. Для Create 6.0.8+ |
 | **Create Crafts & Additions** | `1.3.3` (или 1.2.5) | [B] | Электрическая интеграция Create |
 | **Create: Steam 'n' Rails** | `1.7.3` | [B] | Железнодорожная логистика и пар |
 | **Create: Enchantment Industry** | `1.x` для 1.20.1 | [B] | Автоматизация зачарования (связка с магией) |
@@ -129,7 +129,7 @@
 | Rubidium | Конфликтует с Embeddium — выбран Embeddium |
 | Optifine | Конфликтует с Embeddium/Create/Flywheel |
 | EMI / REI | Дублируют JEI — оставлен один просмотрщик |
-| Отдельный Flywheel | Встроен в Create 0.5.1+ |
+| Отдельный Flywheel | Встроен в Create 6.x |
 | Thaumcraft | Нет на 1.20.1 — заменён Ars Nouveau / Botania / Blood Magic / Eidolon |
 | GregTech, Industrial Foregoing, Refined Storage | Смещают фокус сборки; AE2 закрывает нишу хранения |
 

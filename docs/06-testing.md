@@ -71,7 +71,7 @@
 
 | Зона | Что проверять в первую очередь |
 |---|---|
-| Create + аддоны | Аддоны чувствительны к версии Create (0.5.1.f) — не обновлять по одному |
+| Create + аддоны | Аддоны чувствительны к версии Create (6.0.9) — не обновлять по одному |
 | Eidolon: Repraised | Убедиться, что jar именно для Forge 1.20.1 |
 | Thermal + Mekanism + Create | Конфликты рецептов/тегов (Almost Unified, Polymorph) |
 | MineColonies + любые моды блоков | Здания и шаблоны (Structurize/Domum Ornamentum) |

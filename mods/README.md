@@ -31,7 +31,7 @@ python3 tools/download_mods.py --manifest mods/mods.json --out mods/
 - скачивают jar и проверяют контрольные суммы (SHA-1/SHA-512), если они опубликованы;
 - пишут отчёт о том, что скачано, а что нужно поставить вручную.
 
-> **Create закреплён на 0.5.1.f!** Аддоны сборки (Connected, Crafts & Additions, Steam 'n' Rails) рассчитаны на линейку 0.5.1. Не обновляйте Create до 6.x без полного пересбора аддонов.
+> **Create закреплён на 6.0.9!** Аддоны сборки (Connected, Crafts & Additions, Steam 'n' Rails, Slice and Dice, Ars Creo, Enchantment Industry) рассчитаны на линейку 6.x для 1.20.1. Не откатывайте Create до 0.5.x — аддоны его не примут.
 
 ## Способ 2: вручную
 
@@ -39,7 +39,7 @@ python3 tools/download_mods.py --manifest mods/mods.json --out mods/
 
 ## Правила
 
-1. **Не ставьте отдельный Flywheel** — он встроен в Create 0.5.1+.
+1. **Не ставьте отдельный Flywheel** — он встроен в Create 6.x.
 2. **Не ставьте Rubidium/Optifine** вместе с Embeddium.
 3. Не ставьте EMI/REI вместе с JEI.
 4. Аддоны Create обновляйте только вместе с самим Create.
