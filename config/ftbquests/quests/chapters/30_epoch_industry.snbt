@@ -5,6 +5,7 @@
 	group: "A11A000000000001"
 	icon: "mekanism:enrichment_chamber"
 	id: "A11A040000000001"
+	dependencies: ["A11A030000000001"]
 	order_index: 3
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -16,8 +17,8 @@
 			tasks: [
 				{
 					id: "A11A040200000001"
-					title: "Приступить к индустриальной эпохе"
-					type: "checkmark"
+					title: "Эпоха III достигнута"
+					type: "custom"
 				}
 			]
 			title: "Эпоха III"
@@ -31,8 +32,8 @@
 			tasks: [
 				{
 					id: "A11A040200000002"
-					title: "Улучшите ратушу до III уровня"
-					type: "checkmark"
+					title: "Ратуша III уровня"
+					type: "custom"
 				}
 			]
 			title: "Ратуша III уровня"
@@ -46,8 +47,8 @@
 			tasks: [
 				{
 					id: "A11A040200000003"
-					title: "Доведите население до 20 жителей"
-					type: "checkmark"
+					title: "Двадцать жителей"
+					type: "custom"
 				}
 			]
 			title: "Двадцать жителей"
@@ -61,8 +62,8 @@
 			tasks: [
 				{
 					id: "A11A040200000004"
-					title: "Улучшите склад до II–III уровня"
-					type: "checkmark"
+					title: "Склад III уровня"
+					type: "custom"
 				}
 			]
 			title: "Склад II–III уровня"
@@ -76,8 +77,8 @@
 			tasks: [
 				{
 					id: "A11A040200000005"
-					title: "Завершите несколько исследований университета"
-					type: "checkmark"
+					title: "Исследования колонии идут"
+					type: "custom"
 				}
 			]
 			title: "Исследования колонии"
@@ -91,8 +92,8 @@
 			tasks: [
 				{
 					id: "A11A040200000006"
-					title: "Настройте регулярное снабжение едой и топливом"
-					type: "checkmark"
+					title: "Еда и топливо стабильны"
+					type: "custom"
 				}
 			]
 			title: "Еда и топливо"
@@ -106,8 +107,9 @@
 			tasks: [
 				{
 					id: "A11A040200000007"
-					title: "Запустите линию переработки Thermal"
-					type: "checkmark"
+					item: "thermal:machine_frame"
+					count: 2
+					type: "item"
 				}
 			]
 			title: "Линия Thermal"
@@ -121,8 +123,8 @@
 			tasks: [
 				{
 					id: "A11A040200000008"
-					title: "Создайте систему хранения энергии"
-					type: "checkmark"
+					title: "Энергоснабжение запущено"
+					type: "custom"
 				}
 			]
 			title: "Хранение энергии"
@@ -175,8 +177,8 @@
 			tasks: [
 				{
 					id: "A11A04020000000B"
-					title: "Автоматическая переработка руды работает без участия игрока"
-					type: "checkmark"
+					title: "Цепочка переработки налажена"
+					type: "custom"
 				}
 			]
 			title: "Полная цепочка переработки"
@@ -206,8 +208,8 @@
 			tasks: [
 				{
 					id: "A11A04020000000D"
-					title: "Промышленная линия подключена к складу колонии"
-					type: "checkmark"
+					title: "Промышленная линия и склад"
+					type: "custom"
 				}
 			]
 			title: "Промышленная линия и склад"
@@ -236,6 +238,38 @@
 			title: "Технический паспорт"
 			x: 8.0d
 			y: 0.0d
+		},
+		{
+			dependencies: ["A11A04010000000A"]
+			description: ["Сталь — каркас промышленного города."]
+			id: "A11A04010000000F"
+			tasks: [
+				{
+					id: "A11A04020000000F"
+					item: "mekanism:ingot_steel"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Стальной резерв"
+			x: 2.0d
+			y: 3.0d
+		},
+		{
+			dependencies: ["A11A040100000009"]
+			description: ["Контуры управления — основа промышленной автоматики."]
+			id: "A11A040100000010"
+			tasks: [
+				{
+					id: "A11A040200000010"
+					item: "mekanism:basic_control_circuit"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Запас контуров"
+			x: 4.0d
+			y: 3.0d
 		}
 	]
 	title: "Эпоха III. «Механизмы и индустриальный город»"

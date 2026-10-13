@@ -5,6 +5,7 @@
 	group: "A11A000000000002"
 	icon: "botania:terrasteel_ingot"
 	id: "A11A0A0000000001"
+	dependencies: [ ]
 	order_index: 9
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -17,7 +18,7 @@
 				{
 					id: "A11A0A0200000001"
 					title: "Выбрать школу для углублённого изучения"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Магистры школы"
@@ -41,7 +42,7 @@
 				{
 					id: "A11A0A0200000002"
 					title: "Завершите испытание школы Источника"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Магистр Источника"
@@ -65,7 +66,7 @@
 				{
 					id: "A11A0A0200000003"
 					title: "Завершите испытание школы Маны"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Магистр Маны"
@@ -89,7 +90,7 @@
 				{
 					id: "A11A0A0200000004"
 					title: "Завершите испытание школы Крови"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Магистр Крови"
@@ -113,7 +114,7 @@
 				{
 					id: "A11A0A0200000005"
 					title: "Завершите испытание школы Алхимии"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Магистр Алхимии"

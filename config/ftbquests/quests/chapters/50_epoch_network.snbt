@@ -5,6 +5,7 @@
 	group: "A11A000000000001"
 	icon: "ae2:controller"
 	id: "A11A060000000001"
+	dependencies: ["A11A050000000001"]
 	order_index: 5
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -16,8 +17,8 @@
 			tasks: [
 				{
 					id: "A11A060200000001"
-					title: "Приступить к эпохе сети"
-					type: "checkmark"
+					title: "Эпоха V достигнута"
+					type: "custom"
 				}
 			]
 			title: "Эпоха V"
@@ -46,8 +47,8 @@
 			tasks: [
 				{
 					id: "A11A060200000003"
-					title: "Организуйте централизованное хранение ресурсов"
-					type: "checkmark"
+					title: "Хранилище развёрнуто"
+					type: "custom"
 				}
 			]
 			title: "Хранение"
@@ -61,8 +62,8 @@
 			tasks: [
 				{
 					id: "A11A060200000004"
-					title: "Автоматический крафт по шаблонам работает"
-					type: "checkmark"
+					title: "Шаблоны освоены"
+					type: "custom"
 				}
 			]
 			title: "Шаблоны и заказы"
@@ -77,8 +78,9 @@
 			tasks: [
 				{
 					id: "A11A060200000005"
-					title: "Интегрируйте Mekanism с сетью AE2"
-					type: "checkmark"
+					item: "mekanism:alloy_atomic"
+					count: 8
+					type: "item"
 				}
 			]
 			title: "Applied Mekanistics"
@@ -92,8 +94,9 @@
 			tasks: [
 				{
 					id: "A11A060200000006"
-					title: "Настройте снабжение нескольких линий из сети"
-					type: "checkmark"
+					item: "mekanism:ultimate_control_circuit"
+					count: 4
+					type: "item"
 				}
 			]
 			title: "Несколько линий"
@@ -120,8 +123,8 @@
 			tasks: [
 				{
 					id: "A11A060200000007"
-					title: "Автопроизводство «от руды до корпуса» работает"
-					type: "checkmark"
+					title: "Линия «от руды до корпуса» готова"
+					type: "custom"
 				},
 				{
 					id: "A11A060200000008"
@@ -132,6 +135,38 @@
 			title: "Ключевой проект: «от руды до корпуса»"
 			x: 6.0d
 			y: 0.0d
+		},
+		{
+			dependencies: ["A11A060100000006"]
+			description: ["Продвинутая автоматика для сетевых производственных линий."]
+			id: "A11A060100000008"
+			tasks: [
+				{
+					id: "A11A060200000009"
+					item: "mekanism:ultimate_control_circuit"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Высшие контуры"
+			x: 4.0d
+			y: -1.5d
+		},
+		{
+			dependencies: ["A11A060100000002"]
+			description: ["Эндер-жемчуг — основа пространственных технологий."]
+			id: "A11A060100000009"
+			tasks: [
+				{
+					id: "A11A06020000000A"
+					item: "minecraft:ender_pearl"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Эндер-резерв"
+			x: 2.0d
+			y: -3.0d
 		}
 	]
 	title: "Эпоха V. «Сеть и автоматизированное производство»"

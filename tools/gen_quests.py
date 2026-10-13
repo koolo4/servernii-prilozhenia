@@ -27,6 +27,9 @@ G_REF = "A11A000000000003"
 _counters: dict[str, int] = {}
 
 
+CUSTOM_CHECKS: list = []  # (task_id, cond) — собирается при эмиссии
+
+
 def uid(kind: str, chapter: int) -> str:
     """Уникальный 16-символьный HEX id: A11A | глава(2) | тип(2) | счётчик(8)."""
     k = f"{chapter:02X}{kind}"
@@ -40,11 +43,12 @@ def esc(s: str) -> str:
 
 @dataclass
 class Task:
-    ttype: str  # item | checkmark | advancement
+    ttype: str  # item | checkmark | advancement | custom
     item: str = ""
     count: int = 0
     title: str = ""
     advancement: str = ""
+    cond: str = ""  # для custom: townhall:N | citizens:N | building:word:N | always
 
 
 @dataclass
@@ -75,6 +79,7 @@ class Chapter:
     group: str
     order: int
     quests: list[Quest] = field(default_factory=list)
+    deps_ch: list[str] = field(default_factory=list)  # файлы глав-зависимостей (жёсткие эпохи)
 
 
 def item_task(item: str, count: int = 0, title: str = "") -> Task:
@@ -83,6 +88,14 @@ def item_task(item: str, count: int = 0, title: str = "") -> Task:
 
 def check(title: str) -> Task:
     return Task("checkmark", title=title)
+
+
+def custom(cond: str, title: str = "") -> Task:
+    """Задача с авто-детекцией (custom) — НЕ отмечается игроком вручную.
+
+    cond: townhall:N | citizens:N | building:word:N | always
+    """
+    return Task("custom", cond=cond, title=title)
 
 
 def adv_task(advancement: str) -> Task:
@@ -602,7 +615,7 @@ def build_chapters() -> list[Chapter]:
                "и РАСХОДУЮТСЯ в переходных крафтах:",
                "Технический паспорт, Ядро автоматизации, Сердце Арканополиса.",
                "Потеряли печать? Повторите наградный квест невозможно —",
-               "восстановите предмет командой /give (только в одиночке)."],
+               "восстановите печать крафтом по рецепту в JEI."],
               [check("Разобраться в системе печатей")], []),
         Quest("items", "Кастомные предметы", 2, 0,
               ["12 предметов arcanopolis: — от Городской хартии",
@@ -626,6 +639,301 @@ def build_chapters() -> list[Chapter]:
     return ch
 
 
+
+# ============================================================================
+# Авто-детект задач: checkmark-задачи заменяются на custom/item.
+# Игрок не может отметить их вручную — прогресс даёт kubejs/server_scripts/
+# 95_colony_checks.js (генерируется этим скриптом).
+# ============================================================================
+
+TASK_MAP: dict[tuple[str, str], Task] = {}
+_CHAIN = [
+    ("00_prologue", "start", item_task("minecolonies:supplycamp|minecolonies:supplyship", 0,
+                                      "Лагерь или корабль снабжения установлен")),
+    ("00_prologue", "orders", custom("building:builder:1", "Хижина строителя построена")),
+    ("00_prologue", "town_hall", custom("townhall:1", "Ратуша построена")),
+    ("00_prologue", "builder", custom("building:builder:2", "Хижина строителя II уровня")),
+    ("00_prologue", "home", custom("building:home:1", "Первый жилой дом заселён")),
+    ("00_prologue", "food", item_task("minecraft:bread", 32, "Запас хлеба собран")),
+    ("00_prologue", "workers", custom("citizens:3", "Три жителя в колонии")),
+    ("00_prologue", "logistics", custom("building:courier:1", "Курьерская служба запущена")),
+    ("00_prologue", "charter", custom("citizens:5", "Пять жителей в колонии")),
+
+    ("10_epoch_wood_water", "hub", custom("townhall:2", "Ратуша II уровня достигнута")),
+    ("10_epoch_wood_water", "town2", custom("townhall:2", "Ратуша II уровня построена")),
+    ("10_epoch_wood_water", "pop8", custom("citizens:8", "Восемь жителей")),
+    ("10_epoch_wood_water", "forester", custom("building:lumberjack:1", "Хижина лесоруба построена")),
+    ("10_epoch_wood_water", "miner", custom("building:miner:1", "Хижина шахтёра построена")),
+    ("10_epoch_wood_water", "warehouse", custom("building:warehouse:1", "Склад построен")),
+    ("10_epoch_wood_water", "courier", custom("building:courier:1", "Курьер нанят")),
+    ("10_epoch_wood_water", "food_prod", custom("building:farm:1", "Ферма работает")),
+    ("10_epoch_wood_water", "water_wheel", item_task("create:water_wheel", 1, "Водяное колесо собрано")),
+    ("10_epoch_wood_water", "shaft", item_task("create:cogwheel", 16, "Передачи изготовлены")),
+    ("10_epoch_wood_water", "press", item_task("create:mechanical_press", 1, "Механический пресс собран")),
+    ("10_epoch_wood_water", "saw", item_task("create:mechanical_saw", 1, "Механическая пила собрана")),
+    ("10_epoch_wood_water", "fan", item_task("create:encased_fan", 1, "Вентилятор собран")),
+    ("10_epoch_wood_water", "conveyor", item_task("create:belt_connector", 16, "Линии конвейеров проложены")),
+    ("10_epoch_wood_water", "spellbook", custom("always", "Книга заклинаний изучена")),
+    ("10_epoch_wood_water", "source", item_task("ars_nouveau:source_gem", 8, "Самоцветы источника собраны")),
+    ("10_epoch_wood_water", "project", custom("building:sawmill:1", "Городская мастерская построена")),
+
+    ("20_epoch_steam_logistics", "hub", custom("townhall:3", "Эпоха II достигнута")),
+    ("20_epoch_steam_logistics", "town23", custom("townhall:3", "Ратуша III уровня построена")),
+    ("20_epoch_steam_logistics", "builder3", custom("building:builder:3", "Строитель III уровня")),
+    ("20_epoch_steam_logistics", "wh2", custom("building:warehouse:2", "Склад II уровня")),
+    ("20_epoch_steam_logistics", "pop12", custom("citizens:12", "Двенадцать жителей")),
+    ("20_epoch_steam_logistics", "university", custom("building:university:1", "Университет построен")),
+    ("20_epoch_steam_logistics", "food2", custom("building:cook:1", "Повар работает")),
+    ("20_epoch_steam_logistics", "brass", item_task("create:brass_ingot", 16, "Латунь отлита")),
+    ("20_epoch_steam_logistics", "steam", item_task("create:steam_engine", 1, "Паровой двигатель собран")),
+    ("20_epoch_steam_logistics", "precision", item_task("create:precision_mechanism", 8, "Точные механизмы собраны")),
+    ("20_epoch_steam_logistics", "rails", item_task("create:railway_casing", 4, "Железнодорожная обвязка готова")),
+    ("20_epoch_steam_logistics", "ars_auto", custom("always", "Первая магическая автоматизация запущена")),
+    ("20_epoch_steam_logistics", "project", custom("building:mechanic:1", "Мастерская компонентов построена")),
+
+    ("30_epoch_industry", "hub", custom("townhall:3", "Эпоха III достигнута")),
+    ("30_epoch_industry", "town3", custom("townhall:3", "Ратуша III уровня")),
+    ("30_epoch_industry", "pop20", custom("citizens:20", "Двадцать жителей")),
+    ("30_epoch_industry", "wh3", custom("building:warehouse:3", "Склад III уровня")),
+    ("30_epoch_industry", "research", custom("building:university:2", "Исследования колонии идут")),
+    ("30_epoch_industry", "food_fuel", custom("building:cook:2", "Еда и топливо стабильны")),
+    ("30_epoch_industry", "thermal_line", item_task("thermal:machine_frame", 2, "Рамы машин собраны")),
+    ("30_epoch_industry", "energy", custom("always", "Энергоснабжение запущено")),
+    ("30_epoch_industry", "enrichment", item_task("mekanism:enrichment_chamber", 1, "Обогатитель собран")),
+    ("30_epoch_industry", "steel", item_task("mekanism:ingot_steel", 16, "Сталь произведена")),
+    ("30_epoch_industry", "chain", custom("always", "Цепочка переработки налажена")),
+    ("30_epoch_industry", "casing", item_task("arcanopolis:reinforced_casing", 8, "Усиленные корпуса изготовлены")),
+    ("30_epoch_industry", "warehouse_link", custom("building:mechanic:2", "Промышленная линия и склад")),
+    ("30_epoch_industry", "passport", item_task("arcanopolis:technical_passport", 1, "Технический паспорт собран")),
+
+    ("40_epoch_magic", "hub", custom("townhall:4", "Эпоха IV достигнута")),
+    ("40_epoch_magic", "ars_base", item_task("ars_nouveau:source_gem", 32, "Самоцветы источника накоплены")),
+    ("40_epoch_magic", "ars_helper", custom("always", "Магические помощники призваны")),
+    ("40_epoch_magic", "ars_create", custom("always", "Магия и механизмы объединены")),
+    ("40_epoch_magic", "mana_pool", item_task("botania:mana_pool", 1, "Мана-пул создан")),
+    ("40_epoch_magic", "mana_auto", item_task("botania:terrasteel_ingot", 2, "Террасталь добыт")),
+    ("40_epoch_magic", "altar", item_task("bloodmagic:altar", 1, "Алтарь крови возведён")),
+    ("40_epoch_magic", "slates", item_task("bloodmagic:blankslate", 16, "Кровавые плиты изготовлены")),
+    ("40_epoch_magic", "ritual", item_task("arcanopolis:ritual_regulator", 1, "Регулятор ритуалов собран")),
+    ("40_epoch_magic", "alchemy", custom("always", "Алхимия Eidolon освоена")),
+    ("40_epoch_magic", "pewter", custom("always", "Характерные компоненты изготовлены")),
+    ("40_epoch_magic", "lab", custom("building:library:2", "Арканная лаборатория построена")),
+
+    ("50_epoch_network", "hub", custom("townhall:5", "Эпоха V достигнута")),
+    ("50_epoch_network", "ae2_base", custom("always", "Сеть AE2 развёрнута")),
+    ("50_epoch_network", "cells", custom("always", "Хранилище развёрнуто")),
+    ("50_epoch_network", "patterns", custom("always", "Шаблоны освоены")),
+    ("50_epoch_network", "mek_link", item_task("mekanism:alloy_atomic", 8, "Атомные сплавы изготовлены")),
+    ("50_epoch_network", "lines", item_task("mekanism:ultimate_control_circuit", 4, "Высшие контуры изготовлены")),
+    ("50_epoch_network", "project", custom("building:mechanic:3", "Линия «от руды до корпуса» готова")),
+
+    ("60_epoch_cosmos", "hub", custom("townhall:6", "Эпоха VI достигнута")),
+    ("60_epoch_cosmos", "mek_late", item_task("mekanism:alloy_atomic", 16, "Поздняя переработка налажена")),
+    ("60_epoch_cosmos", "thermal_late", item_task("thermal:enderium_ingot", 8, "Эндерий изготовлен")),
+    ("60_epoch_cosmos", "rare", item_task("minecraft:nether_star", 2, "Звёзды Нижнего мира добыты")),
+    ("60_epoch_cosmos", "center", item_task("arcanopolis:arcane_converter", 8, "Преобразователи изготовлены")),
+    ("60_epoch_cosmos", "catalyst", item_task("arcanopolis:primal_catalyst", 1, "Изначальный катализатор собран")),
+    ("60_epoch_cosmos", "heart", item_task("arcanopolis:heart_of_arcanopolis", 1, "Сердце Арканополиса собрано")),
+    ("60_epoch_cosmos", "finale", custom("always", "Первый импульс Сердца")),
+]
+for _f, _k, _t in _CHAIN:
+    TASK_MAP[(_f, _k)] = _t
+
+# Жёсткая цепочка эпох: глава эпохи N+1 требует полного завершения главы эпохи N
+CHAP_CHAIN: dict[str, str] = {
+    "10_epoch_wood_water": "00_prologue",
+    "20_epoch_steam_logistics": "10_epoch_wood_water",
+    "30_epoch_industry": "20_epoch_steam_logistics",
+    "40_epoch_magic": "30_epoch_industry",
+    "50_epoch_network": "40_epoch_magic",
+    "60_epoch_cosmos": "50_epoch_network",
+}
+
+# Новые квесты (добавляются В КОНЕЦ списков глав — старые id не сдвигаются)
+NEW_QUESTS: dict[str, list[Quest]] = {
+    "00_prologue": [
+        Quest("timber", "Лесозаготовка", 0, 4.5,
+              ["Запас древесины — топливо, ремонт и будущие постройки."],
+              [item_task("minecraft:oak_log", 64, "Брёвна заготовлены")], [], ["food"]),
+        Quest("stone_reserve", "Каменный резерв", 2, 4.5,
+              ["Камень нужен для дорог, укреплений и украшений колонии."],
+              [item_task("minecraft:cobblestone", 256, "Камень добыт")], [], ["food"]),
+    ],
+    "10_epoch_wood_water": [
+        Quest("ir_tools", "Железные инструменты", -4, -4.5,
+              ["Прочные инструменты для длинных смен рабочих."],
+              [item_task("minecraft:iron_pickaxe", 4, "Инструменты изготовлены")], [], ["miner"]),
+        Quest("saplings", "Питомник", -2, -3,
+              ["Саженцы поддерживают работу лесоруба."],
+              [item_task("minecraft:oak_sapling", 16, "Саженцы выращены")], [], ["forester"]),
+    ],
+    "20_epoch_steam_logistics": [
+        Quest("brass_reserve", "Латунный запас", 2, 3,
+              ["Латунь — основа точной механики."],
+              [item_task("create:brass_ingot", 16, "Латунь отлита")], [], ["brass"]),
+        Quest("cogs", "Зубчатые колёса", 4, 3,
+              ["Передачи для будущих линий автоматизации."],
+              [item_task("create:cogwheel", 32, "Колёса изготовлены")], [], ["precision"]),
+    ],
+    "30_epoch_industry": [
+        Quest("steel_reserve", "Стальной резерв", 2, 3,
+              ["Сталь — каркас промышленного города."],
+              [item_task("mekanism:ingot_steel", 32, "Сталь произведена")], [], ["steel"]),
+        Quest("circuit_stock", "Запас контуров", 4, 3,
+              ["Контуры управления — основа промышленной автоматики."],
+              [item_task("mekanism:basic_control_circuit", 16, "Контуры изготовлены")], [], ["enrichment"]),
+    ],
+    "40_epoch_magic": [
+        Quest("source_stock", "Резерв самоцветов", -4, -3.5,
+              ["Самоцветы источника — топливо магии."],
+              [item_task("ars_nouveau:source_gem", 32, "Самоцветы накоплены")], [], ["ars_base"]),
+        Quest("terrasteel_pact", "Союз с дриадами", -2, -3.5,
+              ["Террасталь подтверждает союз с дриадами."],
+              [item_task("botania:terrasteel_ingot", 4, "Террасталь добыт")], [], ["mana_auto"]),
+    ],
+    "50_epoch_network": [
+        Quest("circuits_ultimate", "Высшие контуры", 4, -1.5,
+              ["Продвинутая автоматика для сетевых производственных линий."],
+              [item_task("mekanism:ultimate_control_circuit", 8, "Контуры изготовлены")], [], ["lines"]),
+        Quest("pearl_stock", "Эндер-резерв", 2, -3,
+              ["Эндер-жемчуг — основа пространственных технологий."],
+              [item_task("minecraft:ender_pearl", 16, "Жемчуг собран")], [], ["ae2_base"]),
+    ],
+    "60_epoch_cosmos": [
+        Quest("nether_stars", "Звёзды Нижнего мира", -2, -3,
+              ["Редчайший реагент для финальных ритуалов."],
+              [item_task("minecraft:nether_star", 2, "Звёзды добыты")], [], ["rare"]),
+        Quest("dragon_breath", "Дыхание дракона", 2, -3,
+              ["Алхимический реагент для Сердца Арканополиса."],
+              [item_task("minecraft:dragon_breath", 4, "Реагент собран")], [], ["catalyst"]),
+    ],
+}
+
+
+def polish(chapters: list[Chapter]) -> None:
+    """Заменить checkmark-задачи на custom/item, добавить квесты и цепочку эпох."""
+    for ch in chapters:
+        for q in ch.quests:
+            if not any(t.ttype == "checkmark" for t in q.tasks):
+                continue
+            nt = TASK_MAP.get((ch.file, q.key))
+            if nt is None:
+                # обучающие задачи без детектируемого условия: custom-always
+                # (не отмечаются вручную, не блокируют эпохи)
+                first = next(t for t in q.tasks if t.ttype == "checkmark")
+                nt = Task("custom", cond="always", title=first.title)
+            q.tasks = [nt if t.ttype == "checkmark" else t for t in q.tasks]
+        if ch.file in NEW_QUESTS:
+            ch.quests.extend(NEW_QUESTS[ch.file])
+        if ch.file in CHAP_CHAIN:
+            ch.deps_ch = [CHAP_CHAIN[ch.file]]
+
+
+# ============================================================================
+# Генерация kubejs/server_scripts/95_colony_checks.js (условия колонии)
+# ============================================================================
+
+def write_colony_js() -> None:
+    rows = []
+    for tid, cond in CUSTOM_CHECKS:
+        parts = cond.split(":")
+        if parts[0] == "building":
+            rows.append(f'  {{ task: "{tid}", kind: "building", word: "{parts[1]}", n: {parts[2]} }},')
+        elif parts[0] == "always":
+            rows.append(f'  {{ task: "{tid}", kind: "always" }},')
+        else:
+            rows.append(f'  {{ task: "{tid}", kind: "{parts[0]}", n: {parts[1]} }},')
+    table = "\n".join(rows)
+
+    js = f"""// 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
+// Авто-детект условий MineColonies для квестов FTB Quests (custom-задачи).
+// Игрок не может отметить эти задачи вручную — прогресс выдаёт этот скрипт.
+// Проверка: раз в 5 секунд на игрока. Ошибки API проглатываются (не роняют сервер).
+
+const CHECKS = [
+{table}
+]
+
+const IColonyManager = Java.loadClass('com.minecolonies.api.colony.IColonyManager')
+
+function arcanopolis_colonyOf(player) {{
+  try {{
+    const mgr = IColonyManager.getInstance()
+    let col = null
+    try {{ col = mgr.getIColony(player.getLevel(), player.blockPosition()) }} catch (e) {{}}
+    if (col == null) {{
+      try {{ col = mgr.getClosestColony(player.getLevel(), player.blockPosition()) }} catch (e) {{}}
+    }}
+    return col
+  }} catch (e) {{ return null }}
+}}
+
+function arcanopolis_buildingManager(col) {{
+  try {{ if (col.getServerBuildingManager) return col.getServerBuildingManager() }} catch (e) {{}}
+  try {{ return col.getBuildingManager() }} catch (e) {{}}
+  return null
+}}
+
+function arcanopolis_condOk(player, c) {{
+  if (c.kind === 'always') return true
+  try {{
+    const col = arcanopolis_colonyOf(player)
+    if (col == null) return false
+    if (c.kind === 'townhall') {{
+      const bm = arcanopolis_buildingManager(col)
+      const th = bm != null ? bm.getTownHall() : null
+      return th != null && th.getBuildingLevel() >= c.n
+    }}
+    if (c.kind === 'citizens') {{
+      return col.getCitizenManager().getCitizens().size() >= c.n
+    }}
+    if (c.kind === 'building') {{
+      const bm = arcanopolis_buildingManager(col)
+      if (bm == null) return false
+      const list = bm.getBuildings()
+      const it = list.values().iterator()
+      while (it.hasNext()) {{
+        const b = it.next()
+        let hay = ''
+        try {{ hay += ' ' + String(b.getSchematicName()) }} catch (e) {{}}
+        try {{ hay += ' ' + String(b.getBuildingType().getRegistryName()) }} catch (e) {{}}
+        try {{ hay += ' ' + String(b.getBuildingType().getSerializedName()) }} catch (e) {{}}
+        if (hay.toLowerCase().indexOf(c.word) >= 0) return b.getBuildingLevel() >= c.n
+      }}
+    }}
+  }} catch (e) {{}}
+  return false
+}}
+
+const _arcanopolis_done = {{}}
+
+ServerEvents.tick(event => {{
+  const s = event.server || event
+  try {{
+    if (s.getTickCount() % 100 !== 0) return  // раз в 5 секунд
+    const players = s.players
+    if (!players) return
+    for (const p of players) {{
+      let name = ''
+      try {{ name = String(p.username) }} catch (e) {{ try {{ name = String(p.getName().getString()) }} catch (e2) {{ return }}}}
+      for (const c of CHECKS) {{
+        const key = name + '|' + c.task
+        if (_arcanopolis_done[key]) continue
+        if (arcanopolis_condOk(p, c)) {{
+          _arcanopolis_done[key] = true
+          try {{ p.data.ftbquests.addProgress(c.task, 1) }} catch (e) {{}}
+          try {{ s.runCommandSilent('ftbquests change_progress ' + name + ' complete ' + c.task) }} catch (e) {{}}
+        }}
+      }}
+    }}
+  }} catch (e) {{}}
+}})
+"""
+    out = Path("kubejs/server_scripts/95_colony_checks.js")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(js, encoding="utf-8")
+    print(f"OK {out} ({len(CUSTOM_CHECKS)} custom checks)")
+
 # ============================================================================
 # Эмиссия SNBT
 # ============================================================================
@@ -638,16 +946,22 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
     tid = uid("02", chapter_no)
     lines = [f"{indent}{{", f"{indent}\tid: \"{tid}\""]
     if t.ttype == "item":
-        lines.append(f"{indent}\titem: {snbt_item(t.item)}")
-        if t.count:
-            lines.append(f"{indent}\tcount: {t.count}")
-    elif t.ttype == "checkmark":
+        if "|" in t.item:
+            opts = ", ".join(snbt_item(x) for x in t.item.split("|"))
+            lines.append(f"{indent}\titem: [{opts}]")
+        else:
+            lines.append(f"{indent}\titem: {snbt_item(t.item)}")
+            if t.count:
+                lines.append(f"{indent}\tcount: {t.count}")
+    elif t.ttype in ("checkmark", "custom"):
         if t.title:
             lines.append(f"{indent}\ttitle: \"{esc(t.title)}\"")
     elif t.ttype == "advancement":
         lines.append(f"{indent}\tadvancement: \"{esc(t.advancement)}\"")
         lines.append(f"{indent}\tcriterion: \"\"")
     lines.append(f"{indent}\ttype: \"{t.ttype}\"")
+    if t.ttype == "custom":
+        CUSTOM_CHECKS.append((tid, t.cond or "always"))
     lines.append(f"{indent}}}")
     return "\n".join(lines)
 
@@ -670,7 +984,7 @@ def resolve_dep(dep: str, chapter: Chapter, chapter_no: int, qmap_all: dict) -> 
     return qmap_all[(chapter.file, dep)]
 
 
-def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict) -> str:
+def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -> str:
     cid = uid("00", chapter_no)
     out = ["{"]
     out.append("\tdefault_hide_dependency_lines: false")
@@ -679,6 +993,11 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict) -> str:
     out.append(f"\tgroup: \"{ch.group}\"")
     out.append(f"\ticon: \"{ch.icon}\"")
     out.append(f"\tid: \"{cid}\"")
+    if ch.deps_ch:
+        dids = ", ".join(f'"{cmap_all[d]}"' for d in ch.deps_ch)
+        out.append(f"\tdependencies: [{dids}]")
+    else:
+        out.append("\tdependencies: [ ]")
     out.append(f"\torder_index: {ch.order}")
     out.append("\tprogression_mode: \"flexible\"")
     out.append("\tquest_links: [ ]")
@@ -724,6 +1043,7 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict) -> str:
 
 def main() -> None:
     chapters = build_chapters()
+    polish(chapters)
 
     # Первый проход: зарегистрировать ID всех квестов
     qmap: dict[tuple[str, str], str] = {}
@@ -731,6 +1051,9 @@ def main() -> None:
     for idx, ch in enumerate(chapters, start=1):
         for q in ch.quests:
             qmap[(ch.file, q.key)] = uid("01", idx)
+    cmap: dict[str, str] = {
+        ch.file: f"A11A{idx:02X}0000000001" for idx, ch in enumerate(chapters, start=1)
+    }
     _counters.clear()
     _counters.update(saved)
 
@@ -740,8 +1063,10 @@ def main() -> None:
 
     for idx, ch in enumerate(chapters, start=1):
         path = CHAPTERS / f"{ch.file}.snbt"
-        path.write_text(emit_chapter(ch, idx, qmap), encoding="utf-8")
+        path.write_text(emit_chapter(ch, idx, qmap, cmap), encoding="utf-8")
         print(f"OK chapters/{path.name} ({len(ch.quests)} quests)")
+
+    write_colony_js()
 
     # data.snbt
     data = """{

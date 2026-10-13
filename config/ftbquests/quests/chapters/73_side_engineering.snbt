@@ -5,6 +5,7 @@
 	group: "A11A000000000002"
 	icon: "create:precision_mechanism"
 	id: "A11A0B0000000001"
+	dependencies: [ ]
 	order_index: 10
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -17,7 +18,7 @@
 				{
 					id: "A11A0B0200000001"
 					title: "Взять первую инженерную задачу"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Инженерные задачи"
@@ -41,7 +42,7 @@
 				{
 					id: "A11A0B0200000002"
 					title: "Постройте компактную фабрику"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Компактная фабрика"
@@ -65,7 +66,7 @@
 				{
 					id: "A11A0B0200000003"
 					title: "Постройте транспортную сеть между цехами"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Транспортная сеть"
@@ -89,7 +90,7 @@
 				{
 					id: "A11A0B0200000004"
 					title: "Создайте энергомост между цехами"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Энергомост"
@@ -113,7 +114,7 @@
 				{
 					id: "A11A0B0200000005"
 					title: "Постройте сортировочную станцию"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Сортировочная станция"

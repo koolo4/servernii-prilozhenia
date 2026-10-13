@@ -5,6 +5,7 @@
 	group: "A11A000000000002"
 	icon: "minecraft:bread"
 	id: "A11A0C0000000001"
+	dependencies: [ ]
 	order_index: 11
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -17,7 +18,7 @@
 				{
 					id: "A11A0C0200000001"
 					title: "Приступить к испытанию снабжения"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Город без дефицита"
@@ -41,7 +42,7 @@
 				{
 					id: "A11A0C0200000002"
 					title: "7 игровых дней снабжение работает автоматически"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Неделя без участия"
@@ -65,7 +66,7 @@
 				{
 					id: "A11A0C0200000003"
 					title: "30 игровых дней без дефицита в колонии"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Месяц без дефицита"
@@ -88,7 +89,7 @@
 				{
 					id: "A11A0C0200000004"
 					title: "Колония функционирует без вашего участия"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Трофей снабжения"

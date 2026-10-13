@@ -5,6 +5,7 @@
 	group: "A11A000000000001"
 	icon: "create:water_wheel"
 	id: "A11A020000000001"
+	dependencies: ["A11A010000000001"]
 	order_index: 1
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -16,8 +17,8 @@
 			tasks: [
 				{
 					id: "A11A020200000001"
-					title: "Приступить к эпохе ремесла"
-					type: "checkmark"
+					title: "Ратуша II уровня достигнута"
+					type: "custom"
 				}
 			]
 			title: "Эпоха I"
@@ -31,8 +32,8 @@
 			tasks: [
 				{
 					id: "A11A020200000002"
-					title: "Улучшите ратушу до II уровня"
-					type: "checkmark"
+					title: "Ратуша II уровня построена"
+					type: "custom"
 				}
 			]
 			title: "Ратуша II уровня"
@@ -46,8 +47,8 @@
 			tasks: [
 				{
 					id: "A11A020200000003"
-					title: "Доведите население до 8 жителей"
-					type: "checkmark"
+					title: "Восемь жителей"
+					type: "custom"
 				}
 			]
 			title: "Восемь жителей"
@@ -61,8 +62,8 @@
 			tasks: [
 				{
 					id: "A11A020200000004"
-					title: "Постройте хижину лесоруба"
-					type: "checkmark"
+					title: "Хижина лесоруба построена"
+					type: "custom"
 				}
 			]
 			title: "Лесоруб"
@@ -76,8 +77,8 @@
 			tasks: [
 				{
 					id: "A11A020200000005"
-					title: "Постройте хижину шахтёра"
-					type: "checkmark"
+					title: "Хижина шахтёра построена"
+					type: "custom"
 				}
 			]
 			title: "Шахтёр"
@@ -91,8 +92,8 @@
 			tasks: [
 				{
 					id: "A11A020200000006"
-					title: "Постройте склад"
-					type: "checkmark"
+					title: "Склад построен"
+					type: "custom"
 				}
 			]
 			title: "Склад"
@@ -106,8 +107,8 @@
 			tasks: [
 				{
 					id: "A11A020200000007"
-					title: "Наймите хотя бы одного курьера"
-					type: "checkmark"
+					title: "Курьер нанят"
+					type: "custom"
 				}
 			]
 			title: "Курьер"
@@ -121,8 +122,8 @@
 			tasks: [
 				{
 					id: "A11A020200000008"
-					title: "Запустите начальное производство пищи"
-					type: "checkmark"
+					title: "Ферма работает"
+					type: "custom"
 				}
 			]
 			title: "Производство пищи"
@@ -244,8 +245,8 @@
 			tasks: [
 				{
 					id: "A11A02020000000F"
-					title: "Создайте книгу заклинаний Ars Nouveau"
-					type: "checkmark"
+					title: "Книга заклинаний изучена"
+					type: "custom"
 				}
 			]
 			title: "Книга заклинаний"
@@ -288,8 +289,8 @@
 			tasks: [
 				{
 					id: "A11A020200000011"
-					title: "Мастерская автоматически производит доски, камень и пластины"
-					type: "checkmark"
+					title: "Городская мастерская построена"
+					type: "custom"
 				},
 				{
 					id: "A11A020200000012"
@@ -301,6 +302,38 @@
 			title: "Ключевой проект: городская мастерская"
 			x: 8.0d
 			y: 0.0d
+		},
+		{
+			dependencies: ["A11A020100000005"]
+			description: ["Прочные инструменты для длинных смен рабочих."]
+			id: "A11A020100000012"
+			tasks: [
+				{
+					id: "A11A020200000013"
+					item: "minecraft:iron_pickaxe"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Железные инструменты"
+			x: -4.0d
+			y: -4.5d
+		},
+		{
+			dependencies: ["A11A020100000004"]
+			description: ["Саженцы поддерживают работу лесоруба."]
+			id: "A11A020100000013"
+			tasks: [
+				{
+					id: "A11A020200000014"
+					item: "minecraft:oak_sapling"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Питомник"
+			x: -2.0d
+			y: -3.0d
 		}
 	]
 	title: "Эпоха I. «Дерево, вода и ремесло»"

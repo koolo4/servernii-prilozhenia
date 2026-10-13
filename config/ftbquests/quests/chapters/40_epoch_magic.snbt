@@ -5,6 +5,7 @@
 	group: "A11A000000000001"
 	icon: "ars_nouveau:source_gem"
 	id: "A11A050000000001"
+	dependencies: ["A11A040000000001"]
 	order_index: 4
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -16,8 +17,8 @@
 			tasks: [
 				{
 					id: "A11A050200000001"
-					title: "Приступить к эпохе магии"
-					type: "checkmark"
+					title: "Эпоха IV достигнута"
+					type: "custom"
 				}
 			]
 			title: "Эпоха IV"
@@ -31,8 +32,9 @@
 			tasks: [
 				{
 					id: "A11A050200000002"
-					title: "Освойте основы Ars Nouveau"
-					type: "checkmark"
+					item: "ars_nouveau:source_gem"
+					count: 32
+					type: "item"
 				}
 			]
 			title: "Источник и заклинания"
@@ -46,8 +48,8 @@
 			tasks: [
 				{
 					id: "A11A050200000003"
-					title: "Автоматизируйте операции магическими помощниками"
-					type: "checkmark"
+					title: "Магические помощники призваны"
+					type: "custom"
 				}
 			]
 			title: "Магические помощники"
@@ -62,8 +64,8 @@
 			tasks: [
 				{
 					id: "A11A050200000004"
-					title: "Используйте интеграцию Ars Nouveau и Create"
-					type: "checkmark"
+					title: "Магия и механизмы объединены"
+					type: "custom"
 				}
 			]
 			title: "Ars Creo: магия и механизмы"
@@ -77,8 +79,9 @@
 			tasks: [
 				{
 					id: "A11A050200000005"
-					title: "Создайте мана-пул и первые цветы"
-					type: "checkmark"
+					item: "botania:mana_pool"
+					count: 1
+					type: "item"
 				}
 			]
 			title: "Мана-пул"
@@ -100,8 +103,9 @@
 			tasks: [
 				{
 					id: "A11A050200000006"
-					title: "Организуйте устойчивую автогенерацию маны"
-					type: "checkmark"
+					item: "botania:terrasteel_ingot"
+					count: 2
+					type: "item"
 				}
 			]
 			title: "Устойчивая генерация маны"
@@ -115,8 +119,9 @@
 			tasks: [
 				{
 					id: "A11A050200000007"
-					title: "Создайте алтарь крови"
-					type: "checkmark"
+					item: "bloodmagic:altar"
+					count: 1
+					type: "item"
 				}
 			]
 			title: "Алтарь крови"
@@ -147,8 +152,9 @@
 			tasks: [
 				{
 					id: "A11A050200000009"
-					title: "Завершите ритуал Blood Magic"
-					type: "checkmark"
+					item: "arcanopolis:ritual_regulator"
+					count: 1
+					type: "item"
 				}
 			]
 			title: "Ритуал"
@@ -162,8 +168,8 @@
 			tasks: [
 				{
 					id: "A11A05020000000A"
-					title: "Освойте базовую алхимию Eidolon"
-					type: "checkmark"
+					title: "Алхимия Eidolon освоена"
+					type: "custom"
 				}
 			]
 			title: "Алхимия Eidolon"
@@ -177,8 +183,8 @@
 			tasks: [
 				{
 					id: "A11A05020000000B"
-					title: "Изготовьте алхимические компоненты Eidolon"
-					type: "checkmark"
+					title: "Характерные компоненты изготовлены"
+					type: "custom"
 				}
 			]
 			title: "Характерные компоненты"
@@ -205,18 +211,50 @@
 			tasks: [
 				{
 					id: "A11A05020000000C"
-					title: "Арканная лаборатория построена и работает"
-					type: "checkmark"
+					title: "Арканная лаборатория построена"
+					type: "custom"
 				},
 				{
 					id: "A11A05020000000D"
-					title: "Есть достижение в каждой из четырёх школ"
-					type: "checkmark"
+					title: "Арканная лаборатория построена"
+					type: "custom"
 				}
 			]
 			title: "Ключевой проект: арканная лаборатория"
 			x: 0.0d
 			y: 2.0d
+		},
+		{
+			dependencies: ["A11A050100000002"]
+			description: ["Самоцветы источника — топливо магии."]
+			id: "A11A05010000000D"
+			tasks: [
+				{
+					id: "A11A05020000000E"
+					item: "ars_nouveau:source_gem"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Резерв самоцветов"
+			x: -4.0d
+			y: -3.5d
+		},
+		{
+			dependencies: ["A11A050100000006"]
+			description: ["Террасталь подтверждает союз с дриадами."]
+			id: "A11A05010000000E"
+			tasks: [
+				{
+					id: "A11A05020000000F"
+					item: "botania:terrasteel_ingot"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Союз с дриадами"
+			x: -2.0d
+			y: -3.5d
 		}
 	]
 	title: "Эпоха IV. «Расцвет магии»"

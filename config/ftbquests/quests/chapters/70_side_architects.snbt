@@ -5,6 +5,7 @@
 	group: "A11A000000000002"
 	icon: "minecraft:stone_bricks"
 	id: "A11A080000000001"
+	dependencies: [ ]
 	order_index: 7
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -17,7 +18,7 @@
 				{
 					id: "A11A080200000001"
 					title: "Приступить к развитию архитектуры"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Архитекторы"
@@ -41,7 +42,7 @@
 				{
 					id: "A11A080200000002"
 					title: "Оформите ратушу и центр в едином стиле"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Стиль города"
@@ -65,7 +66,7 @@
 				{
 					id: "A11A080200000003"
 					title: "Выстройте три различимых квартала"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Три квартала"
@@ -89,7 +90,7 @@
 				{
 					id: "A11A080200000004"
 					title: "Разбейте парк или площадь"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Городской парк"
@@ -112,7 +113,7 @@
 				{
 					id: "A11A080200000005"
 					title: "Постройте городской монумент"
-					type: "checkmark"
+					type: "custom"
 				}
 			]
 			title: "Монумент"

@@ -5,6 +5,7 @@
 	group: "A11A000000000001"
 	icon: "arcanopolis:city_charter"
 	id: "A11A010000000001"
+	dependencies: [ ]
 	order_index: 0
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -24,8 +25,8 @@
 			tasks: [
 				{
 					id: "A11A010200000001"
-					title: "Выберите площадку и поставьте лагерь или корабль снабжения"
-					type: "checkmark"
+					item: ["minecolonies:supplycamp", "minecolonies:supplyship"]
+					type: "item"
 				}
 			]
 			title: "Хартия нового мира"
@@ -39,8 +40,8 @@
 			tasks: [
 				{
 					id: "A11A010200000002"
-					title: "Выполните первый строительный заказ"
-					type: "checkmark"
+					title: "Хижина строителя построена"
+					type: "custom"
 				}
 			]
 			title: "Строительные заказы"
@@ -62,8 +63,8 @@
 			tasks: [
 				{
 					id: "A11A010200000003"
-					title: "Возведите ратушу I уровня"
-					type: "checkmark"
+					title: "Ратуша построена"
+					type: "custom"
 				}
 			]
 			title: "Ратуша"
@@ -77,8 +78,8 @@
 			tasks: [
 				{
 					id: "A11A010200000004"
-					title: "Постройте хижину строителя"
-					type: "checkmark"
+					title: "Хижина строителя II уровня"
+					type: "custom"
 				}
 			]
 			title: "Хижина строителя"
@@ -100,8 +101,8 @@
 			tasks: [
 				{
 					id: "A11A010200000005"
-					title: "Постройте первое жилое здание"
-					type: "checkmark"
+					title: "Первый жилой дом заселён"
+					type: "custom"
 				}
 			]
 			title: "Первый жилой дом"
@@ -131,8 +132,8 @@
 			tasks: [
 				{
 					id: "A11A010200000007"
-					title: "Примите первого жителя в колонию"
-					type: "checkmark"
+					title: "Три жителя в колонии"
+					type: "custom"
 				}
 			]
 			title: "Первые жители"
@@ -155,8 +156,8 @@
 			tasks: [
 				{
 					id: "A11A010200000008"
-					title: "Настройте доставку материалов курьером"
-					type: "checkmark"
+					title: "Курьерская служба запущена"
+					type: "custom"
 				}
 			]
 			title: "Система доставки"
@@ -183,13 +184,45 @@
 			tasks: [
 				{
 					id: "A11A010200000009"
-					title: "Колония основана и обеспечена едой"
-					type: "checkmark"
+					title: "Пять жителей в колонии"
+					type: "custom"
 				}
 			]
 			title: "Право на поселение"
 			x: 6.0d
 			y: 0.0d
+		},
+		{
+			dependencies: ["A11A010100000006"]
+			description: ["Запас древесины — топливо, ремонт и будущие постройки."]
+			id: "A11A01010000000A"
+			tasks: [
+				{
+					id: "A11A01020000000A"
+					item: "minecraft:oak_log"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Лесозаготовка"
+			x: 0.0d
+			y: 4.5d
+		},
+		{
+			dependencies: ["A11A010100000006"]
+			description: ["Камень нужен для дорог, укреплений и украшений колонии."]
+			id: "A11A01010000000B"
+			tasks: [
+				{
+					id: "A11A01020000000B"
+					item: "minecraft:cobblestone"
+					count: 256
+					type: "item"
+				}
+			]
+			title: "Каменный резерв"
+			x: 2.0d
+			y: 4.5d
 		}
 	]
 	title: "Пролог. «Право на поселение»"

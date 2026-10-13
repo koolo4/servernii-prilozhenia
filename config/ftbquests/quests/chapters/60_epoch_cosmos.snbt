@@ -5,6 +5,7 @@
 	group: "A11A000000000001"
 	icon: "arcanopolis:heart_of_arcanopolis"
 	id: "A11A070000000001"
+	dependencies: ["A11A060000000001"]
 	order_index: 6
 	progression_mode: "flexible"
 	quest_links: [ ]
@@ -16,8 +17,8 @@
 			tasks: [
 				{
 					id: "A11A070200000001"
-					title: "Приступить к финальной эпохе"
-					type: "checkmark"
+					title: "Эпоха VI достигнута"
+					type: "custom"
 				}
 			]
 			title: "Эпоха VI"
@@ -31,8 +32,9 @@
 			tasks: [
 				{
 					id: "A11A070200000002"
-					title: "Запустите поздние производства Mekanism"
-					type: "checkmark"
+					item: "mekanism:alloy_atomic"
+					count: 16
+					type: "item"
 				}
 			]
 			title: "Поздняя переработка"
@@ -46,8 +48,9 @@
 			tasks: [
 				{
 					id: "A11A070200000003"
-					title: "Соберите продвинутые установки Thermal и Create"
-					type: "checkmark"
+					item: "thermal:enderium_ingot"
+					count: 8
+					type: "item"
 				}
 			]
 			title: "Продвинутые установки"
@@ -61,8 +64,9 @@
 			tasks: [
 				{
 					id: "A11A070200000004"
-					title: "Соберите редкие реагенты всех четырёх школ"
-					type: "checkmark"
+					item: "minecraft:nether_star"
+					count: 2
+					type: "item"
 				}
 			]
 			title: "Редкие реагенты"
@@ -76,8 +80,9 @@
 			tasks: [
 				{
 					id: "A11A070200000005"
-					title: "Центральное сооружение подготовлено"
-					type: "checkmark"
+					item: "arcanopolis:arcane_converter"
+					count: 8
+					type: "item"
 				}
 			]
 			title: "Центральное сооружение"
@@ -155,18 +160,50 @@
 			tasks: [
 				{
 					id: "A11A070200000008"
-					title: "Сердце встроено в центральное сооружение"
-					type: "checkmark"
+					title: "Первый импульс Сердца"
+					type: "custom"
 				},
 				{
 					id: "A11A070200000009"
-					title: "Колония обеспечивается без ручной доставки игроком"
-					type: "checkmark"
+					title: "Первый импульс Сердца"
+					type: "custom"
 				}
 			]
 			title: "Запуск проекта"
 			x: 6.0d
 			y: 0.0d
+		},
+		{
+			dependencies: ["A11A070100000004"]
+			description: ["Редчайший реагент для финальных ритуалов."]
+			id: "A11A070100000009"
+			tasks: [
+				{
+					id: "A11A07020000000A"
+					item: "minecraft:nether_star"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Звёзды Нижнего мира"
+			x: -2.0d
+			y: -3.0d
+		},
+		{
+			dependencies: ["A11A070100000006"]
+			description: ["Алхимический реагент для Сердца Арканополиса."]
+			id: "A11A07010000000A"
+			tasks: [
+				{
+					id: "A11A07020000000B"
+					item: "minecraft:dragon_breath"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Дыхание дракона"
+			x: 2.0d
+			y: -3.0d
 		}
 	]
 	title: "Эпоха VI. «Космический горизонт»"
