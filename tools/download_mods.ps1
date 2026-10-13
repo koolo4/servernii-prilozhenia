@@ -457,56 +457,87 @@ function Find-OnCurseForge($mod, [string]$mc) {
 # ==================== ПРЯМЫЕ ФАЙЛЫ CURSEFORGE (по номеру) =================
 # Ссылка вида curseforge.com/minecraft/mc-mods/{slug}/download/{file_id}
 # раскрывается в прямые URL CDN — без api.cfwidget.com.
-function Get-CfFileUrls([string]$slug, [string]$fid) {
+function Get-CfFileUrls([string]$slug, [string]$fid, [string]$knownName = "") {
     $urls = New-Object System.Collections.Generic.List[string]
-    $fname = $null
+    $fname = $knownName
+    $fid64 = 0
+    try { $fid64 = [int64]$fid } catch { }
+    $p1 = [math]::Floor($fid64 / 1000)
+    $p2 = $fid64 % 1000
 
-    # Имя файла из API CurseForge — даёт прямые ссылки на CDN
-    $fn = $null
-    try {
-        $meta = $null
-        try { $meta = Get-WebJson ("https://www.curseforge.com/api/v1/mods/{0}/files/{1}" -f $slug, $fid) } catch { }
-        if (-not $meta) {
-            try {
-                $lst = Get-WebJson ("https://www.curseforge.com/api/v1/mods/{0}/files?index=0&pageSize=50" -f $slug)
-                $arr = $lst
-                if ($lst -and $lst.data) { $arr = $lst.data }
-                foreach ($ff in @(Get-Flat $arr)) {
-                    if ("$($ff.id)" -eq "$fid") { $meta = $ff; break }
-                }
-            } catch { }
-        }
-        if ($meta) {
-            if ($meta.fileName) { $fn = "$($meta.fileName)" }
-            elseif ($meta.data -and $meta.data.fileName) { $fn = "$($meta.data.fileName)" }
-        }
-    } catch { }
-    if ($fn) {
-        $fid64 = [int64]$fid
-        $p1 = [math]::Floor($fid64 / 1000)
-        $p2 = $fid64 % 1000
-        $esc = [uri]::EscapeDataString($fn)
+    # 1. Прямые CDN-ссылки, если имя файла уже известно
+    if ($fname) {
+        $esc = [uri]::EscapeDataString($fname)
         $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
         $urls.Add(("https://edge.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
-        $fname = $fn
     }
 
-    # Страница загрузки может содержать прямую ссылку на CDN (заодно узнаём имя файла)
-    $pageUrl = "https://www.curseforge.com/minecraft/mc-mods/{0}/download/{1}" -f $slug, $fid
-    try {
-        $page = Invoke-WebRequest -Uri $pageUrl -UserAgent $browserUA -Headers @{ "Referer" = "https://www.curseforge.com/" } -UseBasicParsing
-        foreach ($m in [regex]::Matches("$($page.Content)", '(media|edge)\.forgecdn\.net/files/\d+/\d+/[^"''\s\\?]+\.jar')) {
-            $cdn = "https://" + $m.Value
-            if (-not $urls.Contains($cdn)) { $urls.Add($cdn) }
+    # 2. Имя файла и числовой ID проекта вытаскиваем из страниц CurseForge
+    $projId = $null
+    foreach ($pageUrl in @(
+        ("https://www.curseforge.com/minecraft/mc-mods/{0}/files/{1}" -f $slug, $fid),
+        ("https://www.curseforge.com/minecraft/mc-mods/{0}/download/{1}" -f $slug, $fid)
+    )) {
+        try {
+            $page = Invoke-WebRequest -Uri $pageUrl -UserAgent $browserUA -Headers @{ "Referer" = "https://www.curseforge.com/" } -UseBasicParsing
+            # JS экранирует слеши как \/ — вернём их к нормальному виду
+            $html = "$($page.Content)" -replace '\\/', '/'
+            if (-not $projId) {
+                $m = [regex]::Match($html, '(?i)"projectId"\s*:\s*(\d+)')
+                if (-not $m.Success) { $m = [regex]::Match($html, '(?i)data-projectid="(\d+)"') }
+                if ($m.Success) { $projId = $m.Groups[1].Value }
+            }
             if (-not $fname) {
-                $fname = [uri]::UnescapeDataString($m.Value.Substring($m.Value.LastIndexOf('/') + 1))
+                foreach ($pat in @(
+                    ("files/{0}/{1}/([^""'\s\\<>?]+\.jar)" -f $p1, $p2),
+                    '(?i)"fileName"\s*:\s*"([^"]+\.jar)"',
+                    ('(?i)(' + [regex]::Escape($slug) + '[A-Za-z0-9._\-]*\.jar)'),
+                    '(?i)href="([^"]+\.jar[^"]*)"'
+                )) {
+                    $m = [regex]::Match($html, $pat)
+                    if ($m.Success) {
+                        $cand = $m.Groups[1].Value
+                        if ($cand -match '/') { $cand = $cand.Substring($cand.LastIndexOf('/') + 1) }
+                        $cand = [uri]::UnescapeDataString($cand)
+                        if ($cand -match '\.jar$') { $fname = $cand; break }
+                    }
+                }
+            }
+        } catch { }
+        if ($fname -and $projId) { break }
+    }
+
+    # 3. Имя известно -> прямые CDN-ссылки (работают без api/v1)
+    if ($fname -and $urls.Count -eq 0) {
+        $esc = [uri]::EscapeDataString($fname)
+        $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
+        $urls.Add(("https://edge.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
+    }
+
+    # 4. Точки входа CurseForge: перехватываем редирект 302 -> настоящий CDN
+    foreach ($modKey in @($slug, $projId)) {
+        if (-not $modKey) { continue }
+        foreach ($ep in @('download', 'download-url')) {
+            $apiUrl = "https://www.curseforge.com/api/v1/mods/{0}/files/{1}/{2}" -f $modKey, $fid, $ep
+            try {
+                Invoke-WebRequest -Uri $apiUrl -UserAgent $browserUA -Headers @{ "Referer" = "https://www.curseforge.com/" } -MaximumRedirection 0 -UseBasicParsing | Out-Null
+            } catch {
+                $resp = $null
+                try { $resp = $_.Exception.Response } catch { }
+                if ($resp -and $resp.Headers) {
+                    $loc = "$($resp.Headers['Location'])"
+                    if ($loc -match '\.jar') {
+                        if ($loc -match '^/') { $loc = "https://www.curseforge.com" + $loc }
+                        if (-not $urls.Contains($loc)) { $urls.Insert(0, $loc) }
+                        if (-not $fname -and $loc -match '([^/]+\.jar)') {
+                            $fname = [uri]::UnescapeDataString($Matches[1])
+                        }
+                    }
+                }
             }
         }
-    } catch { }
+    }
 
-    # Официальная точка входа CurseForge (редирект на CDN)
-    $urls.Add(("https://www.curseforge.com/api/v1/mods/{0}/files/{1}/download" -f $slug, $fid))
-    $urls.Add(("https://www.curseforge.com/api/v1/mods/{0}/files/{1}/download-url" -f $slug, $fid))
     return @{ urls = $urls.ToArray(); filename = $fname }
 }
 
@@ -596,47 +627,60 @@ foreach ($mod in $modList) {
     $name = "$($mod.name)"
     $script:cfDiag = $null
 
-    $hit = Find-OnModrinth $mod $mc
-    if (-not $hit) { $hit = Find-OnMaven $mod }
-    if (-not $hit) { $hit = Find-OnGitHub $mod $mc }
-    if (-not $hit) { $hit = Find-OnCfFile $mod }
-    if (-not $hit) { $hit = Find-OnCurseForge $mod $mc }
-    if ($hit -is [System.Array]) { $hit = @($hit) | Select-Object -First 1 }
+    $finished = $false
+    $srcErrors = New-Object System.Collections.Generic.List[string]
 
-    # последний шанс: прямые ссылки из манифеста (manual_urls)
-    if (-not $hit) { $hit = Get-ManualHit $mod }
+    foreach ($stage in @('modrinth', 'maven', 'github', 'cffile', 'cfwidget', 'manual')) {
+        $hit = $null
+        switch ($stage) {
+            'modrinth' { $hit = Find-OnModrinth $mod $mc }
+            'maven'    { $hit = Find-OnMaven $mod }
+            'github'   { $hit = Find-OnGitHub $mod $mc }
+            'cffile'   { $hit = Find-OnCfFile $mod }
+            'cfwidget' { $hit = Find-OnCurseForge $mod $mc }
+            'manual'   { $hit = Get-ManualHit $mod }
+        }
+        if ($hit -is [System.Array]) { $hit = @($hit) | Select-Object -First 1 }
+        if (-not $hit) { continue }
 
-    if (-not $hit) {
+        $dest = Join-Path $Out $hit.filename
+        if (Test-Path $dest) {
+            $bad = Test-JarFile $dest
+            if (-not $bad) {
+                Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
+                $ok++
+                $finished = $true
+                break
+            }
+            Log ("[БИТЫЙ]  {0} — {1}; удаляю и скачиваю заново" -f $hit.filename, $bad)
+            Remove-Item $dest -Force
+        }
+
+        $err = Save-File $hit.urls $dest $hit.hashes
+        if (-not $err) {
+            Log ("[OK]      {0}  <- {1} ({2}) [{3}]" -f $hit.filename, $name, $hit.version, $hit.source)
+            $ok++
+            $finished = $true
+            break
+        }
+        # источник не справился — пробуем следующий
+        $srcErrors.Add(("[{0}] {1}" -f $hit.source, $err))
+    }
+
+    if ($finished) { continue }
+
+    if ($srcErrors.Count -gt 0) {
+        Log ("[ОШИБКА] {0}:" -f $name)
+        foreach ($e in $srcErrors) { Log ("           {0}" -f $e) }
+        $failed++
+    } else {
         Log ("[ВРУЧНУЮ] {0} — не найден ни в одном источнике. Ссылки:" -f $name)
         foreach ($cf in @(Get-Flat $mod.curseforge)) {
             if ($cf) { Log ("           https://www.curseforge.com/minecraft/mc-mods/{0}" -f $cf) }
         }
         if ($script:cfDiag) { Log ("           {0}" -f $script:cfDiag) }
         $manual++
-        continue
     }
-
-    $dest = Join-Path $Out $hit.filename
-    if (Test-Path $dest) {
-        $bad = Test-JarFile $dest
-        if (-not $bad) {
-            Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
-            $ok++
-            continue
-        }
-        Log ("[БИТЫЙ]  {0} — {1}; удаляю и скачиваю заново" -f $hit.filename, $bad)
-        Remove-Item $dest -Force
-    }
-
-    $err = Save-File $hit.urls $dest $hit.hashes
-    if ($err) {
-        Log ("[ОШИБКА] {0}: {1} [{2}]" -f $name, $err, $hit.source)
-        $failed++
-        continue
-    }
-
-    Log ("[OK]      {0}  <- {1} ({2}) [{3}]" -f $hit.filename, $name, $hit.version, $hit.source)
-    $ok++
 }
 
 Log ""
@@ -646,9 +690,34 @@ if ($manual -gt 0) {
 }
 
 # --- Проверка целостности всех jar в папке --------------------------------
+# Заодно ищем дубликаты modId (два jar одного мода = краш Forge).
+function Get-ModIds([string]$path) {
+    $ids = New-Object System.Collections.Generic.List[string]
+    try {
+        Add-Type -AssemblyName System.IO.Compression.FileSystem | Out-Null
+        $zip = [System.IO.Compression.ZipFile]::OpenRead($path)
+        try {
+            foreach ($entry in $zip.Entries) {
+                if ($entry.FullName -ieq 'META-INF/mods.toml') {
+                    $sr = New-Object System.IO.StreamReader($entry.Open())
+                    try { $txt = $sr.ReadToEnd() } finally { $sr.Close() }
+                    # modId самого мода — только до секции зависимостей
+                    $cut = $txt.IndexOf('[[dependencies')
+                    if ($cut -ge 0) { $txt = $txt.Substring(0, $cut) }
+                    foreach ($m in [regex]::Matches($txt, '(?im)^\s*modId\s*=\s*"([^"]+)"')) {
+                        $ids.Add($m.Groups[1].Value)
+                    }
+                }
+            }
+        } finally { $zip.Dispose() }
+    } catch { }
+    foreach ($i in $ids) { Write-Output $i }
+}
+
 Log ""
 Log "Проверка целостности jar-файлов:"
 $broken = 0
+$byId = @{}
 foreach ($f in (Get-ChildItem -Path $Out -File | Sort-Object Name)) {
     if ($f.Name -notmatch '\.jar$') {
         Log ("[ФАЙЛ]   {0} — не jar (Forge не загрузит; можно убрать из папки mods)" -f $f.Name)
@@ -658,12 +727,24 @@ foreach ($f in (Get-ChildItem -Path $Out -File | Sort-Object Name)) {
     if ($bad) {
         Log ("[БИТЫЙ]  {0} — {1}" -f $f.Name, $bad)
         $broken++
+        continue
+    }
+    foreach ($mid in @(Get-ModIds $f.FullName)) {
+        if (-not $mid) { continue }
+        if (-not $byId.ContainsKey($mid)) { $byId[$mid] = New-Object System.Collections.Generic.List[string] }
+        $byId[$mid].Add($f.Name)
+    }
+}
+foreach ($mid in @($byId.Keys | Sort-Object)) {
+    if ($byId[$mid].Count -gt 1) {
+        Log ("[ДУБЛЬ]  мод '{0}' лежит в нескольких файлах: {1} — оставьте один" -f $mid, ($byId[$mid] -join ', '))
+        $broken++
     }
 }
 if ($broken -gt 0) {
-    Log ("Битых jar: {0}. Удалите их вручную (если файл не из манифеста) и запустите скрипт ещё раз." -f $broken)
+    Log ("Проблемных файлов: {0}. Удалите лишние/битые и запустите скрипт ещё раз." -f $broken)
 } else {
-    Log "Все jar-файлы целые."
+    Log "Все jar-файлы целые, дубликатов нет."
 }
 
 if ($Report) {
