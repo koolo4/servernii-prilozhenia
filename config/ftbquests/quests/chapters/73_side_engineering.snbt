@@ -120,6 +120,95 @@
 			title: "Сортировочная станция"
 			x: 2.0d
 			y: 1.5d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: create:toolbox ×1, minecraft:chest ×1"]
+			id: "A11A0B0100000006"
+			tasks: [
+				{
+					id: "A11A0B0200000006"
+					item: ["create:toolbox", "minecraft:chest"]
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Инженерный кейс"
+			x: 6.0d
+			y: 2.0d
+		},
+		{
+			dependencies: ["A11A0B0100000006"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:paper ×32."]
+			id: "A11A0B0100000007"
+			tasks: [
+				{
+					id: "A11A0B0200000007"
+					item: "minecraft:paper"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Чертежи и схемы"
+			x: 6.0d
+			y: 0.30000000000000004d
+		},
+		{
+			dependencies: ["A11A0B0100000007"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 2 уровня."]
+			id: "A11A0B0100000008"
+			tasks: [
+				{
+					id: "A11A0B0200000008"
+					title: "Здание mech (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Механическая мастерская"
+			x: 6.0d
+			y: -1.4d
+		},
+		{
+			dependencies: ["A11A0B0100000008"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A0B0100000009"
+			tasks: [
+				{
+					id: "A11A0B0200000009"
+					item: "create:wrench"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A0B020000000A"
+					title: "Здание mech (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Испытательный стенд"
+			x: 6.0d
+			y: -3.0999999999999996d
+		},
+		{
+			dependencies: ["A11A0B0100000009"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A0B010000000A"
+			tasks: [
+				{
+					id: "A11A0B020000000B"
+					item: "create:precision_mechanism"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A0B020000000C"
+					title: "Здание university (ур. 1)"
+					type: "custom"
+				}
+			]
+			title: "Инженерный диплом"
+			x: 6.0d
+			y: -4.8d
 		}
 	]
 	title: "Необязательное: «Инженерные задачи»"

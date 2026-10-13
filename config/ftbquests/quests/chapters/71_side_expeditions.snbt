@@ -122,6 +122,112 @@
 			title: "Следы колоний"
 			x: -2.0d
 			y: 1.5d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:cooked_beef ×32."]
+			id: "A11A090100000006"
+			tasks: [
+				{
+					id: "A11A090200000006"
+					item: "minecraft:cooked_beef"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Припасы экспедиции"
+			x: 6.0d
+			y: 2.0d
+		},
+		{
+			dependencies: ["A11A090100000006"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_sword ×2."]
+			id: "A11A090100000007"
+			tasks: [
+				{
+					id: "A11A090200000007"
+					item: "minecraft:iron_sword"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Снаряжение"
+			x: 6.0d
+			y: 0.30000000000000004d
+		},
+		{
+			dependencies: ["A11A090100000007"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:blaze_rod ×8."]
+			id: "A11A090100000008"
+			tasks: [
+				{
+					id: "A11A090200000008"
+					item: "minecraft:blaze_rod"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Трофеи Нижнего мира"
+			x: 6.0d
+			y: -1.4d
+		},
+		{
+			dependencies: ["A11A090100000008"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ender_pearl ×8."]
+			id: "A11A090100000009"
+			tasks: [
+				{
+					id: "A11A090200000009"
+					item: "minecraft:ender_pearl"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Трофеи Края"
+			x: 6.0d
+			y: -3.0999999999999996d
+		},
+		{
+			dependencies: ["A11A090100000009"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A09010000000A"
+			tasks: [
+				{
+					id: "A11A09020000000A"
+					item: "minecrp"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "A11A09020000000B"
+					title: "Здание university (ур. 1)"
+					type: "custom"
+				}
+			]
+			title: "Экспедиционный отчёт"
+			x: 6.0d
+			y: -4.8d
+		},
+		{
+			dependencies: ["A11A09010000000A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A09010000000B"
+			tasks: [
+				{
+					id: "A11A09020000000C"
+					item: "minecraft:name_tag"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A09020000000D"
+					title: "Здание library (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Музей экспедиций"
+			x: 6.0d
+			y: -6.5d
 		}
 	]
 	title: "Необязательное: «Экспедиции»"

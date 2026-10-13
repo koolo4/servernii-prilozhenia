@@ -119,6 +119,112 @@
 			title: "Монумент"
 			x: 2.0d
 			y: 1.5d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:stone_bricks ×128."]
+			id: "A11A080100000006"
+			tasks: [
+				{
+					id: "A11A080200000006"
+					item: "minecraft:stone_bricks"
+					count: 128
+					type: "item"
+				}
+			]
+			title: "Каменные кварталы"
+			x: 6.0d
+			y: 2.0d
+		},
+		{
+			dependencies: ["A11A080100000006"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass_pane ×64."]
+			id: "A11A080100000007"
+			tasks: [
+				{
+					id: "A11A080200000007"
+					item: "minecraft:glass_pane"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Стеклянные фасады"
+			x: 6.0d
+			y: 0.30000000000000004d
+		},
+		{
+			dependencies: ["A11A080100000007"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:copper_block ×16."]
+			id: "A11A080100000008"
+			tasks: [
+				{
+					id: "A11A080200000008"
+					item: "minecraft:copper_block"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Медные крыши"
+			x: 6.0d
+			y: -1.4d
+		},
+		{
+			dependencies: ["A11A080100000008"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bricks ×32."]
+			id: "A11A080100000009"
+			tasks: [
+				{
+					id: "A11A080200000009"
+					item: "minecraft:bricks"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Кирпичные особняки"
+			x: 6.0d
+			y: -3.0999999999999996d
+		},
+		{
+			dependencies: ["A11A080100000009"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A08010000000A"
+			tasks: [
+				{
+					id: "A11A08020000000A"
+					item: "minecraft:quartz_block"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A08020000000B"
+					title: "Здание home (ур. 3)"
+					type: "custom"
+				}
+			]
+			title: "Архитектурный ансамбль"
+			x: 6.0d
+			y: -4.8d
+		},
+		{
+			dependencies: ["A11A08010000000A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A08010000000B"
+			tasks: [
+				{
+					id: "A11A08020000000C"
+					item: "minecraft:oak_sapling"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A08020000000D"
+					title: "Здание farm (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Парк и сады"
+			x: 6.0d
+			y: -6.5d
 		}
 	]
 	title: "Необязательное: «Архитекторы»"

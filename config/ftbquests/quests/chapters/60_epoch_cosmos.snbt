@@ -204,6 +204,1064 @@
 			title: "Дыхание дракона"
 			x: 2.0d
 			y: -3.0d
+		},
+		{
+			dependencies: ["A11A070100000001"]
+			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 56 жителей."]
+			id: "A11A07010000000B"
+			tasks: [
+				{
+					id: "A11A07020000000C"
+					title: "Жителей: 56"
+					type: "custom"
+				}
+			]
+			title: "Пятьдесят шесть жителей"
+			x: -15.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A07010000000B"]
+			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 60 жителей."]
+			id: "A11A07010000000C"
+			tasks: [
+				{
+					id: "A11A07020000000D"
+					title: "Жителей: 60"
+					type: "custom"
+				}
+			]
+			title: "Шестьдесят жителей"
+			x: -15.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A07010000000C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 5 уровня."]
+			id: "A11A07010000000D"
+			tasks: [
+				{
+					id: "A11A07020000000E"
+					title: "Здание mech (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Механик V уровня"
+			x: -15.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A07010000000D"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «university» до 5 уровня."]
+			id: "A11A07010000000E"
+			tasks: [
+				{
+					id: "A11A07020000000F"
+					title: "Здание university (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Университет V уровня"
+			x: -15.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A07010000000E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «hospital» до 5 уровня."]
+			id: "A11A07010000000F"
+			tasks: [
+				{
+					id: "A11A070200000010"
+					title: "Здание hospital (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Госпиталь V уровня"
+			x: -15.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A07010000000F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «black» до 5 уровня."]
+			id: "A11A070100000010"
+			tasks: [
+				{
+					id: "A11A070200000011"
+					title: "Здание black (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Кузнец V уровня"
+			x: -15.0d
+			y: -4.5d
+		},
+		{
+			dependencies: ["A11A070100000010"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «miner» до 5 уровня.", "Постройте или улучшите здание «lumberjack» до 5 уровня."]
+			id: "A11A070100000011"
+			tasks: [
+				{
+					id: "A11A070200000012"
+					title: "Здание miner (ур. 5)"
+					type: "custom"
+				},
+				{
+					id: "A11A070200000013"
+					title: "Здание lumberjack (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Шахтёр и лесоруб V"
+			x: -15.0d
+			y: -6.199999999999999d
+		},
+		{
+			dependencies: ["A11A070100000002"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:alloy_atomic ×32."]
+			id: "A11A070100000012"
+			tasks: [
+				{
+					id: "A11A070200000014"
+					item: "mekanism:alloy_atomic"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Поздняя переработка"
+			x: -9.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A070100000012"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×32."]
+			id: "A11A070100000013"
+			tasks: [
+				{
+					id: "A11A070200000015"
+					item: "mekanism:ultimate_control_circuit"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Высшие концуры впрок"
+			x: -9.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A070100000013"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:pellet_plutonium ×4, minecraft:nether_star ×4"]
+			id: "A11A070100000014"
+			tasks: [
+				{
+					id: "A11A070200000016"
+					item: ["mekanism:pellet_plutonium", "minecraft:nether_star"]
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Плутониевые таблетки"
+			x: -9.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A070100000014"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:pellet_antimatter ×2, minecraft:dragon_breath ×2"]
+			id: "A11A070100000015"
+			tasks: [
+				{
+					id: "A11A070200000017"
+					item: ["mekanism:pellet_antimatter", "minecraft:dragon_breath"]
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Антипротонный комплект"
+			x: -9.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A070100000015"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000016"
+			tasks: [
+				{
+					id: "A11A070200000018"
+					item: "mekanism:ultimate_control_circuit"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A070200000019"
+					title: "Здание mech (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Космический скафандр"
+			x: -9.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A070100000003"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: thermal:enderium_ingot ×16."]
+			id: "A11A070100000017"
+			tasks: [
+				{
+					id: "A11A07020000001A"
+					item: "thermal:enderium_ingot"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Эндерий впрок"
+			x: -3.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A070100000017"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:signalum_ingot ×32, minecraft:redstone ×32"]
+			id: "A11A070100000018"
+			tasks: [
+				{
+					id: "A11A07020000001B"
+					item: ["thermal:signalum_ingot", "minecraft:redstone"]
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Сигналум впрок"
+			x: -3.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A070100000018"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:lumium_ingot ×32, minecraft:glowstone_dust ×32"]
+			id: "A11A070100000019"
+			tasks: [
+				{
+					id: "A11A07020000001C"
+					item: ["thermal:lumium_ingot", "minecraft:glowstone_dust"]
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Люмий впрок"
+			x: -3.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A070100000019"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: thermal:machine_frame ×8."]
+			id: "A11A07010000001A"
+			tasks: [
+				{
+					id: "A11A07020000001D"
+					item: "thermal:machine_frame"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Рамы машин впрок"
+			x: -3.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A07010000001A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000001B"
+			tasks: [
+				{
+					id: "A11A07020000001E"
+					item: "thermal:enderium_ingot"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "A11A07020000001F"
+					title: "Здание mech (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Тепловая энергетика"
+			x: -3.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A070100000004"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: botania:terrasteel_ingot ×8."]
+			id: "A11A07010000001C"
+			tasks: [
+				{
+					id: "A11A070200000020"
+					item: "botania:terrasteel_ingot"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Редкие реагенты школ"
+			x: 3.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A07010000001C", "A11A070100000009"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:nether_star ×4."]
+			id: "A11A07010000001D"
+			tasks: [
+				{
+					id: "A11A070200000021"
+					item: "minecraft:nether_star"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Звёзды Нижнего мира"
+			x: 3.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A07010000001D", "A11A07010000000A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:dragon_breath ×8."]
+			id: "A11A07010000001E"
+			tasks: [
+				{
+					id: "A11A070200000022"
+					item: "minecraft:dragon_breath"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Дыхание дракона"
+			x: 3.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A07010000001E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000001F"
+			tasks: [
+				{
+					id: "A11A070200000023"
+					item: "arcanopolis:ritual_regulator"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A070200000024"
+					title: "Здание library (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Ритуалы высшей магии"
+			x: 3.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A07010000001F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000020"
+			tasks: [
+				{
+					id: "A11A070200000025"
+					item: "ars_nouveau:source_gem"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A070200000026"
+					title: "Здание university (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Пламя эфира"
+			x: 3.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A070100000005"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:arcane_converter ×16."]
+			id: "A11A070100000021"
+			tasks: [
+				{
+					id: "A11A070200000027"
+					item: "arcanopolis:arcane_converter"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Центральное сооружение"
+			x: 9.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A070100000021"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000022"
+			tasks: [
+				{
+					id: "A11A070200000028"
+					item: "arcanopolis:arcane_converter"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "A11A070200000029"
+					title: "Ратуша 5 уровня"
+					type: "custom"
+				}
+			]
+			title: "Ядро города"
+			x: 9.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A070100000022", "A11A070100000006"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:primal_catalyst ×2."]
+			id: "A11A070100000023"
+			tasks: [
+				{
+					id: "A11A07020000002A"
+					item: "arcanopolis:primal_catalyst"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Изначальный катализатор"
+			x: 9.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A070100000023", "A11A070100000007"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:heart_of_arcanopolis ×1."]
+			id: "A11A070100000024"
+			tasks: [
+				{
+					id: "A11A07020000002B"
+					item: "arcanopolis:heart_of_arcanopolis"
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Сердце Арканополиса"
+			x: 9.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A070100000024", "A11A070100000008"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000025"
+			tasks: [
+				{
+					id: "A11A07020000002C"
+					item: "arcanopolis:heart_of_arcanopolis"
+					count: 1
+					type: "item"
+				},
+				{
+					id: "A11A07020000002D"
+					title: "Жителей: 60"
+					type: "custom"
+				}
+			]
+			title: "Первый импульс"
+			x: 9.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A07010000000C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:end_stone ×64."]
+			id: "A11A070100000026"
+			tasks: [
+				{
+					id: "A11A07020000002E"
+					item: "minecraft:end_stone"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Камень Края"
+			x: -15.0d
+			y: -22.0d
+		},
+		{
+			dependencies: ["A11A070100000026"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:purpur_block ×32."]
+			id: "A11A070100000027"
+			tasks: [
+				{
+					id: "A11A07020000002F"
+					item: "minecraft:purpur_block"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Пурпур"
+			x: -15.0d
+			y: -23.7d
+		},
+		{
+			dependencies: ["A11A070100000027"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:end_rod ×16."]
+			id: "A11A070100000028"
+			tasks: [
+				{
+					id: "A11A070200000030"
+					item: "minecraft:end_rod"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Стержни Края"
+			x: -15.0d
+			y: -25.4d
+		},
+		{
+			dependencies: ["A11A070100000028"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:shulker_shell ×8."]
+			id: "A11A070100000029"
+			tasks: [
+				{
+					id: "A11A070200000031"
+					item: "minecraft:shulker_shell"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Панцири шалкеров"
+			x: -15.0d
+			y: -27.1d
+		},
+		{
+			dependencies: ["A11A070100000029"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:end_crystal ×4."]
+			id: "A11A07010000002A"
+			tasks: [
+				{
+					id: "A11A070200000032"
+					item: "minecraft:end_crystal"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Кристаллы Края"
+			x: -15.0d
+			y: -28.8d
+		},
+		{
+			dependencies: ["A11A07010000002A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: minecraft:elytra ×1, minecraft:firework_rocket ×1"]
+			id: "A11A07010000002B"
+			tasks: [
+				{
+					id: "A11A070200000033"
+					item: ["minecraft:elytra", "minecraft:firework_rocket"]
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Элитры"
+			x: -15.0d
+			y: -30.5d
+		},
+		{
+			dependencies: ["A11A07010000002B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:firework_rocket ×32."]
+			id: "A11A07010000002C"
+			tasks: [
+				{
+					id: "A11A070200000034"
+					item: "minecraft:firework_rocket"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Фейерверки полёта"
+			x: -15.0d
+			y: -32.2d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:netherite_ingot ×4."]
+			id: "A11A07010000002D"
+			tasks: [
+				{
+					id: "A11A070200000035"
+					item: "minecraft:netherite_ingot"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Незеритовый резерв"
+			x: -9.0d
+			y: -22.0d
+		},
+		{
+			dependencies: ["A11A07010000002D"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:netherite_block ×1."]
+			id: "A11A07010000002E"
+			tasks: [
+				{
+					id: "A11A070200000036"
+					item: "minecraft:netherite_block"
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Незеритовый блок"
+			x: -9.0d
+			y: -23.7d
+		},
+		{
+			dependencies: ["A11A07010000002E", "A11A070100000022"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:beacon ×2."]
+			id: "A11A07010000002F"
+			tasks: [
+				{
+					id: "A11A070200000037"
+					item: "minecraft:beacon"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Маяк города"
+			x: -9.0d
+			y: -25.4d
+		},
+		{
+			dependencies: ["A11A07010000002F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:totem_of_undying ×2."]
+			id: "A11A070100000030"
+			tasks: [
+				{
+					id: "A11A070200000038"
+					item: "minecraft:totem_of_undying"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Тотемы бессмертия"
+			x: -9.0d
+			y: -27.1d
+		},
+		{
+			dependencies: ["A11A070100000030"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:wither_skeleton_skull ×3."]
+			id: "A11A070100000031"
+			tasks: [
+				{
+					id: "A11A070200000039"
+					item: "minecraft:wither_skeleton_skull"
+					count: 3
+					type: "item"
+				}
+			]
+			title: "Черепа визера"
+			x: -9.0d
+			y: -28.8d
+		},
+		{
+			dependencies: ["A11A070100000031"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:enchanted_golden_apple ×1."]
+			id: "A11A070100000032"
+			tasks: [
+				{
+					id: "A11A07020000003A"
+					item: "minecraft:enchanted_golden_apple"
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Зачарованное золотое яблоко"
+			x: -9.0d
+			y: -30.5d
+		},
+		{
+			dependencies: ["A11A070100000012"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_ingot ×512."]
+			id: "A11A070100000033"
+			tasks: [
+				{
+					id: "A11A07020000003B"
+					item: "minecraft:iron_ingot"
+					count: 512
+					type: "item"
+				}
+			]
+			title: "Промышленный запас железа"
+			x: -3.0d
+			y: -22.0d
+		},
+		{
+			dependencies: ["A11A070100000033"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:gold_ingot ×128."]
+			id: "A11A070100000034"
+			tasks: [
+				{
+					id: "A11A07020000003C"
+					item: "minecraft:gold_ingot"
+					count: 128
+					type: "item"
+				}
+			]
+			title: "Промышленное золото"
+			x: -3.0d
+			y: -23.7d
+		},
+		{
+			dependencies: ["A11A070100000034"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:diamond ×16."]
+			id: "A11A070100000035"
+			tasks: [
+				{
+					id: "A11A07020000003D"
+					item: "minecraft:diamond"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Алмазный фонд"
+			x: -3.0d
+			y: -25.4d
+		},
+		{
+			dependencies: ["A11A070100000035"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:emerald ×16."]
+			id: "A11A070100000036"
+			tasks: [
+				{
+					id: "A11A07020000003E"
+					item: "minecraft:emerald"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Изумрудный фонд"
+			x: -3.0d
+			y: -27.1d
+		},
+		{
+			dependencies: ["A11A070100000036"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:lapis_lazuli ×64."]
+			id: "A11A070100000037"
+			tasks: [
+				{
+					id: "A11A07020000003F"
+					item: "minecraft:lapis_lazuli"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Лазуритовый фонд"
+			x: -3.0d
+			y: -28.8d
+		},
+		{
+			dependencies: ["A11A070100000037"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:copper_ingot ×256."]
+			id: "A11A070100000038"
+			tasks: [
+				{
+					id: "A11A070200000040"
+					item: "minecraft:copper_ingot"
+					count: 256
+					type: "item"
+				}
+			]
+			title: "Медный фонд"
+			x: -3.0d
+			y: -30.5d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000039"
+			tasks: [
+				{
+					id: "A11A070200000041"
+					item: "arcanopolis:reinforced_casing"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A070200000042"
+					title: "Здание black (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Наследие ремесла"
+			x: 3.0d
+			y: -22.0d
+		},
+		{
+			dependencies: ["A11A070100000039"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000003A"
+			tasks: [
+				{
+					id: "A11A070200000043"
+					item: "botania:terrasteel_ingot"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "A11A070200000044"
+					title: "Здание library (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Наследие магии"
+			x: 3.0d
+			y: -23.7d
+		},
+		{
+			dependencies: ["A11A07010000003A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000003B"
+			tasks: [
+				{
+					id: "A11A070200000045"
+					item: "mekanism:ultimate_control_circuit"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A070200000046"
+					title: "Здание mech (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Наследие индустрии"
+			x: 3.0d
+			y: -25.4d
+		},
+		{
+			dependencies: ["A11A07010000003B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000003C"
+			tasks: [
+				{
+					id: "A11A070200000047"
+					item: "minecraft:ender_pearl"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A070200000048"
+					title: "Здание warehouse (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Наследие сети"
+			x: 3.0d
+			y: -27.1d
+		},
+		{
+			dependencies: ["A11A07010000003C", "A11A070100000022"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000003D"
+			tasks: [
+				{
+					id: "A11A070200000049"
+					item: "arcanopolis:arcane_converter"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A07020000004A"
+					title: "Жителей: 60"
+					type: "custom"
+				}
+			]
+			title: "Город Арканополиса"
+			x: 3.0d
+			y: -28.8d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000003E"
+			tasks: [
+				{
+					id: "A11A07020000004B"
+					item: "minecraft:emerald"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A07020000004C"
+					title: "Здание warehouse (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Торговый квартал"
+			x: 9.0d
+			y: -22.0d
+		},
+		{
+			dependencies: ["A11A07010000003E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A07010000003F"
+			tasks: [
+				{
+					id: "A11A07020000004D"
+					item: "minecraft:book"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A07020000004E"
+					title: "Здание university (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Академия наук"
+			x: 9.0d
+			y: -23.7d
+		},
+		{
+			dependencies: ["A11A07010000003F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000040"
+			tasks: [
+				{
+					id: "A11A07020000004F"
+					item: "minecraft:golden_apple"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A070200000050"
+					title: "Здание hospital (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Больница мегаполиса"
+			x: 9.0d
+			y: -25.4d
+		},
+		{
+			dependencies: ["A11A070100000040"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000041"
+			tasks: [
+				{
+					id: "A11A070200000051"
+					item: "mekanism:alloy_atomic"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A070200000052"
+					title: "Здание mech (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Промышленная академия"
+			x: 9.0d
+			y: -27.1d
+		},
+		{
+			dependencies: ["A11A070100000041"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000042"
+			tasks: [
+				{
+					id: "A11A070200000053"
+					item: "minecraft:iron_sword"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "A11A070200000054"
+					title: "Здание guard (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Стража мегаполиса"
+			x: 9.0d
+			y: -28.8d
+		},
+		{
+			dependencies: ["A11A070100000042"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000043"
+			tasks: [
+				{
+					id: "A11A070200000055"
+					item: "minecraft:chest"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A070200000056"
+					title: "Здание warehouse (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Портовые склады"
+			x: 9.0d
+			y: -30.5d
+		},
+		{
+			dependencies: ["A11A070100000043"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000044"
+			tasks: [
+				{
+					id: "A11A070200000057"
+					item: "minecraft:oak_sapling"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A070200000058"
+					title: "Здание farm (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Зелёный город"
+			x: 9.0d
+			y: -32.2d
+		},
+		{
+			dependencies: ["A11A070100000044"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000045"
+			tasks: [
+				{
+					id: "A11A070200000059"
+					item: "minecraft:book"
+					count: 128
+					type: "item"
+				},
+				{
+					id: "A11A07020000005A"
+					title: "Здание library (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Архивы библиотеки"
+			x: 9.0d
+			y: -33.9d
+		},
+		{
+			dependencies: ["A11A070100000045", "A11A070100000025"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A070100000046"
+			tasks: [
+				{
+					id: "A11A07020000005B"
+					item: "minecraft:firework_rocket"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A07020000005C"
+					title: "Жителей: 60"
+					type: "custom"
+				}
+			]
+			title: "Финальный салют"
+			x: 9.0d
+			y: -35.6d
 		}
 	]
 	title: "Эпоха VI. «Космический горизонт»"

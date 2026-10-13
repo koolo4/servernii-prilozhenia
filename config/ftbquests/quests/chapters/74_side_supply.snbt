@@ -95,6 +95,112 @@
 			title: "Трофей снабжения"
 			x: 2.0d
 			y: 0.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bread ×128."]
+			id: "A11A0C0100000005"
+			tasks: [
+				{
+					id: "A11A0C0200000005"
+					item: "minecraft:bread"
+					count: 128
+					type: "item"
+				}
+			]
+			title: "Продовольственный резерв"
+			x: 6.0d
+			y: 2.0d
+		},
+		{
+			dependencies: ["A11A0C0100000005"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:coal ×128."]
+			id: "A11A0C0100000006"
+			tasks: [
+				{
+					id: "A11A0C0200000006"
+					item: "minecraft:coal"
+					count: 128
+					type: "item"
+				}
+			]
+			title: "Топливный резерв"
+			x: 6.0d
+			y: 0.30000000000000004d
+		},
+		{
+			dependencies: ["A11A0C0100000006"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:oak_planks ×256."]
+			id: "A11A0C0100000007"
+			tasks: [
+				{
+					id: "A11A0C0200000007"
+					item: "minecraft:oak_planks"
+					count: 256
+					type: "item"
+				}
+			]
+			title: "Строительный резерв"
+			x: 6.0d
+			y: -1.4d
+		},
+		{
+			dependencies: ["A11A0C0100000007"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_ingot ×64."]
+			id: "A11A0C0100000008"
+			tasks: [
+				{
+					id: "A11A0C0200000008"
+					item: "minecraft:iron_ingot"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Резерв железа"
+			x: 6.0d
+			y: -3.0999999999999996d
+		},
+		{
+			dependencies: ["A11A0C0100000008"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A0C0100000009"
+			tasks: [
+				{
+					id: "A11A0C0200000009"
+					item: "minecraft:golden_apple"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A0C020000000A"
+					title: "Здание warehouse (ур. 3)"
+					type: "custom"
+				}
+			]
+			title: "Город без дефицита"
+			x: 6.0d
+			y: -4.8d
+		},
+		{
+			dependencies: ["A11A0C0100000009"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A0C010000000A"
+			tasks: [
+				{
+					id: "A11A0C020000000B"
+					item: "minecraft:chest"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A0C020000000C"
+					title: "Здание courier (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Логистика снабжения"
+			x: 6.0d
+			y: -6.5d
 		}
 	]
 	title: "Необязательное: «Город без дефицита»"

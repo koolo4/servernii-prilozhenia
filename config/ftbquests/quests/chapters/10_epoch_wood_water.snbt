@@ -334,6 +334,990 @@
 			title: "Питомник"
 			x: -2.0d
 			y: -3.0d
+		},
+		{
+			dependencies: ["A11A020100000001"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «home» до 3 уровня."]
+			id: "A11A020100000014"
+			tasks: [
+				{
+					id: "A11A020200000015"
+					title: "Здание home (ур. 3)"
+					type: "custom"
+				}
+			]
+			title: "Квартал жилья"
+			x: -15.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A020100000014"]
+			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 4 жителей."]
+			id: "A11A020100000015"
+			tasks: [
+				{
+					id: "A11A020200000016"
+					title: "Жителей: 4"
+					type: "custom"
+				}
+			]
+			title: "Четыре жителя"
+			x: -15.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A020100000015"]
+			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 6 жителей."]
+			id: "A11A020100000016"
+			tasks: [
+				{
+					id: "A11A020200000017"
+					title: "Жителей: 6"
+					type: "custom"
+				}
+			]
+			title: "Шесть жителей"
+			x: -15.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A020100000016"]
+			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 10 жителей."]
+			id: "A11A020100000017"
+			tasks: [
+				{
+					id: "A11A020200000018"
+					title: "Жителей: 10"
+					type: "custom"
+				}
+			]
+			title: "Десять жителей"
+			x: -15.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A020100000017"]
+			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 12 жителей."]
+			id: "A11A020100000018"
+			tasks: [
+				{
+					id: "A11A020200000019"
+					title: "Жителей: 12"
+					type: "custom"
+				}
+			]
+			title: "Двенадцать жителей"
+			x: -15.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A020100000018"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «lumberjack» до 2 уровня."]
+			id: "A11A020100000019"
+			tasks: [
+				{
+					id: "A11A02020000001A"
+					title: "Здание lumberjack (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Лесоруб II уровня"
+			x: -15.0d
+			y: -4.5d
+		},
+		{
+			dependencies: ["A11A020100000019"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «miner» до 2 уровня."]
+			id: "A11A02010000001A"
+			tasks: [
+				{
+					id: "A11A02020000001B"
+					title: "Здание miner (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Шахтёр II уровня"
+			x: -15.0d
+			y: -6.199999999999999d
+		},
+		{
+			dependencies: ["A11A02010000001A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «farm» до 2 уровня."]
+			id: "A11A02010000001B"
+			tasks: [
+				{
+					id: "A11A02020000001C"
+					title: "Здание farm (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Фермер II уровня"
+			x: -15.0d
+			y: -7.9d
+		},
+		{
+			dependencies: ["A11A02010000001B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «cook» до 2 уровня."]
+			id: "A11A02010000001C"
+			tasks: [
+				{
+					id: "A11A02020000001D"
+					title: "Здание cook (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Повар II уровня"
+			x: -15.0d
+			y: -9.6d
+		},
+		{
+			dependencies: ["A11A02010000001C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «fish» до 2 уровня."]
+			id: "A11A02010000001D"
+			tasks: [
+				{
+					id: "A11A02020000001E"
+					title: "Здание fish (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Рыболов II уровня"
+			x: -15.0d
+			y: -11.299999999999999d
+		},
+		{
+			dependencies: ["A11A02010000001D"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «saw» до 1 уровня."]
+			id: "A11A02010000001E"
+			tasks: [
+				{
+					id: "A11A02020000001F"
+					title: "Здание saw (ур. 1)"
+					type: "custom"
+				}
+			]
+			title: "Лесопилка"
+			x: -15.0d
+			y: -13.0d
+		},
+		{
+			dependencies: ["A11A02010000001E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «stone» до 2 уровня."]
+			id: "A11A02010000001F"
+			tasks: [
+				{
+					id: "A11A020200000020"
+					title: "Здание stone (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Каменщик"
+			x: -15.0d
+			y: -14.7d
+		},
+		{
+			dependencies: ["A11A02010000001F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «black» до 2 уровня."]
+			id: "A11A020100000020"
+			tasks: [
+				{
+					id: "A11A020200000021"
+					title: "Здание black (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Кузнец II уровня"
+			x: -15.0d
+			y: -16.4d
+		},
+		{
+			dependencies: ["A11A020100000020"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «guard» до 2 уровня."]
+			id: "A11A020100000021"
+			tasks: [
+				{
+					id: "A11A020200000022"
+					title: "Здание guard (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Стража II уровня"
+			x: -15.0d
+			y: -18.099999999999998d
+		},
+		{
+			dependencies: ["A11A020100000021"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «warehouse» до 2 уровня."]
+			id: "A11A020100000022"
+			tasks: [
+				{
+					id: "A11A020200000023"
+					title: "Здание warehouse (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Склад II уровня"
+			x: -15.0d
+			y: -19.8d
+		},
+		{
+			dependencies: ["A11A020100000022"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «courier» до 2 уровня."]
+			id: "A11A020100000023"
+			tasks: [
+				{
+					id: "A11A020200000024"
+					title: "Здание courier (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Почта II уровня"
+			x: -15.0d
+			y: -21.5d
+		},
+		{
+			dependencies: ["A11A020100000009"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:cogwheel ×16."]
+			id: "A11A020100000024"
+			tasks: [
+				{
+					id: "A11A020200000025"
+					item: "create:cogwheel"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Зубчатые колёса"
+			x: -9.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A020100000024"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:large_cogwheel ×8."]
+			id: "A11A020100000025"
+			tasks: [
+				{
+					id: "A11A020200000026"
+					item: "create:large_cogwheel"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Большие колёса"
+			x: -9.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A020100000025"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:shaft ×16."]
+			id: "A11A020100000026"
+			tasks: [
+				{
+					id: "A11A020200000027"
+					item: "create:shaft"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Валы"
+			x: -9.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A020100000026"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:andesite_casing ×8."]
+			id: "A11A020100000027"
+			tasks: [
+				{
+					id: "A11A020200000028"
+					item: "create:andesite_casing"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Андрезитовый корпус"
+			x: -9.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A020100000027"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:gearbox ×8."]
+			id: "A11A020100000028"
+			tasks: [
+				{
+					id: "A11A020200000029"
+					item: "create:gearbox"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Редукторы"
+			x: -9.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A020100000028", "A11A020100000022"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:belt_connector ×16."]
+			id: "A11A020100000029"
+			tasks: [
+				{
+					id: "A11A02020000002A"
+					item: "create:belt_connector"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Ремни конвейера"
+			x: -9.0d
+			y: -4.5d
+		},
+		{
+			dependencies: ["A11A020100000029"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:depot ×4."]
+			id: "A11A02010000002A"
+			tasks: [
+				{
+					id: "A11A02020000002B"
+					item: "create:depot"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Погрузочная площадка"
+			x: -9.0d
+			y: -6.199999999999999d
+		},
+		{
+			dependencies: ["A11A02010000002A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:chute ×8."]
+			id: "A11A02010000002B"
+			tasks: [
+				{
+					id: "A11A02020000002C"
+					item: "create:chute"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Жёлоба"
+			x: -9.0d
+			y: -7.9d
+		},
+		{
+			dependencies: ["A11A02010000002B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:millstone ×2."]
+			id: "A11A02010000002C"
+			tasks: [
+				{
+					id: "A11A02020000002D"
+					item: "create:millstone"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Мельница"
+			x: -9.0d
+			y: -9.6d
+		},
+		{
+			dependencies: ["A11A02010000002C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:crushing_wheel ×2."]
+			id: "A11A02010000002D"
+			tasks: [
+				{
+					id: "A11A02020000002E"
+					item: "create:crushing_wheel"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Измельчитель"
+			x: -9.0d
+			y: -11.299999999999999d
+		},
+		{
+			dependencies: ["A11A02010000002D"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_mixer ×2."]
+			id: "A11A02010000002E"
+			tasks: [
+				{
+					id: "A11A02020000002F"
+					item: "create:mechanical_mixer"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Смеситель"
+			x: -9.0d
+			y: -13.0d
+		},
+		{
+			dependencies: ["A11A02010000002E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:basin ×4."]
+			id: "A11A02010000002F"
+			tasks: [
+				{
+					id: "A11A020200000030"
+					item: "create:basin"
+					count: 4
+					type: "item"
+				}
+			]
+			title: "Чаша"
+			x: -9.0d
+			y: -14.7d
+		},
+		{
+			dependencies: ["A11A02010000002F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:spout ×2."]
+			id: "A11A020100000030"
+			tasks: [
+				{
+					id: "A11A020200000031"
+					item: "create:spout"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Разливочный кран"
+			x: -9.0d
+			y: -16.4d
+		},
+		{
+			dependencies: ["A11A020100000030"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:item_drain ×2."]
+			id: "A11A020100000031"
+			tasks: [
+				{
+					id: "A11A020200000032"
+					item: "create:item_drain"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Слив"
+			x: -9.0d
+			y: -18.099999999999998d
+		},
+		{
+			dependencies: ["A11A020100000031"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_crafter ×8."]
+			id: "A11A020100000032"
+			tasks: [
+				{
+					id: "A11A020200000033"
+					item: "create:mechanical_crafter"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Механический крафтер"
+			x: -9.0d
+			y: -19.8d
+		},
+		{
+			dependencies: ["A11A020100000032"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:wrench ×1."]
+			id: "A11A020100000033"
+			tasks: [
+				{
+					id: "A11A020200000034"
+					item: "create:wrench"
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Гаечный ключ"
+			x: -9.0d
+			y: -21.5d
+		},
+		{
+			dependencies: ["A11A020100000033"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:electron_tube ×8."]
+			id: "A11A020100000034"
+			tasks: [
+				{
+					id: "A11A020200000035"
+					item: "create:electron_tube"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Электронные лампы"
+			x: -9.0d
+			y: -23.2d
+		},
+		{
+			dependencies: ["A11A020100000034"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:super_glue ×1."]
+			id: "A11A020100000035"
+			tasks: [
+				{
+					id: "A11A020200000036"
+					item: "create:super_glue"
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Суперклей"
+			x: -9.0d
+			y: -24.9d
+		},
+		{
+			dependencies: ["A11A02010000000F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:source_gem ×16."]
+			id: "A11A020100000036"
+			tasks: [
+				{
+					id: "A11A020200000037"
+					item: "ars_nouveau:source_gem"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Самоцветы источника"
+			x: -3.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A020100000036"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:sourcestone ×64."]
+			id: "A11A020100000037"
+			tasks: [
+				{
+					id: "A11A020200000038"
+					item: "ars_nouveau:sourcestone"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Источниковый камень"
+			x: -3.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A020100000037"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:experience_bottle ×8."]
+			id: "A11A020100000038"
+			tasks: [
+				{
+					id: "A11A020200000039"
+					item: "minecraft:experience_bottle"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Опыт в бутылке"
+			x: -3.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A020100000038"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bookshelf ×8."]
+			id: "A11A020100000039"
+			tasks: [
+				{
+					id: "A11A02020000003A"
+					item: "minecraft:bookshelf"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Книжные полки"
+			x: -3.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A020100000039"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:enchanting_table ×1."]
+			id: "A11A02010000003A"
+			tasks: [
+				{
+					id: "A11A02020000003B"
+					item: "minecraft:enchanting_table"
+					count: 1
+					type: "item"
+				}
+			]
+			title: "Чародейский стол"
+			x: -3.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A02010000003A", "A11A02010000001E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000003B"
+			tasks: [
+				{
+					id: "A11A02020000003C"
+					item: "minecraft:book"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A02020000003D"
+					title: "Здание library (ур. 1)"
+					type: "custom"
+				}
+			]
+			title: "Библиотека колонии"
+			x: -3.0d
+			y: -4.5d
+		},
+		{
+			dependencies: ["A11A02010000003B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000003C"
+			tasks: [
+				{
+					id: "A11A02020000003E"
+					item: "ars_nouveau:source_gem"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A02020000003F"
+					title: "Здание saw (ур. 1)"
+					type: "custom"
+				}
+			]
+			title: "Магическая мастерская"
+			x: -3.0d
+			y: -6.199999999999999d
+		},
+		{
+			dependencies: ["A11A02010000003C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass_bottle ×16."]
+			id: "A11A02010000003D"
+			tasks: [
+				{
+					id: "A11A020200000040"
+					item: "minecraft:glass_bottle"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Зелья зельеварения"
+			x: -3.0d
+			y: -7.9d
+		},
+		{
+			dependencies: ["A11A020100000019"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:oak_log ×256."]
+			id: "A11A02010000003E"
+			tasks: [
+				{
+					id: "A11A020200000041"
+					item: "minecraft:oak_log"
+					count: 256
+					type: "item"
+				}
+			]
+			title: "Массовая лесозаготовка"
+			x: 3.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A02010000003E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:cobblestone ×512."]
+			id: "A11A02010000003F"
+			tasks: [
+				{
+					id: "A11A020200000042"
+					item: "minecraft:cobblestone"
+					count: 512
+					type: "item"
+				}
+			]
+			title: "Массовая добыча камня"
+			x: 3.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A02010000003F"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:coal ×64."]
+			id: "A11A020100000040"
+			tasks: [
+				{
+					id: "A11A020200000043"
+					item: "minecraft:coal"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Уголь на нужды города"
+			x: 3.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A020100000040"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_ingot ×32."]
+			id: "A11A020100000041"
+			tasks: [
+				{
+					id: "A11A020200000044"
+					item: "minecraft:iron_ingot"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Партия железа"
+			x: 3.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A020100000041", "A11A020100000027"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:andesite_alloy ×32."]
+			id: "A11A020100000042"
+			tasks: [
+				{
+					id: "A11A020200000045"
+					item: "create:andesite_alloy"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Андрезитовый сплав"
+			x: 3.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A020100000042"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_press ×2."]
+			id: "A11A020100000043"
+			tasks: [
+				{
+					id: "A11A020200000046"
+					item: "create:mechanical_press"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Дубли прессов"
+			x: 3.0d
+			y: -4.5d
+		},
+		{
+			dependencies: ["A11A020100000043"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_saw ×2."]
+			id: "A11A020100000044"
+			tasks: [
+				{
+					id: "A11A020200000047"
+					item: "create:mechanical_saw"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Дубли пил"
+			x: 3.0d
+			y: -6.199999999999999d
+		},
+		{
+			dependencies: ["A11A020100000044"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:encased_fan ×2."]
+			id: "A11A020100000045"
+			tasks: [
+				{
+					id: "A11A020200000048"
+					item: "create:encased_fan"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Дубли вентиляторов"
+			x: 3.0d
+			y: -7.9d
+		},
+		{
+			dependencies: ["A11A020100000045"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:millstone ×2."]
+			id: "A11A020100000046"
+			tasks: [
+				{
+					id: "A11A020200000049"
+					item: "create:millstone"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Дубли измельчителей"
+			x: 3.0d
+			y: -9.6d
+		},
+		{
+			dependencies: ["A11A020100000046"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:belt_connector ×32."]
+			id: "A11A020100000047"
+			tasks: [
+				{
+					id: "A11A02020000004A"
+					item: "create:belt_connector"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Линия конвейеров"
+			x: 3.0d
+			y: -11.299999999999999d
+		},
+		{
+			dependencies: ["A11A020100000047"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:stone_bricks ×128."]
+			id: "A11A020100000048"
+			tasks: [
+				{
+					id: "A11A02020000004B"
+					item: "minecraft:stone_bricks"
+					count: 128
+					type: "item"
+				}
+			]
+			title: "Фабрика стройматериалов"
+			x: 3.0d
+			y: -13.0d
+		},
+		{
+			dependencies: ["A11A020100000048", "A11A02010000001E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass ×128."]
+			id: "A11A020100000049"
+			tasks: [
+				{
+					id: "A11A02020000004C"
+					item: "minecraft:glass"
+					count: 128
+					type: "item"
+				}
+			]
+			title: "Стекольный цех"
+			x: 3.0d
+			y: -14.7d
+		},
+		{
+			dependencies: ["A11A020100000040"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000004A"
+			tasks: [
+				{
+					id: "A11A02020000004D"
+					item: "minecraft:bread"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A02020000004E"
+					title: "Здание cook (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Еда для мастеров"
+			x: 9.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A02010000004A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000004B"
+			tasks: [
+				{
+					id: "A11A02020000004F"
+					item: "minecraft:iron_ingot"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A020200000050"
+					title: "Здание miner (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Железо из шахты"
+			x: 9.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A02010000004B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000004C"
+			tasks: [
+				{
+					id: "A11A020200000051"
+					item: "minecraft:oak_log"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A020200000052"
+					title: "Здание lumberjack (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Лес на балансе"
+			x: 9.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A02010000004C", "A11A020100000024"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000004D"
+			tasks: [
+				{
+					id: "A11A020200000053"
+					item: "create:cogwheel"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A020200000054"
+					title: "Здание black (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Механика и ремесло"
+			x: 9.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A02010000004D", "A11A020100000037"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000004E"
+			tasks: [
+				{
+					id: "A11A020200000055"
+					item: "ars_nouveau:sourcestone"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A020200000056"
+					title: "Здание home (ур. 3)"
+					type: "custom"
+				}
+			]
+			title: "Магия и стройка"
+			x: 9.0d
+			y: -2.8d
+		},
+		{
+			dependencies: ["A11A02010000004E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A02010000004F"
+			tasks: [
+				{
+					id: "A11A020200000057"
+					item: "create:andesite_alloy"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A020200000058"
+					title: "Здание warehouse (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Снабжение цехов"
+			x: 9.0d
+			y: -4.5d
 		}
 	]
 	title: "Эпоха I. «Дерево, вода и ремесло»"

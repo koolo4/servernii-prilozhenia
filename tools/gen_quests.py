@@ -810,6 +810,22 @@ NEW_QUESTS: dict[str, list[Quest]] = {
 }
 
 
+_BIG_CACHE = None
+
+
+def _big_extras() -> dict:
+    global _BIG_CACHE
+    if _BIG_CACHE is None:
+        import big_quests
+        _BIG_CACHE = big_quests.build_extras()
+    return _BIG_CACHE
+
+
+def _big_title(t) -> str:
+    import big_quests
+    return big_quests._task_title(t)
+
+
 def polish(chapters: list[Chapter]) -> None:
     """Заменить checkmark-задачи на custom/item, добавить квесты и цепочку эпох."""
     for ch in chapters:
@@ -825,6 +841,21 @@ def polish(chapters: list[Chapter]) -> None:
             q.tasks = [nt if t.ttype == "checkmark" else t for t in q.tasks]
         if ch.file in NEW_QUESTS:
             ch.quests.extend(NEW_QUESTS[ch.file])
+        for spec in _big_extras().get(ch.file, []):
+            tasks = []
+            for t in spec["tasks"]:
+                if t[0] == "item":
+                    tasks.append(Task("item", item=t[1], count=t[2],
+                                      title=_big_title(t)))
+                elif t[0] == "cus":
+                    tasks.append(Task("custom", cond=t[1], title=_big_title(t)))
+                elif t[0] == "both":
+                    tasks.append(Task("item", item=t[1], count=t[2],
+                                      title=_big_title(("item", t[1], t[2]))))
+                    tasks.append(Task("custom", cond=t[3],
+                                      title=_big_title(("cus", t[3], 0))))
+            ch.quests.append(Quest(spec["key"], spec["title"], spec["x"], spec["y"],
+                                   spec["desc"], tasks, [], spec["deps"]))
         if ch.file in CHAP_CHAIN:
             ch.deps_ch = [CHAP_CHAIN[ch.file]]
 
@@ -837,9 +868,9 @@ def write_colony_js() -> None:
     rows = []
     for tid, cond in CUSTOM_CHECKS:
         parts = cond.split(":")
-        if parts[0] == "building":
+        if parts[0] == "building" and len(parts) >= 3:
             rows.append(f'  {{ task: "{tid}", kind: "building", word: "{parts[1]}", n: {parts[2]} }},')
-        elif parts[0] == "always":
+        elif parts[0] == "always" or len(parts) < 2:
             rows.append(f'  {{ task: "{tid}", kind: "always" }},')
         else:
             rows.append(f'  {{ task: "{tid}", kind: "{parts[0]}", n: {parts[1]} }},')
@@ -949,6 +980,8 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
         if "|" in t.item:
             opts = ", ".join(snbt_item(x) for x in t.item.split("|"))
             lines.append(f"{indent}\titem: [{opts}]")
+            if t.count:
+                lines.append(f"{indent}\tcount: {t.count}")
         else:
             lines.append(f"{indent}\titem: {snbt_item(t.item)}")
             if t.count:

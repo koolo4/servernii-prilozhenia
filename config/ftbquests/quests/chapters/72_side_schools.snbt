@@ -120,6 +120,89 @@
 			title: "Магистр Алхимии"
 			x: 2.0d
 			y: 1.5d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:book ×16."]
+			id: "A11A0A0100000006"
+			tasks: [
+				{
+					id: "A11A0A0200000006"
+					item: "minecraft:book"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Учебные материалы"
+			x: 6.0d
+			y: 2.0d
+		},
+		{
+			dependencies: ["A11A0A0100000006"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:lectern ×2."]
+			id: "A11A0A0100000007"
+			tasks: [
+				{
+					id: "A11A0A0200000007"
+					item: "minecraft:lectern"
+					count: 2
+					type: "item"
+				}
+			]
+			title: "Школьные доски"
+			x: 6.0d
+			y: 0.30000000000000004d
+		},
+		{
+			dependencies: ["A11A0A0100000007"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «school» до 2 уровня."]
+			id: "A11A0A0100000008"
+			tasks: [
+				{
+					id: "A11A0A0200000008"
+					title: "Здание school (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Студенты школы"
+			x: 6.0d
+			y: -1.4d
+		},
+		{
+			dependencies: ["A11A0A0100000008"]
+			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «university» до 2 уровня."]
+			id: "A11A0A0100000009"
+			tasks: [
+				{
+					id: "A11A0A0200000009"
+					title: "Здание university (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Магистры университета"
+			x: 6.0d
+			y: -3.0999999999999996d
+		},
+		{
+			dependencies: ["A11A0A0100000009"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A0A010000000A"
+			tasks: [
+				{
+					id: "A11A0A020000000A"
+					item: "minecra_book"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "A11A0A020000000B"
+					title: "Здание library (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Научная работа"
+			x: 6.0d
+			y: -4.8d
 		}
 	]
 	title: "Необязательное: «Магистры школы»"
