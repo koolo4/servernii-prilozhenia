@@ -409,6 +409,81 @@ function Find-OnCurseForge($mod, [string]$mc) {
     return $null
 }
 
+# ==================== ПРЯМЫЕ ФАЙЛЫ CURSEFORGE (по номеру) =================
+# Ссылка вида curseforge.com/minecraft/mc-mods/{slug}/download/{file_id}
+# раскрывается в прямые URL CDN — без api.cfwidget.com.
+function Get-CfFileUrls([string]$slug, [string]$fid) {
+    $urls = New-Object System.Collections.Generic.List[string]
+    $fname = $null
+
+    # Страница загрузки может содержать прямую ссылку на CDN (заодно узнаём имя файла)
+    $pageUrl = "https://www.curseforge.com/minecraft/mc-mods/{0}/download/{1}" -f $slug, $fid
+    try {
+        $page = Invoke-WebRequest -Uri $pageUrl -UserAgent $browserUA -Headers @{ "Referer" = "https://www.curseforge.com/" } -UseBasicParsing
+        foreach ($m in [regex]::Matches("$($page.Content)", '(media|edge)\.forgecdn\.net/files/\d+/\d+/[^"''\s\\?]+\.jar')) {
+            $cdn = "https://" + $m.Value
+            if (-not $urls.Contains($cdn)) { $urls.Add($cdn) }
+            if (-not $fname) {
+                $fname = [uri]::UnescapeDataString($m.Value.Substring($m.Value.LastIndexOf('/') + 1))
+            }
+        }
+    } catch { }
+
+    # Официальная точка входа CurseForge (редирект на CDN)
+    $urls.Add(("https://www.curseforge.com/api/v1/mods/{0}/files/{1}/download" -f $slug, $fid))
+    $urls.Add(("https://www.curseforge.com/api/v1/mods/{0}/files/{1}/download-url" -f $slug, $fid))
+    return @{ urls = $urls.ToArray(); filename = $fname }
+}
+
+function Find-OnCfFile($mod) {
+    foreach ($it in @(Get-Flat $mod.curseforge_files)) {
+        if (-not $it) { continue }
+        $slug = "$($it.slug)"
+        $fid = "$($it.file_id)"
+        if (-not $slug -or -not $fid) { continue }
+        $r = Get-CfFileUrls $slug $fid
+        $fname = $r.filename
+        if (-not $fname) { $fname = "{0}-{1}.jar" -f $mod.id, $fid }
+        return @{
+            filename = $fname
+            urls     = $r.urls
+            hashes   = $null
+            version  = "cf:{0}" -f $fid
+            source   = "CurseForge/{0}#{1}" -f $slug, $fid
+        }
+    }
+    return $null
+}
+
+# Прямые ссылки из манифеста (manual_urls) — последний источник.
+# Ссылка на страницу CurseForge раскрывается так же, как curseforge_files.
+function Get-ManualHit($mod) {
+    $urls = New-Object System.Collections.Generic.List[string]
+    $fname = $null
+    foreach ($u in @(Get-Flat $mod.manual_urls)) {
+        if (-not $u) { continue }
+        if ("$u" -match 'curseforge\.com/minecraft/mc-mods/(?<slug>[^/]+)/(?:download|files)/(?<fid>\d+)') {
+            $r = Get-CfFileUrls $Matches['slug'] $Matches['fid']
+            foreach ($x in $r.urls) { if (-not $urls.Contains($x)) { $urls.Add($x) } }
+            if (-not $fname) { $fname = $r.filename }
+        } else {
+            $urls.Add("$u")
+            if (-not $fname -and "$u" -match '\.jar$') {
+                $fname = $u.Substring($u.LastIndexOf('/') + 1)
+            }
+        }
+    }
+    if ($urls.Count -eq 0) { return $null }
+    if (-not $fname) { $fname = "{0}-manual.jar" -f $mod.id }
+    return @{
+        filename = $fname
+        urls     = $urls.ToArray()
+        hashes   = $null
+        version  = "manual_url"
+        source   = "Прямая ссылка"
+    }
+}
+
 # ================================ MAIN =====================================
 if (-not (Test-Path $Manifest)) {
     Log "ОШИБКА: не найден манифест модов:"
@@ -449,24 +524,12 @@ foreach ($mod in $modList) {
     $hit = Find-OnModrinth $mod $mc
     if (-not $hit) { $hit = Find-OnMaven $mod }
     if (-not $hit) { $hit = Find-OnGitHub $mod $mc }
+    if (-not $hit) { $hit = Find-OnCfFile $mod }
     if (-not $hit) { $hit = Find-OnCurseForge $mod $mc }
     if ($hit -is [System.Array]) { $hit = @($hit) | Select-Object -First 1 }
 
     # последний шанс: прямые ссылки из манифеста (manual_urls)
-    if (-not $hit) {
-        $urls = New-Object System.Collections.Generic.List[string]
-        foreach ($u in @(Get-Flat $mod.manual_urls)) { if ($u) { $urls.Add("$u") } }
-        if ($urls.Count -gt 0) {
-            $first = $urls[0]
-            $hit = @{
-                filename = "$($mod.id)-manual.jar"
-                urls     = $urls.ToArray()
-                hashes   = $null
-                version  = "manual_url"
-                source   = "Прямая ссылка"
-            }
-        }
-    }
+    if (-not $hit) { $hit = Get-ManualHit $mod }
 
     if (-not $hit) {
         Log ("[ВРУЧНУЮ] {0} — не найден ни в одном источнике. Ссылки:" -f $name)
