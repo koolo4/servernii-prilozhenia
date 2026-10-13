@@ -63,18 +63,20 @@ function Finish([int]$code) {
     exit $code
 }
 
-# Разворачивает вложенные массивы (защита от особенностей PowerShell 5.1)
+# Разворачивает вложенные массивы (защита от особенностей PowerShell 5.1).
+# Возвращает элементы ПО ОДНОМУ (без оборачивания в массив), поэтому
+# вызов через @() всегда даёт плоский список.
 function Get-Flat($obj) {
     $list = New-Object System.Collections.Generic.List[object]
-    $stack = New-Object System.Collections.Generic.Stack[object]
-    foreach ($i in @($obj)) { $stack.Push($i) }
-    while ($stack.Count -gt 0) {
-        $cur = $stack.Pop()
+    $queue = New-Object System.Collections.Generic.Queue[object]
+    foreach ($i in @($obj)) { $queue.Enqueue($i) }
+    while ($queue.Count -gt 0) {
+        $cur = $queue.Dequeue()
         if ($null -eq $cur) { continue }
-        if ($cur -is [System.Array]) { foreach ($s in $cur) { $stack.Push($s) } }
+        if ($cur -is [System.Array]) { foreach ($s in $cur) { $queue.Enqueue($s) } }
         else { $list.Add($cur) }
     }
-    return ,$list.ToArray()
+    foreach ($item in $list) { Write-Output $item }
 }
 
 function Get-WebJson([string]$url) {
@@ -173,6 +175,7 @@ function Find-OnModrinth($mod, [string]$mc) {
 # ============================ ИСТОЧНИК 2: MAVEN ============================
 function Find-OnMaven($mod) {
     $m = $mod.maven_url
+    if ($m -is [System.Array]) { $m = $m | Select-Object -First 1 }
     if (-not $m) { return $null }
     $url = "$m"
     $name = $url.Substring($url.LastIndexOf("/") + 1)
@@ -247,12 +250,13 @@ function Find-OnCurseForge($mod, [string]$mc) {
             # не берём neoforge-сборки
             if ($n -match 'neoforge') { continue }
 
-            $score = 0
-            if ("$($f.type)" -eq "R") { $score += 10 }
-            if ($n -match 'forge') { $score += 5 }
+            # чем новее файл (больше id), тем выше приоритет; R-релизы важнее бет
+            $score = [int64]0
+            if ("$($f.type)" -eq "R") { $score += 10000000000 }
+            if ($n -match 'forge') { $score += 1000000000 }
             $id = 0
             try { $id = [int64]$f.id } catch { $id = 0 }
-            $score += [int]($id % 1000)
+            $score += [int64]($id / 1000)
 
             if (-not $best -or $score -gt $best.score) {
                 $best = @{ file = $f; score = $score; id = $id }
@@ -303,7 +307,12 @@ Log ""
 
 $ok = 0; $manual = 0; $failed = 0
 
-foreach ($mod in @(Get-Flat $json.mods)) {
+$modList = @(Get-Flat $json.mods)
+Log ("Модов в манифесте: {0}" -f $modList.Count)
+Log ""
+
+foreach ($mod in $modList) {
+    if (-not $mod -or -not $mod.name) { continue }
     if ($RequiredOnly -and -not $mod.required) { continue }
     if ($Side -eq "server" -and "$($mod.side)" -eq "client") { continue }
     if ($Side -eq "client" -and "$($mod.side)" -eq "server") { continue }
@@ -314,6 +323,7 @@ foreach ($mod in @(Get-Flat $json.mods)) {
     if (-not $hit) { $hit = Find-OnMaven $mod }
     if (-not $hit) { $hit = Find-OnGitHub $mod $mc }
     if (-not $hit) { $hit = Find-OnCurseForge $mod $mc }
+    if ($hit -is [System.Array]) { $hit = @($hit) | Select-Object -First 1 }
 
     if (-not $hit) {
         Log ("[ВРУЧНУЮ] {0} — не найден ни в одном источнике. Ссылки:" -f $name)
