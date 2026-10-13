@@ -1,11 +1,16 @@
 ﻿<#
- download_mods.ps1 — загрузка модов «Арканополиса» через Modrinth API.
+ download_mods.ps1 — загрузка модов «Арканополиса» через Modrinth / Maven / GitHub / CurseForge.
  Работает в Windows PowerShell 5.1+ без установки Python.
+
+ Каскад источников для каждого мода:
+   1. Modrinth API (с проверкой SHA-1/SHA-512)
+   2. Maven (точные закреплённые версии, например FTB)
+   3. GitHub Releases (официальные репозитории)
+   4. CurseForge через api.cfwidget.com -> media.forgecdn.net
 
  Способы запуска (из любой папки!):
    1. Двойной щелчок по файлу "Скачать_моды.bat" в корне репозитория.
-   2. PowerShell:  powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
-   3. Правый клик по download_mods.ps1 -> "Запуск от имени PowerShell"
+   2. powershell -ExecutionPolicy Bypass -File tools\download_mods.ps1
 
  Параметры:
    -Manifest   путь к манифесту (по умолчанию mods\mods.json в корне репозитория)
@@ -29,7 +34,6 @@ param(
 $ErrorActionPreference = "Continue"
 
 # --- Определяем корень репозитория по расположению самого скрипта ----------
-# Это позволяет запускать скрипт из ЛЮБОЙ рабочей папки (в т.ч. двойным кликом).
 $ToolsDir = $PSScriptRoot
 if (-not $ToolsDir) { $ToolsDir = Split-Path -Parent $MyInvocation.MyCommand.Path }
 $RepoRoot = Split-Path -Parent $ToolsDir
@@ -38,13 +42,12 @@ if (-not [System.IO.Path]::IsPathRooted($Manifest)) { $Manifest = Join-Path $Rep
 if (-not [System.IO.Path]::IsPathRooted($Out))      { $Out = Join-Path $RepoRoot $Out }
 if ($Report -and -not [System.IO.Path]::IsPathRooted($Report)) { $Report = Join-Path $RepoRoot $Report }
 
-# Windows PowerShell 5.1 по умолчанию может не включать TLS 1.2
 try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 } catch { }
 
 $api = "https://api.modrinth.com/v2"
-$ua = "arcanopolis-pack/0.1.0 (modpack downloader)"
+$ua = "arcanopolis-pack/0.2.0 (modpack downloader)"
 
 $lines = New-Object System.Collections.Generic.List[string]
 function Log([string]$msg) {
@@ -60,132 +63,287 @@ function Finish([int]$code) {
     exit $code
 }
 
-# --- Манифест ---------------------------------------------------------------
+# Разворачивает вложенные массивы (защита от особенностей PowerShell 5.1)
+function Get-Flat($obj) {
+    $list = New-Object System.Collections.Generic.List[object]
+    $stack = New-Object System.Collections.Generic.Stack[object]
+    foreach ($i in @($obj)) { $stack.Push($i) }
+    while ($stack.Count -gt 0) {
+        $cur = $stack.Pop()
+        if ($null -eq $cur) { continue }
+        if ($cur -is [System.Array]) { foreach ($s in $cur) { $stack.Push($s) } }
+        else { $list.Add($cur) }
+    }
+    return ,$list.ToArray()
+}
+
+function Get-WebJson([string]$url) {
+    $resp = Invoke-WebRequest -Uri $url -Headers @{ "User-Agent" = $ua } -UseBasicParsing
+    return ($resp.Content | ConvertFrom-Json)
+}
+
+# --- Загрузка файла с проверкой суммы (если есть) --------------------------
+function Save-File([string]$url, [string]$dest, $hashes) {
+    try {
+        Invoke-WebRequest -Uri $url -OutFile $dest -UserAgent $ua -UseBasicParsing | Out-Null
+    } catch {
+        if (Test-Path $dest) { Remove-Item $dest -Force }
+        return "download: $($_.Exception.Message)"
+    }
+    if ($hashes -and $hashes.sha512) {
+        $h = (Get-FileHash -Algorithm SHA512 $dest).Hash.ToLower()
+        if ($h -ne "$($hashes.sha512)".ToLower()) { Remove-Item $dest -Force; return "checksum mismatch" }
+    } elseif ($hashes -and $hashes.sha1) {
+        $h = (Get-FileHash -Algorithm SHA1 $dest).Hash.ToLower()
+        if ($h -ne "$($hashes.sha1)".ToLower()) { Remove-Item $dest -Force; return "checksum mismatch" }
+    }
+    return $null
+}
+
+# ============================ ИСТОЧНИК 1: MODRINTH =========================
+function Find-OnModrinth($mod, [string]$mc) {
+    $slugs = @(Get-Flat $mod.modrinth)
+    $want = "$($mod.version)"
+    if (-not $want) { $want = "latest" }
+
+    foreach ($slug in $slugs) {
+        if (-not $slug) { continue }
+
+        # Запрос 1: с фильтром по загрузчику forge; запрос 2: без фильтра
+        foreach ($withLoader in @($true, $false)) {
+            if ($withLoader) {
+                $gv = [uri]::EscapeDataString(('["{0}"]' -f $mc))
+                $ld = [uri]::EscapeDataString('["forge"]')
+                $url = "{0}/project/{1}/version?game_versions={2}&loaders={3}" -f $api, $slug, $gv, $ld
+            } else {
+                $gv = [uri]::EscapeDataString(('["{0}"]' -f $mc))
+                $url = "{0}/project/{1}/version?game_versions={2}" -f $api, $slug, $gv
+            }
+
+            try { $raw = Get-WebJson $url } catch { Start-Sleep -Milliseconds 300; continue }
+            Start-Sleep -Milliseconds 300
+
+            $versions = @(Get-Flat $raw)
+            if ($withLoader) {
+                $versions = @($versions | Where-Object { @($_.loaders) -contains "forge" })
+            } else {
+                $versions = @($versions | Where-Object { @($_.loaders) -contains "forge" })
+            }
+            if ($versions.Count -eq 0) { continue }
+
+            $ver = $null
+            if ($want -eq "latest") {
+                $ver = $versions[0]
+            } else {
+                foreach ($v in $versions) {
+                    if ("$($v.version_number)" -eq $want) { $ver = $v; break }
+                }
+                # запасной путь: совпадение по имени jar-файла (например Create 0.5.1.f)
+                if (-not $ver) {
+                    foreach ($v in $versions) {
+                        foreach ($file in @(Get-Flat $v.files)) {
+                            if ("$($file.filename)" -match [regex]::Escape($want)) { $ver = $v; break }
+                        }
+                        if ($ver) { break }
+                    }
+                }
+            }
+            if (-not $ver) { continue }
+
+            $files = @(Get-Flat $ver.files)
+            $f = $null
+            foreach ($file in $files) {
+                if ($file.primary) { $f = $file; break }
+            }
+            if (-not $f -and $files.Count -gt 0) { $f = $files[0] }
+            if (-not $f) { continue }
+
+            return @{
+                filename = "$($f.filename)"
+                url      = "$($f.url)"
+                hashes   = $f.hashes
+                version  = "$($ver.version_number)"
+                source   = "Modrinth/$slug"
+            }
+        }
+    }
+    return $null
+}
+
+# ============================ ИСТОЧНИК 2: MAVEN ============================
+function Find-OnMaven($mod) {
+    $m = $mod.maven_url
+    if (-not $m) { return $null }
+    $url = "$m"
+    $name = $url.Substring($url.LastIndexOf("/") + 1)
+    return @{
+        filename = $name
+        url      = $url
+        hashes   = $null
+        version  = "pinned"
+        source   = "Maven"
+    }
+}
+
+# ============================ ИСТОЧНИК 3: GITHUB ===========================
+function Find-OnGitHub($mod, [string]$mc) {
+    $repos = @(Get-Flat $mod.github)
+    foreach ($repo in $repos) {
+        if (-not $repo) { continue }
+        try { $rel = @(Get-Flat (Get-WebJson ("https://api.github.com/repos/{0}/releases?per_page=15" -f $repo))) }
+        catch { continue }
+        Start-Sleep -Milliseconds 300
+
+        foreach ($r in $rel) {
+            $assets = @(Get-Flat $r.assets)
+            $tag = "$($r.tag_name)"
+            $pat = "$($mod.file_pattern)"
+            foreach ($a in $assets) {
+                $n = "$($a.name)"
+                if ($n -notmatch '\.jar$') { continue }
+                if ($n -match 'sources|javadoc|slim') { continue }
+                if ($pat -and $n -notmatch $pat) { continue }
+                if ($n -match [regex]::Escape($mc) -or $tag -match [regex]::Escape($mc)) {
+                    return @{
+                        filename = $n
+                        url      = "$($a.browser_download_url)"
+                        hashes   = $null
+                        version  = $tag
+                        source   = "GitHub/$repo"
+                    }
+                }
+            }
+        }
+    }
+    return $null
+}
+
+# ============================ ИСТОЧНИК 4: CURSEFORGE =======================
+function Find-OnCurseForge($mod, [string]$mc) {
+    $slugs = @(Get-Flat $mod.curseforge)
+    foreach ($slug in $slugs) {
+        if (-not $slug) { continue }
+        try { $data = Get-WebJson ("https://api.cfwidget.com/minecraft/mc-mods/{0}" -f $slug) }
+        catch { Start-Sleep -Milliseconds 300; continue }
+        Start-Sleep -Milliseconds 300
+
+        $files = @(Get-Flat $data.files)
+        if ($files.Count -eq 0) { continue }
+
+        $best = $null
+        $pat = "$($mod.file_pattern)"
+        foreach ($f in $files) {
+            $n = "$($f.name)"
+            if ($n -match 'sources|javadoc|slim|_api') { continue }
+            if ($pat -and $n -notmatch $pat) { continue }
+
+            # файл должен относиться к нужной версии игры
+            $isMc = $false
+            if ("$($f.version)" -match [regex]::Escape($mc)) { $isMc = $true }
+            if (@($f.versions) -contains $mc) { $isMc = $true }
+            if ($n -match [regex]::Escape($mc)) { $isMc = $true }
+            if (-not $isMc) { continue }
+
+            # не берём neoforge-сборки
+            if ($n -match 'neoforge') { continue }
+
+            $score = 0
+            if ("$($f.type)" -eq "R") { $score += 10 }
+            if ($n -match 'forge') { $score += 5 }
+            $id = 0
+            try { $id = [int64]$f.id } catch { $id = 0 }
+            $score += [int]($id % 1000)
+
+            if (-not $best -or $score -gt $best.score) {
+                $best = @{ file = $f; score = $score; id = $id }
+            }
+        }
+        if (-not $best) { continue }
+
+        $f = $best.file
+        $n = "$($f.name)"
+        $url = "$($f.url)"
+        if (-not $url -or $url -eq "") {
+            $p1 = [math]::Floor($best.id / 1000)
+            $p2 = $best.id % 1000
+            $url = "https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, [uri]::EscapeDataString($n)
+        }
+        return @{
+            filename = $n
+            url      = $url
+            hashes   = $null
+            version  = "$($f.version)"
+            source   = "CurseForge/$slug"
+        }
+    }
+    return $null
+}
+
+# ================================ MAIN =====================================
 if (-not (Test-Path $Manifest)) {
     Log "ОШИБКА: не найден манифест модов:"
     Log "  $Manifest"
-    Log "Убедитесь, что рядом лежит папка mods\ с файлом mods.json"
     Finish 1
 }
 
 try {
     $json = Get-Content -Raw -Encoding UTF8 $Manifest | ConvertFrom-Json
 } catch {
-    Log "ОШИБКА: не удалось прочитать манифест (нарушение JSON): $($_.Exception.Message)"
+    Log "ОШИБКА: не удалось прочитать манифест: $($_.Exception.Message)"
     Finish 1
 }
 
 New-Item -ItemType Directory -Force -Path $Out | Out-Null
 
-$mc = $json.pack.minecraft
+$mc = "$($json.pack.minecraft)"
 Log ("Сборка: {0} | Minecraft {1} | forge {2}" -f $json.pack.name, $mc, $json.pack.loader.version)
 Log ("Папка для модов: $Out")
+Log ("Источники: Modrinth -> Maven -> GitHub -> CurseForge")
 Log ""
-
-$gv = [uri]::EscapeDataString(('["{0}"]' -f $mc))
-$ld = [uri]::EscapeDataString('["forge"]')
 
 $ok = 0; $manual = 0; $failed = 0
 
-foreach ($mod in @($json.mods)) {
+foreach ($mod in @(Get-Flat $json.mods)) {
     if ($RequiredOnly -and -not $mod.required) { continue }
-    if ($Side -eq "server" -and $mod.side -eq "client") { continue }
-    if ($Side -eq "client" -and $mod.side -eq "server") { continue }
+    if ($Side -eq "server" -and "$($mod.side)" -eq "client") { continue }
+    if ($Side -eq "client" -and "$($mod.side)" -eq "server") { continue }
 
-    $name = $mod.name
-    $slug = $mod.modrinth
-    $want = $mod.version
-    if (-not $want) { $want = "latest" }
+    $name = "$($mod.name)"
 
-    if (-not $slug) {
-        $cf = $mod.curseforge
-        if (-not $cf) { $cf = $mod.id }
-        Log ("[ВРУЧНУЮ] {0}: нет slug в Modrinth -> https://www.curseforge.com/minecraft/mc-mods/{1}" -f $name, $cf)
-        $manual++
-        continue
-    }
+    $hit = Find-OnModrinth $mod $mc
+    if (-not $hit) { $hit = Find-OnMaven $mod }
+    if (-not $hit) { $hit = Find-OnGitHub $mod $mc }
+    if (-not $hit) { $hit = Find-OnCurseForge $mod $mc }
 
-    $url = "{0}/project/{1}/version?game_versions={2}&loaders={3}" -f $api, $slug, $gv, $ld
-    try {
-        $versions = @(Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $ua })
-    } catch {
-        $msg = $_.Exception.Message
-        if ($msg -match "404") {
-            $cf = $mod.curseforge
-            if (-not $cf) { $cf = $mod.id }
-            Log ("[ВРУЧНУЮ] {0}: проект '{1}' не найден в Modrinth -> https://www.curseforge.com/minecraft/mc-mods/{2}" -f $name, $slug, $cf)
-            $manual++
-        } else {
-            Log ("[ОШИБКА] {0}: {1}" -f $name, $msg)
-            $failed++
+    if (-not $hit) {
+        Log ("[ВРУЧНУЮ] {0} — не найден ни в одном источнике. Ссылки:" -f $name)
+        foreach ($cf in @(Get-Flat $mod.curseforge)) {
+            if ($cf) { Log ("           https://www.curseforge.com/minecraft/mc-mods/{0}" -f $cf) }
         }
-        Start-Sleep -Milliseconds 400
-        continue
-    }
-    Start-Sleep -Milliseconds 400
-
-    if ($want -eq "latest") {
-        $ver = $versions | Select-Object -First 1
-    } else {
-        $ver = $versions | Where-Object { $_.version_number -eq $want } | Select-Object -First 1
-    }
-
-    if (-not $ver) {
-        Log ("[ВРУЧНУЮ] {0}: нет версии '{1}' для {2}/forge" -f $name, $want, $mc)
         $manual++
         continue
     }
 
-    $files = @($ver.files)
-    $primary = @($files | Where-Object { $_.primary })
-    if ($primary.Count -gt 0) { $f = $primary[0] } elseif ($files.Count -gt 0) { $f = $files[0] } else { $f = $null }
-
-    if (-not $f) {
-        Log ("[ОШИБКА] {0}: у версии {1} нет файлов" -f $name, $ver.version_number)
-        $failed++
-        continue
-    }
-
-    $dest = Join-Path $Out $f.filename
+    $dest = Join-Path $Out $hit.filename
     if (Test-Path $dest) {
-        Log ("[ЕСТЬ]    {0} (уже скачан)" -f $f.filename)
+        Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
         $ok++
         continue
     }
 
-    try {
-        Invoke-WebRequest -Uri $f.url -OutFile $dest -UserAgent $ua | Out-Null
-    } catch {
-        Log ("[ОШИБКА] {0}: загрузка не удалась: {1}" -f $name, $_.Exception.Message)
-        if (Test-Path $dest) { Remove-Item $dest -Force }
+    $err = Save-File $hit.url $dest $hit.hashes
+    if ($err) {
+        Log ("[ОШИБКА] {0}: {1} [{2}]" -f $name, $err, $hit.source)
         $failed++
         continue
     }
 
-    # Проверка контрольных сумм (если опубликованы)
-    $hashes = $f.hashes
-    $verified = $true
-    if ($hashes -and $hashes.sha512) {
-        $h = (Get-FileHash -Algorithm SHA512 $dest).Hash.ToLower()
-        if ($h -ne $hashes.sha512.ToLower()) { $verified = $false }
-    } elseif ($hashes -and $hashes.sha1) {
-        $h = (Get-FileHash -Algorithm SHA1 $dest).Hash.ToLower()
-        if ($h -ne $hashes.sha1.ToLower()) { $verified = $false }
-    }
-
-    if (-not $verified) {
-        Log ("[ОШИБКА] {0}: контрольная сумма не совпала ({1})" -f $name, $f.filename)
-        Remove-Item $dest -Force
-        $failed++
-        continue
-    }
-
-    Log ("[OK]      {0}  <- {1} {2}" -f $f.filename, $name, $ver.version_number)
+    Log ("[OK]      {0}  <- {1} ({2}) [{3}]" -f $hit.filename, $name, $hit.version, $hit.source)
     $ok++
 }
 
 Log ""
-Log ("Итог: скачано/есть - {0}, вручную - {1}, ошибок - {2}" -f $ok, $manual, $failed)
+Log ("Итог: скачано/есть — {0}, вручную — {1}, ошибок — {2}" -f $ok, $manual, $failed)
 if ($manual -gt 0) {
     Log "Файлы «вручную» скачайте по ссылкам выше и положите в папку mods\"
 }
@@ -195,4 +353,4 @@ if ($Report) {
     Write-Host "Отчёт сохранён: $Report"
 }
 
-if ($failed -gt 0) { Finish 1 } else { Finish 0 }
+if ($failed -gt 0 -or $manual -gt 0) { Finish 1 } else { Finish 0 }

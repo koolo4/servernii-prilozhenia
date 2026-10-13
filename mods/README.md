@@ -27,8 +27,11 @@ python3 tools/download_mods.py --manifest mods/mods.json --out mods/
 
 Скрипты:
 - подбирают версию каждого мода для Minecraft 1.20.1 + Forge через Modrinth API;
+- если проекта нет в Modrinth — пробуют Maven (FTB), GitHub Releases и CurseForge (автоматически);
 - скачивают jar и проверяют контрольные суммы (SHA-1/SHA-512), если они опубликованы;
 - пишут отчёт о том, что скачано, а что нужно поставить вручную.
+
+> **Create закреплён на 0.5.1.f!** Аддоны сборки (Connected, Crafts & Additions, Steam 'n' Rails) рассчитаны на линейку 0.5.1. Не обновляйте Create до 6.x без полного пересбора аддонов.
 
 ## Способ 2: вручную
 

@@ -1,9 +1,8 @@
 @echo off
-chcp 65001 >nul
-title ARCANOPOLIS - Скачать моды
+title Arcanopolis - Download Mods
 cd /d "%~dp0"
 echo ==============================================
-echo   ARCANOPOLIS: загрузка модов сборки
+echo   ARCANOPOLIS: download mods
 echo   Minecraft 1.20.1 / Forge
 echo ==============================================
 echo.
