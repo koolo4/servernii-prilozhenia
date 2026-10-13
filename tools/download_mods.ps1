@@ -743,7 +743,8 @@ foreach ($f in (Get-ChildItem -Path $Out -File | Sort-Object Name)) {
     }
     $bad = Test-JarFile $f.FullName
     if ($bad) {
-        Log ("[БИТЫЙ]  {0} — {1}" -f $f.Name, $bad)
+        Log ("[БИТЫЙ]  {0} — {1}; УДАЛЁН (такой файл вызывает краш Forge)" -f $f.Name, $bad)
+        Remove-Item $f.FullName -Force
         $broken++
         continue
     }
