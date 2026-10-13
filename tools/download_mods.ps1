@@ -137,7 +137,7 @@ function Test-JarFile([string]$path) {
 
 # --- Загрузка файла: пробуем все URL, затем curl.exe -----------------------
 function Save-File($urls, [string]$dest, $hashes) {
-    $last = "нет ссылок"
+    $errs = New-Object System.Collections.Generic.List[string]
     $urlList = @(Get-Flat $urls)
 
     foreach ($u in $urlList) {
@@ -150,16 +150,16 @@ function Save-File($urls, [string]$dest, $hashes) {
                 if (Test-Hash $dest $hashes) {
                     $bad = Test-JarFile $dest
                     if (-not $bad) { return $null }
-                    $last = "$bad [$u]"
+                    $errs.Add("$bad [$u]")
                 } else {
-                    $last = "checksum mismatch [$u]"
+                    $errs.Add("checksum mismatch [$u]")
                 }
                 Remove-Item $dest -Force
             } else {
-                $last = "пустой файл [$u]"
+                $errs.Add("пустой файл [$u]")
             }
         } catch {
-            $last = "$($_.Exception.Message) [$u]"
+            $errs.Add("$($_.Exception.Message) [$u]")
             if (Test-Path $dest) { Remove-Item $dest -Force }
         }
     }
@@ -174,9 +174,9 @@ function Save-File($urls, [string]$dest, $hashes) {
                 if (Test-Hash $dest $hashes) {
                     $bad = Test-JarFile $dest
                     if (-not $bad) { return $null }
-                    $last = "$bad (curl) [$u]"
+                    $errs.Add("$bad (curl) [$u]")
                 } else {
-                    $last = "checksum mismatch (curl) [$u]"
+                    $errs.Add("checksum mismatch (curl) [$u]")
                 }
                 Remove-Item $dest -Force
             } elseif (Test-Path $dest) {
@@ -185,7 +185,8 @@ function Save-File($urls, [string]$dest, $hashes) {
         }
     }
 
-    return "download: $last"
+    if ($errs.Count -eq 0) { return "download: нет ссылок" }
+    return ("download: " + ($errs -join " | "))
 }
 
 # ============================ ИСТОЧНИК 1: MODRINTH =========================
@@ -272,6 +273,11 @@ function Find-OnModrinth($mod, [string]$mc) {
             $slug2 = "$($hitProj.slug)"
             if (-not $slug2) { continue }
             if ($slugs -contains $slug2) { continue }   # уже пробовали
+            # защита от ложных совпадений: название или slug должны совпадать с именем мода
+            $wantN = ("$($mod.name)".ToLowerInvariant() -replace '[^a-z0-9]', '')
+            $tN = ("$($hitProj.title)".ToLowerInvariant() -replace '[^a-z0-9]', '')
+            $sN = ("$slug2".ToLowerInvariant() -replace '[^a-z0-9]', '')
+            if ($tN -ne $wantN -and $sN -ne $wantN) { continue }
             $hit = Try-ModrinthProject $slug2 $mod $mc
             if ($hit) {
                 $hit.source = "Modrinth/search:{0}" -f $slug2
@@ -431,6 +437,10 @@ function Find-OnCurseForge($mod, [string]$mc) {
                 if ($esc -ne $n) {
                     $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $n))
                 }
+                $pid2 = "$($data.id)"
+                if ($pid2) {
+                    $urls.Add(("https://cursemaven.com/curse/maven/{0}-{1}/{2}/{0}-{1}-{2}.jar" -f $slug, $pid2, $best.id))
+                }
                 # официальная точка входа CurseForge (делает редирект на CDN)
                 $urls.Add(("https://www.curseforge.com/api/v1/mods/{0}/files/{1}/download" -f $slug, $best.id))
             }
@@ -457,7 +467,7 @@ function Find-OnCurseForge($mod, [string]$mc) {
 # ==================== ПРЯМЫЕ ФАЙЛЫ CURSEFORGE (по номеру) =================
 # Ссылка вида curseforge.com/minecraft/mc-mods/{slug}/download/{file_id}
 # раскрывается в прямые URL CDN — без api.cfwidget.com.
-function Get-CfFileUrls([string]$slug, [string]$fid, [string]$knownName = "") {
+function Get-CfFileUrls([string]$slug, [string]$fid, [string]$knownName = "", [string]$projIdIn = "") {
     $urls = New-Object System.Collections.Generic.List[string]
     $fname = $knownName
     $fid64 = 0
@@ -473,7 +483,7 @@ function Get-CfFileUrls([string]$slug, [string]$fid, [string]$knownName = "") {
     }
 
     # 2. Имя файла и числовой ID проекта вытаскиваем из страниц CurseForge
-    $projId = $null
+    $projId = $projIdIn
     foreach ($pageUrl in @(
         ("https://www.curseforge.com/minecraft/mc-mods/{0}/files/{1}" -f $slug, $fid),
         ("https://www.curseforge.com/minecraft/mc-mods/{0}/download/{1}" -f $slug, $fid)
@@ -514,6 +524,12 @@ function Get-CfFileUrls([string]$slug, [string]$fid, [string]$knownName = "") {
         $urls.Add(("https://edge.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
     }
 
+    # 3.5. Curse Maven — надёжное зеркало файлов CurseForge
+    if ($projId) {
+        $cm = "https://cursemaven.com/curse/maven/{0}-{1}/{2}/{0}-{1}-{2}.jar" -f $slug, $projId, $fid
+        if (-not $urls.Contains($cm)) { $urls.Add($cm) }
+    }
+
     # 4. Точки входа CurseForge: перехватываем редирект 302 -> настоящий CDN,
     # сами адреса добавляем как запасные кандидаты
     foreach ($modKey in @($slug, $projId)) {
@@ -549,7 +565,7 @@ function Find-OnCfFile($mod) {
         $slug = "$($it.slug)"
         $fid = "$($it.file_id)"
         if (-not $slug -or -not $fid) { continue }
-        $r = Get-CfFileUrls $slug $fid
+        $r = Get-CfFileUrls $slug $fid "$($it.filename)" "$($it.project_id)"
         $fname = $r.filename
         if (-not $fname) { $fname = "{0}-{1}.jar" -f $mod.id, $fid }
         return @{
