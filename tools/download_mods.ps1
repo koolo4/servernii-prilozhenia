@@ -3,10 +3,10 @@
  Работает в Windows PowerShell 5.1+ без установки Python.
 
  Каскад источников для каждого мода:
-   1. Modrinth API (с проверкой SHA-1/SHA-512)
+   1. Modrinth API (slug-кандидаты, затем поиск по названию; проверка SHA-1/SHA-512)
    2. Maven (точные закреплённые версии, например FTB)
    3. GitHub Releases (официальные репозитории)
-   4. CurseForge через api.cfwidget.com -> media.forgecdn.net
+   4. CurseForge через api.cfwidget.com -> media.forgecdn.net (строгий, затем мягкий фильтр)
 
  Способы запуска (из любой папки!):
    1. Двойной щелчок по файлу "Скачать_моды.bat" в корне репозитория.
@@ -47,7 +47,7 @@ try {
 } catch { }
 
 $api = "https://api.modrinth.com/v2"
-$ua = "arcanopolis-pack/0.3.0 (modpack downloader)"
+$ua = "arcanopolis-pack/0.3.1 (modpack downloader)"
 # CDN CurseForge (media.forgecdn.net) отдаёт 403 на нестандартные User-Agent —
 # для СКАЧИВАНИЯ файлов используем браузерный UA.
 $browserUA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
@@ -144,71 +144,96 @@ function Save-File($urls, [string]$dest, $hashes) {
 }
 
 # ============================ ИСТОЧНИК 1: MODRINTH =========================
-function Find-OnModrinth($mod, [string]$mc) {
-    $slugs = @(Get-Flat $mod.modrinth)
+# Пробует один проект Modrinth по slug: 'latest' или закреплённая версия.
+function Try-ModrinthProject([string]$slug, $mod, [string]$mc) {
     $want = "$($mod.version)"
     if (-not $want) { $want = "latest" }
 
-    foreach ($slug in $slugs) {
-        if (-not $slug) { continue }
+    # Запрос 1: с фильтром по загрузчику forge; запрос 2: без фильтра
+    foreach ($withLoader in @($true, $false)) {
+        $gv = [uri]::EscapeDataString(('["{0}"]' -f $mc))
+        if ($withLoader) {
+            $ld = [uri]::EscapeDataString('["forge"]')
+            $url = "{0}/project/{1}/version?game_versions={2}&loaders={3}" -f $api, $slug, $gv, $ld
+        } else {
+            $url = "{0}/project/{1}/version?game_versions={2}" -f $api, $slug, $gv
+        }
 
-        # Запрос 1: с фильтром по загрузчику forge; запрос 2: без фильтра
-        foreach ($withLoader in @($true, $false)) {
-            $gv = [uri]::EscapeDataString(('["{0}"]' -f $mc))
-            if ($withLoader) {
-                $ld = [uri]::EscapeDataString('["forge"]')
-                $url = "{0}/project/{1}/version?game_versions={2}&loaders={3}" -f $api, $slug, $gv, $ld
-            } else {
-                $url = "{0}/project/{1}/version?game_versions={2}" -f $api, $slug, $gv
+        $raw = $null
+        try { $raw = Get-WebJson $url } catch {
+            Start-Sleep -Milliseconds 900
+            try { $raw = Get-WebJson $url } catch { Start-Sleep -Milliseconds 300; continue }
+        }
+        Start-Sleep -Milliseconds 350
+
+        $versions = @(Get-Flat $raw)
+        $versions = @($versions | Where-Object { @($_.loaders) -contains "forge" })
+        if ($versions.Count -eq 0) { continue }
+
+        $ver = $null
+        if ($want -eq "latest") {
+            $ver = $versions[0]
+        } else {
+            foreach ($v in $versions) {
+                if ("$($v.version_number)" -eq $want) { $ver = $v; break }
             }
-
-            $raw = $null
-            try { $raw = Get-WebJson $url } catch {
-                Start-Sleep -Milliseconds 900
-                try { $raw = Get-WebJson $url } catch { Start-Sleep -Milliseconds 300; continue }
-            }
-            Start-Sleep -Milliseconds 350
-
-            $versions = @(Get-Flat $raw)
-            $versions = @($versions | Where-Object { @($_.loaders) -contains "forge" })
-            if ($versions.Count -eq 0) { continue }
-
-            $ver = $null
-            if ($want -eq "latest") {
-                $ver = $versions[0]
-            } else {
+            # запасной путь: совпадение по имени jar-файла (например Create 0.5.1.f)
+            if (-not $ver) {
                 foreach ($v in $versions) {
-                    if ("$($v.version_number)" -eq $want) { $ver = $v; break }
-                }
-                # запасной путь: совпадение по имени jar-файла (например Create 0.5.1.f)
-                if (-not $ver) {
-                    foreach ($v in $versions) {
-                        foreach ($file in @(Get-Flat $v.files)) {
-                            if ("$($file.filename)" -match [regex]::Escape($want)) { $ver = $v; break }
-                        }
-                        if ($ver) { break }
+                    foreach ($file in @(Get-Flat $v.files)) {
+                        if ("$($file.filename)" -match [regex]::Escape($want)) { $ver = $v; break }
                     }
+                    if ($ver) { break }
                 }
-            }
-            if (-not $ver) { continue }
-
-            $files = @(Get-Flat $ver.files)
-            $f = $null
-            foreach ($file in $files) {
-                if ($file.primary) { $f = $file; break }
-            }
-            if (-not $f -and $files.Count -gt 0) { $f = $files[0] }
-            if (-not $f) { continue }
-
-            return @{
-                filename = "$($f.filename)"
-                urls     = @("$($f.url)")
-                hashes   = $f.hashes
-                version  = "$($ver.version_number)"
-                source   = "Modrinth/$slug"
             }
         }
+        if (-not $ver) { continue }
+
+        $files = @(Get-Flat $ver.files)
+        $f = $null
+        foreach ($file in $files) {
+            if ($file.primary) { $f = $file; break }
+        }
+        if (-not $f -and $files.Count -gt 0) { $f = $files[0] }
+        if (-not $f) { continue }
+
+        return @{
+            filename = "$($f.filename)"
+            urls     = @("$($f.url)")
+            hashes   = $f.hashes
+            version  = "$($ver.version_number)"
+            source   = "Modrinth/$slug"
+        }
     }
+    return $null
+}
+
+function Find-OnModrinth($mod, [string]$mc) {
+    $slugs = @(Get-Flat $mod.modrinth)
+
+    foreach ($slug in $slugs) {
+        if (-not $slug) { continue }
+        $hit = Try-ModrinthProject $slug $mod $mc
+        if ($hit) { return $hit }
+    }
+
+    # Проход 3: поиск по названию мода (если slug неизвестен или сменился)
+    try {
+        $q = [uri]::EscapeDataString("$($mod.name)")
+        $facets = [uri]::EscapeDataString('[["project_type:mod"],["versions:1.20.1"],["categories:forge"]]')
+        $res = Get-WebJson ("{0}/search?query={1}&facets={2}&limit=5" -f $api, $q, $facets)
+        Start-Sleep -Milliseconds 350
+        foreach ($hitProj in @(Get-Flat $res.hits)) {
+            $slug2 = "$($hitProj.slug)"
+            if (-not $slug2) { continue }
+            if ($slugs -contains $slug2) { continue }   # уже пробовали
+            $hit = Try-ModrinthProject $slug2 $mod $mc
+            if ($hit) {
+                $hit.source = "Modrinth/search:{0}" -f $slug2
+                return $hit
+            }
+        }
+    } catch { }
     return $null
 }
 
@@ -281,20 +306,26 @@ function Find-OnGitHub($mod, [string]$mc) {
     return $null
 }
 
-# ============================ ИСТОЧНИК 4: CURSEFORGE =======================
+# ============================ ИСТОЧНИК 4: CURSEFORCF =======================
 function Find-OnCurseForge($mod, [string]$mc) {
     $slugs = @(Get-Flat $mod.curseforge)
     $pat = "$($mod.file_pattern)"
-    $mcAlt = '1\.20\.1|1\.20[^0-9.]'   # "1.20.1" или "1.20-..." (формат LDTTeam)
+    # "1.20.1", "1.20-..." (формат LDTTeam) или ровно "1.20"
+    $mcAlt = '1\.20\.1|1\.20($|[^0-9.])'
+    $script:cfDiag = $null
 
     foreach ($slug in $slugs) {
         if (-not $slug) { continue }
+        $data = $null
         try { $data = Get-WebJson ("https://api.cfwidget.com/minecraft/mc-mods/{0}" -f $slug) }
         catch { Start-Sleep -Milliseconds 350; continue }
         Start-Sleep -Milliseconds 350
 
         $files = @(Get-Flat $data.files)
-        if ($files.Count -eq 0) { continue }
+        if ($files.Count -eq 0) {
+            $script:cfDiag = ("cfwidget/{0}: проект не найден или файлов нет" -f $slug)
+            continue
+        }
 
         # карта версий проекта: { "1.20.1": [id, id, ...] }
         $idMap = @()
@@ -302,66 +333,78 @@ function Find-OnCurseForge($mod, [string]$mc) {
         if ($data.versions) { $prop = $data.versions.PSObject.Properties[$mc] }
         if ($prop) { $idMap = @(Get-Flat $prop.Value) }
 
-        $best = $null
-        foreach ($f in $files) {
-            $n = "$($f.name)"
-            if ($n -match 'sources|javadoc|slim|_api') { continue }
-            if ($pat -and $n -notmatch $pat) { continue }
-            if ($n -match 'neoforge') { continue }
+        # Два прохода: строгий фильтр, затем мягкий (любой файл для 1.20.x)
+        foreach ($strict in @($true, $false)) {
+            $best = $null
+            foreach ($f in $files) {
+                $n = "$($f.name)"
+                if ($n -match 'sources|javadoc|slim|_api') { continue }
+                if ($n -match 'neoforge') { continue }
+                if ($pat -and $n -notmatch $pat) { continue }
 
-            # файл должен относиться к нужной версии игры
-            $isMc = $false
-            if ("$($f.version)" -match $mcAlt) { $isMc = $true }
-            if ($n -match $mcAlt) { $isMc = $true }
-            if (@($f.versions) -contains $mc) { $isMc = $true }
-            if (-not $isMc -and $idMap.Count -gt 0) {
-                foreach ($vid in $idMap) {
-                    if ("$vid" -eq "$($f.id)") { $isMc = $true; break }
+                # файл должен относиться к нужной версии игры
+                $isMc = $false
+                if ("$($f.version)" -match $mcAlt) { $isMc = $true }
+                if ($n -match $mcAlt) { $isMc = $true }
+                if (@($f.versions) -contains $mc) { $isMc = $true }
+                if (-not $isMc -and $idMap.Count -gt 0) {
+                    foreach ($vid in $idMap) {
+                        if ("$vid" -eq "$($f.id)") { $isMc = $true; break }
+                    }
+                }
+                if ($strict -and -not $isMc) { continue }
+                if (-not $strict -and -not $isMc -and $n -notmatch '1\.20') { continue }
+
+                # чем новее файл (больше id), тем выше приоритет; R-релизы важнее бет
+                $score = [int64]0
+                if ("$($f.type)" -eq "R") { $score += 10000000000 }
+                if ($n -match 'forge') { $score += 1000000000 }
+                if ($isMc) { $score += 100000000 }
+                $id = 0
+                try { $id = [int64]$f.id } catch { $id = 0 }
+                $score += [int64]($id / 1000)
+
+                if (-not $best -or $score -gt $best.score) {
+                    $best = @{ file = $f; score = $score; id = $id }
                 }
             }
-            if (-not $isMc) { continue }
+            if (-not $best) { continue }
 
-            # чем новее файл (больше id), тем выше приоритет; R-релизы важнее бет
-            $score = [int64]0
-            if ("$($f.type)" -eq "R") { $score += 10000000000 }
-            if ($n -match 'forge') { $score += 1000000000 }
-            $id = 0
-            try { $id = [int64]$f.id } catch { $id = 0 }
-            $score += [int64]($id / 1000)
+            $f = $best.file
+            $n = "$($f.name)"
+            $urls = New-Object System.Collections.Generic.List[string]
 
-            if (-not $best -or $score -gt $best.score) {
-                $best = @{ file = $f; score = $score; id = $id }
+            $furl = "$($f.url)"
+            if ($furl) { $urls.Add($furl) }
+
+            if ($best.id -gt 0) {
+                $p1 = [math]::Floor($best.id / 1000)
+                $p2 = $best.id % 1000
+                $esc = [uri]::EscapeDataString($n)
+                $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
+                $urls.Add(("https://edge.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
+                if ($esc -ne $n) {
+                    $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $n))
+                }
+                # официальная точка входа CurseForge (делает редирект на CDN)
+                $urls.Add(("https://www.curseforge.com/api/v1/mods/{0}/files/{1}/download" -f $slug, $best.id))
+            }
+
+            return @{
+                filename = $n
+                urls     = $urls.ToArray()
+                hashes   = $null
+                version  = "$($f.version)"
+                source   = "CurseForge/$slug"
             }
         }
-        if (-not $best) { continue }
 
-        $f = $best.file
-        $n = "$($f.name)"
-        $urls = New-Object System.Collections.Generic.List[string]
-
-        $furl = "$($f.url)"
-        if ($furl) { $urls.Add($furl) }
-
-        if ($best.id -gt 0) {
-            $p1 = [math]::Floor($best.id / 1000)
-            $p2 = $best.id % 1000
-            $esc = [uri]::EscapeDataString($n)
-            $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
-            $urls.Add(("https://edge.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $esc))
-            if ($esc -ne $n) {
-                $urls.Add(("https://media.forgecdn.net/files/{0}/{1}/{2}" -f $p1, $p2, $n))
-            }
-            # официальная точка входа CurseForge (делает редирект на CDN)
-            $urls.Add(("https://www.curseforge.com/api/v1/mods/{0}/files/{1}/download" -f $slug, $best.id))
+        # Диагностика: проект есть, но ни один файл не подошёл
+        $sample = @()
+        foreach ($f in ($files | Select-Object -First 6)) {
+            $sample += ("{0} ({1})" -f $f.name, $f.version)
         }
-
-        return @{
-            filename = $n
-            urls     = $urls.ToArray()
-            hashes   = $null
-            version  = "$($f.version)"
-            source   = "CurseForge/$slug"
-        }
+        $script:cfDiag = ("cfwidget/{0}: файлов {1}, ни один не подошёл. Примеры: {2}" -f $slug, $files.Count, ($sample -join "; "))
     }
     return $null
 }
@@ -401,6 +444,7 @@ foreach ($mod in $modList) {
     if ($Side -eq "client" -and "$($mod.side)" -eq "server") { continue }
 
     $name = "$($mod.name)"
+    $script:cfDiag = $null
 
     $hit = Find-OnModrinth $mod $mc
     if (-not $hit) { $hit = Find-OnMaven $mod }
@@ -408,11 +452,28 @@ foreach ($mod in $modList) {
     if (-not $hit) { $hit = Find-OnCurseForge $mod $mc }
     if ($hit -is [System.Array]) { $hit = @($hit) | Select-Object -First 1 }
 
+    # последний шанс: прямые ссылки из манифеста (manual_urls)
+    if (-not $hit) {
+        $urls = New-Object System.Collections.Generic.List[string]
+        foreach ($u in @(Get-Flat $mod.manual_urls)) { if ($u) { $urls.Add("$u") } }
+        if ($urls.Count -gt 0) {
+            $first = $urls[0]
+            $hit = @{
+                filename = "$($mod.id)-manual.jar"
+                urls     = $urls.ToArray()
+                hashes   = $null
+                version  = "manual_url"
+                source   = "Прямая ссылка"
+            }
+        }
+    }
+
     if (-not $hit) {
         Log ("[ВРУЧНУЮ] {0} — не найден ни в одном источнике. Ссылки:" -f $name)
         foreach ($cf in @(Get-Flat $mod.curseforge)) {
             if ($cf) { Log ("           https://www.curseforge.com/minecraft/mc-mods/{0}" -f $cf) }
         }
+        if ($script:cfDiag) { Log ("           {0}" -f $script:cfDiag) }
         $manual++
         continue
     }
