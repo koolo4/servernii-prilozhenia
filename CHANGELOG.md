@@ -9,6 +9,11 @@
 - Каскад источников в загрузчике: Modrinth → Maven (FTB) → GitHub → CurseForge (cfwidget). Теперь скачивается всё автоматически.
 - Закреплён **Create 0.5.1.f** (аддоны сборки рассчитаны на 0.5.1; не обновлять до 6.x).
 
+## [0.4.1-alpha] — 2026-10-13
+
+### Добавлено
+- `docs/08-quest-design-comparison.md` — сравнительный анализ квестовых систем техно-магических сборок (GTNH, Divine Journey 2, Enigmatica 2/E2E, SevTech, Create: Above and Beyond, Meatballcraft, ColonyQuest и др.) с вердиктом и планом доработок для «Арканополиса».
+
 ## [0.4.0-alpha] — 2026-10-13
 
 ### Добавлено
