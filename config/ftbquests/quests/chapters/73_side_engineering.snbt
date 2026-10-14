@@ -7,13 +7,14 @@
 	id: "A11A0B0000000001"
 	dependencies: [ ]
 	order_index: 10
-	progression_mode: "flexible"
+	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
 			dependencies: [ ]
 			description: ["Альтернативные схемы фабрик и транспортных сетей."]
 			id: "A11A0B0100000001"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0B0200000001"
@@ -29,6 +30,7 @@
 			dependencies: ["A11A0B0100000001"]
 			description: ["Разместите полную производственную линию на минимальной площади."]
 			id: "A11A0B0100000002"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -53,6 +55,7 @@
 			dependencies: ["A11A0B0100000001"]
 			description: ["Свяжите несколько цехов единой транспортной системой."]
 			id: "A11A0B0100000003"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -77,6 +80,7 @@
 			dependencies: ["A11A0B0100000001"]
 			description: ["Передавайте энергию между удалёнными цехами."]
 			id: "A11A0B0100000004"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -98,9 +102,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A0B0100000003"]
+			dependencies: ["A11A0B0100000001"]
 			description: ["Автоматическая сортировка продукции города."]
 			id: "A11A0B0100000005"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -122,9 +127,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A0B0100000001"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: create:toolbox ×1, minecraft:chest ×1"]
 			id: "A11A0B0100000006"
+			icon: "create:toolbox"
 			tasks: [
 				{
 					id: "A11A0B0200000006"
@@ -140,6 +146,7 @@
 			dependencies: ["A11A0B0100000006"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:paper ×32."]
 			id: "A11A0B0100000007"
+			icon: "minecraft:paper"
 			tasks: [
 				{
 					id: "A11A0B0200000007"
@@ -156,6 +163,7 @@
 			dependencies: ["A11A0B0100000007"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 2 уровня."]
 			id: "A11A0B0100000008"
+			icon: "minecolonies:blockhutmechanic"
 			tasks: [
 				{
 					id: "A11A0B0200000008"
@@ -171,6 +179,7 @@
 			dependencies: ["A11A0B0100000008"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0B0100000009"
+			icon: "create:wrench"
 			tasks: [
 				{
 					id: "A11A0B0200000009"
@@ -192,6 +201,7 @@
 			dependencies: ["A11A0B0100000009"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0B010000000A"
+			icon: "create:precision_mechanism"
 			tasks: [
 				{
 					id: "A11A0B020000000B"

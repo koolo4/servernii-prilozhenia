@@ -7,13 +7,14 @@
 	id: "A11A080000000001"
 	dependencies: [ ]
 	order_index: 7
-	progression_mode: "flexible"
+	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
 			dependencies: [ ]
 			description: ["Здания колонии, декор и оформление кварталов."]
 			id: "A11A080100000001"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A080200000001"
@@ -29,6 +30,7 @@
 			dependencies: ["A11A080100000001"]
 			description: ["Выберите единый архитектурный стиль колонии."]
 			id: "A11A080100000002"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -53,6 +55,7 @@
 			dependencies: ["A11A080100000001"]
 			description: ["Жилой, ремесленный и торговый кварталы."]
 			id: "A11A080100000003"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -77,6 +80,7 @@
 			dependencies: ["A11A080100000001"]
 			description: ["Зелёное пространство для жителей."]
 			id: "A11A080100000004"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -98,9 +102,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A080100000003"]
+			dependencies: ["A11A080100000001"]
 			description: ["Памятник городу, который станет машиной."]
 			id: "A11A080100000005"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -121,9 +126,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A080100000001"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:stone_bricks ×128."]
 			id: "A11A080100000006"
+			icon: "minecraft:stone_bricks"
 			tasks: [
 				{
 					id: "A11A080200000006"
@@ -140,6 +146,7 @@
 			dependencies: ["A11A080100000006"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass_pane ×64."]
 			id: "A11A080100000007"
+			icon: "minecraft:glass_pane"
 			tasks: [
 				{
 					id: "A11A080200000007"
@@ -156,6 +163,7 @@
 			dependencies: ["A11A080100000007"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:copper_block ×16."]
 			id: "A11A080100000008"
+			icon: "minecraft:copper_block"
 			tasks: [
 				{
 					id: "A11A080200000008"
@@ -172,6 +180,7 @@
 			dependencies: ["A11A080100000008"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bricks ×32."]
 			id: "A11A080100000009"
+			icon: "minecraft:bricks"
 			tasks: [
 				{
 					id: "A11A080200000009"
@@ -188,6 +197,7 @@
 			dependencies: ["A11A080100000009"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A08010000000A"
+			icon: "minecraft:quartz_block"
 			tasks: [
 				{
 					id: "A11A08020000000A"
@@ -209,6 +219,7 @@
 			dependencies: ["A11A08010000000A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A08010000000B"
+			icon: "minecraft:oak_sapling"
 			tasks: [
 				{
 					id: "A11A08020000000C"

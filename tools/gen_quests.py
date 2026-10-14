@@ -28,6 +28,90 @@ _counters: dict[str, int] = {}
 
 
 CUSTOM_CHECKS: list = []  # (task_id, cond) — собирается при эмиссии
+CHAIN_ROWS: dict = {}  # файл главы -> строки-барьеры цепочки (в порядке квестов)
+_CUR_CHAPTER = [""]
+
+HUT_ICONS = {
+    "builder": "minecolonies:blockhutbuilder",
+    "lumberjack": "minecolonies:blockhutlumberjack",
+    "miner": "minecolonies:blockhutminer",
+    "farm": "minecolonies:blockhutfarmer",
+    "fish": "minecolonies:blockhutfisherman",
+    "cook": "minecolonies:blockhutcook",
+    "saw": "minecolonies:blockhutsawmill",
+    "stone": "minecolonies:blockhutstonemason",
+    "black": "minecolonies:blockhutblacksmith",
+    "guard": "minecolonies:blockhutguardtower",
+    "warehouse": "minecolonies:blockhutwarehouse",
+    "courier": "minecolonies:blockhutcourier",
+    "home": "minecolonies:blockhutcitizen",
+    "townhall": "minecolonies:blockhuttownhall",
+    "university": "minecolonies:blockhutuniversity",
+    "library": "minecolonies:blockhutlibrary",
+    "school": "minecolonies:blockhutschool",
+    "hospital": "minecolonies:blockhuthospital",
+    "mech": "minecolonies:blockhutmechanic",
+}
+
+ICON_OVERRIDES = {
+    ("00_prologue", "start"): "minecolonies:supplycamp",
+    ("00_prologue", "charter"): "arcanopolis:city_charter",
+    ("00_prologue", "p_tr"): "minecraft:chest",
+    ("10_epoch_wood_water", "hub"): "arcanopolis:seal_craftsmen",
+    ("10_epoch_wood_water", "e1_tr"): "minecraft:chest",
+    ("20_epoch_steam_logistics", "hub"): "arcanopolis:seal_steam",
+    ("20_epoch_steam_logistics", "e2_tr"): "minecraft:chest",
+    ("30_epoch_industry", "hub"): "arcanopolis:technical_passport",
+    ("30_epoch_industry", "passport"): "arcanopolis:technical_passport",
+    ("30_epoch_industry", "casing"): "arcanopolis:reinforced_casing",
+    ("30_epoch_industry", "e3_tr"): "minecraft:chest",
+    ("40_epoch_magic", "hub"): "arcanopolis:seal_arcana",
+    ("40_epoch_magic", "ritual"): "arcanopolis:ritual_regulator",
+    ("40_epoch_magic", "e4_tr"): "minecraft:chest",
+    ("50_epoch_network", "hub"): "arcanopolis:seal_network",
+    ("50_epoch_network", "project"): "arcanopolis:automation_core",
+    ("50_epoch_network", "e5_tr"): "minecraft:chest",
+    ("60_epoch_cosmos", "hub"): "arcanopolis:heart_of_arcanopolis",
+    ("60_epoch_cosmos", "heart"): "arcanopolis:heart_of_arcanopolis",
+    ("60_epoch_cosmos", "finale"): "arcanopolis:heart_of_arcanopolis",
+    ("60_epoch_cosmos", "catalyst"): "arcanopolis:primal_catalyst",
+    ("60_epoch_cosmos", "e6_tr"): "minecraft:chest",
+}
+
+
+def auto_icon(q) -> str:
+    for t in q.tasks:
+        if t.ttype == "item":
+            return t.item.split("|")[0].split(" ")[0]
+        if t.ttype == "kill":
+            return "minecraft:" + t.entity.split(":")[-1] + "_spawn_egg"
+        if t.ttype == "dimension":
+            return "minecraft:obsidian" if "nether" in t.entity else "minecraft:end_stone"
+        if t.ttype == "structure":
+            return {
+                "minecraft:stronghold": "minecraft:ender_eye",
+                "minecraft:bastion_remnant": "minecraft:gilded_blackstone",
+                "minecraft:end_city": "minecraft:purpur_block",
+                "minecraft:ancient_city": "minecraft:sculk",
+            }.get(t.entity, "minecraft:compass")
+        if t.ttype == "advancement":
+            return "minecraft:emerald"
+        if t.ttype == "stat":
+            return "minecraft:leather_boots"
+        if t.ttype == "custom":
+            cond = t.cond
+            if cond.startswith("item_any:"):
+                return cond[len("item_any:"):].split("@")[0].split("|")[0]
+            pp = cond.split(":")
+            if pp[0] == "townhall":
+                return "minecolonies:blockhuttownhall"
+            if pp[0] == "citizens":
+                return "minecraft:villager_spawn_egg"
+            if pp[0] == "building" and len(pp) >= 3:
+                return HUT_ICONS.get(pp[1], "minecolonies:supplycamp")
+            return "minecraft:book"
+    return "minecraft:book"
+
 
 
 def uid(kind: str, chapter: int) -> str:
@@ -943,6 +1027,15 @@ def polish(chapters: list[Chapter]) -> None:
                         q.desc = list(q.desc) + lines
         for q in ch.quests:
             q.tasks = [_or_to_custom(t) for t in q.tasks]
+        # строгая цепочка: без прошлого квеста следующий недоступен
+        last_key = None
+        for q in ch.quests:
+            if last_key is not None:
+                q.deps = [last_key]
+            else:
+                q.deps = []
+            if not q.optional:
+                last_key = q.key
         if ch.file in CHAP_CHAIN:
             ch.deps_ch = [CHAP_CHAIN[ch.file]]
 
@@ -952,30 +1045,20 @@ def polish(chapters: list[Chapter]) -> None:
 # ============================================================================
 
 def write_colony_js() -> None:
-    rows = []
-    for tid, cond in CUSTOM_CHECKS:
-        if cond.startswith("item_any:"):
-            rest = cond[len("item_any:"):]
-            items, n = rest.rsplit("@", 1)
-            rows.append(f'  {{ task: "{tid}", kind: "item_any", items: "{items}", n: {n} }},')
-            continue
-        parts = cond.split(":")
-        if parts[0] == "building" and len(parts) >= 3:
-            rows.append(f'  {{ task: "{tid}", kind: "building", word: "{parts[1]}", n: {parts[2]} }},')
-        elif parts[0] == "always" or len(parts) < 2:
-            rows.append(f'  {{ task: "{tid}", kind: "always" }},')
-        else:
-            rows.append(f'  {{ task: "{tid}", kind: "{parts[0]}", n: {parts[1]} }},')
-    table = "\n".join(rows)
+    import json
+    parts = []
+    for file, rows in CHAIN_ROWS.items():
+        body = ",\n".join("    " + json.dumps(r, ensure_ascii=False) for r in rows)
+        parts.append(f'  "{file}": [\n{body}\n  ]')
+    table = ",\n".join(parts)
 
     js = f"""// 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
-// Авто-детект условий MineColonies для квестов FTB Quests (custom-задачи).
-// Игрок не может отметить эти задачи вручную — прогресс выдаёт этот скрипт.
-// Проверка: раз в 5 секунд на игрока. Ошибки API проглатываются (не роняют сервер).
+// Строгая цепочка квестов: прогресс выдаётся только по порядку, звено за звеном.
+// Условия MineColonies и наличие предметов проверяются сервером раз в 5 секунд.
 
-const CHECKS = [
+const CHAPTER_CHAINS = {{
 {table}
-]
+}}
 
 const IColonyManager = Java.loadClass('com.minecolonies.api.colony.IColonyManager')
 
@@ -1013,42 +1096,41 @@ function arcanopolis_itemCount(player, id) {{
   }} catch (e) {{ return 0 }}
 }}
 
-function arcanopolis_condOk(player, c) {{
-  if (c.kind === 'always') return true
-  if (c.kind === 'item_any') {{
+function arcanopolis_rowOk(player, row) {{
+  if (row.kind === 'always') return true
+  if (row.kind === 'item_any') {{
     try {{
-      const ids = String(c.items).split('|')
+      const ids = String(row.items).split('|')
       let total = 0
       for (const id of ids) {{
         total += arcanopolis_itemCount(player, id)
-        if (total >= c.n) return true
+        if (total >= row.n) return true
       }}
-      return total >= c.n
+      return total >= row.n
     }} catch (e) {{ return false }}
   }}
   try {{
     const col = arcanopolis_colonyOf(player)
     if (col == null) return false
-    if (c.kind === 'townhall') {{
+    if (row.kind === 'townhall') {{
       const bm = arcanopolis_buildingManager(col)
       const th = bm != null ? bm.getTownHall() : null
-      return th != null && th.getBuildingLevel() >= c.n
+      return th != null && th.getBuildingLevel() >= row.n
     }}
-    if (c.kind === 'citizens') {{
-      return col.getCitizenManager().getCitizens().size() >= c.n
+    if (row.kind === 'citizens') {{
+      return col.getCitizenManager().getCitizens().size() >= row.n
     }}
-    if (c.kind === 'building') {{
+    if (row.kind === 'building') {{
       const bm = arcanopolis_buildingManager(col)
       if (bm == null) return false
-      const list = bm.getBuildings()
-      const it = list.values().iterator()
+      const it = bm.getBuildings().values().iterator()
       while (it.hasNext()) {{
         const b = it.next()
         let hay = ''
         try {{ hay += ' ' + String(b.getSchematicName()) }} catch (e) {{}}
         try {{ hay += ' ' + String(b.getBuildingType().getRegistryName()) }} catch (e) {{}}
         try {{ hay += ' ' + String(b.getBuildingType().getSerializedName()) }} catch (e) {{}}
-        if (hay.toLowerCase().indexOf(c.word) >= 0) return b.getBuildingLevel() >= c.n
+        if (hay.toLowerCase().indexOf(row.word) >= 0) return b.getBuildingLevel() >= row.n
       }}
     }}
   }} catch (e) {{}}
@@ -1066,13 +1148,16 @@ ServerEvents.tick(event => {{
     for (const p of players) {{
       let name = ''
       try {{ name = String(p.username) }} catch (e) {{ try {{ name = String(p.getName().getString()) }} catch (e2) {{ return }}}}
-      for (const c of CHECKS) {{
-        const key = name + '|' + c.task
-        if (_arcanopolis_done[key]) continue
-        if (arcanopolis_condOk(p, c)) {{
-          _arcanopolis_done[key] = true
-          try {{ p.data.ftbquests.addProgress(c.task, 1) }} catch (e) {{}}
-          try {{ s.runCommandSilent('ftbquests change_progress ' + name + ' complete ' + c.task) }} catch (e) {{}}
+      for (const chKey in CHAPTER_CHAINS) {{
+        const chain = CHAPTER_CHAINS[chKey]
+        for (const row of chain) {{
+          if (row.kind === 'skip') continue
+          const dk = name + '|' + row.task
+          if (_arcanopolis_done[dk]) continue
+          if (!arcanopolis_rowOk(p, row)) break  // стоп: дальше по цепочке нельзя
+          _arcanopolis_done[dk] = true
+          try {{ p.data.ftbquests.addProgress(row.task, 1) }} catch (e) {{}}
+          try {{ s.runCommandSilent('ftbquests change_progress ' + name + ' complete ' + row.task) }} catch (e) {{}}
         }}
       }}
     }}
@@ -1082,7 +1167,9 @@ ServerEvents.tick(event => {{
     out = Path("kubejs/server_scripts/95_colony_checks.js")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(js, encoding="utf-8")
-    print(f"OK {out} ({len(CUSTOM_CHECKS)} custom checks)")
+    n = sum(len(v) for v in CHAIN_ROWS.values())
+    print(f"OK {out} ({n} chain rows, {len(CHAIN_ROWS)} chapters)")
+
 
 # ============================================================================
 # Эмиссия SNBT
@@ -1126,6 +1213,24 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
     lines.append(f"{indent}\ttype: \"{t.ttype}\"")
     if t.ttype == "custom":
         CUSTOM_CHECKS.append((tid, t.cond or "always"))
+    row = {"task": tid, "kind": "skip"}
+    if t.ttype == "custom":
+        cond = t.cond or "always"
+        if cond.startswith("item_any:"):
+            rest = cond[len("item_any:"):]
+            items, n = rest.rsplit("@", 1)
+            row = {"task": tid, "kind": "item_any", "items": items, "n": int(n)}
+        else:
+            pp = cond.split(":")
+            if pp[0] == "building" and len(pp) >= 3:
+                row = {"task": tid, "kind": "building", "word": pp[1], "n": int(pp[2])}
+            elif len(pp) >= 2 and pp[0] in ("townhall", "citizens"):
+                row = {"task": tid, "kind": pp[0], "n": int(pp[1])}
+            else:
+                row = {"task": tid, "kind": "always"}
+    elif t.ttype == "item" and not t.consume:
+        row = {"task": tid, "kind": "item_any", "items": t.item, "n": int(t.count or 1)}
+    CHAIN_ROWS.setdefault(_CUR_CHAPTER[0], []).append(row)
     lines.append(f"{indent}}}")
     return "\n".join(lines)
 
@@ -1158,6 +1263,7 @@ def resolve_dep(dep: str, chapter: Chapter, chapter_no: int, qmap_all: dict) -> 
 
 def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -> str:
     cid = uid("00", chapter_no)
+    _CUR_CHAPTER[0] = ch.file
     out = ["{"]
     out.append("\tdefault_hide_dependency_lines: false")
     out.append("\tdefault_quest_shape: \"\"")
@@ -1171,7 +1277,7 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
     else:
         out.append("\tdependencies: [ ]")
     out.append(f"\torder_index: {ch.order}")
-    out.append("\tprogression_mode: \"flexible\"")
+    out.append("\tprogression_mode: \"linear\"")
     out.append("\tquest_links: [ ]")
     out.append("\tquests: [")
 
@@ -1188,12 +1294,12 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
             desc = ", ".join(f'"{esc(line)}"' for line in q.desc)
             b.append(f"\t\t\tdescription: [{desc}]")
         b.append(f"\t\t\tid: \"{qid}\"")
-        if q.icon:
-            b.append(f"\t\t\ticon: \"{q.icon}\"")
+        _icon = q.icon or ICON_OVERRIDES.get((ch.file, q.key), "") or auto_icon(q)
+        b.append(f"\t\t\ticon: \"{esc(_icon)}\"")
         if q.optional:
             b.append("\t\t\toptional: true")
         if q.repeatable:
-            b.append("\t\t\trepeatable: true")
+            b.append("\t\t\tcan_repeat: true")
         if q.rewards:
             b.append("\t\t\trewards: [")
             b.append(",\n".join(emit_reward(r, chapter_no, "\t\t\t\t") for r in q.rewards))
@@ -1262,7 +1368,8 @@ def main() -> None:
 \t\tpassive: 400
 \t}
 \tpause_game: false
-\tprogression_mode: "flexible"
+\tprogression_mode: "linear"
+\tshow_lock_icons: true
 \ttitle: "Арканополис: Хартия нового мира"
 \tversion: 13
 }

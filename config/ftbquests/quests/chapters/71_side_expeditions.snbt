@@ -7,13 +7,14 @@
 	id: "A11A090000000001"
 	dependencies: [ ]
 	order_index: 8
-	progression_mode: "flexible"
+	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
 			dependencies: [ ]
 			description: ["Исследование мира и поиск редких материалов."]
 			id: "A11A090100000001"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A090200000001"
@@ -29,6 +30,7 @@
 			dependencies: ["A11A090100000001"]
 			description: ["Ищите структуры и руины — источник редких ресурсов."]
 			id: "A11A090100000002"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -53,6 +55,7 @@
 			dependencies: ["A11A090100000001"]
 			description: ["Незер — источник энергии и редких материалов."]
 			id: "A11A090100000003"
+			icon: "minecraft:emerald"
 			optional: true
 			rewards: [
 				{
@@ -75,9 +78,10 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A090100000003"]
+			dependencies: ["A11A090100000001"]
 			description: ["Энд — финальный рубеж для эндгейм-материалов."]
 			id: "A11A090100000004"
+			icon: "minecraft:emerald"
 			optional: true
 			rewards: [
 				{
@@ -103,6 +107,7 @@
 			dependencies: ["A11A090100000001"]
 			description: ["Структуры MineColonies в дикой природе."]
 			id: "A11A090100000005"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -124,9 +129,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A090100000001"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:cooked_beef ×32."]
 			id: "A11A090100000006"
+			icon: "minecraft:cooked_beef"
 			tasks: [
 				{
 					id: "A11A090200000006"
@@ -143,6 +149,7 @@
 			dependencies: ["A11A090100000006"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_sword ×2."]
 			id: "A11A090100000007"
+			icon: "minecraft:iron_sword"
 			tasks: [
 				{
 					id: "A11A090200000007"
@@ -159,6 +166,7 @@
 			dependencies: ["A11A090100000007"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:blaze_rod ×8."]
 			id: "A11A090100000008"
+			icon: "minecraft:blaze_rod"
 			tasks: [
 				{
 					id: "A11A090200000008"
@@ -175,6 +183,7 @@
 			dependencies: ["A11A090100000008"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ender_pearl ×8."]
 			id: "A11A090100000009"
+			icon: "minecraft:ender_pearl"
 			tasks: [
 				{
 					id: "A11A090200000009"
@@ -191,6 +200,7 @@
 			dependencies: ["A11A090100000009"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000000A"
+			icon: "minecrp"
 			tasks: [
 				{
 					id: "A11A09020000000A"
@@ -212,6 +222,7 @@
 			dependencies: ["A11A09010000000A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000000B"
+			icon: "minecraft:name_tag"
 			tasks: [
 				{
 					id: "A11A09020000000C"
@@ -230,9 +241,10 @@
 			y: -6.5d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A09010000000B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:zombie ×16."]
 			id: "A11A09010000000C"
+			icon: "minecraft:zombie_spawn_egg"
 			tasks: [
 				{
 					id: "A11A09020000000E"
@@ -249,6 +261,7 @@
 			dependencies: ["A11A09010000000C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:skeleton ×16."]
 			id: "A11A09010000000D"
+			icon: "minecraft:skeleton_spawn_egg"
 			tasks: [
 				{
 					id: "A11A09020000000F"
@@ -265,6 +278,7 @@
 			dependencies: ["A11A09010000000D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:spider ×8."]
 			id: "A11A09010000000E"
+			icon: "minecraft:spider_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000010"
@@ -281,6 +295,7 @@
 			dependencies: ["A11A09010000000E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:creeper ×8."]
 			id: "A11A09010000000F"
+			icon: "minecraft:creeper_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000011"
@@ -294,9 +309,10 @@
 			y: -15.1d
 		},
 		{
-			dependencies: ["A11A09010000000F", "A11A090100000008"]
+			dependencies: ["A11A09010000000F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:blaze ×8."]
 			id: "A11A090100000010"
+			icon: "minecraft:blaze_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000012"
@@ -313,6 +329,7 @@
 			dependencies: ["A11A090100000010"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:enderman ×6."]
 			id: "A11A090100000011"
+			icon: "minecraft:enderman_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000013"
@@ -329,6 +346,7 @@
 			dependencies: ["A11A090100000011"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:wither_skeleton ×6."]
 			id: "A11A090100000012"
+			icon: "minecraft:wither_skeleton_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000014"
@@ -342,9 +360,10 @@
 			y: -20.2d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A090100000012"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:pillager ×10."]
 			id: "A11A090100000013"
+			icon: "minecraft:pillager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000015"
@@ -361,6 +380,7 @@
 			dependencies: ["A11A090100000013"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:vindicator ×4."]
 			id: "A11A090100000014"
+			icon: "minecraft:vindicator_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000016"
@@ -377,6 +397,7 @@
 			dependencies: ["A11A090100000014"]
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:ravager ×2."]
 			id: "A11A090100000015"
+			icon: "minecraft:ravager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A090200000017"
@@ -390,9 +411,10 @@
 			y: -13.4d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A090100000015"]
 			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_nether."]
 			id: "A11A090100000016"
+			icon: "minecraft:obsidian"
 			tasks: [
 				{
 					id: "A11A090200000018"
@@ -408,6 +430,7 @@
 			dependencies: ["A11A090100000016"]
 			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/mine_diamond."]
 			id: "A11A090100000017"
+			icon: "minecraft:emerald"
 			tasks: [
 				{
 					id: "A11A090200000019"
@@ -424,6 +447,7 @@
 			dependencies: ["A11A090100000017"]
 			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/enter_the_nether."]
 			id: "A11A090100000018"
+			icon: "minecraft:emerald"
 			tasks: [
 				{
 					id: "A11A09020000001A"
@@ -440,6 +464,7 @@
 			dependencies: ["A11A090100000018"]
 			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_end."]
 			id: "A11A090100000019"
+			icon: "minecraft:end_stone"
 			tasks: [
 				{
 					id: "A11A09020000001B"
@@ -452,9 +477,10 @@
 			y: -15.1d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A090100000019"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001A"
+			icon: "minecraft:ender_eye"
 			tasks: [
 				{
 					id: "A11A09020000001C"
@@ -470,6 +496,7 @@
 			dependencies: ["A11A09010000001A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001B"
+			icon: "minecraft:gilded_blackstone"
 			tasks: [
 				{
 					id: "A11A09020000001D"
@@ -485,6 +512,7 @@
 			dependencies: ["A11A09010000001B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001C"
+			icon: "minecraft:purpur_block"
 			tasks: [
 				{
 					id: "A11A09020000001E"
@@ -500,6 +528,7 @@
 			dependencies: ["A11A09010000001C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001D"
+			icon: "minecraft:sculk"
 			tasks: [
 				{
 					id: "A11A09020000001F"
@@ -512,9 +541,10 @@
 			y: -15.1d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A09010000001D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Достичь статистику minecraft:walk_one_cm ≥ 500000."]
 			id: "A11A09010000001E"
+			icon: "minecraft:leather_boots"
 			tasks: [
 				{
 					id: "A11A090200000020"
@@ -528,9 +558,10 @@
 			y: -22.0d
 		},
 		{
-			dependencies: ["A11A090100000015"]
+			dependencies: ["A11A09010000001E"]
 			description: ["Ходят слухи, что герой, спасший деревню", "от нашествия рейдеров, получает дар..."]
 			id: "A11A09010000001F"
+			icon: "minecraft:emerald"
 			tasks: [
 				{
 					id: "A11A090200000021"
@@ -544,9 +575,10 @@
 			y: -22.0d
 		},
 		{
-			dependencies: ["A11A090100000019"]
+			dependencies: ["A11A09010000001F"]
 			description: ["Древние хроники говорят о змееподобном", "твари, чья смерть откроет тайну Края..."]
 			id: "A11A090100000020"
+			icon: "minecraft:emerald"
 			tasks: [
 				{
 					id: "A11A090200000022"

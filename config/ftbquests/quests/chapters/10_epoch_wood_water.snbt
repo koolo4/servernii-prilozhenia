@@ -7,13 +7,14 @@
 	id: "A11A020000000001"
 	dependencies: ["A11A010000000001"]
 	order_index: 1
-	progression_mode: "flexible"
+	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["A11A010100000009"]
+			dependencies: [ ]
 			description: ["Дерево, вода и ремесло — первая технологическая эпоха.", "Город растёт, а Create начинает работать на него.", "Эпоха I. Первые механизмы шумят у водяных колёс,", "топоры лесорубов задают ритм росту города."]
 			id: "A11A020100000001"
+			icon: "arcanopolis:seal_craftsmen"
 			tasks: [
 				{
 					id: "A11A020200000001"
@@ -29,6 +30,7 @@
 			dependencies: ["A11A020100000001"]
 			description: ["Расширяйте центр колонии."]
 			id: "A11A020100000002"
+			icon: "minecolonies:blockhuttownhall"
 			tasks: [
 				{
 					id: "A11A020200000002"
@@ -44,6 +46,7 @@
 			dependencies: ["A11A020100000002"]
 			description: ["Городу нужны люди."]
 			id: "A11A020100000003"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A020200000003"
@@ -56,9 +59,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A020100000002"]
+			dependencies: ["A11A020100000003"]
 			description: ["Древесина — основа строительства и ранней механики."]
 			id: "A11A020100000004"
+			icon: "minecolonies:blockhutlumberjack"
 			tasks: [
 				{
 					id: "A11A020200000004"
@@ -71,9 +75,10 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A020100000002"]
+			dependencies: ["A11A020100000004"]
 			description: ["Руда нужна и колонии, и вашим механизмам."]
 			id: "A11A020100000005"
+			icon: "minecolonies:blockhutminer"
 			tasks: [
 				{
 					id: "A11A020200000005"
@@ -86,9 +91,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A020100000002"]
+			dependencies: ["A11A020100000005"]
 			description: ["Склад собирает ресурсы города в одном месте."]
 			id: "A11A020100000006"
+			icon: "minecolonies:blockhutwarehouse"
 			tasks: [
 				{
 					id: "A11A020200000006"
@@ -104,6 +110,7 @@
 			dependencies: ["A11A020100000006"]
 			description: ["Курьер развозит материалы по хижинам."]
 			id: "A11A020100000007"
+			icon: "minecolonies:blockhutcourier"
 			tasks: [
 				{
 					id: "A11A020200000007"
@@ -116,9 +123,10 @@
 			y: -3.0d
 		},
 		{
-			dependencies: ["A11A020100000001"]
+			dependencies: ["A11A020100000007"]
 			description: ["Ферма или пекарня — пищевая инфраструктура города."]
 			id: "A11A020100000008"
+			icon: "minecolonies:blockhutfarmer"
 			tasks: [
 				{
 					id: "A11A020200000008"
@@ -131,9 +139,10 @@
 			y: -1.5d
 		},
 		{
-			dependencies: ["A11A020100000001"]
+			dependencies: ["A11A020100000008"]
 			description: ["Первая энергия Create — сила воды."]
 			id: "A11A020100000009"
+			icon: "create:water_wheel"
 			rewards: [
 				{
 					id: "A11A020300000001"
@@ -157,6 +166,7 @@
 			dependencies: ["A11A020100000009"]
 			description: ["Без передачи энергии автоматизации не бывает."]
 			id: "A11A02010000000A"
+			icon: "create:shaft"
 			tasks: [
 				{
 					id: "A11A02020000000A"
@@ -173,6 +183,7 @@
 			dependencies: ["A11A02010000000A"]
 			description: ["Пресс делает пластины — основу деталей."]
 			id: "A11A02010000000B"
+			icon: "create:mechanical_press"
 			tasks: [
 				{
 					id: "A11A02020000000B"
@@ -185,9 +196,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A02010000000A"]
+			dependencies: ["A11A02010000000B"]
 			description: ["Пила ускоряет работу с деревом для стройки."]
 			id: "A11A02010000000C"
+			icon: "create:mechanical_saw"
 			tasks: [
 				{
 					id: "A11A02020000000C"
@@ -200,9 +212,10 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A020100000009"]
+			dependencies: ["A11A02010000000C"]
 			description: ["Вентилятор — дробление, смоление, охлаждение."]
 			id: "A11A02010000000D"
+			icon: "create:encased_fan"
 			tasks: [
 				{
 					id: "A11A02020000000D"
@@ -215,9 +228,10 @@
 			y: -1.5d
 		},
 		{
-			dependencies: ["A11A02010000000B", "A11A02010000000C"]
+			dependencies: ["A11A02010000000D"]
 			description: ["Конвейерные линии связывают механизмы в производство."]
 			id: "A11A02010000000E"
+			icon: "create:belt_connector"
 			tasks: [
 				{
 					id: "A11A02020000000E"
@@ -231,9 +245,10 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A020100000001"]
+			dependencies: ["A11A02010000000E"]
 			description: ["Ars Nouveau — магия источника, которая работает на производство."]
 			id: "A11A02010000000F"
+			icon: "minecraft:book"
 			rewards: [
 				{
 					id: "A11A020300000002"
@@ -257,6 +272,7 @@
 			dependencies: ["A11A02010000000F"]
 			description: ["Самоцветы — топливо магии и компонент поздних рецептов.", "Их можно автоматизировать дробилкой Create (см. JEI)."]
 			id: "A11A020100000010"
+			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
 					id: "A11A020200000010"
@@ -270,9 +286,10 @@
 			y: -3.0d
 		},
 		{
-			dependencies: ["A11A02010000000E", "A11A020100000008", "A11A020100000010", "A11A020100000007"]
+			dependencies: ["A11A020100000010"]
 			description: ["Автоматизируйте производство строительных компонентов:", "доски, обработанный камень, железные пластины.", "Город должен получать их без вашего участия."]
 			id: "A11A020100000011"
+			icon: "minecolonies:supplycamp"
 			rewards: [
 				{
 					id: "A11A020300000003"
@@ -304,9 +321,10 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A020100000005"]
+			dependencies: ["A11A020100000011"]
 			description: ["Прочные инструменты для длинных смен рабочих."]
 			id: "A11A020100000012"
+			icon: "minecraft:iron_pickaxe"
 			tasks: [
 				{
 					id: "A11A020200000013"
@@ -320,9 +338,10 @@
 			y: -4.5d
 		},
 		{
-			dependencies: ["A11A020100000004"]
+			dependencies: ["A11A020100000012"]
 			description: ["Саженцы поддерживают работу лесоруба."]
 			id: "A11A020100000013"
+			icon: "minecraft:oak_sapling"
 			tasks: [
 				{
 					id: "A11A020200000014"
@@ -336,9 +355,10 @@
 			y: -3.0d
 		},
 		{
-			dependencies: ["A11A020100000001"]
+			dependencies: ["A11A020100000013"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «home» до 3 уровня."]
 			id: "A11A020100000014"
+			icon: "minecolonies:blockhutcitizen"
 			tasks: [
 				{
 					id: "A11A020200000015"
@@ -354,6 +374,7 @@
 			dependencies: ["A11A020100000014"]
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 4 жителей."]
 			id: "A11A020100000015"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A020200000016"
@@ -369,6 +390,7 @@
 			dependencies: ["A11A020100000015"]
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 6 жителей."]
 			id: "A11A020100000016"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A020200000017"
@@ -384,6 +406,7 @@
 			dependencies: ["A11A020100000016"]
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 10 жителей."]
 			id: "A11A020100000017"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A020200000018"
@@ -399,6 +422,7 @@
 			dependencies: ["A11A020100000017"]
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 12 жителей."]
 			id: "A11A020100000018"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A020200000019"
@@ -414,6 +438,7 @@
 			dependencies: ["A11A020100000018"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «lumberjack» до 2 уровня."]
 			id: "A11A020100000019"
+			icon: "minecolonies:blockhutlumberjack"
 			tasks: [
 				{
 					id: "A11A02020000001A"
@@ -429,6 +454,7 @@
 			dependencies: ["A11A020100000019"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «miner» до 2 уровня."]
 			id: "A11A02010000001A"
+			icon: "minecolonies:blockhutminer"
 			tasks: [
 				{
 					id: "A11A02020000001B"
@@ -444,6 +470,7 @@
 			dependencies: ["A11A02010000001A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «farm» до 2 уровня."]
 			id: "A11A02010000001B"
+			icon: "minecolonies:blockhutfarmer"
 			tasks: [
 				{
 					id: "A11A02020000001C"
@@ -459,6 +486,7 @@
 			dependencies: ["A11A02010000001B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «cook» до 2 уровня."]
 			id: "A11A02010000001C"
+			icon: "minecolonies:blockhutcook"
 			tasks: [
 				{
 					id: "A11A02020000001D"
@@ -474,6 +502,7 @@
 			dependencies: ["A11A02010000001C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «fish» до 2 уровня."]
 			id: "A11A02010000001D"
+			icon: "minecolonies:blockhutfisherman"
 			tasks: [
 				{
 					id: "A11A02020000001E"
@@ -489,6 +518,7 @@
 			dependencies: ["A11A02010000001D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «saw» до 1 уровня."]
 			id: "A11A02010000001E"
+			icon: "minecolonies:blockhutsawmill"
 			tasks: [
 				{
 					id: "A11A02020000001F"
@@ -504,6 +534,7 @@
 			dependencies: ["A11A02010000001E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «stone» до 2 уровня."]
 			id: "A11A02010000001F"
+			icon: "minecolonies:blockhutstonemason"
 			tasks: [
 				{
 					id: "A11A020200000020"
@@ -519,6 +550,7 @@
 			dependencies: ["A11A02010000001F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «black» до 2 уровня."]
 			id: "A11A020100000020"
+			icon: "minecolonies:blockhutblacksmith"
 			tasks: [
 				{
 					id: "A11A020200000021"
@@ -534,6 +566,7 @@
 			dependencies: ["A11A020100000020"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «guard» до 2 уровня."]
 			id: "A11A020100000021"
+			icon: "minecolonies:blockhutguardtower"
 			tasks: [
 				{
 					id: "A11A020200000022"
@@ -549,6 +582,7 @@
 			dependencies: ["A11A020100000021"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «warehouse» до 2 уровня."]
 			id: "A11A020100000022"
+			icon: "minecolonies:blockhutwarehouse"
 			tasks: [
 				{
 					id: "A11A020200000023"
@@ -564,6 +598,7 @@
 			dependencies: ["A11A020100000022"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «courier» до 2 уровня."]
 			id: "A11A020100000023"
+			icon: "minecolonies:blockhutcourier"
 			tasks: [
 				{
 					id: "A11A020200000024"
@@ -576,9 +611,10 @@
 			y: -21.5d
 		},
 		{
-			dependencies: ["A11A020100000009"]
+			dependencies: ["A11A020100000023"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:cogwheel ×16."]
 			id: "A11A020100000024"
+			icon: "create:cogwheel"
 			tasks: [
 				{
 					id: "A11A020200000025"
@@ -595,6 +631,7 @@
 			dependencies: ["A11A020100000024"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:large_cogwheel ×8."]
 			id: "A11A020100000025"
+			icon: "create:large_cogwheel"
 			tasks: [
 				{
 					id: "A11A020200000026"
@@ -611,6 +648,7 @@
 			dependencies: ["A11A020100000025"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:shaft ×16."]
 			id: "A11A020100000026"
+			icon: "create:shaft"
 			tasks: [
 				{
 					id: "A11A020200000027"
@@ -627,6 +665,7 @@
 			dependencies: ["A11A020100000026"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:andesite_casing ×8."]
 			id: "A11A020100000027"
+			icon: "create:andesite_casing"
 			tasks: [
 				{
 					id: "A11A020200000028"
@@ -643,6 +682,7 @@
 			dependencies: ["A11A020100000027"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:gearbox ×8."]
 			id: "A11A020100000028"
+			icon: "create:gearbox"
 			tasks: [
 				{
 					id: "A11A020200000029"
@@ -656,9 +696,10 @@
 			y: -2.8d
 		},
 		{
-			dependencies: ["A11A020100000028", "A11A020100000022"]
+			dependencies: ["A11A020100000028"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:belt_connector ×16."]
 			id: "A11A020100000029"
+			icon: "create:belt_connector"
 			tasks: [
 				{
 					id: "A11A02020000002A"
@@ -675,6 +716,7 @@
 			dependencies: ["A11A020100000029"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:depot ×4."]
 			id: "A11A02010000002A"
+			icon: "create:depot"
 			tasks: [
 				{
 					id: "A11A02020000002B"
@@ -691,6 +733,7 @@
 			dependencies: ["A11A02010000002A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:chute ×8."]
 			id: "A11A02010000002B"
+			icon: "create:chute"
 			tasks: [
 				{
 					id: "A11A02020000002C"
@@ -707,6 +750,7 @@
 			dependencies: ["A11A02010000002B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:millstone ×2."]
 			id: "A11A02010000002C"
+			icon: "create:millstone"
 			tasks: [
 				{
 					id: "A11A02020000002D"
@@ -723,6 +767,7 @@
 			dependencies: ["A11A02010000002C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:crushing_wheel ×2."]
 			id: "A11A02010000002D"
+			icon: "create:crushing_wheel"
 			tasks: [
 				{
 					id: "A11A02020000002E"
@@ -739,6 +784,7 @@
 			dependencies: ["A11A02010000002D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_mixer ×2."]
 			id: "A11A02010000002E"
+			icon: "create:mechanical_mixer"
 			tasks: [
 				{
 					id: "A11A02020000002F"
@@ -755,6 +801,7 @@
 			dependencies: ["A11A02010000002E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:basin ×4."]
 			id: "A11A02010000002F"
+			icon: "create:basin"
 			tasks: [
 				{
 					id: "A11A020200000030"
@@ -771,6 +818,7 @@
 			dependencies: ["A11A02010000002F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:spout ×2."]
 			id: "A11A020100000030"
+			icon: "create:spout"
 			tasks: [
 				{
 					id: "A11A020200000031"
@@ -787,6 +835,7 @@
 			dependencies: ["A11A020100000030"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:item_drain ×2."]
 			id: "A11A020100000031"
+			icon: "create:item_drain"
 			tasks: [
 				{
 					id: "A11A020200000032"
@@ -803,6 +852,7 @@
 			dependencies: ["A11A020100000031"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_crafter ×8."]
 			id: "A11A020100000032"
+			icon: "create:mechanical_crafter"
 			tasks: [
 				{
 					id: "A11A020200000033"
@@ -819,6 +869,7 @@
 			dependencies: ["A11A020100000032"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:wrench ×1."]
 			id: "A11A020100000033"
+			icon: "create:wrench"
 			tasks: [
 				{
 					id: "A11A020200000034"
@@ -835,6 +886,7 @@
 			dependencies: ["A11A020100000033"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:electron_tube ×8."]
 			id: "A11A020100000034"
+			icon: "create:electron_tube"
 			tasks: [
 				{
 					id: "A11A020200000035"
@@ -851,6 +903,7 @@
 			dependencies: ["A11A020100000034"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:super_glue ×1."]
 			id: "A11A020100000035"
+			icon: "create:super_glue"
 			tasks: [
 				{
 					id: "A11A020200000036"
@@ -864,9 +917,10 @@
 			y: -24.9d
 		},
 		{
-			dependencies: ["A11A02010000000F"]
+			dependencies: ["A11A020100000035"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:source_gem ×16."]
 			id: "A11A020100000036"
+			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
 					id: "A11A020200000037"
@@ -883,6 +937,7 @@
 			dependencies: ["A11A020100000036"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:sourcestone ×64."]
 			id: "A11A020100000037"
+			icon: "ars_nouveau:sourcestone"
 			tasks: [
 				{
 					id: "A11A020200000038"
@@ -899,6 +954,7 @@
 			dependencies: ["A11A020100000037"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:experience_bottle ×8."]
 			id: "A11A020100000038"
+			icon: "minecraft:experience_bottle"
 			tasks: [
 				{
 					id: "A11A020200000039"
@@ -915,6 +971,7 @@
 			dependencies: ["A11A020100000038"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bookshelf ×8."]
 			id: "A11A020100000039"
+			icon: "minecraft:bookshelf"
 			tasks: [
 				{
 					id: "A11A02020000003A"
@@ -931,6 +988,7 @@
 			dependencies: ["A11A020100000039"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:enchanting_table ×1."]
 			id: "A11A02010000003A"
+			icon: "minecraft:enchanting_table"
 			tasks: [
 				{
 					id: "A11A02020000003B"
@@ -944,9 +1002,10 @@
 			y: -2.8d
 		},
 		{
-			dependencies: ["A11A02010000003A", "A11A02010000001E"]
+			dependencies: ["A11A02010000003A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000003B"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A02020000003C"
@@ -968,6 +1027,7 @@
 			dependencies: ["A11A02010000003B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000003C"
+			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
 					id: "A11A02020000003E"
@@ -989,6 +1049,7 @@
 			dependencies: ["A11A02010000003C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass_bottle ×16."]
 			id: "A11A02010000003D"
+			icon: "minecraft:glass_bottle"
 			tasks: [
 				{
 					id: "A11A020200000040"
@@ -1002,9 +1063,10 @@
 			y: -7.9d
 		},
 		{
-			dependencies: ["A11A020100000019"]
+			dependencies: ["A11A02010000003D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:oak_log ×256."]
 			id: "A11A02010000003E"
+			icon: "minecraft:oak_log"
 			tasks: [
 				{
 					id: "A11A020200000041"
@@ -1021,6 +1083,7 @@
 			dependencies: ["A11A02010000003E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:cobblestone ×512."]
 			id: "A11A02010000003F"
+			icon: "minecraft:cobblestone"
 			tasks: [
 				{
 					id: "A11A020200000042"
@@ -1037,6 +1100,7 @@
 			dependencies: ["A11A02010000003F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:coal ×64."]
 			id: "A11A020100000040"
+			icon: "minecraft:coal"
 			tasks: [
 				{
 					id: "A11A020200000043"
@@ -1053,6 +1117,7 @@
 			dependencies: ["A11A020100000040"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_ingot ×32."]
 			id: "A11A020100000041"
+			icon: "minecraft:iron_ingot"
 			tasks: [
 				{
 					id: "A11A020200000044"
@@ -1066,9 +1131,10 @@
 			y: -1.0999999999999996d
 		},
 		{
-			dependencies: ["A11A020100000041", "A11A020100000027"]
+			dependencies: ["A11A020100000041"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:andesite_alloy ×32."]
 			id: "A11A020100000042"
+			icon: "create:andesite_alloy"
 			tasks: [
 				{
 					id: "A11A020200000045"
@@ -1085,6 +1151,7 @@
 			dependencies: ["A11A020100000042"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_press ×2."]
 			id: "A11A020100000043"
+			icon: "create:mechanical_press"
 			tasks: [
 				{
 					id: "A11A020200000046"
@@ -1101,6 +1168,7 @@
 			dependencies: ["A11A020100000043"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_saw ×2."]
 			id: "A11A020100000044"
+			icon: "create:mechanical_saw"
 			tasks: [
 				{
 					id: "A11A020200000047"
@@ -1117,6 +1185,7 @@
 			dependencies: ["A11A020100000044"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:encased_fan ×2."]
 			id: "A11A020100000045"
+			icon: "create:encased_fan"
 			tasks: [
 				{
 					id: "A11A020200000048"
@@ -1133,6 +1202,7 @@
 			dependencies: ["A11A020100000045"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:millstone ×2."]
 			id: "A11A020100000046"
+			icon: "create:millstone"
 			tasks: [
 				{
 					id: "A11A020200000049"
@@ -1149,6 +1219,7 @@
 			dependencies: ["A11A020100000046"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:belt_connector ×32."]
 			id: "A11A020100000047"
+			icon: "create:belt_connector"
 			tasks: [
 				{
 					id: "A11A02020000004A"
@@ -1165,6 +1236,7 @@
 			dependencies: ["A11A020100000047"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:stone_bricks ×128."]
 			id: "A11A020100000048"
+			icon: "minecraft:stone_bricks"
 			tasks: [
 				{
 					id: "A11A02020000004B"
@@ -1178,9 +1250,10 @@
 			y: -13.0d
 		},
 		{
-			dependencies: ["A11A020100000048", "A11A02010000001E"]
+			dependencies: ["A11A020100000048"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass ×128."]
 			id: "A11A020100000049"
+			icon: "minecraft:glass"
 			tasks: [
 				{
 					id: "A11A02020000004C"
@@ -1194,9 +1267,10 @@
 			y: -14.7d
 		},
 		{
-			dependencies: ["A11A020100000040"]
+			dependencies: ["A11A020100000049"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000004A"
+			icon: "minecraft:bread"
 			tasks: [
 				{
 					id: "A11A02020000004D"
@@ -1218,6 +1292,7 @@
 			dependencies: ["A11A02010000004A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000004B"
+			icon: "minecraft:iron_ingot"
 			tasks: [
 				{
 					id: "A11A02020000004F"
@@ -1239,6 +1314,7 @@
 			dependencies: ["A11A02010000004B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000004C"
+			icon: "minecraft:oak_log"
 			tasks: [
 				{
 					id: "A11A020200000051"
@@ -1257,9 +1333,10 @@
 			y: 0.6000000000000001d
 		},
 		{
-			dependencies: ["A11A02010000004C", "A11A020100000024"]
+			dependencies: ["A11A02010000004C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000004D"
+			icon: "create:cogwheel"
 			tasks: [
 				{
 					id: "A11A020200000053"
@@ -1278,9 +1355,10 @@
 			y: -1.0999999999999996d
 		},
 		{
-			dependencies: ["A11A02010000004D", "A11A020100000037"]
+			dependencies: ["A11A02010000004D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000004E"
+			icon: "ars_nouveau:sourcestone"
 			tasks: [
 				{
 					id: "A11A020200000055"
@@ -1302,6 +1380,7 @@
 			dependencies: ["A11A02010000004E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A02010000004F"
+			icon: "create:andesite_alloy"
 			tasks: [
 				{
 					id: "A11A020200000057"
@@ -1320,9 +1399,10 @@
 			y: -4.5d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A02010000004F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_saw ×2.", "Требуется: create:belt_connector ×32.", "Постройте или улучшите здание «saw» до 2 уровня."]
 			id: "A11A020100000050"
+			icon: "create:mechanical_saw"
 			tasks: [
 				{
 					id: "A11A020200000059"
@@ -1350,6 +1430,7 @@
 			dependencies: ["A11A020100000050"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:millstone ×2.", "Требуется: minecraft:cobblestone ×512."]
 			id: "A11A020100000051"
+			icon: "create:millstone"
 			tasks: [
 				{
 					id: "A11A02020000005C"
@@ -1372,6 +1453,7 @@
 			dependencies: ["A11A020100000051"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:encased_fan ×2.", "Требуется: minecraft:iron_ingot ×64.", "Постройте или улучшите здание «black» до 2 уровня."]
 			id: "A11A020100000052"
+			icon: "create:encased_fan"
 			tasks: [
 				{
 					id: "A11A02020000005E"
@@ -1399,6 +1481,7 @@
 			dependencies: ["A11A020100000052"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:chest ×16.", "Постройте или улучшите здание «warehouse» до 2 уровня."]
 			id: "A11A020100000053"
+			icon: "minecraft:chest"
 			tasks: [
 				{
 					id: "A11A020200000061"
@@ -1417,9 +1500,10 @@
 			y: -1.0999999999999996d
 		},
 		{
-			dependencies: ["A11A020100000011"]
+			dependencies: ["A11A020100000053"]
 			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
 			id: "A11A020100000054"
+			icon: "minecraft:chest"
 			rewards: [
 				{
 					id: "A11A020300000005"

@@ -7,13 +7,14 @@
 	id: "A11A060000000001"
 	dependencies: ["A11A050000000001"]
 	order_index: 5
-	progression_mode: "flexible"
+	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["A11A05010000000C"]
+			dependencies: [ ]
 			description: ["Applied Energistics 2 — управляющий слой производства:", "физические фабрики, городское снабжение и магические материалы", "объединяются в одной сети.", "Эпоха V. Сеть связывает цеха, склады и лаборатории —", "город начинает мыслить как единая автоматика."]
 			id: "A11A060100000001"
+			icon: "arcanopolis:seal_network"
 			tasks: [
 				{
 					id: "A11A060200000001"
@@ -29,6 +30,7 @@
 			dependencies: ["A11A060100000001"]
 			description: ["Запустите контроллер, диски и терминалы."]
 			id: "A11A060100000002"
+			icon: "ae2:controller"
 			tasks: [
 				{
 					id: "A11A060200000002"
@@ -44,6 +46,7 @@
 			dependencies: ["A11A060100000002"]
 			description: ["Ячейки и диски — централизованное хранение ресурсов."]
 			id: "A11A060100000003"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A060200000003"
@@ -59,6 +62,7 @@
 			dependencies: ["A11A060100000003"]
 			description: ["Настройте шаблоны и автоматическое выполнение заказов."]
 			id: "A11A060100000004"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A060200000004"
@@ -71,9 +75,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A060100000002"]
+			dependencies: ["A11A060100000004"]
 			description: ["Ресурсы Mekanism — в общей сети AE2."]
 			id: "A11A060100000005"
+			icon: "mekanism:alloy_atomic"
 			optional: true
 			tasks: [
 				{
@@ -88,9 +93,10 @@
 			y: -1.5d
 		},
 		{
-			dependencies: ["A11A060100000002"]
+			dependencies: ["A11A060100000004"]
 			description: ["Сеть снабжает несколько производственных линий одновременно."]
 			id: "A11A060100000006"
+			icon: "mekanism:ultimate_control_circuit"
 			tasks: [
 				{
 					id: "A11A060200000006"
@@ -104,9 +110,10 @@
 			y: -1.5d
 		},
 		{
-			dependencies: ["A11A060100000004", "A11A060100000006", "A11A060100000005"]
+			dependencies: ["A11A060100000006"]
 			description: ["Запустите автоматическое производство:", "от сырой руды до готового промышленного корпуса.", "Скрафтите Ядро автоматизации (расходует Печать расцвета)."]
 			id: "A11A060100000007"
+			icon: "arcanopolis:automation_core"
 			rewards: [
 				{
 					id: "A11A060300000001"
@@ -137,9 +144,10 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A060100000006"]
+			dependencies: ["A11A060100000007"]
 			description: ["Продвинутая автоматика для сетевых производственных линий."]
 			id: "A11A060100000008"
+			icon: "mekanism:ultimate_control_circuit"
 			tasks: [
 				{
 					id: "A11A060200000009"
@@ -153,9 +161,10 @@
 			y: -1.5d
 		},
 		{
-			dependencies: ["A11A060100000002"]
+			dependencies: ["A11A060100000008"]
 			description: ["Эндер-жемчуг — основа пространственных технологий."]
 			id: "A11A060100000009"
+			icon: "minecraft:ender_pearl"
 			tasks: [
 				{
 					id: "A11A06020000000A"
@@ -169,9 +178,10 @@
 			y: -3.0d
 		},
 		{
-			dependencies: ["A11A060100000001"]
+			dependencies: ["A11A060100000009"]
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 44 жителей."]
 			id: "A11A06010000000A"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A06020000000B"
@@ -187,6 +197,7 @@
 			dependencies: ["A11A06010000000A"]
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 48 жителей."]
 			id: "A11A06010000000B"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A06020000000C"
@@ -202,6 +213,7 @@
 			dependencies: ["A11A06010000000B"]
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 52 жителей."]
 			id: "A11A06010000000C"
+			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
 					id: "A11A06020000000D"
@@ -217,6 +229,7 @@
 			dependencies: ["A11A06010000000C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 4 уровня."]
 			id: "A11A06010000000D"
+			icon: "minecolonies:blockhutmechanic"
 			tasks: [
 				{
 					id: "A11A06020000000E"
@@ -232,6 +245,7 @@
 			dependencies: ["A11A06010000000D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «university» до 4 уровня."]
 			id: "A11A06010000000E"
+			icon: "minecolonies:blockhutuniversity"
 			tasks: [
 				{
 					id: "A11A06020000000F"
@@ -247,6 +261,7 @@
 			dependencies: ["A11A06010000000E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «hospital» до 4 уровня."]
 			id: "A11A06010000000F"
+			icon: "minecolonies:blockhuthospital"
 			tasks: [
 				{
 					id: "A11A060200000010"
@@ -262,6 +277,7 @@
 			dependencies: ["A11A06010000000F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «library» до 5 уровня."]
 			id: "A11A060100000010"
+			icon: "minecolonies:blockhutlibrary"
 			tasks: [
 				{
 					id: "A11A060200000011"
@@ -277,6 +293,7 @@
 			dependencies: ["A11A060100000010"]
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «miner» до 5 уровня."]
 			id: "A11A060100000011"
+			icon: "minecolonies:blockhutminer"
 			tasks: [
 				{
 					id: "A11A060200000012"
@@ -289,9 +306,10 @@
 			y: -7.9d
 		},
 		{
-			dependencies: ["A11A060100000002"]
+			dependencies: ["A11A060100000011"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:certus_quartz_crystal ×32, minecraft:quartz ×32"]
 			id: "A11A060100000012"
+			icon: "ae2:certus_quartz_crystal"
 			tasks: [
 				{
 					id: "A11A060200000013"
@@ -307,6 +325,7 @@
 			dependencies: ["A11A060100000012"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:fluix_crystal ×16, minecraft:amethyst_shard ×16"]
 			id: "A11A060100000013"
+			icon: "ae2:fluix_crystal"
 			tasks: [
 				{
 					id: "A11A060200000014"
@@ -322,6 +341,7 @@
 			dependencies: ["A11A060100000013"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:certus_quartz_dust ×32, minecraft:quartz ×32"]
 			id: "A11A060100000014"
+			icon: "ae2:certus_quartz_dust"
 			tasks: [
 				{
 					id: "A11A060200000015"
@@ -337,6 +357,7 @@
 			dependencies: ["A11A060100000014"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:engineering_processor ×16, mekanism:basic_control_circuit ×16"]
 			id: "A11A060100000015"
+			icon: "ae2:engineering_processor"
 			tasks: [
 				{
 					id: "A11A060200000016"
@@ -352,6 +373,7 @@
 			dependencies: ["A11A060100000015"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:fluix_glass_cable ×16, minecraft:glass_pane ×16"]
 			id: "A11A060100000016"
+			icon: "ae2:fluix_glass_cable"
 			tasks: [
 				{
 					id: "A11A060200000017"
@@ -367,6 +389,7 @@
 			dependencies: ["A11A060100000016"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:controller ×1, minecraft:redstone_block ×1"]
 			id: "A11A060100000017"
+			icon: "ae2:controller"
 			tasks: [
 				{
 					id: "A11A060200000018"
@@ -382,6 +405,7 @@
 			dependencies: ["A11A060100000017"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:terminal ×2, minecraft:glass ×2"]
 			id: "A11A060100000018"
+			icon: "ae2:terminal"
 			tasks: [
 				{
 					id: "A11A060200000019"
@@ -397,6 +421,7 @@
 			dependencies: ["A11A060100000018"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:cell_component_1k ×8, minecraft:redstone ×8"]
 			id: "A11A060100000019"
+			icon: "ae2:cell_component_1k"
 			tasks: [
 				{
 					id: "A11A06020000001A"
@@ -412,6 +437,7 @@
 			dependencies: ["A11A060100000019"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:blank_pattern ×16, minecraft:paper ×16"]
 			id: "A11A06010000001A"
+			icon: "ae2:blank_pattern"
 			tasks: [
 				{
 					id: "A11A06020000001B"
@@ -427,6 +453,7 @@
 			dependencies: ["A11A06010000001A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A06010000001B"
+			icon: "ae2:blank_pattern"
 			tasks: [
 				{
 					id: "A11A06020000001C"
@@ -444,9 +471,10 @@
 			y: -11.299999999999999d
 		},
 		{
-			dependencies: ["A11A060100000005", "A11A06010000000D"]
+			dependencies: ["A11A06010000001B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:alloy_atomic ×16."]
 			id: "A11A06010000001C"
+			icon: "mekanism:alloy_atomic"
 			tasks: [
 				{
 					id: "A11A06020000001E"
@@ -463,6 +491,7 @@
 			dependencies: ["A11A06010000001C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×16."]
 			id: "A11A06010000001D"
+			icon: "mekanism:ultimate_control_circuit"
 			tasks: [
 				{
 					id: "A11A06020000001F"
@@ -479,6 +508,7 @@
 			dependencies: ["A11A06010000001D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:basic_energy_cube ×2, minecraft:redstone_block ×2"]
 			id: "A11A06010000001E"
+			icon: "mekanism:basic_energy_cube"
 			tasks: [
 				{
 					id: "A11A060200000020"
@@ -494,6 +524,7 @@
 			dependencies: ["A11A06010000001E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:turbine_blade ×4, minecraft:iron_ingot ×4"]
 			id: "A11A06010000001F"
+			icon: "mekanism:turbine_blade"
 			tasks: [
 				{
 					id: "A11A060200000021"
@@ -509,6 +540,7 @@
 			dependencies: ["A11A06010000001F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:basic_factory ×2, minecraft:crafting_table ×2"]
 			id: "A11A060100000020"
+			icon: "mekanism:basic_factory"
 			tasks: [
 				{
 					id: "A11A060200000022"
@@ -524,6 +556,7 @@
 			dependencies: ["A11A060100000020"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000021"
+			icon: "mekanism:ultimate_control_circuit"
 			tasks: [
 				{
 					id: "A11A060200000023"
@@ -545,6 +578,7 @@
 			dependencies: ["A11A060100000021"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000022"
+			icon: "mekanism:alloy_atomic"
 			tasks: [
 				{
 					id: "A11A060200000025"
@@ -563,9 +597,10 @@
 			y: -6.199999999999999d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A060100000022"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×8.", "Требуется: любой из вариантов: ae2:fluix_crystal ×8, minecraft:amethyst_shard ×8"]
 			id: "A11A060100000023"
+			icon: "mekanism:ultimate_control_circuit"
 			tasks: [
 				{
 					id: "A11A060200000027"
@@ -587,6 +622,7 @@
 			dependencies: ["A11A060100000023"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000024"
+			icon: "ae2:blank_pattern"
 			tasks: [
 				{
 					id: "A11A060200000029"
@@ -607,6 +643,7 @@
 			dependencies: ["A11A060100000024"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000025"
+			icon: "mekanism:basic_energy_cube"
 			tasks: [
 				{
 					id: "A11A06020000002B"
@@ -627,6 +664,7 @@
 			dependencies: ["A11A060100000025"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000026"
+			icon: "arcanopolis:reinforced_casing"
 			tasks: [
 				{
 					id: "A11A06020000002D"
@@ -648,6 +686,7 @@
 			dependencies: ["A11A060100000026"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000027"
+			icon: "minecraft:ender_pearl"
 			tasks: [
 				{
 					id: "A11A06020000002F"
@@ -666,9 +705,10 @@
 			y: -2.8d
 		},
 		{
-			dependencies: ["A11A060100000027", "A11A060100000007"]
+			dependencies: ["A11A060100000027"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000028"
+			icon: "arcanopolis:automation_core"
 			tasks: [
 				{
 					id: "A11A060200000031"
@@ -687,9 +727,10 @@
 			y: -4.5d
 		},
 		{
-			dependencies: ["A11A06010000001D"]
+			dependencies: ["A11A060100000028"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×32."]
 			id: "A11A060100000029"
+			icon: "mekanism:ultimate_control_circuit"
 			tasks: [
 				{
 					id: "A11A060200000033"
@@ -706,6 +747,7 @@
 			dependencies: ["A11A060100000029"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:ingot_osmium ×64, minecraft:iron_ingot ×64"]
 			id: "A11A06010000002A"
+			icon: "mekanism:ingot_osmium"
 			tasks: [
 				{
 					id: "A11A060200000034"
@@ -721,6 +763,7 @@
 			dependencies: ["A11A06010000002A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ingot_steel ×128."]
 			id: "A11A06010000002B"
+			icon: "mekanism:ingot_steel"
 			tasks: [
 				{
 					id: "A11A060200000035"
@@ -737,6 +780,7 @@
 			dependencies: ["A11A06010000002B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ender_pearl ×32."]
 			id: "A11A06010000002C"
+			icon: "minecraft:ender_pearl"
 			tasks: [
 				{
 					id: "A11A060200000036"
@@ -753,6 +797,7 @@
 			dependencies: ["A11A06010000002C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: thermal:enderium_ingot ×8."]
 			id: "A11A06010000002D"
+			icon: "thermal:enderium_ingot"
 			tasks: [
 				{
 					id: "A11A060200000037"
@@ -766,9 +811,10 @@
 			y: -2.8d
 		},
 		{
-			dependencies: ["A11A06010000002D", "A11A060100000024"]
+			dependencies: ["A11A06010000002D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A06010000002E"
+			icon: "minecraft:hopper"
 			tasks: [
 				{
 					id: "A11A060200000038"
@@ -787,9 +833,10 @@
 			y: -4.5d
 		},
 		{
-			dependencies: ["A11A060100000024"]
+			dependencies: ["A11A06010000002E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ender_chest ×2."]
 			id: "A11A06010000002F"
+			icon: "minecraft:ender_chest"
 			tasks: [
 				{
 					id: "A11A06020000003A"
@@ -806,6 +853,7 @@
 			dependencies: ["A11A06010000002F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:shulker_box ×8."]
 			id: "A11A060100000030"
+			icon: "minecraft:shulker_box"
 			tasks: [
 				{
 					id: "A11A06020000003B"
@@ -822,6 +870,7 @@
 			dependencies: ["A11A060100000030"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:hopper ×32."]
 			id: "A11A060100000031"
+			icon: "minecraft:hopper"
 			tasks: [
 				{
 					id: "A11A06020000003C"
@@ -838,6 +887,7 @@
 			dependencies: ["A11A060100000031"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:dropper ×16."]
 			id: "A11A060100000032"
+			icon: "minecraft:dropper"
 			tasks: [
 				{
 					id: "A11A06020000003D"
@@ -854,6 +904,7 @@
 			dependencies: ["A11A060100000032"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:dispenser ×8."]
 			id: "A11A060100000033"
+			icon: "minecraft:dispenser"
 			tasks: [
 				{
 					id: "A11A06020000003E"
@@ -870,6 +921,7 @@
 			dependencies: ["A11A060100000033"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:observer ×8."]
 			id: "A11A060100000034"
+			icon: "minecraft:observer"
 			tasks: [
 				{
 					id: "A11A06020000003F"
@@ -886,6 +938,7 @@
 			dependencies: ["A11A060100000034"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:piston ×16."]
 			id: "A11A060100000035"
+			icon: "minecraft:piston"
 			tasks: [
 				{
 					id: "A11A060200000040"
@@ -902,6 +955,7 @@
 			dependencies: ["A11A060100000035"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:sticky_piston ×8."]
 			id: "A11A060100000036"
+			icon: "minecraft:sticky_piston"
 			tasks: [
 				{
 					id: "A11A060200000041"
@@ -915,9 +969,10 @@
 			y: -7.9d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A060100000036"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:redstone_block ×8."]
 			id: "A11A060100000037"
+			icon: "minecraft:redstone_block"
 			tasks: [
 				{
 					id: "A11A060200000042"
@@ -934,6 +989,7 @@
 			dependencies: ["A11A060100000037"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:repeater ×16."]
 			id: "A11A060100000038"
+			icon: "minecraft:repeater"
 			tasks: [
 				{
 					id: "A11A060200000043"
@@ -947,9 +1003,10 @@
 			y: -13.7d
 		},
 		{
-			dependencies: ["A11A060100000038", "A11A060100000031"]
+			dependencies: ["A11A060100000038"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:comparator ×16."]
 			id: "A11A060100000039"
+			icon: "minecraft:comparator"
 			tasks: [
 				{
 					id: "A11A060200000044"
@@ -966,6 +1023,7 @@
 			dependencies: ["A11A060100000039"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:daylight_detector ×4."]
 			id: "A11A06010000003A"
+			icon: "minecraft:daylight_detector"
 			tasks: [
 				{
 					id: "A11A060200000045"
@@ -982,6 +1040,7 @@
 			dependencies: ["A11A06010000003A"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:redstone_lamp ×8."]
 			id: "A11A06010000003B"
+			icon: "minecraft:redstone_lamp"
 			tasks: [
 				{
 					id: "A11A060200000046"
@@ -998,6 +1057,7 @@
 			dependencies: ["A11A06010000003B"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A06010000003C"
+			icon: "minecraft:iron_door"
 			tasks: [
 				{
 					id: "A11A060200000047"
@@ -1016,9 +1076,10 @@
 			y: -20.5d
 		},
 		{
-			dependencies: ["A11A06010000000E"]
+			dependencies: ["A11A06010000003C"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A06010000003D"
+			icon: "minecraft:quartz"
 			tasks: [
 				{
 					id: "A11A060200000049"
@@ -1040,6 +1101,7 @@
 			dependencies: ["A11A06010000003D"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A06010000003E"
+			icon: "mekanism:basic_control_circuit"
 			tasks: [
 				{
 					id: "A11A06020000004B"
@@ -1061,6 +1123,7 @@
 			dependencies: ["A11A06010000003E"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A06010000003F"
+			icon: "mekanism:alloy_atomic"
 			tasks: [
 				{
 					id: "A11A06020000004D"
@@ -1082,6 +1145,7 @@
 			dependencies: ["A11A06010000003F"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000040"
+			icon: "minecraft:redstone_block"
 			tasks: [
 				{
 					id: "A11A06020000004F"
@@ -1103,6 +1167,7 @@
 			dependencies: ["A11A060100000040"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000041"
+			icon: "minecraft:ender_chest"
 			tasks: [
 				{
 					id: "A11A060200000051"
@@ -1124,6 +1189,7 @@
 			dependencies: ["A11A060100000041"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000042"
+			icon: "ae2:blank_pattern"
 			tasks: [
 				{
 					id: "A11A060200000053"
@@ -1144,6 +1210,7 @@
 			dependencies: ["A11A060100000042"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000043"
+			icon: "minecraft:ender_pearl"
 			tasks: [
 				{
 					id: "A11A060200000055"
@@ -1165,6 +1232,7 @@
 			dependencies: ["A11A060100000043"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ender_eye ×8."]
 			id: "A11A060100000044"
+			icon: "minecraft:ender_eye"
 			tasks: [
 				{
 					id: "A11A060200000057"
@@ -1181,6 +1249,7 @@
 			dependencies: ["A11A060100000044"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:end_crystal ×2."]
 			id: "A11A060100000045"
+			icon: "minecraft:end_crystal"
 			tasks: [
 				{
 					id: "A11A060200000058"
@@ -1197,6 +1266,7 @@
 			dependencies: ["A11A060100000045"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:beacon ×1."]
 			id: "A11A060100000046"
+			icon: "minecraft:beacon"
 			tasks: [
 				{
 					id: "A11A060200000059"
@@ -1213,6 +1283,7 @@
 			dependencies: ["A11A060100000046"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A060100000047"
+			icon: "minecraft:ender_chest"
 			tasks: [
 				{
 					id: "A11A06020000005A"
@@ -1231,9 +1302,10 @@
 			y: -39.1d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A060100000047"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×64."]
 			id: "A11A060100000048"
+			icon: "mekanism:ultimate_control_circuit"
 			tasks: [
 				{
 					id: "A11A06020000005C"
@@ -1250,6 +1322,7 @@
 			dependencies: ["A11A060100000048"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:blank_pattern ×64, minecraft:paper ×64", "Постройте или улучшите здание «mech» до 4 уровня."]
 			id: "A11A060100000049"
+			icon: "ae2:blank_pattern"
 			tasks: [
 				{
 					id: "A11A06020000005D"
@@ -1270,6 +1343,7 @@
 			dependencies: ["A11A060100000049"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:hopper ×32.", "Требуется: minecraft:ender_chest ×4.", "Постройте или улучшите здание «warehouse» до 5 уровня."]
 			id: "A11A06010000004A"
+			icon: "minecraft:hopper"
 			tasks: [
 				{
 					id: "A11A06020000005F"
@@ -1294,9 +1368,10 @@
 			y: -37.4d
 		},
 		{
-			dependencies: ["A11A060100000007"]
+			dependencies: ["A11A06010000004A"]
 			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
 			id: "A11A06010000004B"
+			icon: "minecraft:chest"
 			rewards: [
 				{
 					id: "A11A060300000003"

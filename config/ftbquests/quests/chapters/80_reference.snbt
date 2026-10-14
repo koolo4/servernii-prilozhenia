@@ -7,13 +7,14 @@
 	id: "A11A0D0000000001"
 	dependencies: [ ]
 	order_index: 12
-	progression_mode: "flexible"
+	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
 			dependencies: [ ]
 			description: ["Эпохальные печати выдаются ключевыми квестами", "и РАСХОДУЮТСЯ в переходных крафтах:", "Технический паспорт, Ядро автоматизации, Сердце Арканополиса.", "Потеряли печать? Повторите наградный квест невозможно —", "восстановите печать крафтом по рецепту в JEI."]
 			id: "A11A0D0100000001"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0D0200000001"
@@ -29,6 +30,7 @@
 			dependencies: ["A11A0D0100000001"]
 			description: ["12 предметов arcanopolis: — от Городской хартии", "до Сердца Арканополиса. Все видны в JEI."]
 			id: "A11A0D0100000002"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0D0200000002"
@@ -44,6 +46,7 @@
 			dependencies: ["A11A0D0100000002"]
 			description: ["Каждая эпоха требует городских и производственных достижений.", "Подробности — в docs/02-progression.md репозитория сборки."]
 			id: "A11A0D0100000003"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0D0200000003"
@@ -56,9 +59,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A0D0100000003"]
 			description: ["Строительные заказы, запросы рабочих, инвентари хижин", "и система доставки — основа городской прогрессии."]
 			id: "A11A0D0100000004"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0D0200000004"
@@ -74,6 +78,7 @@
 			dependencies: ["A11A0D0100000004"]
 			description: ["Рецепты — kubejs/server_scripts/.", "Ошибки — команда /kubejs errors.", "Квесты — режим редактирования FTB Quests."]
 			id: "A11A0D0100000005"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0D0200000005"
@@ -86,9 +91,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A0D0100000005"]
 			description: ["Новые квесты — это автоматические цепочки:", "условия колонии (ратуша, жители, здания) проверяет серверный скрипт,", "предметные задачи выполняются при крафте и добыче.", "Ручные галочки не используются."]
 			id: "A11A0D0100000006"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0D0200000006"

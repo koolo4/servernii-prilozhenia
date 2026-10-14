@@ -7,13 +7,14 @@
 	id: "A11A0C0000000001"
 	dependencies: [ ]
 	order_index: 11
-	progression_mode: "flexible"
+	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
 			dependencies: [ ]
 			description: ["Испытание на длительное автоматическое снабжение колонии."]
 			id: "A11A0C0100000001"
+			icon: "minecraft:book"
 			tasks: [
 				{
 					id: "A11A0C0200000001"
@@ -29,6 +30,7 @@
 			dependencies: ["A11A0C0100000001"]
 			description: ["Семь игровых дней колония живёт без ручной доставки."]
 			id: "A11A0C0100000002"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -50,9 +52,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A0C0100000002"]
+			dependencies: ["A11A0C0100000001"]
 			description: ["Тридцать дней: еда, топливо, стройматериалы — всё в достатке."]
 			id: "A11A0C0100000003"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -74,9 +77,10 @@
 			y: 1.5d
 		},
 		{
-			dependencies: ["A11A0C0100000003"]
+			dependencies: ["A11A0C0100000001"]
 			description: ["Город-машина работает сам."]
 			id: "A11A0C0100000004"
+			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
@@ -97,9 +101,10 @@
 			y: 0.0d
 		},
 		{
-			dependencies: [ ]
+			dependencies: ["A11A0C0100000001"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bread ×128."]
 			id: "A11A0C0100000005"
+			icon: "minecraft:bread"
 			tasks: [
 				{
 					id: "A11A0C0200000005"
@@ -116,6 +121,7 @@
 			dependencies: ["A11A0C0100000005"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:coal ×128."]
 			id: "A11A0C0100000006"
+			icon: "minecraft:coal"
 			tasks: [
 				{
 					id: "A11A0C0200000006"
@@ -132,6 +138,7 @@
 			dependencies: ["A11A0C0100000006"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:oak_planks ×256."]
 			id: "A11A0C0100000007"
+			icon: "minecraft:oak_planks"
 			tasks: [
 				{
 					id: "A11A0C0200000007"
@@ -148,6 +155,7 @@
 			dependencies: ["A11A0C0100000007"]
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_ingot ×64."]
 			id: "A11A0C0100000008"
+			icon: "minecraft:iron_ingot"
 			tasks: [
 				{
 					id: "A11A0C0200000008"
@@ -164,6 +172,7 @@
 			dependencies: ["A11A0C0100000008"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0C0100000009"
+			icon: "minecraft:golden_apple"
 			tasks: [
 				{
 					id: "A11A0C0200000009"
@@ -185,6 +194,7 @@
 			dependencies: ["A11A0C0100000009"]
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0C010000000A"
+			icon: "minecraft:chest"
 			tasks: [
 				{
 					id: "A11A0C020000000B"
@@ -203,10 +213,11 @@
 			y: -6.5d
 		},
 		{
-			dependencies: ["A11A0C0100000009"]
+			dependencies: ["A11A0C010000000A"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000B"
-			repeatable: true
+			icon: "minecraft:bread"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C0300000004"
@@ -234,10 +245,11 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C010000000B"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000C"
-			repeatable: true
+			icon: "minecraft:oak_log"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C0300000006"
@@ -265,10 +277,11 @@
 			y: -13.7d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C010000000C"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000D"
-			repeatable: true
+			icon: "minecraft:cobblestone"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C0300000008"
@@ -295,10 +308,11 @@
 			y: -15.4d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C010000000D"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000E"
-			repeatable: true
+			icon: "minecraft:iron_ingot"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C030000000A"
@@ -326,10 +340,11 @@
 			y: -17.1d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C010000000E"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000F"
-			repeatable: true
+			icon: "minecraft:gold_ingot"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C030000000C"
@@ -357,10 +372,11 @@
 			y: -18.8d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C010000000F"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000010"
-			repeatable: true
+			icon: "minecraft:diamond"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C030000000E"
@@ -388,10 +404,11 @@
 			y: -20.5d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C0100000010"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000011"
-			repeatable: true
+			icon: "mekanism:ingot_steel"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C0300000010"
@@ -419,10 +436,11 @@
 			y: -22.2d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C0100000011"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000012"
-			repeatable: true
+			icon: "create:precision_mechanism"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C0300000012"
@@ -450,10 +468,11 @@
 			y: -23.9d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C0100000012"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000013"
-			repeatable: true
+			icon: "minecraft:golden_carrot"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C0300000014"
@@ -480,10 +499,11 @@
 			y: -25.6d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: ["A11A0C0100000013"]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000014"
-			repeatable: true
+			icon: "botania:mana_pearl"
+			can_repeat: true
 			rewards: [
 				{
 					id: "A11A0C0300000016"
