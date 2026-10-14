@@ -929,6 +929,23 @@ def _big_extras() -> dict:
     return _BIG_CACHE
 
 
+def stitch_chapters(chapters: list[Chapter]) -> None:
+    """Сквозная мега-цепочка: глава эпохи N+1 начинается после ПОСЛЕДНЕГО квеста эпохи N."""
+    last_key: dict[str, str] = {}
+    for ch in chapters:
+        k = ""
+        for q in ch.quests:
+            if not q.optional:
+                k = q.key
+        if k:
+            last_key[ch.file] = k
+    for ch in chapters:
+        if ch.file in CHAP_CHAIN and ch.quests:
+            prev = CHAP_CHAIN[ch.file]
+            if prev in last_key:
+                ch.quests[0].deps = [f"{prev}:{last_key[prev]}"]
+
+
 def _or_to_custom(t: Task) -> Task:
     """OR-список предметов -> custom item_any (проверка инвентаря скриптом)."""
     if t.ttype == "item" and "|" in t.item:
@@ -1027,6 +1044,9 @@ def polish(chapters: list[Chapter]) -> None:
                         q.desc = list(q.desc) + lines
         for q in ch.quests:
             q.tasks = [_or_to_custom(t) for t in q.tasks]
+        # каждый квест явно наследует linear-режим (страховка)
+        for q in ch.quests:
+            q.icon = q.icon  # no-op для порядка
         # строгая цепочка: без прошлого квеста следующий недоступен
         last_key = None
         for q in ch.quests:
@@ -1046,8 +1066,17 @@ def polish(chapters: list[Chapter]) -> None:
 
 def write_colony_js() -> None:
     import json
+    MAIN_FILES = ["00_prologue", "10_epoch_wood_water", "20_epoch_steam_logistics",
+                  "30_epoch_industry", "40_epoch_magic", "50_epoch_network", "60_epoch_cosmos"]
     parts = []
+    main_rows = []
+    for f in MAIN_FILES:
+        main_rows.extend(CHAIN_ROWS.get(f, []))
+    body = ",\n".join("    " + json.dumps(r, ensure_ascii=False) for r in main_rows)
+    parts.append(f'  "main": [\n{body}\n  ]')
     for file, rows in CHAIN_ROWS.items():
+        if file in MAIN_FILES:
+            continue
         body = ",\n".join("    " + json.dumps(r, ensure_ascii=False) for r in rows)
         parts.append(f'  "{file}": [\n{body}\n  ]')
     table = ",\n".join(parts)
@@ -1324,6 +1353,7 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
 def main() -> None:
     chapters = build_chapters()
     polish(chapters)
+    stitch_chapters(chapters)
 
     # Первый проход: зарегистрировать ID всех квестов
     qmap: dict[tuple[str, str], str] = {}

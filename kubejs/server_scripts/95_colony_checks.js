@@ -3,7 +3,7 @@
 // Условия MineColonies и наличие предметов проверяются сервером раз в 5 секунд.
 
 const CHAPTER_CHAINS = {
-  "00_prologue": [
+  "main": [
     {"task": "A11A010200000001", "kind": "item_any", "items": "minecolonies:supplycamp|minecolonies:supplyship", "n": 1},
     {"task": "A11A010200000002", "kind": "building", "word": "builder", "n": 1},
     {"task": "A11A010200000003", "kind": "townhall", "n": 1},
@@ -83,9 +83,7 @@ const CHAPTER_CHAINS = {
     {"task": "A11A01020000004D", "kind": "item_any", "items": "minecraft:beetroot", "n": 32},
     {"task": "A11A01020000004E", "kind": "item_any", "items": "minecraft:sugar_cane", "n": 32},
     {"task": "A11A01020000004F", "kind": "item_any", "items": "minecraft:coal", "n": 64},
-    {"task": "A11A010200000050", "kind": "always"}
-  ],
-  "10_epoch_wood_water": [
+    {"task": "A11A010200000050", "kind": "always"},
     {"task": "A11A020200000001", "kind": "townhall", "n": 2},
     {"task": "A11A020200000002", "kind": "townhall", "n": 2},
     {"task": "A11A020200000003", "kind": "citizens", "n": 8},
@@ -184,9 +182,7 @@ const CHAPTER_CHAINS = {
     {"task": "A11A020200000060", "kind": "building", "word": "black", "n": 2},
     {"task": "A11A020200000061", "kind": "item_any", "items": "minecraft:chest", "n": 16},
     {"task": "A11A020200000062", "kind": "building", "word": "warehouse", "n": 2},
-    {"task": "A11A020200000063", "kind": "always"}
-  ],
-  "20_epoch_steam_logistics": [
+    {"task": "A11A020200000063", "kind": "always"},
     {"task": "A11A030200000001", "kind": "townhall", "n": 3},
     {"task": "A11A030200000002", "kind": "townhall", "n": 3},
     {"task": "A11A030200000003", "kind": "building", "word": "builder", "n": 3},
@@ -281,9 +277,7 @@ const CHAPTER_CHAINS = {
     {"task": "A11A03020000005C", "kind": "building", "word": "cook", "n": 3},
     {"task": "A11A03020000005D", "kind": "item_any", "items": "create:mechanical_crafter", "n": 8},
     {"task": "A11A03020000005E", "kind": "item_any", "items": "create:precision_mechanism", "n": 8},
-    {"task": "A11A03020000005F", "kind": "always"}
-  ],
-  "30_epoch_industry": [
+    {"task": "A11A03020000005F", "kind": "always"},
     {"task": "A11A040200000001", "kind": "townhall", "n": 3},
     {"task": "A11A040200000002", "kind": "townhall", "n": 3},
     {"task": "A11A040200000003", "kind": "citizens", "n": 20},
@@ -374,9 +368,7 @@ const CHAPTER_CHAINS = {
     {"task": "A11A040200000058", "kind": "item_any", "items": "mekanism:ingot_steel", "n": 256},
     {"task": "A11A040200000059", "kind": "item_any", "items": "mekanism:energy_tablet|minecraft:redstone_block", "n": 4},
     {"task": "A11A04020000005A", "kind": "building", "word": "mech", "n": 2},
-    {"task": "A11A04020000005B", "kind": "always"}
-  ],
-  "40_epoch_magic": [
+    {"task": "A11A04020000005B", "kind": "always"},
     {"task": "A11A050200000001", "kind": "townhall", "n": 4},
     {"task": "A11A050200000002", "kind": "item_any", "items": "ars_nouveau:source_gem", "n": 32},
     {"task": "A11A050200000003", "kind": "always"},
@@ -466,9 +458,7 @@ const CHAPTER_CHAINS = {
     {"task": "A11A050200000057", "kind": "building", "word": "mech", "n": 3},
     {"task": "A11A050200000058", "kind": "item_any", "items": "minecraft:glass_bottle", "n": 256},
     {"task": "A11A050200000059", "kind": "building", "word": "hospital", "n": 3},
-    {"task": "A11A05020000005A", "kind": "always"}
-  ],
-  "50_epoch_network": [
+    {"task": "A11A05020000005A", "kind": "always"},
     {"task": "A11A060200000001", "kind": "townhall", "n": 5},
     {"task": "A11A060200000002", "kind": "item_any", "items": "ae2:controller", "n": 1},
     {"task": "A11A060200000003", "kind": "always"},
@@ -566,9 +556,7 @@ const CHAPTER_CHAINS = {
     {"task": "A11A06020000005F", "kind": "item_any", "items": "minecraft:hopper", "n": 32},
     {"task": "A11A060200000060", "kind": "item_any", "items": "minecraft:ender_chest", "n": 4},
     {"task": "A11A060200000061", "kind": "building", "word": "warehouse", "n": 5},
-    {"task": "A11A060200000062", "kind": "always"}
-  ],
-  "60_epoch_cosmos": [
+    {"task": "A11A060200000062", "kind": "always"},
     {"task": "A11A070200000001", "kind": "townhall", "n": 6},
     {"task": "A11A070200000002", "kind": "item_any", "items": "mekanism:alloy_atomic", "n": 16},
     {"task": "A11A070200000003", "kind": "item_any", "items": "thermal:enderium_ingot", "n": 8},
