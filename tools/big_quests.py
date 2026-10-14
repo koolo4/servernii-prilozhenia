@@ -31,13 +31,46 @@ def B(item, cond, n=1):
     return ("both", item, n, cond)
 
 
+def IC(item, n=1):
+    """Item-задача с ПОТРЕБЛЕНИем предмета (поставка/торговля)."""
+    return ("itemc", item, n)
+
+
+def K(entity, n=1):
+    """Kill-задача: убить n мобов entity."""
+    return ("kill", entity, n)
+
+
+def DIM(d):
+    """Задача измерения: побывать в d."""
+    return ("dim", d, 0)
+
+
+def ST(stat, v):
+    """Стат-задача: достигнуть значения v статистики stat."""
+    return ("stat", stat, v)
+
+
+def ADV(a):
+    """Задача достижения a."""
+    return ("adv", a, 0)
+
+
 def _task_title(t):
     kind = t[0]
-    if kind == "item":
+    if kind in ("item", "itemc"):
         item, n = t[1], t[2]
         if "|" in item:
             return "Получите: " + " / ".join(item.split("|"))
         return f"Соберите: {item} ×{n}"
+    if kind == "kill":
+        return f"Убить {t[1].split(':')[-1]} ×{t[2]}"
+    if kind == "dim":
+        return f"Побывать: {t[1].split(':')[-1]}"
+    if kind == "stat":
+        return f"Достичь: {t[1].split(':')[-1]} {t[2]}"
+    if kind == "adv":
+        return f"Достижение: {t[1].split('/')[-1]}"
     if kind == "cus":
         p = t[1].split(":")
         if p[0] == "townhall":
@@ -52,11 +85,20 @@ def _task_title(t):
 
 def _task_desc(t):
     kind = t[0]
-    if kind == "item":
+    if kind in ("item", "itemc"):
         item, n = t[1], t[2]
+        verb = "Поставьте (потребляется):" if kind == "itemc" else "Требуется:"
         if "|" in item:
-            return "Требуется любой из вариантов: " + ", ".join(f"{x} ×{n}" for x in item.split("|"))
-        return f"Требуется: {item} ×{n}."
+            return verb + " любой из вариантов: " + ", ".join(f"{x} ×{n}" for x in item.split("|"))
+        return f"{verb} {item} ×{n}."
+    if kind == "kill":
+        return f"Убить существ: {t[1]} ×{t[2]}."
+    if kind == "dim":
+        return f"Побывать в измерении: {t[1]}."
+    if kind == "stat":
+        return f"Достичь статистику {t[1]} ≥ {t[2]}."
+    if kind == "adv":
+        return f"Получить достижение: {t[1]}."
     if kind == "cus":
         p = t[1].split(":")
         if p[0] == "townhall":
@@ -615,6 +657,11 @@ def build_extras():
         "60_epoch_cosmos": _era6() + _era6b() + _era6c(),
     }
     out.update(_sides())
+    for _part in (_v5_puzzles(), _v5_treasure()):
+        for _f, _qs in _part.items():
+            out.setdefault(_f, []).extend(_qs)
+    out["74_side_supply"].extend(_v5_trade())
+    out["71_side_expeditions"].extend(_v5_hunt() + _v5_explore() + _v5_secrets())
     return out
 
 
@@ -805,3 +852,163 @@ def _era6c():
         ("Архивы библиотеки", B("minecraft:book", "building:library:5", 128)),
         ("Финальный салют", B("minecraft:firework_rocket", "citizens:60", 64)),
     ], cross={8: ["e6_f05"]})
+
+
+def STRUCT(sid):
+    """Задача структуры: найти сооружение."""
+    return ("struct", sid, 0)
+
+
+# ---------------------------------------------------------------------------
+# v0.5: пазлы автоматизации, торговля, охота, исследования, сокровищницы
+# ---------------------------------------------------------------------------
+
+def _v5_puzzles():
+    out = {}
+    out["10_epoch_wood_water"] = track(15, 4, "e1pz", [
+        ("Линия пиления", [I("create:mechanical_saw", 2), I("create:belt_connector", 32), C("building:saw:2")]),
+        ("Дробильный комплекс", [I("create:millstone", 2), I("minecraft:cobblestone", 512)]),
+        ("Веерный цех", [I("create:encased_fan", 2), I("minecraft:iron_ingot", 64), C("building:black:2")]),
+        ("Склад готовой продукции", [I("minecraft:chest", 16), C("building:warehouse:2")]),
+    ])
+    out["20_epoch_steam_logistics"] = track(15, -12, "e2pz", [
+        ("Паровой каскад", [I("create:steam_engine", 2), I("minecraft:coal", 256)]),
+        ("Конвейерный узел", [I("create:depot", 4), I("create:belt_connector", 32), C("building:warehouse:3")]),
+        ("Автоматическая пекарня", [I("minecraft:bread", 256), C("building:cook:3")]),
+        ("Механическая сборка", [I("create:mechanical_crafter", 8), I("create:precision_mechanism", 8)]),
+    ])
+    out["30_epoch_industry"] = track(15, -12, "e3pz", [
+        ("Рамочный цех", [I("thermal:machine_frame", 4), C("building:mech:2")]),
+        ("Линия обогащения", [I("mekanism:enrichment_chamber", 2), I("mekanism:basic_control_circuit", 32)]),
+        ("Сталеплавильный двор", I("mekanism:ingot_steel", 256)),
+        ("Энергетический контур", [I("mekanism:energy_tablet|minecraft:redstone_block", 4), C("building:mech:2")]),
+    ])
+    out["40_epoch_magic"] = track(15, -12, "e4pz", [
+        ("Магическая фабрика", [I("ars_nouveau:source_gem", 256), C("building:library:4")]),
+        ("Ритуальный конвейер", [I("arcanopolis:ritual_regulator", 3), C("building:mech:3")]),
+        ("Алхимическое производство", [I("minecraft:glass_bottle", 256), C("building:hospital:3")]),
+    ])
+    out["50_epoch_network"] = track(-15, -34, "e5pz", [
+        ("Сетевая фабрика", I("mekanism:ultimate_control_circuit", 64)),
+        ("Автокрафт-кластер", [I("ae2:blank_pattern|minecraft:paper", 64), C("building:mech:4")]),
+        ("Сортировочный хаб", [I("minecraft:hopper", 32), I("minecraft:ender_chest", 4), C("building:warehouse:5")]),
+    ])
+    out["60_epoch_cosmos"] = track(-15, -34, "e6pz", [
+        ("Завод предела", [I("mekanism:alloy_atomic", 128), C("building:mech:5")]),
+        ("Сердце производства", [I("arcanopolis:reinforced_casing", 64), I("arcanopolis:arcane_converter", 16)]),
+    ])
+    return out
+
+
+def _v5_trade():
+    """Повторяемые торговые квесты: поставки в колонию за изумруды и алмазы."""
+    steps = [
+        ("Поставка хлеба", IC("minecraft:bread", 64), ("item", "minecraft:emerald", 2)),
+        ("Поставка древесины", IC("minecraft:oak_log", 256), ("item", "minecraft:emerald", 2)),
+        ("Поставка камня", IC("minecraft:cobblestone", 256), ("item", "minecraft:emerald", 1)),
+        ("Поставка железа", IC("minecraft:iron_ingot", 32), ("item", "minecraft:emerald", 3)),
+        ("Поставка золота", IC("minecraft:gold_ingot", 16), ("item", "minecraft:emerald", 4)),
+        ("Поставка алмазов", IC("minecraft:diamond", 4), ("item", "minecraft:emerald", 6)),
+        ("Поставка стали", IC("mekanism:ingot_steel", 16), ("item", "minecraft:emerald", 5)),
+        ("Поставка механизмов", IC("create:precision_mechanism", 4), ("item", "minecraft:diamond", 2)),
+        ("Деликатесы для знати", IC("minecraft:golden_carrot", 16), ("item", "minecraft:diamond", 1)),
+        ("Редкие реагенты", IC("botania:mana_pearl", 4), ("item", "minecraft:diamond", 3)),
+    ]
+    q = []
+    y = -12.0
+    for i, (title, task, rew) in enumerate(steps):
+        spec = extra_quest(f"s_tr{i+1:02d}", title, 12, y - 1.7 * i, task,
+                           deps=["s_su06"] if i else ["s_su05"],
+                           desc=["Регулярные поставки в колонию.",
+                                 "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.",
+                                 "Предметы потребляются при сдаче."])
+        spec["repeatable"] = True
+        spec["rewards"] = [rew, ("xp", 100)]
+        q.append(spec)
+    return q
+
+
+def _v5_hunt():
+    q = track(12, -10, "s_hu", [
+        ("Очистить окрестности", K("minecraft:zombie", 16)),
+        ("Костяная угроза", K("minecraft:skeleton", 16)),
+        ("Паучья напасть", K("minecraft:spider", 8)),
+        ("Криперская опасность", K("minecraft:creeper", 8)),
+        ("Огненные твари", K("minecraft:blaze", 8)),
+        ("Охота на эндерменов", K("minecraft:enderman", 6)),
+        ("Стражи крепости", K("minecraft:wither_skeleton", 6)),
+    ], cross={4: ["s_ex03"]})
+    q += track(-6, -10, "s_rd", [
+        ("Рейдеры у стен", K("minecraft:pillager", 10)),
+        ("Палачи рейдов", K("minecraft:vindicator", 4)),
+        ("Захватчики отступили", K("minecraft:ravager", 2)),
+    ])
+    return q
+
+
+def _v5_explore():
+    q = track(6, -10, "s_dx", [
+        ("Портал в Нижний мир", DIM("minecraft:the_nether")),
+        ("Алмазная лихорадка", ADV("minecraft:story/mine_diamond")),
+        ("Око Эндера", ADV("minecraft:story/enter_the_nether")),
+        ("Край света", DIM("minecraft:the_end")),
+    ])
+    q += track(0, -10, "s_st", [
+        ("Оплот древних", STRUCT("minecraft:stronghold")),
+        ("Оплот свинолюдей", STRUCT("minecraft:bastion_remnant")),
+        ("Город Края", STRUCT("minecraft:end_city")),
+        ("Древний город", STRUCT("minecraft:ancient_city")),
+    ])
+    q += track(-12, -22, "s_ww", [
+        ("Дальний путь", ST("minecraft:walk_one_cm", 500000)),
+    ])
+    return q
+
+
+def _v5_secrets():
+    q = []
+    q.append(extra_quest("s_sec1", "???", 18, -22,
+                         ADV("minecraft:adventure/hero_of_the_village"),
+                         deps=["s_rd03"],
+                         desc=["Ходят слухи, что герой, спасший деревню",
+                               "от нашествия рейдеров, получает дар..."]))
+    q[-1]["optional"] = True
+    q.append(extra_quest("s_sec2", "???", -18, -22,
+                         ADV("minecraft:end/kill_dragon"),
+                         deps=["s_dx04"],
+                         desc=["Древние хроники говорят о змееподобном",
+                               "твари, чья смерть откроет тайну Края..."]))
+    q[-1]["optional"] = True
+    return q
+
+
+def _v5_treasure():
+    """Сокровищницы эпох: лут-награды (vanilla /loot) + опыт на вехах."""
+    loot_tables = [
+        "minecraft:chests/simple_dungeon",
+        "minecraft:chests/abandoned_mineshaft",
+        "minecraft:chests/desert_pyramid",
+        "minecraft:chests/buried_treasure",
+    ]
+    specs = [
+        ("00_prologue", "p_tr", "Сокровищница пролога", "charter", 0),
+        ("10_epoch_wood_water", "e1_tr", "Сокровищница эпохи I", "project", 0),
+        ("20_epoch_steam_logistics", "e2_tr", "Сокровищница эпохи II", "project", 1),
+        ("30_epoch_industry", "e3_tr", "Сокровищница эпохи III", "passport", 2),
+        ("40_epoch_magic", "e4_tr", "Сокровищница эпохи IV", "lab", 3),
+        ("50_epoch_network", "e5_tr", "Сокровищница эпохи V", "project", 0),
+        ("60_epoch_cosmos", "e6_tr", "Сокровищница эпохи VI", "finale", 1),
+    ]
+    out = {k: [] for k in ["00_prologue", "10_epoch_wood_water", "20_epoch_steam_logistics",
+                           "30_epoch_industry", "40_epoch_magic", "50_epoch_network", "60_epoch_cosmos"]}
+    for file, key, title, dep, li in specs:
+        spec = extra_quest(key, title, -20, -12, C("always"), deps=[dep],
+                           desc=["Веха эпохи пройдена — заберите награду:",
+                                 "сундук с сокровищами и опыт мастера."])
+        spec["rewards"] = [
+            ("cmd", f"/loot give @p loot {loot_tables[li]}"),
+            ("xp", 500),
+            ("item", "minecraft:emerald", 8),
+        ]
+        out[file].append(spec)
+    return out

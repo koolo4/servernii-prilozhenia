@@ -48,13 +48,16 @@ class Task:
     count: int = 0
     title: str = ""
     advancement: str = ""
-    cond: str = ""  # для custom: townhall:N | citizens:N | building:word:N | always
+    cond: str = ""  # для custom: townhall:N | citizens:N | building:word:N | item_any:a|b@N | always
+    entity: str = ""  # kill: entity id | dimension: dimension id | stat: stat id
+    consume: bool = False  # item: потребить предметы (торговые квесты)
 
 
 @dataclass
 class Reward:
     item: str
     count: int = 1
+    rtype: str = "item"  # item | command | xp
 
 
 @dataclass
@@ -69,6 +72,7 @@ class Quest:
     deps: list[str] = field(default_factory=list)  # "quest" или "file:quest"
     icon: str = ""
     optional: bool = False
+    repeatable: bool = False
 
 
 @dataclass
@@ -104,6 +108,26 @@ def adv_task(advancement: str) -> Task:
 
 def ir(item: str, count: int = 1) -> Reward:
     return Reward(item, count)
+
+
+def rcmd(command: str) -> Reward:
+    return Reward(command, 1, "command")
+
+
+def rxp(n: int) -> Reward:
+    return Reward("", n, "xp")
+
+
+def kill_task(entity: str, n: int = 1, title: str = "") -> Task:
+    return Task("kill", count=n, title=title, entity=entity)
+
+
+def dim_task(dimension: str, title: str = "") -> Task:
+    return Task("dimension", title=title, entity=dimension)
+
+
+def stat_task(stat: str, value: int, title: str = "") -> Task:
+    return Task("stat", count=value, title=title, entity=stat)
 
 
 # ============================================================================
@@ -821,9 +845,46 @@ def _big_extras() -> dict:
     return _BIG_CACHE
 
 
+def _or_to_custom(t: Task) -> Task:
+    """OR-список предметов -> custom item_any (проверка инвентаря скриптом)."""
+    if t.ttype == "item" and "|" in t.item:
+        return Task("custom", cond=f"item_any:{t.item}@{t.count or 1}",
+                    title=t.title or "Получите любой из вариантов")
+    return t
+
+
 def _big_title(t) -> str:
     import big_quests
     return big_quests._task_title(t)
+
+
+HUB_LORE: dict = {
+    ("00_prologue", "start"): [
+        "— Земли под застройку выделены. Хартия подписана.",
+        "Так начинается история Арканополиса — города, где ремесло",
+        "и магия сплетаются в единый механизм."],
+    ("10_epoch_wood_water", "hub"): [
+        "Эпоха I. Первые механизмы шумят у водяных колёс,",
+        "топоры лесорубов задают ритм росту города."],
+    ("20_epoch_steam_logistics", "hub"): [
+        "Эпоха II. Пар вырывается из-под колпаков, поезда",
+        "связывают кварталы, и колония впервые дышит как единое целое."],
+    ("30_epoch_industry", "hub"): [
+        "Эпоха III. Гудят фабрики, руда превращается в сталь,",
+        "а Технический паспорт становится пропуском в будущее."],
+    ("40_epoch_magic", "hub"): [
+        "Эпоха IV. Источник пробуждается: ритуалы, мана и алхимия",
+        "становятся такой же частью производства, как шестерни."],
+    ("50_epoch_network", "hub"): [
+        "Эпоха V. Сеть связывает цеха, склады и лаборатории —",
+        "город начинает мыслить как единая автоматика."],
+    ("60_epoch_cosmos", "hub"): [
+        "Эпоха VI. Горизонт больше не предел: Сердце Арканополиса",
+        "готово пробудиться и устремиться к звёздам."],
+    ("60_epoch_cosmos", "finale"): [
+        "Первый импульс разнёсся по кварталам. Город живой.",
+        "Добро пожаловать в Арканополис."],
+}
 
 
 def polish(chapters: list[Chapter]) -> None:
@@ -844,9 +905,9 @@ def polish(chapters: list[Chapter]) -> None:
         for spec in _big_extras().get(ch.file, []):
             tasks = []
             for t in spec["tasks"]:
-                if t[0] == "item":
+                if t[0] in ("item", "itemc"):
                     tasks.append(Task("item", item=t[1], count=t[2],
-                                      title=_big_title(t)))
+                                      title=_big_title(t), consume=(t[0] == "itemc")))
                 elif t[0] == "cus":
                     tasks.append(Task("custom", cond=t[1], title=_big_title(t)))
                 elif t[0] == "both":
@@ -854,8 +915,34 @@ def polish(chapters: list[Chapter]) -> None:
                                       title=_big_title(("item", t[1], t[2]))))
                     tasks.append(Task("custom", cond=t[3],
                                       title=_big_title(("cus", t[3], 0))))
+                elif t[0] == "kill":
+                    tasks.append(Task("kill", count=t[2], title=_big_title(t), entity=t[1]))
+                elif t[0] == "dim":
+                    tasks.append(Task("dimension", title=_big_title(t), entity=t[1]))
+                elif t[0] == "stat":
+                    tasks.append(Task("stat", count=t[2], title=_big_title(t), entity=t[1]))
+                elif t[0] == "adv":
+                    tasks.append(Task("advancement", title=_big_title(t), advancement=t[1]))
+                elif t[0] == "struct":
+                    tasks.append(Task("structure", title=_big_title(t), entity=t[1]))
+            rewards = []
+            for r in spec.get("rewards", []):
+                if r[0] == "item":
+                    rewards.append(Reward(r[1], r[2]))
+                elif r[0] == "cmd":
+                    rewards.append(Reward(r[1], 1, "command"))
+                elif r[0] == "xp":
+                    rewards.append(Reward("", r[1], "xp"))
             ch.quests.append(Quest(spec["key"], spec["title"], spec["x"], spec["y"],
-                                   spec["desc"], tasks, [], spec["deps"]))
+                                   spec["desc"], tasks, rewards, spec["deps"],
+                                   repeatable=bool(spec.get("repeatable"))))
+        for (lf, lk), lines in HUB_LORE.items():
+            if ch.file == lf:
+                for q in ch.quests:
+                    if q.key == lk:
+                        q.desc = list(q.desc) + lines
+        for q in ch.quests:
+            q.tasks = [_or_to_custom(t) for t in q.tasks]
         if ch.file in CHAP_CHAIN:
             ch.deps_ch = [CHAP_CHAIN[ch.file]]
 
@@ -867,6 +954,11 @@ def polish(chapters: list[Chapter]) -> None:
 def write_colony_js() -> None:
     rows = []
     for tid, cond in CUSTOM_CHECKS:
+        if cond.startswith("item_any:"):
+            rest = cond[len("item_any:"):]
+            items, n = rest.rsplit("@", 1)
+            rows.append(f'  {{ task: "{tid}", kind: "item_any", items: "{items}", n: {n} }},')
+            continue
         parts = cond.split(":")
         if parts[0] == "building" and len(parts) >= 3:
             rows.append(f'  {{ task: "{tid}", kind: "building", word: "{parts[1]}", n: {parts[2]} }},')
@@ -905,8 +997,35 @@ function arcanopolis_buildingManager(col) {{
   return null
 }}
 
+function arcanopolis_itemCount(player, id) {{
+  try {{
+    const Reg = Java.loadClass('net.minecraft.core.registries.BuiltInRegistries')
+    const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
+    const item = Reg.ITEM.get(new RL(String(id)))
+    if (item == null) return 0
+    const inv = player.getInventory()
+    let total = 0
+    for (let i = 0; i < inv.getContainerSize(); i++) {{
+      const st = inv.getItem(i)
+      if (!st.isEmpty() && st.getItem().equals(item)) total += st.getCount()
+    }}
+    return total
+  }} catch (e) {{ return 0 }}
+}}
+
 function arcanopolis_condOk(player, c) {{
   if (c.kind === 'always') return true
+  if (c.kind === 'item_any') {{
+    try {{
+      const ids = String(c.items).split('|')
+      let total = 0
+      for (const id of ids) {{
+        total += arcanopolis_itemCount(player, id)
+        if (total >= c.n) return true
+      }}
+      return total >= c.n
+    }} catch (e) {{ return false }}
+  }}
   try {{
     const col = arcanopolis_colonyOf(player)
     if (col == null) return false
@@ -986,12 +1105,24 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
             lines.append(f"{indent}\titem: {snbt_item(t.item)}")
             if t.count:
                 lines.append(f"{indent}\tcount: {t.count}")
+        if t.consume:
+            lines.append(f"{indent}\tconsume_items: true")
     elif t.ttype in ("checkmark", "custom"):
         if t.title:
             lines.append(f"{indent}\ttitle: \"{esc(t.title)}\"")
     elif t.ttype == "advancement":
         lines.append(f"{indent}\tadvancement: \"{esc(t.advancement)}\"")
         lines.append(f"{indent}\tcriterion: \"\"")
+    elif t.ttype == "kill":
+        lines.append(f"{indent}\tentity: \"{esc(t.entity)}\"")
+        lines.append(f"{indent}\tvalue: {t.count}L")
+    elif t.ttype == "dimension":
+        lines.append(f"{indent}\tdimension: \"{esc(t.entity)}\"")
+    elif t.ttype == "stat":
+        lines.append(f"{indent}\tstat: \"{esc(t.entity)}\"")
+        lines.append(f"{indent}\tvalue: {t.count}")
+    elif t.ttype == "structure":
+        lines.append(f"{indent}\tstructure: \"{esc(t.entity)}\"")
     lines.append(f"{indent}\ttype: \"{t.ttype}\"")
     if t.ttype == "custom":
         CUSTOM_CHECKS.append((tid, t.cond or "always"))
@@ -1002,10 +1133,18 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
 def emit_reward(r: Reward, chapter_no: int, indent: str) -> str:
     rid = uid("03", chapter_no)
     lines = [f"{indent}{{", f"{indent}\tid: \"{rid}\""]
-    lines.append(f"{indent}\titem: {snbt_item(r.item)}")
-    if r.count != 1:
-        lines.append(f"{indent}\tcount: {r.count}")
-    lines.append(f"{indent}\ttype: \"item\"")
+    if r.rtype == "command":
+        lines.append(f"{indent}\tcommand: \"{esc(r.item)}\"")
+        lines.append(f"{indent}\tpermission_level: 2")
+        lines.append(f"{indent}\ttype: \"command\"")
+    elif r.rtype == "xp":
+        lines.append(f"{indent}\txp: {r.count}")
+        lines.append(f"{indent}\ttype: \"xp\"")
+    else:
+        lines.append(f"{indent}\titem: {snbt_item(r.item)}")
+        if r.count != 1:
+            lines.append(f"{indent}\tcount: {r.count}")
+        lines.append(f"{indent}\ttype: \"item\"")
     lines.append(f"{indent}}}")
     return "\n".join(lines)
 
@@ -1053,6 +1192,8 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
             b.append(f"\t\t\ticon: \"{q.icon}\"")
         if q.optional:
             b.append("\t\t\toptional: true")
+        if q.repeatable:
+            b.append("\t\t\trepeatable: true")
         if q.rewards:
             b.append("\t\t\trewards: [")
             b.append(",\n".join(emit_reward(r, chapter_no, "\t\t\t\t") for r in q.rewards))

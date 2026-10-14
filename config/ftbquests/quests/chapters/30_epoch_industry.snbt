@@ -12,7 +12,7 @@
 	quests: [
 		{
 			dependencies: ["A11A03010000000D"]
-			description: ["Тяжёлая промышленность: город начинает обеспечивать", "работу производственных цепочек, а не только получать материалы."]
+			description: ["Тяжёлая промышленность: город начинает обеспечивать", "работу производственных цепочек, а не только получать материалы.", "Эпоха III. Гудят фабрики, руда превращается в сталь,", "а Технический паспорт становится пропуском в будущее."]
 			id: "A11A040100000001"
 			tasks: [
 				{
@@ -545,14 +545,13 @@
 		},
 		{
 			dependencies: ["A11A040100000022"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:gold_gear ×8, minecraft:gold_ingot ×8"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:gold_gear ×8, minecraft:gold_ingot ×8"]
 			id: "A11A040100000023"
 			tasks: [
 				{
 					id: "A11A040200000023"
-					item: ["thermal:gold_gear", "minecraft:gold_ingot"]
-					count: 8
-					type: "item"
+					title: "Получите: thermal:gold_gear / minecraft:gold_ingot"
+					type: "custom"
 				}
 			]
 			title: "Золотые шестерни"
@@ -561,14 +560,13 @@
 		},
 		{
 			dependencies: ["A11A040100000023"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:bronze_ingot ×32, minecraft:iron_ingot ×32"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:bronze_ingot ×32, minecraft:iron_ingot ×32"]
 			id: "A11A040100000024"
 			tasks: [
 				{
 					id: "A11A040200000024"
-					item: ["thermal:bronze_ingot", "minecraft:iron_ingot"]
-					count: 32
-					type: "item"
+					title: "Получите: thermal:bronze_ingot / minecraft:iron_ingot"
+					type: "custom"
 				}
 			]
 			title: "Бронза Thermal"
@@ -593,14 +591,13 @@
 		},
 		{
 			dependencies: ["A11A040100000025"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:electrum_ingot ×16, minecraft:gold_ingot ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:electrum_ingot ×16, minecraft:gold_ingot ×16"]
 			id: "A11A040100000026"
 			tasks: [
 				{
 					id: "A11A040200000026"
-					item: ["thermal:electrum_ingot", "minecraft:gold_ingot"]
-					count: 16
-					type: "item"
+					title: "Получите: thermal:electrum_ingot / minecraft:gold_ingot"
+					type: "custom"
 				}
 			]
 			title: "Электрум"
@@ -609,14 +606,13 @@
 		},
 		{
 			dependencies: ["A11A040100000026"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:invar_ingot ×16, minecraft:iron_ingot ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:invar_ingot ×16, minecraft:iron_ingot ×16"]
 			id: "A11A040100000027"
 			tasks: [
 				{
 					id: "A11A040200000027"
-					item: ["thermal:invar_ingot", "minecraft:iron_ingot"]
-					count: 16
-					type: "item"
+					title: "Получите: thermal:invar_ingot / minecraft:iron_ingot"
+					type: "custom"
 				}
 			]
 			title: "Инвар"
@@ -625,14 +621,13 @@
 		},
 		{
 			dependencies: ["A11A040100000027"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:constantan_ingot ×16, minecraft:copper_ingot ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:constantan_ingot ×16, minecraft:copper_ingot ×16"]
 			id: "A11A040100000028"
 			tasks: [
 				{
 					id: "A11A040200000028"
-					item: ["thermal:constantan_ingot", "minecraft:copper_ingot"]
-					count: 16
-					type: "item"
+					title: "Получите: thermal:constantan_ingot / minecraft:copper_ingot"
+					type: "custom"
 				}
 			]
 			title: "Константан"
@@ -641,14 +636,13 @@
 		},
 		{
 			dependencies: ["A11A040100000028"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:signalum_ingot ×16, minecraft:redstone ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:signalum_ingot ×16, minecraft:redstone ×16"]
 			id: "A11A040100000029"
 			tasks: [
 				{
 					id: "A11A040200000029"
-					item: ["thermal:signalum_ingot", "minecraft:redstone"]
-					count: 16
-					type: "item"
+					title: "Получите: thermal:signalum_ingot / minecraft:redstone"
+					type: "custom"
 				}
 			]
 			title: "Сигналум"
@@ -657,14 +651,13 @@
 		},
 		{
 			dependencies: ["A11A040100000029"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:lumium_ingot ×16, minecraft:glowstone_dust ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:lumium_ingot ×16, minecraft:glowstone_dust ×16"]
 			id: "A11A04010000002A"
 			tasks: [
 				{
 					id: "A11A04020000002A"
-					item: ["thermal:lumium_ingot", "minecraft:glowstone_dust"]
-					count: 16
-					type: "item"
+					title: "Получите: thermal:lumium_ingot / minecraft:glowstone_dust"
+					type: "custom"
 				}
 			]
 			title: "Люмий"
@@ -726,14 +719,13 @@
 		},
 		{
 			dependencies: ["A11A04010000002D"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:ingot_osmium ×32, minecraft:iron_ingot ×32"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:ingot_osmium ×32, minecraft:iron_ingot ×32"]
 			id: "A11A04010000002E"
 			tasks: [
 				{
 					id: "A11A04020000002F"
-					item: ["mekanism:ingot_osmium", "minecraft:iron_ingot"]
-					count: 32
-					type: "item"
+					title: "Получите: mekanism:ingot_osmium / minecraft:iron_ingot"
+					type: "custom"
 				}
 			]
 			title: "Осмий"
@@ -742,14 +734,13 @@
 		},
 		{
 			dependencies: ["A11A04010000002E"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:enriched_carbon ×16, minecraft:coal ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:enriched_carbon ×16, minecraft:coal ×16"]
 			id: "A11A04010000002F"
 			tasks: [
 				{
 					id: "A11A040200000030"
-					item: ["mekanism:enriched_carbon", "minecraft:coal"]
-					count: 16
-					type: "item"
+					title: "Получите: mekanism:enriched_carbon / minecraft:coal"
+					type: "custom"
 				}
 			]
 			title: "Обогащённый углерод"
@@ -758,14 +749,13 @@
 		},
 		{
 			dependencies: ["A11A04010000002F"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:enriched_redstone ×16, minecraft:redstone ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:enriched_redstone ×16, minecraft:redstone ×16"]
 			id: "A11A040100000030"
 			tasks: [
 				{
 					id: "A11A040200000031"
-					item: ["mekanism:enriched_redstone", "minecraft:redstone"]
-					count: 16
-					type: "item"
+					title: "Получите: mekanism:enriched_redstone / minecraft:redstone"
+					type: "custom"
 				}
 			]
 			title: "Обогащённый красный камень"
@@ -774,14 +764,13 @@
 		},
 		{
 			dependencies: ["A11A040100000030"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:enriched_diamond ×8, minecraft:diamond ×8"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:enriched_diamond ×8, minecraft:diamond ×8"]
 			id: "A11A040100000031"
 			tasks: [
 				{
 					id: "A11A040200000032"
-					item: ["mekanism:enriched_diamond", "minecraft:diamond"]
-					count: 8
-					type: "item"
+					title: "Получите: mekanism:enriched_diamond / minecraft:diamond"
+					type: "custom"
 				}
 			]
 			title: "Обогащённый алмаз"
@@ -806,14 +795,13 @@
 		},
 		{
 			dependencies: ["A11A040100000032"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:alloy_reinforced ×8, mekanism:alloy_atomic ×8"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:alloy_reinforced ×8, mekanism:alloy_atomic ×8"]
 			id: "A11A040100000033"
 			tasks: [
 				{
 					id: "A11A040200000034"
-					item: ["mekanism:alloy_reinforced", "mekanism:alloy_atomic"]
-					count: 8
-					type: "item"
+					title: "Получите: mekanism:alloy_reinforced / mekanism:alloy_atomic"
+					type: "custom"
 				}
 			]
 			title: "Усиленный сплав"
@@ -822,14 +810,13 @@
 		},
 		{
 			dependencies: ["A11A040100000033"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:energy_tablet ×4, minecraft:redstone_block ×4"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:energy_tablet ×4, minecraft:redstone_block ×4"]
 			id: "A11A040100000034"
 			tasks: [
 				{
 					id: "A11A040200000035"
-					item: ["mekanism:energy_tablet", "minecraft:redstone_block"]
-					count: 4
-					type: "item"
+					title: "Получите: mekanism:energy_tablet / minecraft:redstone_block"
+					type: "custom"
 				}
 			]
 			title: "Энергетический планшет"
@@ -960,9 +947,8 @@
 			tasks: [
 				{
 					id: "A11A04020000003E"
-					item: ["mekanism:ingot_osmium", "minecraft:iron_ingot"]
-					count: 64
-					type: "item"
+					title: "Получите: mekanism:ingot_osmium / minecraft:iron_ingot"
+					type: "custom"
 				},
 				{
 					id: "A11A04020000003F"
@@ -981,9 +967,8 @@
 			tasks: [
 				{
 					id: "A11A040200000040"
-					item: ["mekanism:energy_tablet", "minecraft:redstone_block"]
-					count: 2
-					type: "item"
+					title: "Получите: mekanism:energy_tablet / minecraft:redstone_block"
+					type: "custom"
 				},
 				{
 					id: "A11A040200000041"
@@ -1205,6 +1190,119 @@
 			title: "Транспортёры-хопперы"
 			x: 15.0d
 			y: -1.0999999999999996d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: thermal:machine_frame ×4.", "Постройте или улучшите здание «mech» до 2 уровня."]
+			id: "A11A040100000049"
+			tasks: [
+				{
+					id: "A11A040200000054"
+					item: "thermal:machine_frame"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A040200000055"
+					title: "Здание mech (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Рамочный цех"
+			x: 15.0d
+			y: -12.0d
+		},
+		{
+			dependencies: ["A11A040100000049"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:enrichment_chamber ×2.", "Требуется: mekanism:basic_control_circuit ×32."]
+			id: "A11A04010000004A"
+			tasks: [
+				{
+					id: "A11A040200000056"
+					item: "mekanism:enrichment_chamber"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A040200000057"
+					item: "mekanism:basic_control_circuit"
+					count: 32
+					type: "item"
+				}
+			]
+			title: "Линия обогащения"
+			x: 15.0d
+			y: -13.7d
+		},
+		{
+			dependencies: ["A11A04010000004A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ingot_steel ×256."]
+			id: "A11A04010000004B"
+			tasks: [
+				{
+					id: "A11A040200000058"
+					item: "mekanism:ingot_steel"
+					count: 256
+					type: "item"
+				}
+			]
+			title: "Сталеплавильный двор"
+			x: 15.0d
+			y: -15.4d
+		},
+		{
+			dependencies: ["A11A04010000004B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:energy_tablet ×4, minecraft:redstone_block ×4", "Постройте или улучшите здание «mech» до 2 уровня."]
+			id: "A11A04010000004C"
+			tasks: [
+				{
+					id: "A11A040200000059"
+					title: "Получите: mekanism:energy_tablet / minecraft:redstone_block"
+					type: "custom"
+				},
+				{
+					id: "A11A04020000005A"
+					title: "Здание mech (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Энергетический контур"
+			x: 15.0d
+			y: -17.1d
+		},
+		{
+			dependencies: ["A11A04010000000E"]
+			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
+			id: "A11A04010000004D"
+			rewards: [
+				{
+					id: "A11A040300000003"
+					command: "/loot give @p loot minecraft:chests/desert_pyramid"
+					permission_level: 2
+					type: "command"
+				},
+				{
+					id: "A11A040300000004"
+					xp: 500
+					type: "xp"
+				},
+				{
+					id: "A11A040300000005"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A04020000005B"
+					title: "Условие выполнено"
+					type: "custom"
+				}
+			]
+			title: "Сокровищница эпохи III"
+			x: -20.0d
+			y: -12.0d
 		}
 	]
 	title: "Эпоха III. «Механизмы и индустриальный город»"

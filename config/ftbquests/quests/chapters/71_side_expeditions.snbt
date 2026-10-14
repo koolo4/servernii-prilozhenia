@@ -228,6 +228,336 @@
 			title: "Музей экспедиций"
 			x: 6.0d
 			y: -6.5d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:zombie ×16."]
+			id: "A11A09010000000C"
+			tasks: [
+				{
+					id: "A11A09020000000E"
+					entity: "minecraft:zombie"
+					value: 16L
+					type: "kill"
+				}
+			]
+			title: "Очистить окрестности"
+			x: 12.0d
+			y: -10.0d
+		},
+		{
+			dependencies: ["A11A09010000000C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:skeleton ×16."]
+			id: "A11A09010000000D"
+			tasks: [
+				{
+					id: "A11A09020000000F"
+					entity: "minecraft:skeleton"
+					value: 16L
+					type: "kill"
+				}
+			]
+			title: "Костяная угроза"
+			x: 12.0d
+			y: -11.7d
+		},
+		{
+			dependencies: ["A11A09010000000D"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:spider ×8."]
+			id: "A11A09010000000E"
+			tasks: [
+				{
+					id: "A11A090200000010"
+					entity: "minecraft:spider"
+					value: 8L
+					type: "kill"
+				}
+			]
+			title: "Паучья напасть"
+			x: 12.0d
+			y: -13.4d
+		},
+		{
+			dependencies: ["A11A09010000000E"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:creeper ×8."]
+			id: "A11A09010000000F"
+			tasks: [
+				{
+					id: "A11A090200000011"
+					entity: "minecraft:creeper"
+					value: 8L
+					type: "kill"
+				}
+			]
+			title: "Криперская опасность"
+			x: 12.0d
+			y: -15.1d
+		},
+		{
+			dependencies: ["A11A09010000000F", "A11A090100000008"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:blaze ×8."]
+			id: "A11A090100000010"
+			tasks: [
+				{
+					id: "A11A090200000012"
+					entity: "minecraft:blaze"
+					value: 8L
+					type: "kill"
+				}
+			]
+			title: "Огненные твари"
+			x: 12.0d
+			y: -16.8d
+		},
+		{
+			dependencies: ["A11A090100000010"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:enderman ×6."]
+			id: "A11A090100000011"
+			tasks: [
+				{
+					id: "A11A090200000013"
+					entity: "minecraft:enderman"
+					value: 6L
+					type: "kill"
+				}
+			]
+			title: "Охота на эндерменов"
+			x: 12.0d
+			y: -18.5d
+		},
+		{
+			dependencies: ["A11A090100000011"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:wither_skeleton ×6."]
+			id: "A11A090100000012"
+			tasks: [
+				{
+					id: "A11A090200000014"
+					entity: "minecraft:wither_skeleton"
+					value: 6L
+					type: "kill"
+				}
+			]
+			title: "Стражи крепости"
+			x: 12.0d
+			y: -20.2d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:pillager ×10."]
+			id: "A11A090100000013"
+			tasks: [
+				{
+					id: "A11A090200000015"
+					entity: "minecraft:pillager"
+					value: 10L
+					type: "kill"
+				}
+			]
+			title: "Рейдеры у стен"
+			x: -6.0d
+			y: -10.0d
+		},
+		{
+			dependencies: ["A11A090100000013"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:vindicator ×4."]
+			id: "A11A090100000014"
+			tasks: [
+				{
+					id: "A11A090200000016"
+					entity: "minecraft:vindicator"
+					value: 4L
+					type: "kill"
+				}
+			]
+			title: "Палачи рейдов"
+			x: -6.0d
+			y: -11.7d
+		},
+		{
+			dependencies: ["A11A090100000014"]
+			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:ravager ×2."]
+			id: "A11A090100000015"
+			tasks: [
+				{
+					id: "A11A090200000017"
+					entity: "minecraft:ravager"
+					value: 2L
+					type: "kill"
+				}
+			]
+			title: "Захватчики отступили"
+			x: -6.0d
+			y: -13.4d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_nether."]
+			id: "A11A090100000016"
+			tasks: [
+				{
+					id: "A11A090200000018"
+					dimension: "minecraft:the_nether"
+					type: "dimension"
+				}
+			]
+			title: "Портал в Нижний мир"
+			x: 6.0d
+			y: -10.0d
+		},
+		{
+			dependencies: ["A11A090100000016"]
+			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/mine_diamond."]
+			id: "A11A090100000017"
+			tasks: [
+				{
+					id: "A11A090200000019"
+					advancement: "minecraft:story/mine_diamond"
+					criterion: ""
+					type: "advancement"
+				}
+			]
+			title: "Алмазная лихорадка"
+			x: 6.0d
+			y: -11.7d
+		},
+		{
+			dependencies: ["A11A090100000017"]
+			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/enter_the_nether."]
+			id: "A11A090100000018"
+			tasks: [
+				{
+					id: "A11A09020000001A"
+					advancement: "minecraft:story/enter_the_nether"
+					criterion: ""
+					type: "advancement"
+				}
+			]
+			title: "Око Эндера"
+			x: 6.0d
+			y: -13.4d
+		},
+		{
+			dependencies: ["A11A090100000018"]
+			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_end."]
+			id: "A11A090100000019"
+			tasks: [
+				{
+					id: "A11A09020000001B"
+					dimension: "minecraft:the_end"
+					type: "dimension"
+				}
+			]
+			title: "Край света"
+			x: 6.0d
+			y: -15.1d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A09010000001A"
+			tasks: [
+				{
+					id: "A11A09020000001C"
+					structure: "minecraft:stronghold"
+					type: "structure"
+				}
+			]
+			title: "Оплот древних"
+			x: 0.0d
+			y: -10.0d
+		},
+		{
+			dependencies: ["A11A09010000001A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A09010000001B"
+			tasks: [
+				{
+					id: "A11A09020000001D"
+					structure: "minecraft:bastion_remnant"
+					type: "structure"
+				}
+			]
+			title: "Оплот свинолюдей"
+			x: 0.0d
+			y: -11.7d
+		},
+		{
+			dependencies: ["A11A09010000001B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A09010000001C"
+			tasks: [
+				{
+					id: "A11A09020000001E"
+					structure: "minecraft:end_city"
+					type: "structure"
+				}
+			]
+			title: "Город Края"
+			x: 0.0d
+			y: -13.4d
+		},
+		{
+			dependencies: ["A11A09010000001C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
+			id: "A11A09010000001D"
+			tasks: [
+				{
+					id: "A11A09020000001F"
+					structure: "minecraft:ancient_city"
+					type: "structure"
+				}
+			]
+			title: "Древний город"
+			x: 0.0d
+			y: -15.1d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Достичь статистику minecraft:walk_one_cm ≥ 500000."]
+			id: "A11A09010000001E"
+			tasks: [
+				{
+					id: "A11A090200000020"
+					stat: "minecraft:walk_one_cm"
+					value: 500000
+					type: "stat"
+				}
+			]
+			title: "Дальний путь"
+			x: -12.0d
+			y: -22.0d
+		},
+		{
+			dependencies: ["A11A090100000015"]
+			description: ["Ходят слухи, что герой, спасший деревню", "от нашествия рейдеров, получает дар..."]
+			id: "A11A09010000001F"
+			tasks: [
+				{
+					id: "A11A090200000021"
+					advancement: "minecraft:adventure/hero_of_the_village"
+					criterion: ""
+					type: "advancement"
+				}
+			]
+			title: "???"
+			x: 18.0d
+			y: -22.0d
+		},
+		{
+			dependencies: ["A11A090100000019"]
+			description: ["Древние хроники говорят о змееподобном", "твари, чья смерть откроет тайну Края..."]
+			id: "A11A090100000020"
+			tasks: [
+				{
+					id: "A11A090200000022"
+					advancement: "minecraft:end/kill_dragon"
+					criterion: ""
+					type: "advancement"
+				}
+			]
+			title: "???"
+			x: -18.0d
+			y: -22.0d
 		}
 	]
 	title: "Необязательное: «Экспедиции»"

@@ -201,6 +201,314 @@
 			title: "Логистика снабжения"
 			x: 6.0d
 			y: -6.5d
+		},
+		{
+			dependencies: ["A11A0C0100000009"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C010000000B"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C0300000004"
+					item: "minecraft:emerald"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A0C0300000005"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C020000000D"
+					item: "minecraft:bread"
+					count: 64
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка хлеба"
+			x: 12.0d
+			y: -12.0d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C010000000C"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C0300000006"
+					item: "minecraft:emerald"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A0C0300000007"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C020000000E"
+					item: "minecraft:oak_log"
+					count: 256
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка древесины"
+			x: 12.0d
+			y: -13.7d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C010000000D"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C0300000008"
+					item: "minecraft:emerald"
+					type: "item"
+				},
+				{
+					id: "A11A0C0300000009"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C020000000F"
+					item: "minecraft:cobblestone"
+					count: 256
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка камня"
+			x: 12.0d
+			y: -15.4d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C010000000E"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C030000000A"
+					item: "minecraft:emerald"
+					count: 3
+					type: "item"
+				},
+				{
+					id: "A11A0C030000000B"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000010"
+					item: "minecraft:iron_ingot"
+					count: 32
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка железа"
+			x: 12.0d
+			y: -17.1d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C010000000F"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C030000000C"
+					item: "minecraft:emerald"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A0C030000000D"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000011"
+					item: "minecraft:gold_ingot"
+					count: 16
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка золота"
+			x: 12.0d
+			y: -18.8d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C0100000010"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C030000000E"
+					item: "minecraft:emerald"
+					count: 6
+					type: "item"
+				},
+				{
+					id: "A11A0C030000000F"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000012"
+					item: "minecraft:diamond"
+					count: 4
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка алмазов"
+			x: 12.0d
+			y: -20.5d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C0100000011"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C0300000010"
+					item: "minecraft:emerald"
+					count: 5
+					type: "item"
+				},
+				{
+					id: "A11A0C0300000011"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000013"
+					item: "mekanism:ingot_steel"
+					count: 16
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка стали"
+			x: 12.0d
+			y: -22.2d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C0100000012"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C0300000012"
+					item: "minecraft:diamond"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A0C0300000013"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000014"
+					item: "create:precision_mechanism"
+					count: 4
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Поставка механизмов"
+			x: 12.0d
+			y: -23.9d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C0100000013"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C0300000014"
+					item: "minecraft:diamond"
+					type: "item"
+				},
+				{
+					id: "A11A0C0300000015"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000015"
+					item: "minecraft:golden_carrot"
+					count: 16
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Деликатесы для знати"
+			x: 12.0d
+			y: -25.6d
+		},
+		{
+			dependencies: ["A11A0C010000000A"]
+			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
+			id: "A11A0C0100000014"
+			repeatable: true
+			rewards: [
+				{
+					id: "A11A0C0300000016"
+					item: "minecraft:diamond"
+					count: 3
+					type: "item"
+				},
+				{
+					id: "A11A0C0300000017"
+					xp: 100
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A0C0200000016"
+					item: "botania:mana_pearl"
+					count: 4
+					consume_items: true
+					type: "item"
+				}
+			]
+			title: "Редкие реагенты"
+			x: 12.0d
+			y: -27.299999999999997d
 		}
 	]
 	title: "Необязательное: «Город без дефицита»"

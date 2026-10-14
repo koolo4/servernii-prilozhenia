@@ -12,7 +12,7 @@
 	quests: [
 		{
 			dependencies: [ ]
-			description: ["Добро пожаловать в Арканополис!", "Эта сборка — о городе, который становится машиной.", "Начните с выбора площадки и поставьте лагерь снабжения."]
+			description: ["Добро пожаловать в Арканополис!", "Эта сборка — о городе, который становится машиной.", "Начните с выбора площадки и поставьте лагерь снабжения.", "— Земли под застройку выделены. Хартия подписана.", "Так начинается история Арканополиса — города, где ремесло", "и магия сплетаются в единый механизм."]
 			id: "A11A010100000001"
 			rewards: [
 				{
@@ -25,8 +25,8 @@
 			tasks: [
 				{
 					id: "A11A010200000001"
-					item: ["minecolonies:supplycamp", "minecolonies:supplyship"]
-					type: "item"
+					title: "Лагерь или корабль снабжения установлен"
+					type: "custom"
 				}
 			]
 			title: "Хартия нового мира"
@@ -882,14 +882,13 @@
 		},
 		{
 			dependencies: ["A11A010100000032"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: minecraft:mutton ×16, minecraft:porkchop ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:mutton ×16, minecraft:porkchop ×16"]
 			id: "A11A010100000033"
 			tasks: [
 				{
 					id: "A11A01020000003B"
-					item: ["minecraft:mutton", "minecraft:porkchop"]
-					count: 16
-					type: "item"
+					title: "Получите: minecraft:mutton / minecraft:porkchop"
+					type: "custom"
 				}
 			]
 			title: "Мясо на зиму"
@@ -1204,6 +1203,40 @@
 			title: "Угольный склад"
 			x: 23.0d
 			y: -4.5d
+		},
+		{
+			dependencies: ["A11A010100000009"]
+			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
+			id: "A11A010100000047"
+			rewards: [
+				{
+					id: "A11A010300000007"
+					command: "/loot give @p loot minecraft:chests/simple_dungeon"
+					permission_level: 2
+					type: "command"
+				},
+				{
+					id: "A11A010300000008"
+					xp: 500
+					type: "xp"
+				},
+				{
+					id: "A11A010300000009"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A010200000050"
+					title: "Условие выполнено"
+					type: "custom"
+				}
+			]
+			title: "Сокровищница пролога"
+			x: -20.0d
+			y: -12.0d
 		}
 	]
 	title: "Пролог. «Право на поселение»"

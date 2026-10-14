@@ -12,7 +12,7 @@
 	quests: [
 		{
 			dependencies: ["A11A05010000000C"]
-			description: ["Applied Energistics 2 — управляющий слой производства:", "физические фабрики, городское снабжение и магические материалы", "объединяются в одной сети."]
+			description: ["Applied Energistics 2 — управляющий слой производства:", "физические фабрики, городское снабжение и магические материалы", "объединяются в одной сети.", "Эпоха V. Сеть связывает цеха, склады и лаборатории —", "город начинает мыслить как единая автоматика."]
 			id: "A11A060100000001"
 			tasks: [
 				{
@@ -290,14 +290,13 @@
 		},
 		{
 			dependencies: ["A11A060100000002"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:certus_quartz_crystal ×32, minecraft:quartz ×32"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:certus_quartz_crystal ×32, minecraft:quartz ×32"]
 			id: "A11A060100000012"
 			tasks: [
 				{
 					id: "A11A060200000013"
-					item: ["ae2:certus_quartz_crystal", "minecraft:quartz"]
-					count: 32
-					type: "item"
+					title: "Получите: ae2:certus_quartz_crystal / minecraft:quartz"
+					type: "custom"
 				}
 			]
 			title: "Кристалл цертуса"
@@ -306,14 +305,13 @@
 		},
 		{
 			dependencies: ["A11A060100000012"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:fluix_crystal ×16, minecraft:amethyst_shard ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:fluix_crystal ×16, minecraft:amethyst_shard ×16"]
 			id: "A11A060100000013"
 			tasks: [
 				{
 					id: "A11A060200000014"
-					item: ["ae2:fluix_crystal", "minecraft:amethyst_shard"]
-					count: 16
-					type: "item"
+					title: "Получите: ae2:fluix_crystal / minecraft:amethyst_shard"
+					type: "custom"
 				}
 			]
 			title: "Флюидовый кристалл"
@@ -322,14 +320,13 @@
 		},
 		{
 			dependencies: ["A11A060100000013"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:certus_quartz_dust ×32, minecraft:quartz ×32"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:certus_quartz_dust ×32, minecraft:quartz ×32"]
 			id: "A11A060100000014"
 			tasks: [
 				{
 					id: "A11A060200000015"
-					item: ["ae2:certus_quartz_dust", "minecraft:quartz"]
-					count: 32
-					type: "item"
+					title: "Получите: ae2:certus_quartz_dust / minecraft:quartz"
+					type: "custom"
 				}
 			]
 			title: "Пыль цертуса"
@@ -338,14 +335,13 @@
 		},
 		{
 			dependencies: ["A11A060100000014"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:engineering_processor ×16, mekanism:basic_control_circuit ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:engineering_processor ×16, mekanism:basic_control_circuit ×16"]
 			id: "A11A060100000015"
 			tasks: [
 				{
 					id: "A11A060200000016"
-					item: ["ae2:engineering_processor", "mekanism:basic_control_circuit"]
-					count: 16
-					type: "item"
+					title: "Получите: ae2:engineering_processor / mekanism:basic_control_circuit"
+					type: "custom"
 				}
 			]
 			title: "Процессоры сети"
@@ -354,14 +350,13 @@
 		},
 		{
 			dependencies: ["A11A060100000015"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:fluix_glass_cable ×16, minecraft:glass_pane ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:fluix_glass_cable ×16, minecraft:glass_pane ×16"]
 			id: "A11A060100000016"
 			tasks: [
 				{
 					id: "A11A060200000017"
-					item: ["ae2:fluix_glass_cable", "minecraft:glass_pane"]
-					count: 16
-					type: "item"
+					title: "Получите: ae2:fluix_glass_cable / minecraft:glass_pane"
+					type: "custom"
 				}
 			]
 			title: "Кабели сети"
@@ -370,14 +365,13 @@
 		},
 		{
 			dependencies: ["A11A060100000016"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:controller ×1, minecraft:redstone_block ×1"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:controller ×1, minecraft:redstone_block ×1"]
 			id: "A11A060100000017"
 			tasks: [
 				{
 					id: "A11A060200000018"
-					item: ["ae2:controller", "minecraft:redstone_block"]
-					count: 1
-					type: "item"
+					title: "Получите: ae2:controller / minecraft:redstone_block"
+					type: "custom"
 				}
 			]
 			title: "Сетевой контроллер"
@@ -386,14 +380,13 @@
 		},
 		{
 			dependencies: ["A11A060100000017"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:terminal ×2, minecraft:glass ×2"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:terminal ×2, minecraft:glass ×2"]
 			id: "A11A060100000018"
 			tasks: [
 				{
 					id: "A11A060200000019"
-					item: ["ae2:terminal", "minecraft:glass"]
-					count: 2
-					type: "item"
+					title: "Получите: ae2:terminal / minecraft:glass"
+					type: "custom"
 				}
 			]
 			title: "Терминалы"
@@ -402,14 +395,13 @@
 		},
 		{
 			dependencies: ["A11A060100000018"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:cell_component_1k ×8, minecraft:redstone ×8"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:cell_component_1k ×8, minecraft:redstone ×8"]
 			id: "A11A060100000019"
 			tasks: [
 				{
 					id: "A11A06020000001A"
-					item: ["ae2:cell_component_1k", "minecraft:redstone"]
-					count: 8
-					type: "item"
+					title: "Получите: ae2:cell_component_1k / minecraft:redstone"
+					type: "custom"
 				}
 			]
 			title: "Ячейки хранения"
@@ -418,14 +410,13 @@
 		},
 		{
 			dependencies: ["A11A060100000019"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: ae2:blank_pattern ×16, minecraft:paper ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:blank_pattern ×16, minecraft:paper ×16"]
 			id: "A11A06010000001A"
 			tasks: [
 				{
 					id: "A11A06020000001B"
-					item: ["ae2:blank_pattern", "minecraft:paper"]
-					count: 16
-					type: "item"
+					title: "Получите: ae2:blank_pattern / minecraft:paper"
+					type: "custom"
 				}
 			]
 			title: "Шаблоны заказов"
@@ -439,9 +430,8 @@
 			tasks: [
 				{
 					id: "A11A06020000001C"
-					item: ["ae2:blank_pattern", "minecraft:paper"]
-					count: 8
-					type: "item"
+					title: "Получите: ae2:blank_pattern / minecraft:paper"
+					type: "custom"
 				},
 				{
 					id: "A11A06020000001D"
@@ -487,14 +477,13 @@
 		},
 		{
 			dependencies: ["A11A06010000001D"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:basic_energy_cube ×2, minecraft:redstone_block ×2"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:basic_energy_cube ×2, minecraft:redstone_block ×2"]
 			id: "A11A06010000001E"
 			tasks: [
 				{
 					id: "A11A060200000020"
-					item: ["mekanism:basic_energy_cube", "minecraft:redstone_block"]
-					count: 2
-					type: "item"
+					title: "Получите: mekanism:basic_energy_cube / minecraft:redstone_block"
+					type: "custom"
 				}
 			]
 			title: "Энергокуб"
@@ -503,14 +492,13 @@
 		},
 		{
 			dependencies: ["A11A06010000001E"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:turbine_blade ×4, minecraft:iron_ingot ×4"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:turbine_blade ×4, minecraft:iron_ingot ×4"]
 			id: "A11A06010000001F"
 			tasks: [
 				{
 					id: "A11A060200000021"
-					item: ["mekanism:turbine_blade", "minecraft:iron_ingot"]
-					count: 4
-					type: "item"
+					title: "Получите: mekanism:turbine_blade / minecraft:iron_ingot"
+					type: "custom"
 				}
 			]
 			title: "Турбинный комплект"
@@ -519,14 +507,13 @@
 		},
 		{
 			dependencies: ["A11A06010000001F"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:basic_factory ×2, minecraft:crafting_table ×2"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:basic_factory ×2, minecraft:crafting_table ×2"]
 			id: "A11A060100000020"
 			tasks: [
 				{
 					id: "A11A060200000022"
-					item: ["mekanism:basic_factory", "minecraft:crafting_table"]
-					count: 2
-					type: "item"
+					title: "Получите: mekanism:basic_factory / minecraft:crafting_table"
+					type: "custom"
 				}
 			]
 			title: "Заводские модули"
@@ -577,7 +564,7 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×8.", "Требуется любой из вариантов: ae2:fluix_crystal ×8, minecraft:amethyst_shard ×8"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×8.", "Требуется: любой из вариантов: ae2:fluix_crystal ×8, minecraft:amethyst_shard ×8"]
 			id: "A11A060100000023"
 			tasks: [
 				{
@@ -588,9 +575,8 @@
 				},
 				{
 					id: "A11A060200000028"
-					item: ["ae2:fluix_crystal", "minecraft:amethyst_shard"]
-					count: 8
-					type: "item"
+					title: "Получите: ae2:fluix_crystal / minecraft:amethyst_shard"
+					type: "custom"
 				}
 			]
 			title: "Сеть и механизмы"
@@ -604,9 +590,8 @@
 			tasks: [
 				{
 					id: "A11A060200000029"
-					item: ["ae2:blank_pattern", "minecraft:paper"]
-					count: 16
-					type: "item"
+					title: "Получите: ae2:blank_pattern / minecraft:paper"
+					type: "custom"
 				},
 				{
 					id: "A11A06020000002A"
@@ -625,9 +610,8 @@
 			tasks: [
 				{
 					id: "A11A06020000002B"
-					item: ["mekanism:basic_energy_cube", "minecraft:redstone_block"]
-					count: 2
-					type: "item"
+					title: "Получите: mekanism:basic_energy_cube / minecraft:redstone_block"
+					type: "custom"
 				},
 				{
 					id: "A11A06020000002C"
@@ -720,14 +704,13 @@
 		},
 		{
 			dependencies: ["A11A060100000029"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:ingot_osmium ×64, minecraft:iron_ingot ×64"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:ingot_osmium ×64, minecraft:iron_ingot ×64"]
 			id: "A11A06010000002A"
 			tasks: [
 				{
 					id: "A11A060200000034"
-					item: ["mekanism:ingot_osmium", "minecraft:iron_ingot"]
-					count: 64
-					type: "item"
+					title: "Получите: mekanism:ingot_osmium / minecraft:iron_ingot"
+					type: "custom"
 				}
 			]
 			title: "Массовый осмий"
@@ -1144,9 +1127,8 @@
 			tasks: [
 				{
 					id: "A11A060200000053"
-					item: ["ae2:blank_pattern", "minecraft:paper"]
-					count: 16
-					type: "item"
+					title: "Получите: ae2:blank_pattern / minecraft:paper"
+					type: "custom"
 				},
 				{
 					id: "A11A060200000054"
@@ -1247,6 +1229,103 @@
 			title: "Портативные терминалы"
 			x: -9.0d
 			y: -39.1d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:ultimate_control_circuit ×64."]
+			id: "A11A060100000048"
+			tasks: [
+				{
+					id: "A11A06020000005C"
+					item: "mekanism:ultimate_control_circuit"
+					count: 64
+					type: "item"
+				}
+			]
+			title: "Сетевая фабрика"
+			x: -15.0d
+			y: -34.0d
+		},
+		{
+			dependencies: ["A11A060100000048"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: ae2:blank_pattern ×64, minecraft:paper ×64", "Постройте или улучшите здание «mech» до 4 уровня."]
+			id: "A11A060100000049"
+			tasks: [
+				{
+					id: "A11A06020000005D"
+					title: "Получите: ae2:blank_pattern / minecraft:paper"
+					type: "custom"
+				},
+				{
+					id: "A11A06020000005E"
+					title: "Здание mech (ур. 4)"
+					type: "custom"
+				}
+			]
+			title: "Автокрафт-кластер"
+			x: -15.0d
+			y: -35.7d
+		},
+		{
+			dependencies: ["A11A060100000049"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:hopper ×32.", "Требуется: minecraft:ender_chest ×4.", "Постройте или улучшите здание «warehouse» до 5 уровня."]
+			id: "A11A06010000004A"
+			tasks: [
+				{
+					id: "A11A06020000005F"
+					item: "minecraft:hopper"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A060200000060"
+					item: "minecraft:ender_chest"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A060200000061"
+					title: "Здание warehouse (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Сортировочный хаб"
+			x: -15.0d
+			y: -37.4d
+		},
+		{
+			dependencies: ["A11A060100000007"]
+			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
+			id: "A11A06010000004B"
+			rewards: [
+				{
+					id: "A11A060300000003"
+					command: "/loot give @p loot minecraft:chests/simple_dungeon"
+					permission_level: 2
+					type: "command"
+				},
+				{
+					id: "A11A060300000004"
+					xp: 500
+					type: "xp"
+				},
+				{
+					id: "A11A060300000005"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A060200000062"
+					title: "Условие выполнено"
+					type: "custom"
+				}
+			]
+			title: "Сокровищница эпохи V"
+			x: -20.0d
+			y: -12.0d
 		}
 	]
 	title: "Эпоха V. «Сеть и автоматизированное производство»"

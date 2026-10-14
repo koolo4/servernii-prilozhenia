@@ -12,7 +12,7 @@
 	quests: [
 		{
 			dependencies: ["A11A010100000009"]
-			description: ["Дерево, вода и ремесло — первая технологическая эпоха.", "Город растёт, а Create начинает работать на него."]
+			description: ["Дерево, вода и ремесло — первая технологическая эпоха.", "Город растёт, а Create начинает работать на него.", "Эпоха I. Первые механизмы шумят у водяных колёс,", "топоры лесорубов задают ритм росту города."]
 			id: "A11A020100000001"
 			tasks: [
 				{
@@ -1318,6 +1318,137 @@
 			title: "Снабжение цехов"
 			x: 9.0d
 			y: -4.5d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_saw ×2.", "Требуется: create:belt_connector ×32.", "Постройте или улучшите здание «saw» до 2 уровня."]
+			id: "A11A020100000050"
+			tasks: [
+				{
+					id: "A11A020200000059"
+					item: "create:mechanical_saw"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A02020000005A"
+					item: "create:belt_connector"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A02020000005B"
+					title: "Здание saw (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Линия пиления"
+			x: 15.0d
+			y: 4.0d
+		},
+		{
+			dependencies: ["A11A020100000050"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:millstone ×2.", "Требуется: minecraft:cobblestone ×512."]
+			id: "A11A020100000051"
+			tasks: [
+				{
+					id: "A11A02020000005C"
+					item: "create:millstone"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A02020000005D"
+					item: "minecraft:cobblestone"
+					count: 512
+					type: "item"
+				}
+			]
+			title: "Дробильный комплекс"
+			x: 15.0d
+			y: 2.3d
+		},
+		{
+			dependencies: ["A11A020100000051"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:encased_fan ×2.", "Требуется: minecraft:iron_ingot ×64.", "Постройте или улучшите здание «black» до 2 уровня."]
+			id: "A11A020100000052"
+			tasks: [
+				{
+					id: "A11A02020000005E"
+					item: "create:encased_fan"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A02020000005F"
+					item: "minecraft:iron_ingot"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A020200000060"
+					title: "Здание black (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Веерный цех"
+			x: 15.0d
+			y: 0.6000000000000001d
+		},
+		{
+			dependencies: ["A11A020100000052"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:chest ×16.", "Постройте или улучшите здание «warehouse» до 2 уровня."]
+			id: "A11A020100000053"
+			tasks: [
+				{
+					id: "A11A020200000061"
+					item: "minecraft:chest"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "A11A020200000062"
+					title: "Здание warehouse (ур. 2)"
+					type: "custom"
+				}
+			]
+			title: "Склад готовой продукции"
+			x: 15.0d
+			y: -1.0999999999999996d
+		},
+		{
+			dependencies: ["A11A020100000011"]
+			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
+			id: "A11A020100000054"
+			rewards: [
+				{
+					id: "A11A020300000005"
+					command: "/loot give @p loot minecraft:chests/simple_dungeon"
+					permission_level: 2
+					type: "command"
+				},
+				{
+					id: "A11A020300000006"
+					xp: 500
+					type: "xp"
+				},
+				{
+					id: "A11A020300000007"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A020200000063"
+					title: "Условие выполнено"
+					type: "custom"
+				}
+			]
+			title: "Сокровищница эпохи I"
+			x: -20.0d
+			y: -12.0d
 		}
 	]
 	title: "Эпоха I. «Дерево, вода и ремесло»"

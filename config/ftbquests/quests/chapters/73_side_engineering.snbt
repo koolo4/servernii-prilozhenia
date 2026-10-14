@@ -123,14 +123,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: create:toolbox ×1, minecraft:chest ×1"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: create:toolbox ×1, minecraft:chest ×1"]
 			id: "A11A0B0100000006"
 			tasks: [
 				{
 					id: "A11A0B0200000006"
-					item: ["create:toolbox", "minecraft:chest"]
-					count: 1
-					type: "item"
+					title: "Получите: create:toolbox / minecraft:chest"
+					type: "custom"
 				}
 			]
 			title: "Инженерный кейс"

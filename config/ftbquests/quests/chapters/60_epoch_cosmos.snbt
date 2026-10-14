@@ -12,7 +12,7 @@
 	quests: [
 		{
 			dependencies: ["A11A060100000007"]
-			description: ["Финальная эпоха: организуйте город, производства и магические школы.", "Испытание — в сложности организации, а не в количестве слитков."]
+			description: ["Финальная эпоха: организуйте город, производства и магические школы.", "Испытание — в сложности организации, а не в количестве слитков.", "Эпоха VI. Горизонт больше не предел: Сердце Арканополиса", "готово пробудиться и устремиться к звёздам."]
 			id: "A11A070100000001"
 			tasks: [
 				{
@@ -142,7 +142,7 @@
 		},
 		{
 			dependencies: ["A11A070100000007", "A11A070100000005"]
-			description: ["Встройте Сердце в центральное сооружение колонии.", "Город работает, производство снабжает поселение,", "магия и технологии сходятся в единую систему.", "Добро пожаловать в Арканополис."]
+			description: ["Встройте Сердце в центральное сооружение колонии.", "Город работает, производство снабжает поселение,", "магия и технологии сходятся в единую систему.", "Добро пожаловать в Арканополис.", "Первый импульс разнёсся по кварталам. Город живой.", "Добро пожаловать в Арканополис."]
 			id: "A11A070100000008"
 			rewards: [
 				{
@@ -349,14 +349,13 @@
 		},
 		{
 			dependencies: ["A11A070100000013"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:pellet_plutonium ×4, minecraft:nether_star ×4"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:pellet_plutonium ×4, minecraft:nether_star ×4"]
 			id: "A11A070100000014"
 			tasks: [
 				{
 					id: "A11A070200000016"
-					item: ["mekanism:pellet_plutonium", "minecraft:nether_star"]
-					count: 4
-					type: "item"
+					title: "Получите: mekanism:pellet_plutonium / minecraft:nether_star"
+					type: "custom"
 				}
 			]
 			title: "Плутониевые таблетки"
@@ -365,14 +364,13 @@
 		},
 		{
 			dependencies: ["A11A070100000014"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: mekanism:pellet_antimatter ×2, minecraft:dragon_breath ×2"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: mekanism:pellet_antimatter ×2, minecraft:dragon_breath ×2"]
 			id: "A11A070100000015"
 			tasks: [
 				{
 					id: "A11A070200000017"
-					item: ["mekanism:pellet_antimatter", "minecraft:dragon_breath"]
-					count: 2
-					type: "item"
+					title: "Получите: mekanism:pellet_antimatter / minecraft:dragon_breath"
+					type: "custom"
 				}
 			]
 			title: "Антипротонный комплект"
@@ -418,14 +416,13 @@
 		},
 		{
 			dependencies: ["A11A070100000017"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:signalum_ingot ×32, minecraft:redstone ×32"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:signalum_ingot ×32, minecraft:redstone ×32"]
 			id: "A11A070100000018"
 			tasks: [
 				{
 					id: "A11A07020000001B"
-					item: ["thermal:signalum_ingot", "minecraft:redstone"]
-					count: 32
-					type: "item"
+					title: "Получите: thermal:signalum_ingot / minecraft:redstone"
+					type: "custom"
 				}
 			]
 			title: "Сигналум впрок"
@@ -434,14 +431,13 @@
 		},
 		{
 			dependencies: ["A11A070100000018"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: thermal:lumium_ingot ×32, minecraft:glowstone_dust ×32"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: thermal:lumium_ingot ×32, minecraft:glowstone_dust ×32"]
 			id: "A11A070100000019"
 			tasks: [
 				{
 					id: "A11A07020000001C"
-					item: ["thermal:lumium_ingot", "minecraft:glowstone_dust"]
-					count: 32
-					type: "item"
+					title: "Получите: thermal:lumium_ingot / minecraft:glowstone_dust"
+					type: "custom"
 				}
 			]
 			title: "Люмий впрок"
@@ -747,14 +743,13 @@
 		},
 		{
 			dependencies: ["A11A07010000002A"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: minecraft:elytra ×1, minecraft:firework_rocket ×1"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:elytra ×1, minecraft:firework_rocket ×1"]
 			id: "A11A07010000002B"
 			tasks: [
 				{
 					id: "A11A070200000033"
-					item: ["minecraft:elytra", "minecraft:firework_rocket"]
-					count: 1
-					type: "item"
+					title: "Получите: minecraft:elytra / minecraft:firework_rocket"
+					type: "custom"
 				}
 			]
 			title: "Элитры"
@@ -1262,6 +1257,83 @@
 			title: "Финальный салют"
 			x: 9.0d
 			y: -35.6d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: mekanism:alloy_atomic ×128.", "Постройте или улучшите здание «mech» до 5 уровня."]
+			id: "A11A070100000047"
+			tasks: [
+				{
+					id: "A11A07020000005D"
+					item: "mekanism:alloy_atomic"
+					count: 128
+					type: "item"
+				},
+				{
+					id: "A11A07020000005E"
+					title: "Здание mech (ур. 5)"
+					type: "custom"
+				}
+			]
+			title: "Завод предела"
+			x: -15.0d
+			y: -34.0d
+		},
+		{
+			dependencies: ["A11A070100000047"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:reinforced_casing ×64.", "Требуется: arcanopolis:arcane_converter ×16."]
+			id: "A11A070100000048"
+			tasks: [
+				{
+					id: "A11A07020000005F"
+					item: "arcanopolis:reinforced_casing"
+					count: 64
+					type: "item"
+				},
+				{
+					id: "A11A070200000060"
+					item: "arcanopolis:arcane_converter"
+					count: 16
+					type: "item"
+				}
+			]
+			title: "Сердце производства"
+			x: -15.0d
+			y: -35.7d
+		},
+		{
+			dependencies: ["A11A070100000008"]
+			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
+			id: "A11A070100000049"
+			rewards: [
+				{
+					id: "A11A070300000006"
+					command: "/loot give @p loot minecraft:chests/abandoned_mineshaft"
+					permission_level: 2
+					type: "command"
+				},
+				{
+					id: "A11A070300000007"
+					xp: 500
+					type: "xp"
+				},
+				{
+					id: "A11A070300000008"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A070200000061"
+					title: "Условие выполнено"
+					type: "custom"
+				}
+			]
+			title: "Сокровищница эпохи VI"
+			x: -20.0d
+			y: -12.0d
 		}
 	]
 	title: "Эпоха VI. «Космический горизонт»"

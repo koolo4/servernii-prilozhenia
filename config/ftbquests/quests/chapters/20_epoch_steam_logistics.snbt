@@ -12,7 +12,7 @@
 	quests: [
 		{
 			dependencies: ["A11A020100000011"]
-			description: ["Пар и логистика: город переходит к промышленным методам."]
+			description: ["Пар и логистика: город переходит к промышленным методам.", "Эпоха II. Пар вырывается из-под колпаков, поезда", "связывают кварталы, и колония впервые дышит как единое целое."]
 			id: "A11A030100000001"
 			tasks: [
 				{
@@ -747,14 +747,13 @@
 		},
 		{
 			dependencies: ["A11A03010000002D"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: createaddition:copper_wire ×32, minecraft:copper_ingot ×32"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:copper_wire ×32, minecraft:copper_ingot ×32"]
 			id: "A11A03010000002E"
 			tasks: [
 				{
 					id: "A11A030200000030"
-					item: ["createaddition:copper_wire", "minecraft:copper_ingot"]
-					count: 32
-					type: "item"
+					title: "Получите: createaddition:copper_wire / minecraft:copper_ingot"
+					type: "custom"
 				}
 			]
 			title: "Электрический контур"
@@ -763,14 +762,13 @@
 		},
 		{
 			dependencies: ["A11A03010000002E"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: createaddition:steel_rod ×16, minecraft:iron_ingot ×16"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:steel_rod ×16, minecraft:iron_ingot ×16"]
 			id: "A11A03010000002F"
 			tasks: [
 				{
 					id: "A11A030200000031"
-					item: ["createaddition:steel_rod", "minecraft:iron_ingot"]
-					count: 16
-					type: "item"
+					title: "Получите: createaddition:steel_rod / minecraft:iron_ingot"
+					type: "custom"
 				}
 			]
 			title: "Стальные стержни"
@@ -779,14 +777,13 @@
 		},
 		{
 			dependencies: ["A11A03010000002F"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: createaddition:modular_accumulator ×2, minecraft:redstone_block ×2"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:modular_accumulator ×2, minecraft:redstone_block ×2"]
 			id: "A11A030100000030"
 			tasks: [
 				{
 					id: "A11A030200000032"
-					item: ["createaddition:modular_accumulator", "minecraft:redstone_block"]
-					count: 2
-					type: "item"
+					title: "Получите: createaddition:modular_accumulator / minecraft:redstone_block"
+					type: "custom"
 				}
 			]
 			title: "Ротор генератора"
@@ -795,14 +792,13 @@
 		},
 		{
 			dependencies: ["A11A030100000030"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: createaddition:electric_motor ×2, minecraft:redstone ×2"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:electric_motor ×2, minecraft:redstone ×2"]
 			id: "A11A030100000031"
 			tasks: [
 				{
 					id: "A11A030200000033"
-					item: ["createaddition:electric_motor", "minecraft:redstone"]
-					count: 2
-					type: "item"
+					title: "Получите: createaddition:electric_motor / minecraft:redstone"
+					type: "custom"
 				}
 			]
 			title: "Электромотор"
@@ -811,14 +807,13 @@
 		},
 		{
 			dependencies: ["A11A030100000031"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: createaddition:rolling_mill ×1, minecraft:iron_block ×1"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:rolling_mill ×1, minecraft:iron_block ×1"]
 			id: "A11A030100000032"
 			tasks: [
 				{
 					id: "A11A030200000034"
-					item: ["createaddition:rolling_mill", "minecraft:iron_block"]
-					count: 1
-					type: "item"
+					title: "Получите: createaddition:rolling_mill / minecraft:iron_block"
+					type: "custom"
 				}
 			]
 			title: "Роллинговая мельница"
@@ -827,14 +822,13 @@
 		},
 		{
 			dependencies: ["A11A030100000032"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: createaddition:tesla_coil ×1, minecraft:lightning_rod ×1"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:tesla_coil ×1, minecraft:lightning_rod ×1"]
 			id: "A11A030100000033"
 			tasks: [
 				{
 					id: "A11A030200000035"
-					item: ["createaddition:tesla_coil", "minecraft:lightning_rod"]
-					count: 1
-					type: "item"
+					title: "Получите: createaddition:tesla_coil / minecraft:lightning_rod"
+					type: "custom"
 				}
 			]
 			title: "Зарядная станция"
@@ -1123,9 +1117,8 @@
 			tasks: [
 				{
 					id: "A11A03020000004C"
-					item: ["createaddition:copper_wire", "minecraft:copper_ingot"]
-					count: 16
-					type: "item"
+					title: "Получите: createaddition:copper_wire / minecraft:copper_ingot"
+					type: "custom"
 				},
 				{
 					id: "A11A03020000004D"
@@ -1192,14 +1185,13 @@
 		},
 		{
 			dependencies: ["A11A030100000046"]
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется любой из вариантов: minecraft:cooked_beef ×64, minecraft:cooked_porkchop ×64"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:cooked_beef ×64, minecraft:cooked_porkchop ×64"]
 			id: "A11A030100000047"
 			tasks: [
 				{
 					id: "A11A030200000052"
-					item: ["minecraft:cooked_beef", "minecraft:cooked_porkchop"]
-					count: 64
-					type: "item"
+					title: "Получите: minecraft:cooked_beef / minecraft:cooked_porkchop"
+					type: "custom"
 				}
 			]
 			title: "Мясные запасы"
@@ -1243,6 +1235,132 @@
 			title: "Торты к праздникам"
 			x: 15.0d
 			y: -2.8d
+		},
+		{
+			dependencies: [ ]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:steam_engine ×2.", "Требуется: minecraft:coal ×256."]
+			id: "A11A03010000004A"
+			tasks: [
+				{
+					id: "A11A030200000056"
+					item: "create:steam_engine"
+					count: 2
+					type: "item"
+				},
+				{
+					id: "A11A030200000057"
+					item: "minecraft:coal"
+					count: 256
+					type: "item"
+				}
+			]
+			title: "Паровой каскад"
+			x: 15.0d
+			y: -12.0d
+		},
+		{
+			dependencies: ["A11A03010000004A"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:depot ×4.", "Требуется: create:belt_connector ×32.", "Постройте или улучшите здание «warehouse» до 3 уровня."]
+			id: "A11A03010000004B"
+			tasks: [
+				{
+					id: "A11A030200000058"
+					item: "create:depot"
+					count: 4
+					type: "item"
+				},
+				{
+					id: "A11A030200000059"
+					item: "create:belt_connector"
+					count: 32
+					type: "item"
+				},
+				{
+					id: "A11A03020000005A"
+					title: "Здание warehouse (ур. 3)"
+					type: "custom"
+				}
+			]
+			title: "Конвейерный узел"
+			x: 15.0d
+			y: -13.7d
+		},
+		{
+			dependencies: ["A11A03010000004B"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bread ×256.", "Постройте или улучшите здание «cook» до 3 уровня."]
+			id: "A11A03010000004C"
+			tasks: [
+				{
+					id: "A11A03020000005B"
+					item: "minecraft:bread"
+					count: 256
+					type: "item"
+				},
+				{
+					id: "A11A03020000005C"
+					title: "Здание cook (ур. 3)"
+					type: "custom"
+				}
+			]
+			title: "Автоматическая пекарня"
+			x: 15.0d
+			y: -15.4d
+		},
+		{
+			dependencies: ["A11A03010000004C"]
+			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_crafter ×8.", "Требуется: create:precision_mechanism ×8."]
+			id: "A11A03010000004D"
+			tasks: [
+				{
+					id: "A11A03020000005D"
+					item: "create:mechanical_crafter"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "A11A03020000005E"
+					item: "create:precision_mechanism"
+					count: 8
+					type: "item"
+				}
+			]
+			title: "Механическая сборка"
+			x: 15.0d
+			y: -17.1d
+		},
+		{
+			dependencies: ["A11A03010000000D"]
+			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
+			id: "A11A03010000004E"
+			rewards: [
+				{
+					id: "A11A030300000005"
+					command: "/loot give @p loot minecraft:chests/abandoned_mineshaft"
+					permission_level: 2
+					type: "command"
+				},
+				{
+					id: "A11A030300000006"
+					xp: 500
+					type: "xp"
+				},
+				{
+					id: "A11A030300000007"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "A11A03020000005F"
+					title: "Условие выполнено"
+					type: "custom"
+				}
+			]
+			title: "Сокровищница эпохи II"
+			x: -20.0d
+			y: -12.0d
 		}
 	]
 	title: "Эпоха II. «Пар и логистика»"

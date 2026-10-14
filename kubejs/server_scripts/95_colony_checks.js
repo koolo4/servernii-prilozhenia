@@ -4,6 +4,7 @@
 // Проверка: раз в 5 секунд на игрока. Ошибки API проглатываются (не роняют сервер).
 
 const CHECKS = [
+  { task: "A11A010200000001", kind: "item_any", items: "minecolonies:supplycamp|minecolonies:supplyship", n: 1 },
   { task: "A11A010200000002", kind: "building", word: "builder", n: 1 },
   { task: "A11A010200000003", kind: "townhall", n: 1 },
   { task: "A11A010200000004", kind: "building", word: "builder", n: 2 },
@@ -27,7 +28,9 @@ const CHECKS = [
   { task: "A11A01020000002E", kind: "building", word: "black", n: 1 },
   { task: "A11A010200000030", kind: "citizens", n: 4 },
   { task: "A11A010200000032", kind: "building", word: "home", n: 2 },
+  { task: "A11A01020000003B", kind: "item_any", items: "minecraft:mutton|minecraft:porkchop", n: 16 },
   { task: "A11A01020000004A", kind: "building", word: "farm", n: 2 },
+  { task: "A11A010200000050", kind: "always" },
   { task: "A11A020200000001", kind: "townhall", n: 2 },
   { task: "A11A020200000002", kind: "townhall", n: 2 },
   { task: "A11A020200000003", kind: "citizens", n: 8 },
@@ -62,6 +65,10 @@ const CHECKS = [
   { task: "A11A020200000054", kind: "building", word: "black", n: 2 },
   { task: "A11A020200000056", kind: "building", word: "home", n: 3 },
   { task: "A11A020200000058", kind: "building", word: "warehouse", n: 2 },
+  { task: "A11A02020000005B", kind: "building", word: "saw", n: 2 },
+  { task: "A11A020200000060", kind: "building", word: "black", n: 2 },
+  { task: "A11A020200000062", kind: "building", word: "warehouse", n: 2 },
+  { task: "A11A020200000063", kind: "always" },
   { task: "A11A030200000001", kind: "townhall", n: 3 },
   { task: "A11A030200000002", kind: "townhall", n: 3 },
   { task: "A11A030200000003", kind: "building", word: "builder", n: 3 },
@@ -88,6 +95,12 @@ const CHECKS = [
   { task: "A11A03020000001F", kind: "building", word: "guard", n: 3 },
   { task: "A11A030200000020", kind: "building", word: "home", n: 4 },
   { task: "A11A03020000002F", kind: "building", word: "mech", n: 1 },
+  { task: "A11A030200000030", kind: "item_any", items: "createaddition:copper_wire|minecraft:copper_ingot", n: 32 },
+  { task: "A11A030200000031", kind: "item_any", items: "createaddition:steel_rod|minecraft:iron_ingot", n: 16 },
+  { task: "A11A030200000032", kind: "item_any", items: "createaddition:modular_accumulator|minecraft:redstone_block", n: 2 },
+  { task: "A11A030200000033", kind: "item_any", items: "createaddition:electric_motor|minecraft:redstone", n: 2 },
+  { task: "A11A030200000034", kind: "item_any", items: "createaddition:rolling_mill|minecraft:iron_block", n: 1 },
+  { task: "A11A030200000035", kind: "item_any", items: "createaddition:tesla_coil|minecraft:lightning_rod", n: 1 },
   { task: "A11A030200000037", kind: "building", word: "warehouse", n: 3 },
   { task: "A11A030200000041", kind: "building", word: "cook", n: 3 },
   { task: "A11A030200000043", kind: "building", word: "black", n: 3 },
@@ -95,8 +108,13 @@ const CHECKS = [
   { task: "A11A030200000047", kind: "building", word: "cook", n: 3 },
   { task: "A11A030200000049", kind: "building", word: "miner", n: 3 },
   { task: "A11A03020000004B", kind: "building", word: "university", n: 1 },
+  { task: "A11A03020000004C", kind: "item_any", items: "createaddition:copper_wire|minecraft:copper_ingot", n: 16 },
   { task: "A11A03020000004D", kind: "building", word: "warehouse", n: 3 },
   { task: "A11A03020000004F", kind: "building", word: "mech", n: 1 },
+  { task: "A11A030200000052", kind: "item_any", items: "minecraft:cooked_beef|minecraft:cooked_porkchop", n: 64 },
+  { task: "A11A03020000005A", kind: "building", word: "warehouse", n: 3 },
+  { task: "A11A03020000005C", kind: "building", word: "cook", n: 3 },
+  { task: "A11A03020000005F", kind: "always" },
   { task: "A11A040200000001", kind: "townhall", n: 3 },
   { task: "A11A040200000002", kind: "townhall", n: 3 },
   { task: "A11A040200000003", kind: "citizens", n: 20 },
@@ -122,9 +140,24 @@ const CHECKS = [
   { task: "A11A04020000001E", kind: "building", word: "guard", n: 4 },
   { task: "A11A04020000001F", kind: "building", word: "cook", n: 4 },
   { task: "A11A040200000020", kind: "building", word: "home", n: 5 },
+  { task: "A11A040200000023", kind: "item_any", items: "thermal:gold_gear|minecraft:gold_ingot", n: 8 },
+  { task: "A11A040200000024", kind: "item_any", items: "thermal:bronze_ingot|minecraft:iron_ingot", n: 32 },
+  { task: "A11A040200000026", kind: "item_any", items: "thermal:electrum_ingot|minecraft:gold_ingot", n: 16 },
+  { task: "A11A040200000027", kind: "item_any", items: "thermal:invar_ingot|minecraft:iron_ingot", n: 16 },
+  { task: "A11A040200000028", kind: "item_any", items: "thermal:constantan_ingot|minecraft:copper_ingot", n: 16 },
+  { task: "A11A040200000029", kind: "item_any", items: "thermal:signalum_ingot|minecraft:redstone", n: 16 },
+  { task: "A11A04020000002A", kind: "item_any", items: "thermal:lumium_ingot|minecraft:glowstone_dust", n: 16 },
   { task: "A11A04020000002C", kind: "building", word: "mech", n: 2 },
+  { task: "A11A04020000002F", kind: "item_any", items: "mekanism:ingot_osmium|minecraft:iron_ingot", n: 32 },
+  { task: "A11A040200000030", kind: "item_any", items: "mekanism:enriched_carbon|minecraft:coal", n: 16 },
+  { task: "A11A040200000031", kind: "item_any", items: "mekanism:enriched_redstone|minecraft:redstone", n: 16 },
+  { task: "A11A040200000032", kind: "item_any", items: "mekanism:enriched_diamond|minecraft:diamond", n: 8 },
+  { task: "A11A040200000034", kind: "item_any", items: "mekanism:alloy_reinforced|mekanism:alloy_atomic", n: 8 },
+  { task: "A11A040200000035", kind: "item_any", items: "mekanism:energy_tablet|minecraft:redstone_block", n: 4 },
   { task: "A11A040200000037", kind: "building", word: "mech", n: 2 },
+  { task: "A11A04020000003E", kind: "item_any", items: "mekanism:ingot_osmium|minecraft:iron_ingot", n: 64 },
   { task: "A11A04020000003F", kind: "building", word: "miner", n: 4 },
+  { task: "A11A040200000040", kind: "item_any", items: "mekanism:energy_tablet|minecraft:redstone_block", n: 2 },
   { task: "A11A040200000041", kind: "building", word: "warehouse", n: 4 },
   { task: "A11A040200000043", kind: "building", word: "mech", n: 2 },
   { task: "A11A040200000045", kind: "building", word: "mech", n: 2 },
@@ -133,6 +166,10 @@ const CHECKS = [
   { task: "A11A04020000004B", kind: "building", word: "mech", n: 2 },
   { task: "A11A04020000004D", kind: "building", word: "mech", n: 2 },
   { task: "A11A04020000004F", kind: "townhall", n: 3 },
+  { task: "A11A040200000055", kind: "building", word: "mech", n: 2 },
+  { task: "A11A040200000059", kind: "item_any", items: "mekanism:energy_tablet|minecraft:redstone_block", n: 4 },
+  { task: "A11A04020000005A", kind: "building", word: "mech", n: 2 },
+  { task: "A11A04020000005B", kind: "always" },
   { task: "A11A050200000001", kind: "townhall", n: 4 },
   { task: "A11A050200000003", kind: "always" },
   { task: "A11A050200000004", kind: "always" },
@@ -150,16 +187,34 @@ const CHECKS = [
   { task: "A11A050200000017", kind: "building", word: "cook", n: 5 },
   { task: "A11A050200000018", kind: "building", word: "guard", n: 5 },
   { task: "A11A050200000019", kind: "building", word: "warehouse", n: 5 },
+  { task: "A11A05020000001D", kind: "item_any", items: "minecraft:potion|minecraft:glass_bottle", n: 16 },
   { task: "A11A05020000001F", kind: "building", word: "library", n: 4 },
   { task: "A11A050200000022", kind: "building", word: "university", n: 3 },
   { task: "A11A050200000024", kind: "building", word: "mech", n: 3 },
+  { task: "A11A050200000025", kind: "item_any", items: "botania:livingwood|minecraft:oak_log", n: 64 },
+  { task: "A11A050200000026", kind: "item_any", items: "botania:livingrock|minecraft:stone", n: 64 },
+  { task: "A11A050200000027", kind: "item_any", items: "botania:manasteel_ingot|minecraft:iron_ingot", n: 32 },
+  { task: "A11A050200000028", kind: "item_any", items: "botania:mana_diamond|minecraft:diamond", n: 8 },
+  { task: "A11A05020000002B", kind: "item_any", items: "botania:rune|minecraft:stone", n: 16 },
   { task: "A11A05020000002E", kind: "building", word: "library", n: 4 },
+  { task: "A11A050200000031", kind: "item_any", items: "bloodmagic:reinforcedslate|minecraft:stone_slab", n: 16 },
+  { task: "A11A050200000032", kind: "item_any", items: "bloodmagic:blood_rune|minecraft:stone_bricks", n: 16 },
+  { task: "A11A050200000033", kind: "item_any", items: "bloodmagic:sacrificial_dagger|minecraft:iron_sword", n: 1 },
   { task: "A11A050200000035", kind: "building", word: "library", n: 4 },
+  { task: "A11A050200000036", kind: "item_any", items: "eidolon:pewter_ingot|minecraft:iron_ingot", n: 16 },
+  { task: "A11A050200000037", kind: "item_any", items: "eidolon:arcane_gold_ingot|minecraft:gold_ingot", n: 16 },
+  { task: "A11A050200000038", kind: "item_any", items: "eidolon:crucible|minecraft:cauldron", n: 1 },
+  { task: "A11A05020000003A", kind: "item_any", items: "eidolon:pewter_ingot|minecraft:iron_ingot", n: 8 },
   { task: "A11A05020000003B", kind: "building", word: "library", n: 4 },
   { task: "A11A05020000003E", kind: "building", word: "library", n: 4 },
+  { task: "A11A050200000048", kind: "item_any", items: "minecraft:potion|minecraft:glass_bottle", n: 8 },
   { task: "A11A05020000004E", kind: "building", word: "hospital", n: 3 },
   { task: "A11A050200000050", kind: "building", word: "hospital", n: 3 },
   { task: "A11A050200000053", kind: "building", word: "library", n: 4 },
+  { task: "A11A050200000055", kind: "building", word: "library", n: 4 },
+  { task: "A11A050200000057", kind: "building", word: "mech", n: 3 },
+  { task: "A11A050200000059", kind: "building", word: "hospital", n: 3 },
+  { task: "A11A05020000005A", kind: "always" },
   { task: "A11A060200000001", kind: "townhall", n: 5 },
   { task: "A11A060200000003", kind: "always" },
   { task: "A11A060200000004", kind: "always" },
@@ -172,14 +227,31 @@ const CHECKS = [
   { task: "A11A060200000010", kind: "building", word: "hospital", n: 4 },
   { task: "A11A060200000011", kind: "building", word: "library", n: 5 },
   { task: "A11A060200000012", kind: "building", word: "miner", n: 5 },
+  { task: "A11A060200000013", kind: "item_any", items: "ae2:certus_quartz_crystal|minecraft:quartz", n: 32 },
+  { task: "A11A060200000014", kind: "item_any", items: "ae2:fluix_crystal|minecraft:amethyst_shard", n: 16 },
+  { task: "A11A060200000015", kind: "item_any", items: "ae2:certus_quartz_dust|minecraft:quartz", n: 32 },
+  { task: "A11A060200000016", kind: "item_any", items: "ae2:engineering_processor|mekanism:basic_control_circuit", n: 16 },
+  { task: "A11A060200000017", kind: "item_any", items: "ae2:fluix_glass_cable|minecraft:glass_pane", n: 16 },
+  { task: "A11A060200000018", kind: "item_any", items: "ae2:controller|minecraft:redstone_block", n: 1 },
+  { task: "A11A060200000019", kind: "item_any", items: "ae2:terminal|minecraft:glass", n: 2 },
+  { task: "A11A06020000001A", kind: "item_any", items: "ae2:cell_component_1k|minecraft:redstone", n: 8 },
+  { task: "A11A06020000001B", kind: "item_any", items: "ae2:blank_pattern|minecraft:paper", n: 16 },
+  { task: "A11A06020000001C", kind: "item_any", items: "ae2:blank_pattern|minecraft:paper", n: 8 },
   { task: "A11A06020000001D", kind: "building", word: "mech", n: 4 },
+  { task: "A11A060200000020", kind: "item_any", items: "mekanism:basic_energy_cube|minecraft:redstone_block", n: 2 },
+  { task: "A11A060200000021", kind: "item_any", items: "mekanism:turbine_blade|minecraft:iron_ingot", n: 4 },
+  { task: "A11A060200000022", kind: "item_any", items: "mekanism:basic_factory|minecraft:crafting_table", n: 2 },
   { task: "A11A060200000024", kind: "building", word: "mech", n: 4 },
   { task: "A11A060200000026", kind: "building", word: "mech", n: 4 },
+  { task: "A11A060200000028", kind: "item_any", items: "ae2:fluix_crystal|minecraft:amethyst_shard", n: 8 },
+  { task: "A11A060200000029", kind: "item_any", items: "ae2:blank_pattern|minecraft:paper", n: 16 },
   { task: "A11A06020000002A", kind: "building", word: "warehouse", n: 5 },
+  { task: "A11A06020000002B", kind: "item_any", items: "mekanism:basic_energy_cube|minecraft:redstone_block", n: 2 },
   { task: "A11A06020000002C", kind: "building", word: "mech", n: 4 },
   { task: "A11A06020000002E", kind: "building", word: "mech", n: 4 },
   { task: "A11A060200000030", kind: "building", word: "courier", n: 3 },
   { task: "A11A060200000032", kind: "townhall", n: 5 },
+  { task: "A11A060200000034", kind: "item_any", items: "mekanism:ingot_osmium|minecraft:iron_ingot", n: 64 },
   { task: "A11A060200000039", kind: "building", word: "warehouse", n: 5 },
   { task: "A11A060200000048", kind: "building", word: "warehouse", n: 5 },
   { task: "A11A06020000004A", kind: "building", word: "university", n: 4 },
@@ -187,9 +259,14 @@ const CHECKS = [
   { task: "A11A06020000004E", kind: "building", word: "library", n: 5 },
   { task: "A11A060200000050", kind: "building", word: "school", n: 3 },
   { task: "A11A060200000052", kind: "building", word: "warehouse", n: 5 },
+  { task: "A11A060200000053", kind: "item_any", items: "ae2:blank_pattern|minecraft:paper", n: 16 },
   { task: "A11A060200000054", kind: "building", word: "mech", n: 4 },
   { task: "A11A060200000056", kind: "building", word: "courier", n: 3 },
   { task: "A11A06020000005B", kind: "building", word: "mech", n: 4 },
+  { task: "A11A06020000005D", kind: "item_any", items: "ae2:blank_pattern|minecraft:paper", n: 64 },
+  { task: "A11A06020000005E", kind: "building", word: "mech", n: 4 },
+  { task: "A11A060200000061", kind: "building", word: "warehouse", n: 5 },
+  { task: "A11A060200000062", kind: "always" },
   { task: "A11A070200000001", kind: "townhall", n: 6 },
   { task: "A11A070200000008", kind: "always" },
   { task: "A11A070200000009", kind: "always" },
@@ -201,12 +278,17 @@ const CHECKS = [
   { task: "A11A070200000011", kind: "building", word: "black", n: 5 },
   { task: "A11A070200000012", kind: "building", word: "miner", n: 5 },
   { task: "A11A070200000013", kind: "building", word: "lumberjack", n: 5 },
+  { task: "A11A070200000016", kind: "item_any", items: "mekanism:pellet_plutonium|minecraft:nether_star", n: 4 },
+  { task: "A11A070200000017", kind: "item_any", items: "mekanism:pellet_antimatter|minecraft:dragon_breath", n: 2 },
   { task: "A11A070200000019", kind: "building", word: "mech", n: 5 },
+  { task: "A11A07020000001B", kind: "item_any", items: "thermal:signalum_ingot|minecraft:redstone", n: 32 },
+  { task: "A11A07020000001C", kind: "item_any", items: "thermal:lumium_ingot|minecraft:glowstone_dust", n: 32 },
   { task: "A11A07020000001F", kind: "building", word: "mech", n: 5 },
   { task: "A11A070200000024", kind: "building", word: "library", n: 5 },
   { task: "A11A070200000026", kind: "building", word: "university", n: 5 },
   { task: "A11A070200000029", kind: "townhall", n: 5 },
   { task: "A11A07020000002D", kind: "citizens", n: 60 },
+  { task: "A11A070200000033", kind: "item_any", items: "minecraft:elytra|minecraft:firework_rocket", n: 1 },
   { task: "A11A070200000042", kind: "building", word: "black", n: 5 },
   { task: "A11A070200000044", kind: "building", word: "library", n: 5 },
   { task: "A11A070200000046", kind: "building", word: "mech", n: 5 },
@@ -221,6 +303,8 @@ const CHECKS = [
   { task: "A11A070200000058", kind: "building", word: "farm", n: 5 },
   { task: "A11A07020000005A", kind: "building", word: "library", n: 5 },
   { task: "A11A07020000005C", kind: "citizens", n: 60 },
+  { task: "A11A07020000005E", kind: "building", word: "mech", n: 5 },
+  { task: "A11A070200000061", kind: "always" },
   { task: "A11A080200000001", kind: "always" },
   { task: "A11A080200000002", kind: "always" },
   { task: "A11A080200000003", kind: "always" },
@@ -246,6 +330,7 @@ const CHECKS = [
   { task: "A11A0B0200000003", kind: "always" },
   { task: "A11A0B0200000004", kind: "always" },
   { task: "A11A0B0200000005", kind: "always" },
+  { task: "A11A0B0200000006", kind: "item_any", items: "create:toolbox|minecraft:chest", n: 1 },
   { task: "A11A0B0200000008", kind: "building", word: "mech", n: 2 },
   { task: "A11A0B020000000A", kind: "building", word: "mech", n: 2 },
   { task: "A11A0B020000000C", kind: "building", word: "university", n: 1 },
@@ -283,8 +368,35 @@ function arcanopolis_buildingManager(col) {
   return null
 }
 
+function arcanopolis_itemCount(player, id) {
+  try {
+    const Reg = Java.loadClass('net.minecraft.core.registries.BuiltInRegistries')
+    const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
+    const item = Reg.ITEM.get(new RL(String(id)))
+    if (item == null) return 0
+    const inv = player.getInventory()
+    let total = 0
+    for (let i = 0; i < inv.getContainerSize(); i++) {
+      const st = inv.getItem(i)
+      if (!st.isEmpty() && st.getItem().equals(item)) total += st.getCount()
+    }
+    return total
+  } catch (e) { return 0 }
+}
+
 function arcanopolis_condOk(player, c) {
   if (c.kind === 'always') return true
+  if (c.kind === 'item_any') {
+    try {
+      const ids = String(c.items).split('|')
+      let total = 0
+      for (const id of ids) {
+        total += arcanopolis_itemCount(player, id)
+        if (total >= c.n) return true
+      }
+      return total >= c.n
+    } catch (e) { return false }
+  }
   try {
     const col = arcanopolis_colonyOf(player)
     if (col == null) return false
