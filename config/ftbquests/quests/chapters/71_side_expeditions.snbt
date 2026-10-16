@@ -24,8 +24,8 @@
 				}
 			]
 			title: "Экспедиции"
-			x: -8.0d
-			y: 0.0d
+			x: -7.700000000000001d
+			y: -5.0d
 		},
 		{
 			dependencies: [ ]
@@ -51,7 +51,7 @@
 			]
 			title: "Заброшенные постройки"
 			x: -4.0d
-			y: -9.0d
+			y: 10.0d
 		},
 		{
 			dependencies: [ ]
@@ -77,7 +77,7 @@
 			]
 			title: "Нижний мир"
 			x: -2.0d
-			y: -9.0d
+			y: 10.0d
 		},
 		{
 			dependencies: [ ]
@@ -103,7 +103,7 @@
 			]
 			title: "Край"
 			x: 0.0d
-			y: -9.0d
+			y: 10.0d
 		},
 		{
 			dependencies: [ ]
@@ -129,7 +129,7 @@
 			]
 			title: "Следы колоний"
 			x: 2.0d
-			y: -9.0d
+			y: 10.0d
 		},
 		{
 			dependencies: ["0A11090100000001"]
@@ -146,8 +146,8 @@
 				}
 			]
 			title: "Припасы экспедиции"
-			x: -6.0d
-			y: 0.0d
+			x: -5.5d
+			y: -5.0d
 		},
 		{
 			dependencies: ["0A11090100000006"]
@@ -164,8 +164,8 @@
 				}
 			]
 			title: "Снаряжение"
-			x: -4.0d
-			y: 0.0d
+			x: -3.3000000000000003d
+			y: -5.0d
 		},
 		{
 			dependencies: ["0A11090100000007"]
@@ -182,8 +182,8 @@
 				}
 			]
 			title: "Трофеи Нижнего мира"
-			x: -2.0d
-			y: 0.0d
+			x: -1.1d
+			y: -5.0d
 		},
 		{
 			dependencies: ["0A11090100000008"]
@@ -200,8 +200,8 @@
 				}
 			]
 			title: "Трофеи Края"
-			x: 0.0d
-			y: 0.0d
+			x: 1.1d
+			y: -5.0d
 		},
 		{
 			dependencies: ["0A11090100000009"]
@@ -224,8 +224,8 @@
 				}
 			]
 			title: "Экспедиционный отчёт"
-			x: 2.0d
-			y: 0.0d
+			x: 3.3000000000000003d
+			y: -5.0d
 		},
 		{
 			dependencies: ["0A1109010000000A"]
@@ -248,11 +248,11 @@
 				}
 			]
 			title: "Музей экспедиций"
-			x: 4.0d
-			y: 0.0d
+			x: 5.5d
+			y: -5.0d
 		},
 		{
-			dependencies: ["0A1109010000000B"]
+			dependencies: ["0A11090100000001"]
 			hide_dependency_lines: false
 			description: ["Победите существ: зомби — 16 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A1109010000000C"
@@ -266,8 +266,8 @@
 				}
 			]
 			title: "Очистить окрестности"
-			x: 6.0d
-			y: 0.0d
+			x: -5.5d
+			y: -3.0d
 		},
 		{
 			dependencies: ["0A1109010000000C"]
@@ -284,8 +284,8 @@
 				}
 			]
 			title: "Костяная угроза"
-			x: 8.0d
-			y: 0.0d
+			x: -3.3000000000000003d
+			y: -3.0d
 		},
 		{
 			dependencies: ["0A1109010000000D"]
@@ -302,8 +302,8 @@
 				}
 			]
 			title: "Паучья напасть"
-			x: 8.0d
-			y: -2.0d
+			x: -1.1d
+			y: -3.0d
 		},
 		{
 			dependencies: ["0A1109010000000E"]
@@ -320,11 +320,11 @@
 				}
 			]
 			title: "Криперская опасность"
-			x: 6.0d
-			y: -2.0d
+			x: 1.1d
+			y: -3.0d
 		},
 		{
-			dependencies: ["0A1109010000000F"]
+			dependencies: ["0A1109010000000F", "0A11090100000008"]
 			hide_dependency_lines: false
 			description: ["Победите существ: ифритов (блейзов) — 8 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A11090100000010"
@@ -338,8 +338,8 @@
 				}
 			]
 			title: "Огненные твари"
-			x: 4.0d
-			y: -2.0d
+			x: 3.3000000000000003d
+			y: -3.0d
 		},
 		{
 			dependencies: ["0A11090100000010"]
@@ -356,8 +356,8 @@
 				}
 			]
 			title: "Охота на эндерменов"
-			x: 2.0d
-			y: -2.0d
+			x: 5.5d
+			y: -3.0d
 		},
 		{
 			dependencies: ["0A11090100000011"]
@@ -374,11 +374,11 @@
 				}
 			]
 			title: "Стражи крепости"
-			x: 0.0d
-			y: -2.0d
+			x: 7.700000000000001d
+			y: -3.0d
 		},
 		{
-			dependencies: ["0A11090100000012"]
+			dependencies: ["0A11090100000001"]
 			hide_dependency_lines: false
 			description: ["Победите существ: разбойников (пиллагеров) — 10 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A11090100000013"
@@ -392,8 +392,8 @@
 				}
 			]
 			title: "Рейдеры у стен"
-			x: -2.0d
-			y: -2.0d
+			x: -5.5d
+			y: -1.0d
 		},
 		{
 			dependencies: ["0A11090100000013"]
@@ -410,8 +410,8 @@
 				}
 			]
 			title: "Палачи рейдов"
-			x: -4.0d
-			y: -2.0d
+			x: -3.3000000000000003d
+			y: -1.0d
 		},
 		{
 			dependencies: ["0A11090100000014"]
@@ -428,11 +428,11 @@
 				}
 			]
 			title: "Захватчики отступили"
-			x: -6.0d
-			y: -2.0d
+			x: -1.1d
+			y: -1.0d
 		},
 		{
-			dependencies: ["0A11090100000015"]
+			dependencies: ["0A11090100000001"]
 			hide_dependency_lines: false
 			description: ["Отправьтесь в измерение: Нижний мир (Незер).", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A11090100000016"
@@ -445,8 +445,8 @@
 				}
 			]
 			title: "Портал в Нижний мир"
-			x: -8.0d
-			y: -2.0d
+			x: -5.5d
+			y: 1.0d
 		},
 		{
 			dependencies: ["0A11090100000016"]
@@ -463,8 +463,8 @@
 				}
 			]
 			title: "Алмазная лихорадка"
-			x: -8.0d
-			y: -4.0d
+			x: -3.3000000000000003d
+			y: 1.0d
 		},
 		{
 			dependencies: ["0A11090100000017"]
@@ -481,8 +481,8 @@
 				}
 			]
 			title: "Око Эндера"
-			x: -6.0d
-			y: -4.0d
+			x: -1.1d
+			y: 1.0d
 		},
 		{
 			dependencies: ["0A11090100000018"]
@@ -498,11 +498,11 @@
 				}
 			]
 			title: "Край света"
-			x: -4.0d
-			y: -4.0d
+			x: 1.1d
+			y: 1.0d
 		},
 		{
-			dependencies: ["0A11090100000019"]
+			dependencies: ["0A11090100000001"]
 			hide_dependency_lines: false
 			description: ["Найдите и посетите: крепость (стронгхолд). Зайдите внутрь, чтобы сервер зафиксировал визит.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A1109010000001A"
@@ -515,8 +515,8 @@
 				}
 			]
 			title: "Оплот древних"
-			x: -2.0d
-			y: -4.0d
+			x: -5.5d
+			y: 3.0d
 		},
 		{
 			dependencies: ["0A1109010000001A"]
@@ -532,8 +532,8 @@
 				}
 			]
 			title: "Оплот свинолюдей"
-			x: 0.0d
-			y: -4.0d
+			x: -3.3000000000000003d
+			y: 3.0d
 		},
 		{
 			dependencies: ["0A1109010000001B"]
@@ -549,8 +549,8 @@
 				}
 			]
 			title: "Город Края"
-			x: 2.0d
-			y: -4.0d
+			x: -1.1d
+			y: 3.0d
 		},
 		{
 			dependencies: ["0A1109010000001C"]
@@ -566,11 +566,11 @@
 				}
 			]
 			title: "Древний город"
-			x: 4.0d
-			y: -4.0d
+			x: 1.1d
+			y: 3.0d
 		},
 		{
-			dependencies: ["0A1109010000001D"]
+			dependencies: ["0A11090100000001"]
 			hide_dependency_lines: false
 			description: ["Пройдите пешком суммарно 5 км (считает ванильная статистика).", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A1109010000001E"
@@ -584,8 +584,8 @@
 				}
 			]
 			title: "Дальний путь"
-			x: 6.0d
-			y: -4.0d
+			x: -5.5d
+			y: 5.0d
 		},
 		{
 			dependencies: [ ]
@@ -603,7 +603,7 @@
 			]
 			title: "???"
 			x: 4.0d
-			y: -9.0d
+			y: 10.0d
 		},
 		{
 			dependencies: [ ]
@@ -621,7 +621,319 @@
 			]
 			title: "???"
 			x: -4.0d
-			y: -11.0d
+			y: 12.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Страж пурпурных руин Края.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000021"
+			icon: "minecraft:purpur_block"
+			optional: true
+			rewards: [
+				{
+					id: "0A11090300000005"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A11090300000006"
+					xp: 5
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A11090200000023"
+					entity: "cataclysm:ender_golem"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Эндер-голем"
+			x: -2.0d
+			y: 12.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Древний страж, охраняющий сокровища Края.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000022"
+			icon: "minecraft:ender_eye"
+			optional: true
+			rewards: [
+				{
+					id: "0A11090300000007"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A11090300000008"
+					xp: 8
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A11090200000024"
+					entity: "cataclysm:ender_guardian"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Страж Края"
+			x: 0.0d
+			y: 12.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Бронированный охотник из глубин.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000023"
+			icon: "minecraft:shield"
+			optional: true
+			rewards: [
+				{
+					id: "0A11090300000009"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A1109030000000A"
+					xp: 6
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A11090200000025"
+					entity: "cataclysm:the_prowler"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Мародёр"
+			x: 2.0d
+			y: 12.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Крылатый ужас пустынных гробниц.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000024"
+			icon: "minecraft:sandstone"
+			optional: true
+			rewards: [
+				{
+					id: "0A1109030000000B"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A1109030000000C"
+					xp: 6
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A11090200000026"
+					entity: "cataclysm:wadjet"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Ваджет"
+			x: 4.0d
+			y: 12.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Живая крепость из незерита в адских глубинах.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000025"
+			icon: "minecraft:netherite_block"
+			optional: true
+			rewards: [
+				{
+					id: "0A1109030000000D"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A1109030000000E"
+					xp: 10
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A11090200000027"
+					entity: "cataclysm:netherite_monstrosity"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Незеритовое чудовище"
+			x: -4.0d
+			y: 14.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Рыцарь пламени, чья арена раскалена добела.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000026"
+			icon: "minecraft:magma_block"
+			optional: true
+			rewards: [
+				{
+					id: "0A1109030000000F"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A11090300000010"
+					xp: 10
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A11090200000028"
+					entity: "cataclysm:ignis"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Игнис"
+			x: -2.0d
+			y: 14.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Машина войны древних строителей.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000027"
+			icon: "minecraft:wither_skeleton_skull"
+			optional: true
+			rewards: [
+				{
+					id: "0A11090300000011"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A11090300000012"
+					xp: 12
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A11090200000029"
+					entity: "cataclysm:the_harbinger"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Предвестник"
+			x: 0.0d
+			y: 14.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Страж песков, помнящий первые города.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000028"
+			icon: "minecraft:chiseled_sandstone"
+			optional: true
+			rewards: [
+				{
+					id: "0A11090300000013"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A11090300000014"
+					xp: 12
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A1109020000002A"
+					entity: "cataclysm:ancient_remnant"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Древний остаток"
+			x: 2.0d
+			y: 14.0d
+		},
+		{
+			dependencies: [ ]
+			description: ["Ужас бездны из затопленных храмов океана.", "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры", "по мирам. Убийство засчитается автоматически. Ветка бонусная:", "главы и эпохи она не запирает."]
+			id: "0A11090100000029"
+			icon: "minecraft:heart_of_the_sea"
+			optional: true
+			rewards: [
+				{
+					id: "0A11090300000015"
+					item: "minecraft:emerald"
+					count: 8
+					type: "item"
+				},
+				{
+					id: "0A11090300000016"
+					xp: 15
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A1109020000002B"
+					entity: "cataclysm:the_leviathan"
+					value: 1L
+					type: "kill"
+				}
+			]
+			title: "Катаклизм: Левиафан"
+			x: 4.0d
+			y: 14.0d
+		},
+		{
+			dependencies: [ ]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			invisible: true
+			description: ["Марафон — это 42 километра 195 метров. Пешком.", "Говорят, первый, кто прошёл, — успел рассказать. Успеете и вы."]
+			id: "0A1109010000002A"
+			icon: "minecraft:leather_boots"
+			optional: true
+			rewards: [
+				{
+					id: "0A11090300000017"
+					item: "minecraft:leather_boots"
+					type: "item"
+				},
+				{
+					id: "0A11090300000018"
+					xp: 5
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A1109020000002C"
+					stat: "minecraft:walk_one_cm"
+					value: 4219500
+					type: "stat"
+				}
+			]
+			title: "???"
+			x: -4.0d
+			y: 16.0d
 		}
 	]
 	title: "Необязательное: «Экспедиции»"

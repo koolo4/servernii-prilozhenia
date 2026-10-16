@@ -1,0 +1,154 @@
+# Project MMO — перки событий (серверный конфиг) Арканополиса.
+# Отличие от стандартного файла pmmo: из события SKILL_UP убраны все перки
+# pmmo:fireworks — фейерверков за каждое повышение навыка больше НЕТ.
+# Остальные перки (атрибуты, скорость копания, прыжки и пр.) — стандартные,
+# как в оригинальном pmmo-Perks.toml. Структура сверена с исходниками
+# Project MMO 1.20.1-1.7.x (PerksConfig.generateDefaults).
+
+[Perks]
+
+[Perks.For_Event]
+
+[[Perks.For_Event.BREAK_SPEED]]
+perk = "pmmo:break_speed"
+skill = "mining"
+pickaxe_dig = 0.005
+
+[[Perks.For_Event.BREAK_SPEED]]
+perk = "pmmo:break_speed"
+skill = "excavation"
+shovel_dig = 0.005
+
+[[Perks.For_Event.BREAK_SPEED]]
+perk = "pmmo:break_speed"
+skill = "woodcutting"
+axe_dig = 0.005
+
+[[Perks.For_Event.BREAK_SPEED]]
+perk = "pmmo:break_speed"
+skill = "farming"
+sword_dig = 0.005
+hoe_dig = 0.005
+shears_dig = 0.005
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "pmmo:attribute"
+skill = "building"
+attribute = "forge:block_reach"
+per_level = 0.05
+max_boost = 10.0
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "pmmo:attribute"
+skill = "agility"
+attribute = "minecraft:generic.movement_speed"
+per_level = 0.000015
+max_boost = 1.0
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "pmmo:attribute"
+skill = "endurance"
+attribute = "minecraft:generic.max_health"
+per_level = 0.05
+max_boost = 10.0
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "pmmo:attribute"
+skill = "combat"
+attribute = "minecraft:generic.attack_damage"
+per_level = 0.005
+max_boost = 1.0
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "ars_scalaes:mana_boost"
+skill = "magic"
+max_boost = 3000.0
+per_level = 3.0
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "ars_scalaes:mana_regen"
+skill = "magic"
+max_boost = 100.0
+per_level = 0.06
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "pmmo:attribute"
+skill = "magic"
+max_boost = 1.0
+per_level = 0.005
+attribute = "irons_spellbooks:cooldown_reduction"
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "pmmo:attribute"
+skill = "magic"
+max_boost = 2.0
+per_level = 0.01
+attribute = "irons_spellbooks:spell_power"
+
+[[Perks.For_Event.SKILL_UP]]
+perk = "pmmo:attribute"
+skill = "magic"
+max_boost = 300.0
+per_level = 1.0
+attribute = "irons_spellbooks:mana_regen"
+
+[[Perks.For_Event.JUMP]]
+perk = "pmmo:jump_boost"
+skill = "agility"
+per_level = 0.0005
+
+[[Perks.For_Event.SPRINT_JUMP]]
+perk = "pmmo:jump_boost"
+skill = "agility"
+per_level = 0.001
+
+[[Perks.For_Event.CROUCH_JUMP]]
+perk = "pmmo:jump_boost"
+skill = "agility"
+per_level = 0.0015
+
+[[Perks.For_Event.SUBMERGED]]
+perk = "pmmo:breath"
+skill = "swimming"
+
+[[Perks.For_Event.SUBMERGED]]
+perk = "pmmo:effect"
+skill = "swimming"
+effect = "minecraft:night_vision"
+min_level = 25
+
+[[Perks.For_Event.ENTITY]]
+perk = "pmmo:villager_boost"
+skill = "charisma"
+
+[[Perks.For_Event.RECEIVE_DAMAGE]]
+perk = "pmmo:damage_reduce"
+skill = "agility"
+for_damage = "minecraft:fall"
+per_level = 0.025
+
+[[Perks.For_Event.RECEIVE_DAMAGE]]
+perk = "pmmo:damage_reduce"
+skill = "endurance"
+for_damage = "minecraft:mob_attack"
+per_level = 0.025
+
+[[Perks.For_Event.DEAL_DAMAGE]]
+perk = "pmmo:damage_boost"
+skill = "archery"
+applies_to = ["minecraft:bow", "minecraft:crossbow", "minecraft:trident"]
+
+[[Perks.For_Event.DEAL_DAMAGE]]
+perk = "pmmo:damage_boost"
+skill = "magic"
+applies_to = ["ars_nouveau:spell_bow"]
+
+[[Perks.For_Event.DEAL_DAMAGE]]
+perk = "pmmo:damage_boost"
+skill = "magic"
+for_damage = ["#pmmo:magic"]
+
+[[Perks.For_Event.DEAL_DAMAGE]]
+perk = "pmmo:damage_boost"
+skill = "gunslinging"
+for_damage = ["#pmmo:gun"]

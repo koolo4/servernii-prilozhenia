@@ -24,7 +24,7 @@
 				}
 			]
 			title: "Магистры школы"
-			x: -8.0d
+			x: -5.5d
 			y: 0.0d
 		},
 		{
@@ -51,7 +51,7 @@
 			]
 			title: "Магистр Источника"
 			x: -4.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: [ ]
@@ -77,7 +77,7 @@
 			]
 			title: "Магистр Маны"
 			x: -2.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: [ ]
@@ -103,7 +103,7 @@
 			]
 			title: "Магистр Крови"
 			x: 0.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: [ ]
@@ -129,7 +129,7 @@
 			]
 			title: "Магистр Алхимии"
 			x: 2.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: ["0A110A0100000001"]
@@ -146,7 +146,7 @@
 				}
 			]
 			title: "Учебные материалы"
-			x: -6.0d
+			x: -3.3000000000000003d
 			y: 0.0d
 		},
 		{
@@ -164,7 +164,7 @@
 				}
 			]
 			title: "Школьные доски"
-			x: -4.0d
+			x: -1.1d
 			y: 0.0d
 		},
 		{
@@ -182,7 +182,7 @@
 				}
 			]
 			title: "Студенты школы"
-			x: -2.0d
+			x: 1.1d
 			y: 0.0d
 		},
 		{
@@ -200,7 +200,7 @@
 				}
 			]
 			title: "Магистры университета"
-			x: 0.0d
+			x: 3.3000000000000003d
 			y: 0.0d
 		},
 		{
@@ -224,8 +224,41 @@
 				}
 			]
 			title: "Научная работа"
-			x: 2.0d
+			x: 5.5d
 			y: 0.0d
+		},
+		{
+			dependencies: [ ]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			invisible: true
+			description: ["Библиотекарь шепчет: «Ответ — 42. Вопрос, увы, потерян».", "Соберите 42 книги. Зачем — вопрос как раз из потерянных."]
+			id: "0A110A010000000B"
+			icon: "minecraft:book"
+			optional: true
+			rewards: [
+				{
+					id: "0A110A0300000005"
+					item: "minecraft:writable_book"
+					type: "item"
+				},
+				{
+					id: "0A110A0300000006"
+					xp: 2
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A110A020000000C"
+					item: "minecraft:book"
+					count: 42
+					type: "item"
+				}
+			]
+			title: "???"
+			x: 4.0d
+			y: 5.0d
 		}
 	]
 	title: "Необязательное: «Магистры школы»"

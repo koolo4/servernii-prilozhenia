@@ -35,6 +35,7 @@ CUSTOM_CHECKS: list = []  # (task_id, cond) — собирается при эм
 CHAIN_ROWS: dict = {}  # файл главы -> строки-барьеры цепочки (в порядке квестов)
 _CUR_CHAPTER = [""]
 _CUR_INDEPENDENT = [False]  # текущий квест независимый (своя JS-«цепочка» без блокировок)
+_CUR_QUEST_KEY = [""]  # ключ текущего квеста при эмиссии (строки JS несут deps графа)
 
 HUT_ICONS = {
     "builder": "minecolonies:blockhutbuilder",
@@ -167,6 +168,7 @@ class Quest:
     optional: bool = False
     repeatable: bool = False
     independent: bool = False  # независимый квест: без цепочки и без линии к соседям
+    secret: bool = False  # секретный: без линий, невидим до выполнения (invisible)
 
 
 @dataclass
@@ -858,7 +860,328 @@ def build_chapters() -> list[Chapter]:
               [check("Запомнить, где лежат настройки сборки")], [], ["colony"]),
     ]))
 
+    ch.append(_relics_chapter())
+
     return ch
+
+
+
+# ============================================================================
+# Дополнительный контент 0.9.0: реликвии, боссы Cataclysm, листья Tinkers',
+# секретные квесты. Всё — опциональное/независимое: ворота эпох не запирает.
+# ============================================================================
+
+RELICS: list[tuple[str, str, int, str]] = [
+    # (id предмета relics:*, русское имя, награда опытом (уровни), лор)
+    ("infinity_ham", "Бесконечный окорок", 10, "Говорят, этот окорок невозможно доесть."),
+    ("space_dissector", "Рассекатель пространства", 10, "Инструмент, которому тесно в трёх измерениях."),
+    ("magic_mirror", "Волшебное зеркало", 10, "Показывает больше, чем простое отражение."),
+    ("elytra_booster", "Ускоритель элитр", 10, "С ним небо становится ближе."),
+    ("enders_hand", "Рука Эндера", 10, "Дотягивается туда, куда не достаёт своя."),
+    ("bastion_ring", "Кольцо бастиона", 6, "Трофей из самого сердца Нижнего мира."),
+    ("chorus_inhibitor", "Ингибитор хоруса", 6, "Держит прыгучую магию Края в узде."),
+    ("midnight_robe", "Полуночная мантия", 6, "Соткана из городской ночи."),
+    ("shadow_glaive", "Теневая глефа", 6, "Клинок, который предпочитает сумрак."),
+    ("spatial_sign", "Пространственный знак", 6, "Метка для тех, кто меряет мир шагами порталов."),
+    ("blazing_flask", "Пылающая фляга", 6, "Внутри — маленький вечный пожар."),
+    ("reflection_necklace", "Ожерелье отражения", 6, "Возвращает миру его же взгляды."),
+    ("jellyfish_necklace", "Ожерелье медузы", 6, "Светится и слегка покалывает."),
+    ("rage_glove", "Перчатка ярости", 6, "Сжимается в кулак сама по себе."),
+    ("holy_locket", "Святой медальон", 6, "Тёплый, как утренний свет в храме."),
+    ("horse_flute", "Лошадиная флейта", 3, "Её слышат только те, кого ждут."),
+    ("amphibian_boot", "Сапог амфибии", 3, "Один сапог — а пловец уже доволен."),
+    ("aqua_walker", "Аква-сапоги", 3, "Для тех, кто не любит мочить ноги."),
+    ("magma_walker", "Магмаходы", 3, "Горячо? Это смотря с какой стороны подошвы."),
+    ("drowned_belt", "Пояс утопленника", 3, "Пахнет тиной и приключениями."),
+    ("arrow_quiver", "Колчан стрел", 3, "Стрелы в нём всегда под рукой."),
+    ("hunter_belt", "Пояс охотника", 3, "Пахнет лесом и терпением."),
+    ("ice_breaker", "Ледокол", 3, "Зима отступает на шаг назад."),
+    ("ice_skates", "Коньки", 3, "Гладкий лёд — быстрая дорога."),
+    ("roller_skates", "Роликовые коньки", 3, "Городские улицы созданы для них."),
+    ("leather_belt", "Кожаный пояс", 3, "Простой, честный, надёжный."),
+    ("solid_snowball", "Прочный снежок", 3, "Не тает. Вообще. Проверено летом."),
+    ("spore_sack", "Споровая сумка", 3, "Внутри тихо дышит целый лес."),
+    ("wool_mitten", "Шерстяная рукавица", 3, "Связана с любовью и одной лишней петлёй."),
+]
+
+
+def _relics_chapter() -> Chapter:
+    """Глава реликвий: 29 независимых квестов «нашёл реликвию — получил опыт».
+
+    Реликвии (мод Relics) лежат в сундуках структур; задача засчитывается,
+    когда предмет оказывается в инвентаре. Между собой квесты не связаны.
+    """
+    qs = []
+    for rid, name, xp, lore in RELICS:
+        qs.append(Quest(
+            f"rel_{rid}", f"Находка: {name}", 0, 0,
+            [f"Реликвия мира: {name}. {lore}",
+             "Ищите в сундуках структур — деревень, храмов, руин, крепостей и "
+             "затонувших кораблей. Засчитается, когда предмет окажется у вас "
+             "в инвентаре. Квест независимый и ни с чем не связан; награда — опыт."],
+            [item_task(f"relics:{rid}")], [rxp(xp)], [], optional=True))
+    return Chapter("81_side_relics", "Необязательное: «Реликвии мира»",
+                   "relics:infinity_ham", G_SIDE, 13, qs)
+
+
+CATACLYSM_BOSSES: list[tuple[str, str, str, str, int, str]] = [
+    # (ключ, название, entity cataclysm:*, иконка, опыт, лор)
+    ("boss_ender_golem", "Катаклизм: Эндер-голем", "cataclysm:ender_golem",
+     "minecraft:purpur_block", 5, "Страж пурпурных руин Края."),
+    ("boss_ender_guardian", "Катаклизм: Страж Края", "cataclysm:ender_guardian",
+     "minecraft:ender_eye", 8, "Древний страж, охраняющий сокровища Края."),
+    ("boss_prowler", "Катаклизм: Мародёр", "cataclysm:the_prowler",
+     "minecraft:shield", 6, "Бронированный охотник из глубин."),
+    ("boss_wadjet", "Катаклизм: Ваджет", "cataclysm:wadjet",
+     "minecraft:sandstone", 6, "Крылатый ужас пустынных гробниц."),
+    ("boss_monstrosity", "Катаклизм: Незеритовое чудовище",
+     "cataclysm:netherite_monstrosity", "minecraft:netherite_block", 10,
+     "Живая крепость из незерита в адских глубинах."),
+    ("boss_ignis", "Катаклизм: Игнис", "cataclysm:ignis",
+     "minecraft:magma_block", 10, "Рыцарь пламени, чья арена раскалена добела."),
+    ("boss_harbinger", "Катаклизм: Предвестник", "cataclysm:the_harbinger",
+     "minecraft:wither_skeleton_skull", 12, "Машина войны древних строителей."),
+    ("boss_remnant", "Катаклизм: Древний остаток", "cataclysm:ancient_remnant",
+     "minecraft:chiseled_sandstone", 12, "Страж песков, помнящий первые города."),
+    ("boss_leviathan", "Катаклизм: Левиафан", "cataclysm:the_leviathan",
+     "minecraft:heart_of_the_sea", 15, "Ужас бездны из затопленных храмов океана."),
+]
+
+
+def _add_bonus_content(ch: Chapter) -> None:
+    """Квесты 0.9.0, добавляемые ПОСЛЕ big-quests-треков (ID не сдвигаются).
+
+    Всё здесь — опциональные листья и секреты: ворота эпох они не запирают,
+    линии к основной цепочке не тянут (независимые зоны глав).
+    """
+    f = ch.file
+    if f == "20_epoch_steam_logistics":
+        ch.quests += [
+            Quest("tic_station", "Станция конструктора Tinkers'", 0, 0,
+                  ["Tinkers' Construct начинается со станции конструктора:",
+                   "на ней инструменты собирают из отдельных деталей.",
+                   "Лист-бонус эпохи: основная цепочка от него не зависит."],
+                  [item_task("tconstruct:tinker_station")],
+                  [rxp(2)], [], optional=True),
+            Quest("tic_parts", "Сборщик деталей", 0, 0,
+                  ["Сборщик деталей вырезает детали инструментов из материалов",
+                   "по шаблонам — верный напарник станции конструктора."],
+                  [item_task("tconstruct:part_builder")],
+                  [rxp(2)], [], optional=True),
+        ]
+    elif f == "30_epoch_industry":
+        ch.quests += [
+            Quest("tic_smeltery", "Плавильня Tinkers'", 0, 0,
+                  ["Плавильня переплавляет руды с удвоением, делает сплавы",
+                   "и отливает детали. Соберите контроллер плавильни."],
+                  [item_task("tconstruct:smeltery_controller")],
+                  [rxp(3)], [], optional=True),
+            Quest("tic_cobalt", "Кобальт из Нижнего мира", 0, 0,
+                  ["Кобальт добывается в Нижнем мире и нужен для поздних",
+                   "сплавов Tinkers'. Принесите четыре слитка."],
+                  [item_task("tconstruct:cobalt_ingot", 4)],
+                  [rxp(3)], [], optional=True),
+            Quest("tic_manyullyn", "Маньюллин: предел жара", 0, 0,
+                  ["Маньюллин — королевский сплав кобальта с незеритом, вершина",
+                   "металлургии Tinkers'. Обычной плавильне он не по зубам:",
+                   "нужен жар 1500 — литейная на пылающей крови поздних эпох",
+                   "(см. гейтинг жаром в kubejs/server_scripts/90_era_gating.js)."],
+                  [item_task("tconstruct:manyullyn_ingot", 2)],
+                  [rxp(5)], [], optional=True),
+        ]
+    if f == "71_side_expeditions":
+        for key, title, ent, icon, xp, lore in CATACLYSM_BOSSES:
+            ch.quests.append(Quest(
+                key, title, 0, 0,
+                [lore,
+                 "Охота L_Ender's Cataclysm: боссы стерегут особые арены-структуры",
+                 "по мирам. Убийство засчитается автоматически. Ветка бонусная:",
+                 "главы и эпохи она не запирает."],
+                [kill_task(ent, 1)], [ir("minecraft:emerald", 8), rxp(xp)], [],
+                optional=True, icon=icon))
+        ch.quests.append(Quest(
+            "sec_marathon", "???", 0, 0,
+            ["Марафон — это 42 километра 195 метров. Пешком.",
+             "Говорят, первый, кто прошёл, — успел рассказать. Успеете и вы."],
+            [stat_task("minecraft:walk_one_cm", 4219500)],
+            [ir("minecraft:leather_boots", 1), rxp(5)], [],
+            optional=True, secret=True))
+    if f == "00_prologue":
+        ch.quests += [
+            Quest("sec_cake", "???", 0, 0,
+                  ["Пекарь колонии обещал торт. Когда-нибудь.",
+                   "Если торт всё же существует — принесите его. Торт — не ложь."],
+                  [item_task("minecraft:cake")],
+                  [ir("minecraft:milk_bucket", 1), rxp(1)], [],
+                  optional=True, secret=True),
+            Quest("sec_eggs", "???", 0, 0,
+                  ["Кто-то спрятал по городу пасхальные яйца. Буквально.",
+                   "Соберите 16 куриных яиц — и тайна будет раскрыта."],
+                  [item_task("minecraft:egg", 16)],
+                  [ir("minecraft:chicken_spawn_egg", 1), rxp(1)], [],
+                  optional=True, secret=True),
+        ]
+    elif f == "10_epoch_wood_water":
+        ch.quests += [
+            Quest("sec_lava", "???", 0, 0,
+                  ["Старое шахтёрское правило гласит: не копай вниз.",
+                   "Но ведро лавы в инвентаре — это уже позиция. Принесите."],
+                  [item_task("minecraft:lava_bucket")],
+                  [ir("minecraft:obsidian", 4), rxp(1)], [],
+                  optional=True, secret=True),
+            Quest("sec_13", "???", 0, 0,
+                  ["Город растёт. Тринадцать жителей — отличное число.",
+                   "Ничего страшного не случится. Наверное."],
+                  [Task("custom", cond="citizens:13",
+                        title="13 жителей в колонии")],
+                  [ir("minecraft:bread", 13), rxp(2)], [],
+                  optional=True, secret=True),
+        ]
+    elif f == "70_side_architects":
+        colors = ["white", "orange", "magenta", "light_blue", "yellow",
+                  "lime", "pink", "gray", "light_gray", "cyan", "purple",
+                  "blue", "brown", "green", "red", "black"]
+        ch.quests.append(Quest(
+            "sec_rainbow", "???", 0, 0,
+            ["Городу не хватает цвета. Соберите шерсть всех шестнадцати цветов —",
+             "и над Арканополисом встанет радуга."],
+            [item_task(f"minecraft:{c}_wool") for c in colors],
+            [ir("minecraft:firework_rocket", 16), rxp(3)], [],
+            optional=True, secret=True))
+    elif f == "72_side_schools":
+        ch.quests.append(Quest(
+            "sec_42", "???", 0, 0,
+            ["Библиотекарь шепчет: «Ответ — 42. Вопрос, увы, потерян».",
+             "Соберите 42 книги. Зачем — вопрос как раз из потерянных."],
+            [item_task("minecraft:book", 42)],
+            [ir("minecraft:writable_book", 1), rxp(2)], [],
+            optional=True, secret=True))
+
+
+# ============================================================================
+# Граф эпохи вместо линейной цепочки (топологии docs/09)
+# ============================================================================
+
+GATE_KEYS: dict[str, str] = {
+    "00_prologue": "charter",
+    "10_epoch_wood_water": "project",
+    "20_epoch_steam_logistics": "project",
+    "30_epoch_industry": "passport",
+    "40_epoch_magic": "lab",
+    "50_epoch_network": "project",
+    "60_epoch_cosmos": "finale",
+}
+
+
+def restructure_dag(chapters: list[Chapter]) -> None:
+    """Превращает авторские зависимости в строгий граф эпохи.
+
+    Раньше polish() сплющивал всё в одну цепочку (квест N+1 ждал квест N).
+    Теперь: параллельные ветки (ручные ветки + треки big_quests) идут в
+    свободном порядке, а ВОРОТА эпохи (GATE_KEYS) дополнительно требуют
+    каждый обязательный квест главы, который не является их потомком:
+    проскочить эпоху, игнорируя ветку, нельзя (решение от 2026-10-16).
+    Опциональные/повторяемые квесты независимы и воротами быть не могут.
+    """
+    def split_dep(d: str, cur: str) -> tuple[str, str]:
+        if ":" in d:
+            f, k = d.split(":", 1)
+            return f, k
+        return cur, d
+
+    for ch in chapters:
+        quests = {q.key: q for q in ch.quests}
+        if not ch.quests:
+            continue
+        entry = ch.quests[0].key
+        for q in ch.quests:
+            if q.independent:
+                q.deps = []
+                continue
+            nd = []
+            for d in q.deps:
+                f, k = split_dep(d, ch.file)
+                if f == ch.file and k in quests and quests[k].independent:
+                    continue  # бонус не может запирать обязательный квест
+                nd.append(d)
+            q.deps = nd
+            if not q.deps and q.key != entry:
+                q.deps = [entry]  # сироты-головы треков — от входа главы
+        if ch.file in GATE_KEYS:
+            gate = quests[GATE_KEYS[ch.file]]
+            dependents: dict[str, set] = {k: set() for k in quests}
+            for q in ch.quests:
+                if q.independent:
+                    continue
+                for d in q.deps:
+                    f, k = split_dep(d, ch.file)
+                    if f == ch.file and k in dependents:
+                        dependents[k].add(q.key)
+
+            def closure(start: str, edges: dict) -> set:
+                seen, stack = set(), [start]
+                while stack:
+                    c = stack.pop()
+                    if c in seen:
+                        continue
+                    seen.add(c)
+                    stack.extend(edges.get(c, ()))
+                return seen
+
+            back: dict[str, set] = {k: set() for k in quests}
+            for q in ch.quests:
+                if q.independent:
+                    continue
+                for d in q.deps:
+                    f, k = split_dep(d, ch.file)
+                    if f == ch.file and k in back:
+                        back[q.key].add(k)
+            anc_gate = closure(gate.key, back)
+            desc_gate = closure(gate.key, dependents)
+            # Пост-воротный эпилог («Сокровищницы эпох», финальные проверки
+            # треков): квесты зависят ОТ ворот, поэтому обязательными быть
+            # не могут — эпоху нельзя было бы закрыть никогда. Это бонус
+            # после печати эпохи: помечаем optional, зависимости сохраняем.
+            for q in ch.quests:
+                if q.key in desc_gate and q.key != gate.key \
+                        and not q.independent:
+                    q.optional = True
+            for q in ch.quests:
+                if q.independent or q.key == gate.key:
+                    continue
+                if q.key in anc_gate or q.key in desc_gate:
+                    continue
+                if q.key not in gate.deps:
+                    gate.deps.append(q.key)
+
+    # --- глобальные проверки: все зависимости разрешаются, циклов нет ---
+    keys_all = {(c.file, q.key) for c in chapters for q in c.quests}
+    graph: dict = {}
+    for ch in chapters:
+        for q in ch.quests:
+            ds = []
+            for d in q.deps:
+                f, k = split_dep(d, ch.file)
+                assert (f, k) in keys_all, \
+                    f"висячая зависимость {d} у {ch.file}:{q.key}"
+                ds.append((f, k))
+            graph[(ch.file, q.key)] = ds
+    color: dict = {}
+
+    def dfs(u, trail):
+        color[u] = 1
+        for v in graph[u]:
+            if color.get(v) == 1:
+                raise AssertionError(
+                    "ЦИКЛ зависимостей: " + " -> ".join(
+                        f"{a}:{b}" for a, b in trail + [v]))
+            if color.get(v, 0) == 0:
+                dfs(v, trail + [u])
+        color[u] = 2
+
+    for node in graph:
+        if color.get(node, 0) == 0:
+            dfs(node, [])
 
 
 
@@ -1060,35 +1383,78 @@ def stitch_chapters(chapters: list[Chapter]) -> None:
 
 
 def layout_chapters(chapters: list[Chapter]) -> None:
-    """Раскладка квестов «змейкой» вдоль цепочки зависимостей.
+    """Раскладка глав по графу зависимостей (топологии docs/09).
 
-    Раньше квесты стояли по исходным трекам-колонкам, поэтому линия зависимости
-    тянулась через всю главу (до 40+ ед.) и цепочка визуально не читалась.
-    Теперь соседние по цепочке квесты стоят вплотную (шаг 2.0), змейка идёт
-    слева-направо, затем справа-налево строкой ниже — FTB Quests рисует между
-    ними короткую линию зависимости, и весь путь прохождения виден сразу.
-    Независимые квесты (без линий) собраны отдельной зоной НИЖЕ змейки
-    с отступом, чтобы не смешиваться с основной линией.
+    Раньше квесты выкладывались «змейкой» по списку — цепочка читалась,
+    но веток не было видно. Теперь глава — слоистый граф: глубина квеста
+    (x) — длина самого длинного пути от входа главы, полоса (y) наследуется
+    от первой зависимости, поэтому параллельные ветки (ручные ветки и
+    треки big_quests) идут горизонтальными лентами слева направо, линии
+    зависимостей короткие, а ворота эпохи — крайний правый слой по центру.
+    Независимые квесты (бонусы, секреты, торговля) — отдельной зоной ниже
+    графа, без линий. Справочник сохраняет ручные координаты.
     """
-    cols, dx, dy = 9, 2.0, 2.0
-    free_cols = 5
     for ch in chapters:
+        if ch.file == "80_reference":
+            continue
         chained = [q for q in ch.quests if not q.independent]
         free = [q for q in ch.quests if q.independent]
-        for i, q in enumerate(chained):
-            row, col = divmod(i, cols)
-            if row % 2 == 1:
-                col = cols - 1 - col
-            q.x = (col - (cols - 1) / 2) * dx
-            q.y = -row * dy
-        if free:
-            chain_rows = (len(chained) + cols - 1) // cols
-            y0 = -chain_rows * dy - 3.0  # заметный отступ от основной змейки
-            for i, q in enumerate(free):
-                row, col = divmod(i, free_cols)
-                q.x = (col - (free_cols - 1) / 2) * dx
-                q.y = y0 - row * dy
+        by_key = {q.key: q for q in ch.quests}
+        intra = {q.key: [d for d in q.deps if ":" not in d and d in by_key]
+                 for q in chained}
+        depth: dict = {}
 
+        def _depth(k: str, guard: frozenset) -> int:
+            if k in depth:
+                return depth[k]
+            if k in guard:
+                return 0
+            ds = intra.get(k, [])
+            depth[k] = 0 if not ds else 1 + max(
+                _depth(d, guard | {k}) for d in ds)
+            return depth[k]
+
+        for q in chained:
+            _depth(q.key, frozenset())
+        maxd = max(depth.values(), default=0)
+        lane: dict = {}
+        occupied: set = set()
+        inherited: set = set()
+
+        def _place(q: Quest) -> None:
+            if q.key in lane:
+                return
+            ds = intra[q.key]
+            for d in ds:
+                _place(by_key[d])
+            want = None
+            if len(ds) >= 4:  # ворота сходятся к центру своих веток
+                med = sorted(lane[d] for d in ds)[len(ds) // 2]
+                if (depth[q.key], med) not in occupied:
+                    want = med
+            if want is None and ds and ds[0] not in inherited \
+                    and (depth[q.key], lane[ds[0]]) not in occupied:
+                want = lane[ds[0]]
+                inherited.add(ds[0])
+            if want is None:
+                want = 0
+                while (depth[q.key], want) in occupied:
+                    want += 1
+            lane[q.key] = want
+            occupied.add((depth[q.key], want))
+
+        for q in chained:
+            _place(q)
+        maxlane = max(lane.values(), default=0)
+        for q in chained:
+            q.x = (depth[q.key] - maxd / 2) * 2.2
+            q.y = (lane[q.key] - maxlane / 2) * 2.0
+        if free:
+            y0 = (maxlane / 2 + 2.5) * 2.0
+            for i, q in enumerate(free):
+                row, col = divmod(i, 5)
+                q.x = (col - 2) * 2.0
+                q.y = y0 + row * 2.0
 
 def _or_to_custom(t: Task) -> Task:
     """OR-список предметов -> custom item_any (проверка инвентаря скриптом)."""
@@ -1182,6 +1548,7 @@ def polish(chapters: list[Chapter]) -> None:
                                    spec["desc"], tasks, rewards, spec["deps"],
                                    optional=bool(spec.get("optional")),
                                    repeatable=bool(spec.get("repeatable"))))
+        _add_bonus_content(ch)
         for (lf, lk), lines in HUB_LORE.items():
             if ch.file == lf:
                 for q in ch.quests:
@@ -1206,29 +1573,51 @@ def polish(chapters: list[Chapter]) -> None:
             elif len(q.desc) < 2:
                 # однострочная рукописная аннотация + конкретные инструкции
                 q.desc = list(q.desc) + describe_quest(q)
-        # строгая цепочка: без прошлого квеста следующий недоступен
-        last_key = None
+        # Зависимости больше НЕ сплющиваем в одну цепочку: ветки эпохи идут
+        # параллельно; строгие ворота и проверки графа — restructure_dag().
         for q in ch.quests:
             if q.independent:
                 q.deps = []
-            elif last_key is not None:
-                q.deps = [last_key]
-            else:
-                q.deps = []
-            if not q.independent:
-                last_key = q.key
         if ch.file in CHAP_CHAIN:
             ch.deps_ch = [CHAP_CHAIN[ch.file]]
+
+    restructure_dag(chapters)
 
 
 # ============================================================================
 # Генерация kubejs/server_scripts/95_colony_checks.js (условия колонии)
 # ============================================================================
 
-def write_colony_js() -> None:
+def write_colony_js(chapters=None) -> None:
     import json
     MAIN_FILES = ["00_prologue", "10_epoch_wood_water", "20_epoch_steam_logistics",
-                  "30_epoch_industry", "40_epoch_magic", "50_epoch_network", "60_epoch_cosmos"]
+                  "30_epoch_industry", "40_epoch_magic", "50_epoch_network",
+                  "60_epoch_cosmos"]
+    # Строка JS теперь несёт список задач-зависимостей (deps): строка квеста
+    # срабатывает, только когда выполнены задачи всех квестов, от которых он
+    # зависит по графу эпохи (раньше была одна линейная цепочка с break).
+    rows_by_quest: dict = {}
+    for rows in CHAIN_ROWS.values():
+        for r in rows:
+            rows_by_quest.setdefault((r.get("f", ""), r.get("q", "")), []).append(r)
+    graph: dict = {}
+    if chapters:
+        graph = {(c.file, q.key): q for c in chapters for q in c.quests}
+    for bucket, rows in CHAIN_ROWS.items():
+        free_bucket = bucket.endswith("#free")
+        for r in rows:
+            deps: list = []
+            if not free_bucket and r.get("kind") != "skip":
+                q = graph.get((r.get("f", ""), r.get("q", "")))
+                if q is not None:
+                    seen = set()
+                    for d in q.deps:
+                        df, dk = d.split(":", 1) if ":" in d else (r.get("f", ""), d)
+                        for rr in rows_by_quest.get((df, dk), []):
+                            if rr["kind"] != "skip":
+                                seen.add(rr["task"])
+                    deps = sorted(seen)
+            r["deps"] = deps
     parts = []
     main_rows = []
     for f in MAIN_FILES:
@@ -1242,157 +1631,210 @@ def write_colony_js() -> None:
         parts.append(f'  "{file}": [\n{body}\n  ]')
     table = ",\n".join(parts)
 
-    js = f"""// 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
-// Строгая цепочка квестов: прогресс выдаётся только по порядку, звено за звеном.
-// Независимые квесты (ключи глав с суффиксом #free) проверяются отдельно и цепочку не блокируют.
+    tpl = """// 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
+// Граф зависимостей эпохи: строка условия несёт deps — id задач квестов,
+// от которых зависит её квест. Строка срабатывает только когда выполнены
+// все deps (фронт графа вместо линейной цепочки). Независимые квесты
+// (ключи глав с суффиксом #free) зависимостей не имеют.
 // Условия MineColonies и наличие предметов проверяются сервером раз в секунду.
 
-console.info('[Arcanopolis] 95_colony_checks: проверка условий колонии активна')
+console.info('[Arcanopolis] 95_colony_checks: проверка условий колонии активна (граф)')
 
-const CHAPTER_CHAINS = {{
-{table}
-}}
+const CHAPTER_CHAINS = {
+%TABLE%
+}
 
 const IColonyManager = Java.loadClass('com.minecolonies.api.colony.IColonyManager')
 
-function arcanopolis_colonyOf(player) {{
-  try {{
+function arcanopolis_level(player) {
+  try { const l = player.level; if (l) return l } catch (e) {}
+  try { return player.getLevel() } catch (e) {}
+  return null
+}
+
+function arcanopolis_colonyOf(player) {
+  try {
+    const lvl = arcanopolis_level(player)
+    if (lvl == null) return null
     const mgr = IColonyManager.getInstance()
     let col = null
-    try {{ col = mgr.getIColony(player.getLevel(), player.blockPosition()) }} catch (e) {{}}
-    if (col == null) {{
-      try {{ col = mgr.getClosestColony(player.getLevel(), player.blockPosition()) }} catch (e) {{}}
-    }}
+    try { col = mgr.getIColony(lvl, player.blockPosition()) } catch (e) {}
+    if (col == null) {
+      try { col = mgr.getClosestColony(lvl, player.blockPosition()) } catch (e) {}
+    }
     return col
-  }} catch (e) {{ return null }}
-}}
+  } catch (e) { return null }
+}
 
-function arcanopolis_buildingManager(col) {{
-  try {{ if (col.getServerBuildingManager) return col.getServerBuildingManager() }} catch (e) {{}}
-  try {{ return col.getBuildingManager() }} catch (e) {{}}
+function arcanopolis_buildingManager(col) {
+  try { if (col.getServerBuildingManager) return col.getServerBuildingManager() } catch (e) {}
+  try { return col.getBuildingManager() } catch (e) {}
   return null
-}}
+}
 
-function arcanopolis_itemCount(player, id) {{
-  try {{
+function arcanopolis_itemCount(player, id) {
+  try {
     const Reg = Java.loadClass('net.minecraft.core.registries.BuiltInRegistries')
     const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
     const item = Reg.ITEM.get(new RL(String(id)))
     if (item == null) return 0
     const inv = player.getInventory()
     let total = 0
-    for (let i = 0; i < inv.getContainerSize(); i++) {{
+    for (let i = 0; i < inv.getContainerSize(); i++) {
       const st = inv.getItem(i)
       if (!st.isEmpty() && st.getItem().equals(item)) total += st.getCount()
-    }}
+    }
     return total
-  }} catch (e) {{ return 0 }}
-}}
+  } catch (e) { return 0 }
+}
 
-function arcanopolis_findCamp(player) {{
-  // установленный лагерь/корабль снабжения: ищем блок рядом с игроком
-  try {{
-    const lvl = player.getLevel()
-    const pos = player.blockPosition()
-    for (let dx = -24; dx <= 24; dx++) {{
-      for (let dz = -24; dz <= 24; dz++) {{
-        for (let dy = -12; dy <= 12; dy++) {{
-          const st = lvl.getBlockState(pos.offset(dx, dy, dz))
-          const bs = String(st.getBlock())
-          if (bs.indexOf('minecolonies:supplycamp') >= 0 || bs.indexOf('minecolonies:supplyship') >= 0) return true
-        }}
-      }}
-    }}
-  }} catch (e) {{}}
+// --- Лагерь / корабль снабжения -------------------------------------------
+// В MineColonies 1.20.1 блок «supplyship» НЕ существует: лагерь ставит блок
+// minecolonies:supplycamp, а корабль снабжения — блок minecolonies:supplychest
+// (предметы-развёртыватели: supplycampdeployer и supplychestdeployer).
+// Старый поиск блока supplyship был причиной, что первый квест не засчитывался.
+const arcanopolis_campScan = {}
+
+function arcanopolis_findCampNow(player) {
+  try {
+    const lvl = arcanopolis_level(player)
+    if (lvl == null) return false
+    const px = Math.floor(player.x)
+    const py = Math.floor(player.y)
+    const pz = Math.floor(player.z)
+    for (let dx = -32; dx <= 32; dx++) {
+      for (let dz = -32; dz <= 32; dz++) {
+        for (let dy = -20; dy <= 20; dy++) {
+          const b = lvl.getBlock(px + dx, py + dy, pz + dz)
+          if (b && (b.id === 'minecolonies:supplycamp' || b.id === 'minecolonies:supplychest')) return true
+        }
+      }
+    }
+  } catch (e) {}
   return false
-}}
+}
 
-function arcanopolis_rowOk(player, row) {{
+function arcanopolis_findCamp(player) {
+  // скан окрестности тяжёлый — результат кэшируется на 5 секунд на игрока
+  try {
+    const name = String(player.username)
+    const now = Date.now()
+    const c = arcanopolis_campScan[name]
+    if (c && now - c.t < 5000) return c.ok
+    const ok = arcanopolis_findCampNow(player)
+    arcanopolis_campScan[name] = { t: now, ok: ok }
+    return ok
+  } catch (e) { return false }
+}
+
+BlockEvents.placed(event => {
+  try {
+    const id = String(event.block.id)
+    if (id === 'minecolonies:supplycamp' || id === 'minecolonies:supplychest') {
+      const p = event.entity
+      if (p && p.isPlayer()) p.persistentData.putBoolean('arcanopolis_camp', true)
+    }
+  } catch (e) {}
+})
+
+function arcanopolis_rowOk(player, row) {
   if (row.kind === 'always') return true
-  if (row.kind === 'camp') {{
-    try {{ if (arcanopolis_itemCount(player, 'minecolonies:supplycamp') + arcanopolis_itemCount(player, 'minecolonies:supplyship') >= 1) return true }} catch (e) {{}}
-    try {{
+  if (row.kind === 'camp') {
+    try { if (player.persistentData.getBoolean('arcanopolis_camp')) return true } catch (e) {}
+    try { if (arcanopolis_itemCount(player, 'minecolonies:supplycampdeployer') + arcanopolis_itemCount(player, 'minecolonies:supplychestdeployer') >= 1) return true } catch (e) {}
+    try {
       const col = arcanopolis_colonyOf(player)
-      if (col != null) {{
+      if (col != null) {
         const bm = arcanopolis_buildingManager(col)
         if (bm != null && bm.getTownHall() != null) return true
-      }}
-    }} catch (e) {{}}
+      }
+    } catch (e) {}
     return arcanopolis_findCamp(player)
-  }}
-  if (row.kind === 'item_any') {{
-    try {{
+  }
+  if (row.kind === 'item_any') {
+    try {
       const ids = String(row.items).split('|')
       let total = 0
-      for (const id of ids) {{
+      for (const id of ids) {
         total += arcanopolis_itemCount(player, id)
         if (total >= row.n) return true
-      }}
+      }
       return total >= row.n
-    }} catch (e) {{ return false }}
-  }}
-  try {{
+    } catch (e) { return false }
+  }
+  try {
     const col = arcanopolis_colonyOf(player)
     if (col == null) return false
-    if (row.kind === 'townhall') {{
+    if (row.kind === 'townhall') {
       const bm = arcanopolis_buildingManager(col)
       const th = bm != null ? bm.getTownHall() : null
       return th != null && th.getBuildingLevel() >= row.n
-    }}
-    if (row.kind === 'citizens') {{
+    }
+    if (row.kind === 'citizens') {
       return col.getCitizenManager().getCitizens().size() >= row.n
-    }}
-    if (row.kind === 'building') {{
+    }
+    if (row.kind === 'building') {
       const bm = arcanopolis_buildingManager(col)
       if (bm == null) return false
       const it = bm.getBuildings().values().iterator()
-      while (it.hasNext()) {{
+      while (it.hasNext()) {
         const b = it.next()
         let hay = ''
-        try {{ hay += ' ' + String(b.getSchematicName()) }} catch (e) {{}}
-        try {{ hay += ' ' + String(b.getBuildingType().getRegistryName()) }} catch (e) {{}}
-        try {{ hay += ' ' + String(b.getBuildingType().getSerializedName()) }} catch (e) {{}}
+        try { hay += ' ' + String(b.getSchematicName()) } catch (e) {}
+        try { hay += ' ' + String(b.getBuildingType().getRegistryName()) } catch (e) {}
+        try { hay += ' ' + String(b.getBuildingType().getSerializedName()) } catch (e) {}
         if (hay.toLowerCase().indexOf(row.word) >= 0) return b.getBuildingLevel() >= row.n
-      }}
-    }}
-  }} catch (e) {{}}
+      }
+    }
+  } catch (e) {}
   return false
-}}
+}
 
-const _arcanopolis_done = {{}}
+const _arcanopolis_done = {}
 
-ServerEvents.tick(event => {{
+function arcanopolis_depsDone(name, row) {
+  if (!row.deps) return true
+  for (const d of row.deps) {
+    if (!_arcanopolis_done[name + '|' + d]) return false
+  }
+  return true
+}
+
+ServerEvents.tick(event => {
   const s = event.server || event
-  try {{
+  try {
     if (s.getTickCount() % 20 !== 0) return  // раз в секунду
     const players = s.players
     if (!players) return
-    for (const p of players) {{
+    for (const p of players) {
       let name = ''
-      try {{ name = String(p.username) }} catch (e) {{ try {{ name = String(p.getName().getString()) }} catch (e2) {{ return }}}}
-      for (const chKey in CHAPTER_CHAINS) {{
-        const chain = CHAPTER_CHAINS[chKey]
-        const freeChain = chKey.indexOf('#free') >= 0  // независимые квесты: без блокировок
-        for (const row of chain) {{
-          if (row.kind === 'skip') continue
-          const dk = name + '|' + row.task
-          if (_arcanopolis_done[dk]) continue
-          if (!arcanopolis_rowOk(p, row)) {{ if (freeChain) continue; break }}  // стоп: дальше по цепочке нельзя
-          _arcanopolis_done[dk] = true
-          try {{ p.data.ftbquests.addProgress(row.task, 1) }} catch (e) {{}}
-          try {{ s.runCommandSilent('ftbquests change_progress ' + name + ' complete ' + row.task) }} catch (e) {{}}
-        }}
-      }}
-    }}
-  }} catch (e) {{}}
-}})
+      try { name = String(p.username) } catch (e) { try { name = String(p.getName().getString()) } catch (e2) { return } }
+      // два прохода: строки, чьи deps закрылись в этом же тике, не ждут секунду
+      for (let pass = 0; pass < 2; pass++) {
+        for (const chKey in CHAPTER_CHAINS) {
+          const chain = CHAPTER_CHAINS[chKey]
+          for (const row of chain) {
+            if (row.kind === 'skip') continue
+            const dk = name + '|' + row.task
+            if (_arcanopolis_done[dk]) continue
+            if (!arcanopolis_depsDone(name, row)) continue  // фронт графа: ждём зависимости
+            if (!arcanopolis_rowOk(p, row)) continue
+            _arcanopolis_done[dk] = true
+            try { p.data.ftbquests.addProgress(row.task, 1) } catch (e) {}
+            try { s.runCommandSilent('ftbquests change_progress ' + name + ' complete ' + row.task) } catch (e) {}
+          }
+        }
+      }
+    }
+  } catch (e) {}
+})
 """
+    js = tpl.replace("%TABLE%", table)
     out = Path("kubejs/server_scripts/95_colony_checks.js")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(js, encoding="utf-8")
     n = sum(len(v) for v in CHAIN_ROWS.values())
     print(f"OK {out} ({n} chain rows, {len(CHAIN_ROWS)} chapters)")
-
 
 # ============================================================================
 # Эмиссия SNBT
@@ -1477,6 +1919,8 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
                 row = {"task": tid, "kind": "always"}
     elif t.ttype == "item" and not t.consume:
         row = {"task": tid, "kind": "item_any", "items": t.item, "n": int(t.count or 1)}
+    row["q"] = _CUR_QUEST_KEY[0]
+    row["f"] = _CUR_CHAPTER[0]
     # независимые квесты проверяются отдельно и НЕ блокируют основную цепочку
     bucket = _CUR_CHAPTER[0] + ("#free" if _CUR_INDEPENDENT[0] else "")
     CHAIN_ROWS.setdefault(bucket, []).append(row)
@@ -1534,6 +1978,7 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
     for q in ch.quests:
         qid = qmap_all[(ch.file, q.key)]
         _CUR_INDEPENDENT[0] = q.independent
+        _CUR_QUEST_KEY[0] = q.key
         b = ["\t\t{", f"\t\t\tdependencies: ["]
         if q.deps:
             dep_ids = [f'"{resolve_dep(d, ch, chapter_no, qmap_all)}"' for d in q.deps]
@@ -1543,6 +1988,10 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
         if q.deps and not q.independent:
             # линия к предыдущему квесту цепочки должна быть видна всегда
             b.append("\t\t\thide_dependency_lines: false")
+        if q.secret:
+            b.append("\t\t\thide_dependency_lines: true")
+            b.append("\t\t\thide_dependent_lines: true")
+            b.append("\t\t\tinvisible: true")
         if q.desc:
             desc = ", ".join(f'"{esc(line)}"' for line in q.desc)
             b.append(f"\t\t\tdescription: [{desc}]")
@@ -1577,7 +2026,7 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
 def main() -> None:
     chapters = build_chapters()
     polish(chapters)
-    stitch_chapters(chapters)
+    # stitch_chapters не нужен: эпохи сшиты deps хабов и воротами restructure_dag
     layout_chapters(chapters)
 
     # Первый проход: зарегистрировать ID всех квестов
@@ -1601,7 +2050,7 @@ def main() -> None:
         path.write_text(emit_chapter(ch, idx, qmap, cmap), encoding="utf-8")
         print(f"OK chapters/{path.name} ({len(ch.quests)} quests)")
 
-    write_colony_js()
+    write_colony_js(chapters)
 
     # data.snbt
     data = """{

@@ -109,11 +109,15 @@ def main():
             closure = ancestors(gate)
             label = f"ворота → {MAIN[idx + 1]}: " + (", ".join(gate_names) or "НЕТ СВЯЗИ!")
         else:
+            # финал игры: квест(ы), транзитивно требующие ВСЕ обязательные
+            # квесты главы (пост-финальный эпилог — сокровищницы и т.п. —
+            # опционален и сюда не входит)
+            allreq = {q["id"] for q in req}
             gate = sorted(q["id"] for q in req
-                          if not any(q["id"] in o["deps"] for o in quest.values()))
+                          if allreq <= ancestors([q["id"]]))
             gate_names = [f'«{quest[g]["title"]}»' for g in gate]
             closure = ancestors(gate)
-            label = "финал игры: " + ", ".join(gate_names)
+            label = "финал игры: " + (", ".join(gate_names) or "НЕТ ФИНАЛА!")
         missing = [q for q in req if q["id"] not in closure]
         leaked = [quest[i] for i in closure
                   if quest[i]["chapter"] in SIDE]
@@ -131,6 +135,31 @@ def main():
             print(f"  ✗ ворота зависят от бонусных/справочных глав: "
                   f"{[q['title'] for q in leaked]}")
         print()
+
+    print("=== ЦИКЛЫ ЗАВИСИМОСТЕЙ (недопустимы: FTB не загрузит главу) ===\n")
+    color = {}
+    cyc = [0]
+
+    def dfs(u, trail):
+        color[u] = 1
+        for v in quest[u]["deps"]:
+            if v not in quest:
+                continue
+            if color.get(v) == 1:
+                cyc[0] += 1
+                print("  ✗ ЦИКЛ: " + " -> ".join(
+                    f"«{quest[t]['title']}»" for t in trail + [v]))
+            elif color.get(v, 0) == 0:
+                dfs(v, trail + [u])
+        color[u] = 2
+
+    for qid in quest:
+        if color.get(qid, 0) == 0:
+            dfs(qid, [])
+    if not cyc[0]:
+        print("  ✓ циклов нет")
+    problems += cyc[0]
+    print()
 
     print("=== ПРЕДУПРЕЖДЕНИЯ ===")
     warn = 0

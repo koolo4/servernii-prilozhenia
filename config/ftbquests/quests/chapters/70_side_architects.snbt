@@ -24,7 +24,7 @@
 				}
 			]
 			title: "Архитекторы"
-			x: -8.0d
+			x: -6.6000000000000005d
 			y: 0.0d
 		},
 		{
@@ -51,7 +51,7 @@
 			]
 			title: "Стиль города"
 			x: -4.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: [ ]
@@ -77,7 +77,7 @@
 			]
 			title: "Три квартала"
 			x: -2.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: [ ]
@@ -103,7 +103,7 @@
 			]
 			title: "Городской парк"
 			x: 0.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: [ ]
@@ -128,7 +128,7 @@
 			]
 			title: "Монумент"
 			x: 2.0d
-			y: -5.0d
+			y: 5.0d
 		},
 		{
 			dependencies: ["0A11080100000001"]
@@ -145,7 +145,7 @@
 				}
 			]
 			title: "Каменные кварталы"
-			x: -6.0d
+			x: -4.4d
 			y: 0.0d
 		},
 		{
@@ -163,7 +163,7 @@
 				}
 			]
 			title: "Стеклянные фасады"
-			x: -4.0d
+			x: -2.2d
 			y: 0.0d
 		},
 		{
@@ -181,7 +181,7 @@
 				}
 			]
 			title: "Медные крыши"
-			x: -2.0d
+			x: 0.0d
 			y: 0.0d
 		},
 		{
@@ -199,7 +199,7 @@
 				}
 			]
 			title: "Кирпичные особняки"
-			x: 0.0d
+			x: 2.2d
 			y: 0.0d
 		},
 		{
@@ -223,7 +223,7 @@
 				}
 			]
 			title: "Архитектурный ансамбль"
-			x: 2.0d
+			x: 4.4d
 			y: 0.0d
 		},
 		{
@@ -247,8 +247,116 @@
 				}
 			]
 			title: "Парк и сады"
-			x: 4.0d
+			x: 6.6000000000000005d
 			y: 0.0d
+		},
+		{
+			dependencies: [ ]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			invisible: true
+			description: ["Городу не хватает цвета. Соберите шерсть всех шестнадцати цветов —", "и над Арканополисом встанет радуга."]
+			id: "0A1108010000000C"
+			icon: "minecraft:white_wool"
+			optional: true
+			rewards: [
+				{
+					id: "0A11080300000005"
+					item: "minecraft:firework_rocket"
+					count: 16
+					type: "item"
+				},
+				{
+					id: "0A11080300000006"
+					xp: 3
+					type: "xp"
+				}
+			]
+			tasks: [
+				{
+					id: "0A1108020000000E"
+					item: "minecraft:white_wool"
+					type: "item"
+				},
+				{
+					id: "0A1108020000000F"
+					item: "minecraft:orange_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000010"
+					item: "minecraft:magenta_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000011"
+					item: "minecraft:light_blue_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000012"
+					item: "minecraft:yellow_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000013"
+					item: "minecraft:lime_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000014"
+					item: "minecraft:pink_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000015"
+					item: "minecraft:gray_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000016"
+					item: "minecraft:light_gray_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000017"
+					item: "minecraft:cyan_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000018"
+					item: "minecraft:purple_wool"
+					type: "item"
+				},
+				{
+					id: "0A11080200000019"
+					item: "minecraft:blue_wool"
+					type: "item"
+				},
+				{
+					id: "0A1108020000001A"
+					item: "minecraft:brown_wool"
+					type: "item"
+				},
+				{
+					id: "0A1108020000001B"
+					item: "minecraft:green_wool"
+					type: "item"
+				},
+				{
+					id: "0A1108020000001C"
+					item: "minecraft:red_wool"
+					type: "item"
+				},
+				{
+					id: "0A1108020000001D"
+					item: "minecraft:black_wool"
+					type: "item"
+				}
+			]
+			title: "???"
+			x: 4.0d
+			y: 5.0d
 		}
 	]
 	title: "Необязательное: «Архитекторы»"
