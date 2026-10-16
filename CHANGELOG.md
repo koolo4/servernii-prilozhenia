@@ -2,6 +2,12 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [0.7.1-alpha] — 2026-10-16
+
+### Удалено
+- **Tough As Nails** и **Serene Seasons** (вместе с библиотекой GlitchCore) убраны из `mods/mods.json` по решению: жажда/температура — перебор для городской сборки, сезоны конфликтуют с продовольственной моделью колонии. Остальной набор сложности и прогрессии (Majrusz's Progressive Difficulty, Champions, Spice of Life: Carrot Edition, Scaling Health, Cataclysm, When Dungeons Arise, Alex's Mobs, Tinkers' Construct, Project MMO, Relics) одобрен как предложено. В манифесте 73 мода.
+
+
 ## [0.7.0-alpha] — 2026-10-16
 
 ### Добавлено

@@ -1296,60 +1296,6 @@
       "note": "ОПЦИЯ: дикая фауна — медведи, крокодилы и прочие делают вылазки за ресурсами рискованнее"
     },
     {
-      "id": "glitchcore",
-      "name": "GlitchCore",
-      "category": "library",
-      "side": "both",
-      "required": false,
-      "modrinth": [
-        "glitchcore"
-      ],
-      "curseforge": [
-        "glitchcore"
-      ],
-      "version": "latest",
-      "version_hint": "версия для 1.20.1 (библиотека для Tough As Nails и Serene Seasons)",
-      "deps": []
-    },
-    {
-      "id": "tough-as-nails",
-      "name": "Tough As Nails",
-      "category": "difficulty",
-      "side": "both",
-      "required": false,
-      "modrinth": [
-        "tough-as-nails"
-      ],
-      "curseforge": [
-        "tough-as-nails"
-      ],
-      "version": "latest",
-      "version_hint": "9.x для 1.20.1",
-      "deps": [
-        "glitchcore"
-      ],
-      "note": "ХАРДКОР-ОПЦИЯ: жажда и температура. Сильно меняет темп — включать только осознанно, колонисты от температуры не страдают, а вы — да"
-    },
-    {
-      "id": "serene-seasons",
-      "name": "Serene Seasons",
-      "category": "difficulty",
-      "side": "both",
-      "required": false,
-      "modrinth": [
-        "serene-seasons"
-      ],
-      "curseforge": [
-        "serene-seasons"
-      ],
-      "version": "latest",
-      "version_hint": "версия для 1.20.1",
-      "deps": [
-        "glitchcore"
-      ],
-      "note": "ОПЦИЯ: сезоны влияют на урожай — продовольственную безопасность колонии придётся планировать (теплицы, запасы)"
-    },
-    {
       "id": "mantle",
       "name": "Mantle",
       "category": "library",
