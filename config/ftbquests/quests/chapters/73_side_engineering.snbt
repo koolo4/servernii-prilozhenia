@@ -23,11 +23,11 @@
 				}
 			]
 			title: "Инженерные задачи"
-			x: 0.0d
+			x: -8.0d
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0B0100000001"]
+			dependencies: [ ]
 			description: ["Разместите полную производственную линию на минимальной площади."]
 			id: "A11A0B0100000002"
 			icon: "minecraft:book"
@@ -48,11 +48,11 @@
 				}
 			]
 			title: "Компактная фабрика"
-			x: -2.0d
-			y: 0.0d
+			x: -4.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0B0100000001"]
+			dependencies: [ ]
 			description: ["Свяжите несколько цехов единой транспортной системой."]
 			id: "A11A0B0100000003"
 			icon: "minecraft:book"
@@ -73,11 +73,11 @@
 				}
 			]
 			title: "Транспортная сеть"
-			x: 2.0d
-			y: 0.0d
+			x: -2.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0B0100000001"]
+			dependencies: [ ]
 			description: ["Передавайте энергию между удалёнными цехами."]
 			id: "A11A0B0100000004"
 			icon: "minecraft:book"
@@ -98,11 +98,11 @@
 				}
 			]
 			title: "Энергомост"
-			x: -2.0d
-			y: 1.5d
+			x: 0.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0B0100000001"]
+			dependencies: [ ]
 			description: ["Автоматическая сортировка продукции города."]
 			id: "A11A0B0100000005"
 			icon: "minecraft:book"
@@ -124,10 +124,11 @@
 			]
 			title: "Сортировочная станция"
 			x: 2.0d
-			y: 1.5d
+			y: -5.0d
 		},
 		{
 			dependencies: ["A11A0B0100000001"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: create:toolbox ×1, minecraft:chest ×1"]
 			id: "A11A0B0100000006"
 			icon: "create:toolbox"
@@ -139,11 +140,12 @@
 				}
 			]
 			title: "Инженерный кейс"
-			x: 6.0d
-			y: 2.0d
+			x: -6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0B0100000006"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:paper ×32."]
 			id: "A11A0B0100000007"
 			icon: "minecraft:paper"
@@ -156,11 +158,12 @@
 				}
 			]
 			title: "Чертежи и схемы"
-			x: 6.0d
-			y: 0.30000000000000004d
+			x: -4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0B0100000007"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 2 уровня."]
 			id: "A11A0B0100000008"
 			icon: "minecolonies:blockhutmechanic"
@@ -172,11 +175,12 @@
 				}
 			]
 			title: "Механическая мастерская"
-			x: 6.0d
-			y: -1.4d
+			x: -2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0B0100000008"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0B0100000009"
 			icon: "create:wrench"
@@ -194,11 +198,12 @@
 				}
 			]
 			title: "Испытательный стенд"
-			x: 6.0d
-			y: -3.0999999999999996d
+			x: 0.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0B0100000009"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0B010000000A"
 			icon: "create:precision_mechanism"
@@ -216,8 +221,8 @@
 				}
 			]
 			title: "Инженерный диплом"
-			x: 6.0d
-			y: -4.8d
+			x: 2.0d
+			y: 0.0d
 		}
 	]
 	title: "Необязательное: «Инженерные задачи»"

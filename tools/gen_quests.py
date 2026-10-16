@@ -30,6 +30,7 @@ _counters: dict[str, int] = {}
 CUSTOM_CHECKS: list = []  # (task_id, cond) — собирается при эмиссии
 CHAIN_ROWS: dict = {}  # файл главы -> строки-барьеры цепочки (в порядке квестов)
 _CUR_CHAPTER = [""]
+_CUR_INDEPENDENT = [False]  # текущий квест независимый (своя JS-«цепочка» без блокировок)
 
 HUT_ICONS = {
     "builder": "minecolonies:blockhutbuilder",
@@ -157,6 +158,7 @@ class Quest:
     icon: str = ""
     optional: bool = False
     repeatable: bool = False
+    independent: bool = False  # независимый квест: без цепочки и без линии к соседям
 
 
 @dataclass
@@ -946,6 +948,37 @@ def stitch_chapters(chapters: list[Chapter]) -> None:
                 ch.quests[0].deps = [f"{prev}:{last_key[prev]}"]
 
 
+def layout_chapters(chapters: list[Chapter]) -> None:
+    """Раскладка квестов «змейкой» вдоль цепочки зависимостей.
+
+    Раньше квесты стояли по исходным трекам-колонкам, поэтому линия зависимости
+    тянулась через всю главу (до 40+ ед.) и цепочка визуально не читалась.
+    Теперь соседние по цепочке квесты стоят вплотную (шаг 2.0), змейка идёт
+    слева-направо, затем справа-налево строкой ниже — FTB Quests рисует между
+    ними короткую линию зависимости, и весь путь прохождения виден сразу.
+    Независимые квесты (без линий) собраны отдельной зоной НИЖЕ змейки
+    с отступом, чтобы не смешиваться с основной линией.
+    """
+    cols, dx, dy = 9, 2.0, 2.0
+    free_cols = 5
+    for ch in chapters:
+        chained = [q for q in ch.quests if not q.independent]
+        free = [q for q in ch.quests if q.independent]
+        for i, q in enumerate(chained):
+            row, col = divmod(i, cols)
+            if row % 2 == 1:
+                col = cols - 1 - col
+            q.x = (col - (cols - 1) / 2) * dx
+            q.y = -row * dy
+        if free:
+            chain_rows = (len(chained) + cols - 1) // cols
+            y0 = -chain_rows * dy - 3.0  # заметный отступ от основной змейки
+            for i, q in enumerate(free):
+                row, col = divmod(i, free_cols)
+                q.x = (col - (free_cols - 1) / 2) * dx
+                q.y = y0 - row * dy
+
+
 def _or_to_custom(t: Task) -> Task:
     """OR-список предметов -> custom item_any (проверка инвентаря скриптом)."""
     if t.ttype == "item" and "|" in t.item:
@@ -1036,6 +1069,7 @@ def polish(chapters: list[Chapter]) -> None:
                     rewards.append(Reward("", r[1], "xp"))
             ch.quests.append(Quest(spec["key"], spec["title"], spec["x"], spec["y"],
                                    spec["desc"], tasks, rewards, spec["deps"],
+                                   optional=bool(spec.get("optional")),
                                    repeatable=bool(spec.get("repeatable"))))
         for (lf, lk), lines in HUB_LORE.items():
             if ch.file == lf:
@@ -1044,17 +1078,22 @@ def polish(chapters: list[Chapter]) -> None:
                         q.desc = list(q.desc) + lines
         for q in ch.quests:
             q.tasks = [_or_to_custom(t) for t in q.tasks]
-        # каждый квест явно наследует linear-режим (страховка)
+        # Независимые квесты НЕ входят в цепочку и не соединяются линиями:
+        # опциональные (в т.ч. секретные «???»), повторяемая торговля и справочник.
+        # Они не блокируют соседей и сами ни от кого не зависят.
         for q in ch.quests:
-            q.icon = q.icon  # no-op для порядка
+            q.independent = bool(q.repeatable or q.optional
+                                 or ch.file == "80_reference")
         # строгая цепочка: без прошлого квеста следующий недоступен
         last_key = None
         for q in ch.quests:
-            if last_key is not None:
+            if q.independent:
+                q.deps = []
+            elif last_key is not None:
                 q.deps = [last_key]
             else:
                 q.deps = []
-            if not q.optional:
+            if not q.independent:
                 last_key = q.key
         if ch.file in CHAP_CHAIN:
             ch.deps_ch = [CHAP_CHAIN[ch.file]]
@@ -1083,6 +1122,7 @@ def write_colony_js() -> None:
 
     js = f"""// 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
 // Строгая цепочка квестов: прогресс выдаётся только по порядку, звено за звеном.
+// Независимые квесты (ключи глав с суффиксом #free) проверяются отдельно и цепочку не блокируют.
 // Условия MineColonies и наличие предметов проверяются сервером раз в 5 секунд.
 
 const CHAPTER_CHAINS = {{
@@ -1179,11 +1219,12 @@ ServerEvents.tick(event => {{
       try {{ name = String(p.username) }} catch (e) {{ try {{ name = String(p.getName().getString()) }} catch (e2) {{ return }}}}
       for (const chKey in CHAPTER_CHAINS) {{
         const chain = CHAPTER_CHAINS[chKey]
+        const freeChain = chKey.indexOf('#free') >= 0  // независимые квесты: без блокировок
         for (const row of chain) {{
           if (row.kind === 'skip') continue
           const dk = name + '|' + row.task
           if (_arcanopolis_done[dk]) continue
-          if (!arcanopolis_rowOk(p, row)) break  // стоп: дальше по цепочке нельзя
+          if (!arcanopolis_rowOk(p, row)) {{ if (freeChain) continue; break }}  // стоп: дальше по цепочке нельзя
           _arcanopolis_done[dk] = true
           try {{ p.data.ftbquests.addProgress(row.task, 1) }} catch (e) {{}}
           try {{ s.runCommandSilent('ftbquests change_progress ' + name + ' complete ' + row.task) }} catch (e) {{}}
@@ -1259,7 +1300,9 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
                 row = {"task": tid, "kind": "always"}
     elif t.ttype == "item" and not t.consume:
         row = {"task": tid, "kind": "item_any", "items": t.item, "n": int(t.count or 1)}
-    CHAIN_ROWS.setdefault(_CUR_CHAPTER[0], []).append(row)
+    # независимые квесты проверяются отдельно и НЕ блокируют основную цепочку
+    bucket = _CUR_CHAPTER[0] + ("#free" if _CUR_INDEPENDENT[0] else "")
+    CHAIN_ROWS.setdefault(bucket, []).append(row)
     lines.append(f"{indent}}}")
     return "\n".join(lines)
 
@@ -1313,12 +1356,16 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
     qchunks = []
     for q in ch.quests:
         qid = qmap_all[(ch.file, q.key)]
+        _CUR_INDEPENDENT[0] = q.independent
         b = ["\t\t{", f"\t\t\tdependencies: ["]
         if q.deps:
             dep_ids = [f'"{resolve_dep(d, ch, chapter_no, qmap_all)}"' for d in q.deps]
             b[-1] = f"\t\t\tdependencies: [{', '.join(dep_ids)}]"
         else:
             b[-1] = "\t\t\tdependencies: [ ]"
+        if q.deps and not q.independent:
+            # линия к предыдущему квесту цепочки должна быть видна всегда
+            b.append("\t\t\thide_dependency_lines: false")
         if q.desc:
             desc = ", ".join(f'"{esc(line)}"' for line in q.desc)
             b.append(f"\t\t\tdescription: [{desc}]")
@@ -1354,6 +1401,7 @@ def main() -> None:
     chapters = build_chapters()
     polish(chapters)
     stitch_chapters(chapters)
+    layout_chapters(chapters)
 
     # Первый проход: зарегистрировать ID всех квестов
     qmap: dict[tuple[str, str], str] = {}

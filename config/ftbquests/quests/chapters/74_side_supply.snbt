@@ -23,11 +23,11 @@
 				}
 			]
 			title: "Город без дефицита"
-			x: 0.0d
+			x: -8.0d
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0C0100000001"]
+			dependencies: [ ]
 			description: ["Семь игровых дней колония живёт без ручной доставки."]
 			id: "A11A0C0100000002"
 			icon: "minecraft:book"
@@ -48,11 +48,11 @@
 				}
 			]
 			title: "Неделя без участия"
-			x: 0.0d
-			y: 1.5d
+			x: -4.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0C0100000001"]
+			dependencies: [ ]
 			description: ["Тридцать дней: еда, топливо, стройматериалы — всё в достатке."]
 			id: "A11A0C0100000003"
 			icon: "minecraft:book"
@@ -73,11 +73,11 @@
 				}
 			]
 			title: "Месяц без дефицита"
-			x: 2.0d
-			y: 1.5d
+			x: -2.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0C0100000001"]
+			dependencies: [ ]
 			description: ["Город-машина работает сам."]
 			id: "A11A0C0100000004"
 			icon: "minecraft:book"
@@ -97,11 +97,12 @@
 				}
 			]
 			title: "Трофей снабжения"
-			x: 2.0d
-			y: 0.0d
+			x: 0.0d
+			y: -5.0d
 		},
 		{
 			dependencies: ["A11A0C0100000001"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bread ×128."]
 			id: "A11A0C0100000005"
 			icon: "minecraft:bread"
@@ -114,11 +115,12 @@
 				}
 			]
 			title: "Продовольственный резерв"
-			x: 6.0d
-			y: 2.0d
+			x: -6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0C0100000005"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:coal ×128."]
 			id: "A11A0C0100000006"
 			icon: "minecraft:coal"
@@ -131,11 +133,12 @@
 				}
 			]
 			title: "Топливный резерв"
-			x: 6.0d
-			y: 0.30000000000000004d
+			x: -4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0C0100000006"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:oak_planks ×256."]
 			id: "A11A0C0100000007"
 			icon: "minecraft:oak_planks"
@@ -148,11 +151,12 @@
 				}
 			]
 			title: "Строительный резерв"
-			x: 6.0d
-			y: -1.4d
+			x: -2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0C0100000007"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_ingot ×64."]
 			id: "A11A0C0100000008"
 			icon: "minecraft:iron_ingot"
@@ -165,11 +169,12 @@
 				}
 			]
 			title: "Резерв железа"
-			x: 6.0d
-			y: -3.0999999999999996d
+			x: 0.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0C0100000008"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0C0100000009"
 			icon: "minecraft:golden_apple"
@@ -187,11 +192,12 @@
 				}
 			]
 			title: "Город без дефицита"
-			x: 6.0d
-			y: -4.8d
+			x: 2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0C0100000009"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0C010000000A"
 			icon: "minecraft:chest"
@@ -209,11 +215,11 @@
 				}
 			]
 			title: "Логистика снабжения"
-			x: 6.0d
-			y: -6.5d
+			x: 4.0d
+			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0C010000000A"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000B"
 			icon: "minecraft:bread"
@@ -241,11 +247,11 @@
 				}
 			]
 			title: "Поставка хлеба"
-			x: 12.0d
-			y: -12.0d
+			x: 2.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0C010000000B"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000C"
 			icon: "minecraft:oak_log"
@@ -273,11 +279,11 @@
 				}
 			]
 			title: "Поставка древесины"
-			x: 12.0d
-			y: -13.7d
+			x: 4.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0C010000000C"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000D"
 			icon: "minecraft:cobblestone"
@@ -304,11 +310,11 @@
 				}
 			]
 			title: "Поставка камня"
-			x: 12.0d
-			y: -15.4d
+			x: -4.0d
+			y: -7.0d
 		},
 		{
-			dependencies: ["A11A0C010000000D"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000E"
 			icon: "minecraft:iron_ingot"
@@ -336,11 +342,11 @@
 				}
 			]
 			title: "Поставка железа"
-			x: 12.0d
-			y: -17.1d
+			x: -2.0d
+			y: -7.0d
 		},
 		{
-			dependencies: ["A11A0C010000000E"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C010000000F"
 			icon: "minecraft:gold_ingot"
@@ -368,11 +374,11 @@
 				}
 			]
 			title: "Поставка золота"
-			x: 12.0d
-			y: -18.8d
+			x: 0.0d
+			y: -7.0d
 		},
 		{
-			dependencies: ["A11A0C010000000F"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000010"
 			icon: "minecraft:diamond"
@@ -400,11 +406,11 @@
 				}
 			]
 			title: "Поставка алмазов"
-			x: 12.0d
-			y: -20.5d
+			x: 2.0d
+			y: -7.0d
 		},
 		{
-			dependencies: ["A11A0C0100000010"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000011"
 			icon: "mekanism:ingot_steel"
@@ -432,11 +438,11 @@
 				}
 			]
 			title: "Поставка стали"
-			x: 12.0d
-			y: -22.2d
+			x: 4.0d
+			y: -7.0d
 		},
 		{
-			dependencies: ["A11A0C0100000011"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000012"
 			icon: "create:precision_mechanism"
@@ -464,11 +470,11 @@
 				}
 			]
 			title: "Поставка механизмов"
-			x: 12.0d
-			y: -23.9d
+			x: -4.0d
+			y: -9.0d
 		},
 		{
-			dependencies: ["A11A0C0100000012"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000013"
 			icon: "minecraft:golden_carrot"
@@ -495,11 +501,11 @@
 				}
 			]
 			title: "Деликатесы для знати"
-			x: 12.0d
-			y: -25.6d
+			x: -2.0d
+			y: -9.0d
 		},
 		{
-			dependencies: ["A11A0C0100000013"]
+			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
 			id: "A11A0C0100000014"
 			icon: "botania:mana_pearl"
@@ -527,8 +533,8 @@
 				}
 			]
 			title: "Редкие реагенты"
-			x: 12.0d
-			y: -27.299999999999997d
+			x: 0.0d
+			y: -9.0d
 		}
 	]
 	title: "Необязательное: «Город без дефицита»"

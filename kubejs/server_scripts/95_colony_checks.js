@@ -1,5 +1,6 @@
 // 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
 // Строгая цепочка квестов: прогресс выдаётся только по порядку, звено за звеном.
+// Независимые квесты (ключи глав с суффиксом #free) проверяются отдельно и цепочку не блокируют.
 // Условия MineColonies и наличие предметов проверяются сервером раз в 5 секунд.
 
 const CHAPTER_CHAINS = {
@@ -11,7 +12,6 @@ const CHAPTER_CHAINS = {
     {"task": "A11A010200000005", "kind": "building", "word": "home", "n": 1},
     {"task": "A11A010200000006", "kind": "item_any", "items": "minecraft:bread", "n": 16},
     {"task": "A11A010200000007", "kind": "citizens", "n": 3},
-    {"task": "A11A010200000008", "kind": "building", "word": "courier", "n": 1},
     {"task": "A11A010200000009", "kind": "citizens", "n": 5},
     {"task": "A11A01020000000A", "kind": "item_any", "items": "minecraft:oak_log", "n": 64},
     {"task": "A11A01020000000B", "kind": "item_any", "items": "minecraft:cobblestone", "n": 256},
@@ -193,7 +193,6 @@ const CHAPTER_CHAINS = {
     {"task": "A11A030200000008", "kind": "item_any", "items": "create:brass_ingot", "n": 16},
     {"task": "A11A030200000009", "kind": "item_any", "items": "create:steam_engine", "n": 1},
     {"task": "A11A03020000000A", "kind": "item_any", "items": "create:precision_mechanism", "n": 4},
-    {"task": "A11A03020000000B", "kind": "item_any", "items": "create:railway_casing", "n": 4},
     {"task": "A11A03020000000C", "kind": "always"},
     {"task": "A11A03020000000D", "kind": "building", "word": "mechanic", "n": 1},
     {"task": "A11A03020000000E", "kind": "item_any", "items": "create:brass_casing", "n": 8},
@@ -372,12 +371,10 @@ const CHAPTER_CHAINS = {
     {"task": "A11A050200000001", "kind": "townhall", "n": 4},
     {"task": "A11A050200000002", "kind": "item_any", "items": "ars_nouveau:source_gem", "n": 32},
     {"task": "A11A050200000003", "kind": "always"},
-    {"task": "A11A050200000004", "kind": "always"},
     {"task": "A11A050200000005", "kind": "item_any", "items": "botania:mana_pool", "n": 1},
     {"task": "A11A050200000006", "kind": "item_any", "items": "botania:terrasteel_ingot", "n": 2},
     {"task": "A11A050200000007", "kind": "item_any", "items": "bloodmagic:altar", "n": 1},
     {"task": "A11A050200000008", "kind": "item_any", "items": "bloodmagic:blankslate", "n": 4},
-    {"task": "A11A050200000009", "kind": "item_any", "items": "arcanopolis:ritual_regulator", "n": 1},
     {"task": "A11A05020000000A", "kind": "always"},
     {"task": "A11A05020000000B", "kind": "always"},
     {"task": "A11A05020000000C", "kind": "building", "word": "library", "n": 2},
@@ -463,7 +460,6 @@ const CHAPTER_CHAINS = {
     {"task": "A11A060200000002", "kind": "item_any", "items": "ae2:controller", "n": 1},
     {"task": "A11A060200000003", "kind": "always"},
     {"task": "A11A060200000004", "kind": "always"},
-    {"task": "A11A060200000005", "kind": "item_any", "items": "mekanism:alloy_atomic", "n": 8},
     {"task": "A11A060200000006", "kind": "item_any", "items": "mekanism:ultimate_control_circuit", "n": 4},
     {"task": "A11A060200000007", "kind": "building", "word": "mechanic", "n": 3},
     {"task": "A11A060200000008", "kind": "item_any", "items": "arcanopolis:automation_core", "n": 1},
@@ -655,12 +651,21 @@ const CHAPTER_CHAINS = {
     {"task": "A11A070200000060", "kind": "item_any", "items": "arcanopolis:arcane_converter", "n": 16},
     {"task": "A11A070200000061", "kind": "always"}
   ],
+  "00_prologue#free": [
+    {"task": "A11A010200000008", "kind": "building", "word": "courier", "n": 1}
+  ],
+  "20_epoch_steam_logistics#free": [
+    {"task": "A11A03020000000B", "kind": "item_any", "items": "create:railway_casing", "n": 4}
+  ],
+  "40_epoch_magic#free": [
+    {"task": "A11A050200000004", "kind": "always"},
+    {"task": "A11A050200000009", "kind": "item_any", "items": "arcanopolis:ritual_regulator", "n": 1}
+  ],
+  "50_epoch_network#free": [
+    {"task": "A11A060200000005", "kind": "item_any", "items": "mekanism:alloy_atomic", "n": 8}
+  ],
   "70_side_architects": [
     {"task": "A11A080200000001", "kind": "always"},
-    {"task": "A11A080200000002", "kind": "always"},
-    {"task": "A11A080200000003", "kind": "always"},
-    {"task": "A11A080200000004", "kind": "always"},
-    {"task": "A11A080200000005", "kind": "always"},
     {"task": "A11A080200000006", "kind": "item_any", "items": "minecraft:stone_bricks", "n": 128},
     {"task": "A11A080200000007", "kind": "item_any", "items": "minecraft:glass_pane", "n": 64},
     {"task": "A11A080200000008", "kind": "item_any", "items": "minecraft:copper_block", "n": 16},
@@ -670,12 +675,14 @@ const CHAPTER_CHAINS = {
     {"task": "A11A08020000000C", "kind": "item_any", "items": "minecraft:oak_sapling", "n": 32},
     {"task": "A11A08020000000D", "kind": "building", "word": "farm", "n": 2}
   ],
+  "70_side_architects#free": [
+    {"task": "A11A080200000002", "kind": "always"},
+    {"task": "A11A080200000003", "kind": "always"},
+    {"task": "A11A080200000004", "kind": "always"},
+    {"task": "A11A080200000005", "kind": "always"}
+  ],
   "71_side_expeditions": [
     {"task": "A11A090200000001", "kind": "always"},
-    {"task": "A11A090200000002", "kind": "always"},
-    {"task": "A11A090200000003", "kind": "skip"},
-    {"task": "A11A090200000004", "kind": "skip"},
-    {"task": "A11A090200000005", "kind": "always"},
     {"task": "A11A090200000006", "kind": "item_any", "items": "minecraft:cooked_beef", "n": 32},
     {"task": "A11A090200000007", "kind": "item_any", "items": "minecraft:iron_sword", "n": 2},
     {"task": "A11A090200000008", "kind": "item_any", "items": "minecraft:blaze_rod", "n": 8},
@@ -702,16 +709,18 @@ const CHAPTER_CHAINS = {
     {"task": "A11A09020000001D", "kind": "skip"},
     {"task": "A11A09020000001E", "kind": "skip"},
     {"task": "A11A09020000001F", "kind": "skip"},
-    {"task": "A11A090200000020", "kind": "skip"},
+    {"task": "A11A090200000020", "kind": "skip"}
+  ],
+  "71_side_expeditions#free": [
+    {"task": "A11A090200000002", "kind": "always"},
+    {"task": "A11A090200000003", "kind": "skip"},
+    {"task": "A11A090200000004", "kind": "skip"},
+    {"task": "A11A090200000005", "kind": "always"},
     {"task": "A11A090200000021", "kind": "skip"},
     {"task": "A11A090200000022", "kind": "skip"}
   ],
   "72_side_schools": [
     {"task": "A11A0A0200000001", "kind": "always"},
-    {"task": "A11A0A0200000002", "kind": "always"},
-    {"task": "A11A0A0200000003", "kind": "always"},
-    {"task": "A11A0A0200000004", "kind": "always"},
-    {"task": "A11A0A0200000005", "kind": "always"},
     {"task": "A11A0A0200000006", "kind": "item_any", "items": "minecraft:book", "n": 16},
     {"task": "A11A0A0200000007", "kind": "item_any", "items": "minecraft:lectern", "n": 2},
     {"task": "A11A0A0200000008", "kind": "building", "word": "school", "n": 2},
@@ -719,12 +728,14 @@ const CHAPTER_CHAINS = {
     {"task": "A11A0A020000000A", "kind": "item_any", "items": "minecra_book", "n": 8},
     {"task": "A11A0A020000000B", "kind": "building", "word": "library", "n": 2}
   ],
+  "72_side_schools#free": [
+    {"task": "A11A0A0200000002", "kind": "always"},
+    {"task": "A11A0A0200000003", "kind": "always"},
+    {"task": "A11A0A0200000004", "kind": "always"},
+    {"task": "A11A0A0200000005", "kind": "always"}
+  ],
   "73_side_engineering": [
     {"task": "A11A0B0200000001", "kind": "always"},
-    {"task": "A11A0B0200000002", "kind": "always"},
-    {"task": "A11A0B0200000003", "kind": "always"},
-    {"task": "A11A0B0200000004", "kind": "always"},
-    {"task": "A11A0B0200000005", "kind": "always"},
     {"task": "A11A0B0200000006", "kind": "item_any", "items": "create:toolbox|minecraft:chest", "n": 1},
     {"task": "A11A0B0200000007", "kind": "item_any", "items": "minecraft:paper", "n": 32},
     {"task": "A11A0B0200000008", "kind": "building", "word": "mech", "n": 2},
@@ -733,11 +744,14 @@ const CHAPTER_CHAINS = {
     {"task": "A11A0B020000000B", "kind": "item_any", "items": "create:precision_mechanism", "n": 4},
     {"task": "A11A0B020000000C", "kind": "building", "word": "university", "n": 1}
   ],
+  "73_side_engineering#free": [
+    {"task": "A11A0B0200000002", "kind": "always"},
+    {"task": "A11A0B0200000003", "kind": "always"},
+    {"task": "A11A0B0200000004", "kind": "always"},
+    {"task": "A11A0B0200000005", "kind": "always"}
+  ],
   "74_side_supply": [
     {"task": "A11A0C0200000001", "kind": "always"},
-    {"task": "A11A0C0200000002", "kind": "always"},
-    {"task": "A11A0C0200000003", "kind": "always"},
-    {"task": "A11A0C0200000004", "kind": "always"},
     {"task": "A11A0C0200000005", "kind": "item_any", "items": "minecraft:bread", "n": 128},
     {"task": "A11A0C0200000006", "kind": "item_any", "items": "minecraft:coal", "n": 128},
     {"task": "A11A0C0200000007", "kind": "item_any", "items": "minecraft:oak_planks", "n": 256},
@@ -745,7 +759,12 @@ const CHAPTER_CHAINS = {
     {"task": "A11A0C0200000009", "kind": "item_any", "items": "minecraft:golden_apple", "n": 2},
     {"task": "A11A0C020000000A", "kind": "building", "word": "warehouse", "n": 3},
     {"task": "A11A0C020000000B", "kind": "item_any", "items": "minecraft:chest", "n": 16},
-    {"task": "A11A0C020000000C", "kind": "building", "word": "courier", "n": 2},
+    {"task": "A11A0C020000000C", "kind": "building", "word": "courier", "n": 2}
+  ],
+  "74_side_supply#free": [
+    {"task": "A11A0C0200000002", "kind": "always"},
+    {"task": "A11A0C0200000003", "kind": "always"},
+    {"task": "A11A0C0200000004", "kind": "always"},
     {"task": "A11A0C020000000D", "kind": "skip"},
     {"task": "A11A0C020000000E", "kind": "skip"},
     {"task": "A11A0C020000000F", "kind": "skip"},
@@ -757,7 +776,7 @@ const CHAPTER_CHAINS = {
     {"task": "A11A0C0200000015", "kind": "skip"},
     {"task": "A11A0C0200000016", "kind": "skip"}
   ],
-  "80_reference": [
+  "80_reference#free": [
     {"task": "A11A0D0200000001", "kind": "always"},
     {"task": "A11A0D0200000002", "kind": "always"},
     {"task": "A11A0D0200000003", "kind": "always"},
@@ -857,11 +876,12 @@ ServerEvents.tick(event => {
       try { name = String(p.username) } catch (e) { try { name = String(p.getName().getString()) } catch (e2) { return }}
       for (const chKey in CHAPTER_CHAINS) {
         const chain = CHAPTER_CHAINS[chKey]
+        const freeChain = chKey.indexOf('#free') >= 0  // независимые квесты: без блокировок
         for (const row of chain) {
           if (row.kind === 'skip') continue
           const dk = name + '|' + row.task
           if (_arcanopolis_done[dk]) continue
-          if (!arcanopolis_rowOk(p, row)) break  // стоп: дальше по цепочке нельзя
+          if (!arcanopolis_rowOk(p, row)) { if (freeChain) continue; break }  // стоп: дальше по цепочке нельзя
           _arcanopolis_done[dk] = true
           try { p.data.ftbquests.addProgress(row.task, 1) } catch (e) {}
           try { s.runCommandSilent('ftbquests change_progress ' + name + ' complete ' + row.task) } catch (e) {}

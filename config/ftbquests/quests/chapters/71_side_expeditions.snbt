@@ -23,11 +23,11 @@
 				}
 			]
 			title: "Экспедиции"
-			x: 0.0d
+			x: -8.0d
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A090100000001"]
+			dependencies: [ ]
 			description: ["Ищите структуры и руины — источник редких ресурсов."]
 			id: "A11A090100000002"
 			icon: "minecraft:book"
@@ -48,11 +48,11 @@
 				}
 			]
 			title: "Заброшенные постройки"
-			x: -2.0d
-			y: 0.0d
+			x: -4.0d
+			y: -9.0d
 		},
 		{
-			dependencies: ["A11A090100000001"]
+			dependencies: [ ]
 			description: ["Незер — источник энергии и редких материалов."]
 			id: "A11A090100000003"
 			icon: "minecraft:emerald"
@@ -74,11 +74,11 @@
 				}
 			]
 			title: "Нижний мир"
-			x: 2.0d
-			y: 0.0d
+			x: -2.0d
+			y: -9.0d
 		},
 		{
-			dependencies: ["A11A090100000001"]
+			dependencies: [ ]
 			description: ["Энд — финальный рубеж для эндгейм-материалов."]
 			id: "A11A090100000004"
 			icon: "minecraft:emerald"
@@ -100,11 +100,11 @@
 				}
 			]
 			title: "Край"
-			x: 2.0d
-			y: 1.5d
+			x: 0.0d
+			y: -9.0d
 		},
 		{
-			dependencies: ["A11A090100000001"]
+			dependencies: [ ]
 			description: ["Структуры MineColonies в дикой природе."]
 			id: "A11A090100000005"
 			icon: "minecraft:book"
@@ -125,11 +125,12 @@
 				}
 			]
 			title: "Следы колоний"
-			x: -2.0d
-			y: 1.5d
+			x: 2.0d
+			y: -9.0d
 		},
 		{
 			dependencies: ["A11A090100000001"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:cooked_beef ×32."]
 			id: "A11A090100000006"
 			icon: "minecraft:cooked_beef"
@@ -142,11 +143,12 @@
 				}
 			]
 			title: "Припасы экспедиции"
-			x: 6.0d
-			y: 2.0d
+			x: -6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A090100000006"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_sword ×2."]
 			id: "A11A090100000007"
 			icon: "minecraft:iron_sword"
@@ -159,11 +161,12 @@
 				}
 			]
 			title: "Снаряжение"
-			x: 6.0d
-			y: 0.30000000000000004d
+			x: -4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A090100000007"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:blaze_rod ×8."]
 			id: "A11A090100000008"
 			icon: "minecraft:blaze_rod"
@@ -176,11 +179,12 @@
 				}
 			]
 			title: "Трофеи Нижнего мира"
-			x: 6.0d
-			y: -1.4d
+			x: -2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A090100000008"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ender_pearl ×8."]
 			id: "A11A090100000009"
 			icon: "minecraft:ender_pearl"
@@ -193,11 +197,12 @@
 				}
 			]
 			title: "Трофеи Края"
-			x: 6.0d
-			y: -3.0999999999999996d
+			x: 0.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A090100000009"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000000A"
 			icon: "minecrp"
@@ -215,11 +220,12 @@
 				}
 			]
 			title: "Экспедиционный отчёт"
-			x: 6.0d
-			y: -4.8d
+			x: 2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A09010000000A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000000B"
 			icon: "minecraft:name_tag"
@@ -237,11 +243,12 @@
 				}
 			]
 			title: "Музей экспедиций"
-			x: 6.0d
-			y: -6.5d
+			x: 4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A09010000000B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:zombie ×16."]
 			id: "A11A09010000000C"
 			icon: "minecraft:zombie_spawn_egg"
@@ -254,11 +261,12 @@
 				}
 			]
 			title: "Очистить окрестности"
-			x: 12.0d
-			y: -10.0d
+			x: 6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A09010000000C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:skeleton ×16."]
 			id: "A11A09010000000D"
 			icon: "minecraft:skeleton_spawn_egg"
@@ -271,11 +279,12 @@
 				}
 			]
 			title: "Костяная угроза"
-			x: 12.0d
-			y: -11.7d
+			x: 8.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A09010000000D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:spider ×8."]
 			id: "A11A09010000000E"
 			icon: "minecraft:spider_spawn_egg"
@@ -288,11 +297,12 @@
 				}
 			]
 			title: "Паучья напасть"
-			x: 12.0d
-			y: -13.4d
+			x: 8.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A09010000000E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:creeper ×8."]
 			id: "A11A09010000000F"
 			icon: "minecraft:creeper_spawn_egg"
@@ -305,11 +315,12 @@
 				}
 			]
 			title: "Криперская опасность"
-			x: 12.0d
-			y: -15.1d
+			x: 6.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A09010000000F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:blaze ×8."]
 			id: "A11A090100000010"
 			icon: "minecraft:blaze_spawn_egg"
@@ -322,11 +333,12 @@
 				}
 			]
 			title: "Огненные твари"
-			x: 12.0d
-			y: -16.8d
+			x: 4.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A090100000010"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:enderman ×6."]
 			id: "A11A090100000011"
 			icon: "minecraft:enderman_spawn_egg"
@@ -339,11 +351,12 @@
 				}
 			]
 			title: "Охота на эндерменов"
-			x: 12.0d
-			y: -18.5d
+			x: 2.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A090100000011"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:wither_skeleton ×6."]
 			id: "A11A090100000012"
 			icon: "minecraft:wither_skeleton_spawn_egg"
@@ -356,11 +369,12 @@
 				}
 			]
 			title: "Стражи крепости"
-			x: 12.0d
-			y: -20.2d
+			x: 0.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A090100000012"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:pillager ×10."]
 			id: "A11A090100000013"
 			icon: "minecraft:pillager_spawn_egg"
@@ -373,11 +387,12 @@
 				}
 			]
 			title: "Рейдеры у стен"
-			x: -6.0d
-			y: -10.0d
+			x: -2.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A090100000013"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:vindicator ×4."]
 			id: "A11A090100000014"
 			icon: "minecraft:vindicator_spawn_egg"
@@ -390,11 +405,12 @@
 				}
 			]
 			title: "Палачи рейдов"
-			x: -6.0d
-			y: -11.7d
+			x: -4.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A090100000014"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:ravager ×2."]
 			id: "A11A090100000015"
 			icon: "minecraft:ravager_spawn_egg"
@@ -408,10 +424,11 @@
 			]
 			title: "Захватчики отступили"
 			x: -6.0d
-			y: -13.4d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A090100000015"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_nether."]
 			id: "A11A090100000016"
 			icon: "minecraft:obsidian"
@@ -423,11 +440,12 @@
 				}
 			]
 			title: "Портал в Нижний мир"
-			x: 6.0d
-			y: -10.0d
+			x: -8.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A090100000016"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/mine_diamond."]
 			id: "A11A090100000017"
 			icon: "minecraft:emerald"
@@ -440,11 +458,12 @@
 				}
 			]
 			title: "Алмазная лихорадка"
-			x: 6.0d
-			y: -11.7d
+			x: -8.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A090100000017"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/enter_the_nether."]
 			id: "A11A090100000018"
 			icon: "minecraft:emerald"
@@ -457,11 +476,12 @@
 				}
 			]
 			title: "Око Эндера"
-			x: 6.0d
-			y: -13.4d
+			x: -6.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A090100000018"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_end."]
 			id: "A11A090100000019"
 			icon: "minecraft:end_stone"
@@ -473,11 +493,12 @@
 				}
 			]
 			title: "Край света"
-			x: 6.0d
-			y: -15.1d
+			x: -4.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A090100000019"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001A"
 			icon: "minecraft:ender_eye"
@@ -489,11 +510,12 @@
 				}
 			]
 			title: "Оплот древних"
-			x: 0.0d
-			y: -10.0d
+			x: -2.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A09010000001A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001B"
 			icon: "minecraft:gilded_blackstone"
@@ -506,10 +528,11 @@
 			]
 			title: "Оплот свинолюдей"
 			x: 0.0d
-			y: -11.7d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A09010000001B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001C"
 			icon: "minecraft:purpur_block"
@@ -521,11 +544,12 @@
 				}
 			]
 			title: "Город Края"
-			x: 0.0d
-			y: -13.4d
+			x: 2.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A09010000001C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A09010000001D"
 			icon: "minecraft:sculk"
@@ -537,11 +561,12 @@
 				}
 			]
 			title: "Древний город"
-			x: 0.0d
-			y: -15.1d
+			x: 4.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A09010000001D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Достичь статистику minecraft:walk_one_cm ≥ 500000."]
 			id: "A11A09010000001E"
 			icon: "minecraft:leather_boots"
@@ -554,14 +579,15 @@
 				}
 			]
 			title: "Дальний путь"
-			x: -12.0d
-			y: -22.0d
+			x: 6.0d
+			y: -4.0d
 		},
 		{
-			dependencies: ["A11A09010000001E"]
+			dependencies: [ ]
 			description: ["Ходят слухи, что герой, спасший деревню", "от нашествия рейдеров, получает дар..."]
 			id: "A11A09010000001F"
 			icon: "minecraft:emerald"
+			optional: true
 			tasks: [
 				{
 					id: "A11A090200000021"
@@ -571,14 +597,15 @@
 				}
 			]
 			title: "???"
-			x: 18.0d
-			y: -22.0d
+			x: 4.0d
+			y: -9.0d
 		},
 		{
-			dependencies: ["A11A09010000001F"]
+			dependencies: [ ]
 			description: ["Древние хроники говорят о змееподобном", "твари, чья смерть откроет тайну Края..."]
 			id: "A11A090100000020"
 			icon: "minecraft:emerald"
+			optional: true
 			tasks: [
 				{
 					id: "A11A090200000022"
@@ -588,8 +615,8 @@
 				}
 			]
 			title: "???"
-			x: -18.0d
-			y: -22.0d
+			x: -4.0d
+			y: -11.0d
 		}
 	]
 	title: "Необязательное: «Экспедиции»"

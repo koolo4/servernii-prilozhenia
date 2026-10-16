@@ -12,6 +12,7 @@
 	quests: [
 		{
 			dependencies: ["A11A04010000004D"]
+			hide_dependency_lines: false
 			description: ["Магия — самостоятельная система производства", "со своими материалами, инфраструктурой и специализациями.", "Эпоха IV. Источник пробуждается: ритуалы, мана и алхимия", "становятся такой же частью производства, как шестерни."]
 			id: "A11A050100000001"
 			icon: "arcanopolis:seal_arcana"
@@ -23,11 +24,12 @@
 				}
 			]
 			title: "Эпоха IV"
-			x: 0.0d
+			x: -8.0d
 			y: 0.0d
 		},
 		{
 			dependencies: ["A11A050100000001"]
+			hide_dependency_lines: false
 			description: ["Освойте книгу заклинаний и сбор источника."]
 			id: "A11A050100000002"
 			icon: "ars_nouveau:source_gem"
@@ -40,11 +42,12 @@
 				}
 			]
 			title: "Источник и заклинания"
-			x: -4.0d
-			y: -2.0d
+			x: -6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A050100000002"]
+			hide_dependency_lines: false
 			description: ["Слуги и устройства Ars Nouveau обслуживают производство."]
 			id: "A11A050100000003"
 			icon: "minecraft:book"
@@ -57,10 +60,10 @@
 			]
 			title: "Магические помощники"
 			x: -4.0d
-			y: -0.5d
+			y: 0.0d
 		},
 		{
-			dependencies: ["A11A050100000003"]
+			dependencies: [ ]
 			description: ["Свяжите Ars Nouveau с Create (Ars Creo)."]
 			id: "A11A050100000004"
 			icon: "minecraft:book"
@@ -74,10 +77,11 @@
 			]
 			title: "Ars Creo: магия и механизмы"
 			x: -4.0d
-			y: 1.0d
+			y: -21.0d
 		},
 		{
 			dependencies: ["A11A050100000003"]
+			hide_dependency_lines: false
 			description: ["Начните цветочную инфраструктуру Botania."]
 			id: "A11A050100000005"
 			icon: "botania:mana_pool"
@@ -91,10 +95,11 @@
 			]
 			title: "Мана-пул"
 			x: -2.0d
-			y: -2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A050100000005"]
+			hide_dependency_lines: false
 			description: ["Мана должна производиться автоматически."]
 			id: "A11A050100000006"
 			icon: "botania:terrasteel_ingot"
@@ -115,11 +120,12 @@
 				}
 			]
 			title: "Устойчивая генерация маны"
-			x: -2.0d
-			y: -0.5d
+			x: 0.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A050100000006"]
+			hide_dependency_lines: false
 			description: ["Поставьте алтарь Blood Magic и развивайте его."]
 			id: "A11A050100000007"
 			icon: "bloodmagic:altar"
@@ -133,10 +139,11 @@
 			]
 			title: "Алтарь крови"
 			x: 2.0d
-			y: -2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A050100000007"]
+			hide_dependency_lines: false
 			description: ["Первые компоненты прогрессии Blood Magic."]
 			id: "A11A050100000008"
 			icon: "bloodmagic:blankslate"
@@ -149,11 +156,11 @@
 				}
 			]
 			title: "Кровавые компоненты"
-			x: 2.0d
-			y: -0.5d
+			x: 4.0d
+			y: 0.0d
 		},
 		{
-			dependencies: ["A11A050100000008"]
+			dependencies: [ ]
 			description: ["Проведите ритуал как контрольное испытание школы."]
 			id: "A11A050100000009"
 			icon: "arcanopolis:ritual_regulator"
@@ -167,11 +174,12 @@
 				}
 			]
 			title: "Ритуал"
-			x: 2.0d
-			y: 1.0d
+			x: -2.0d
+			y: -21.0d
 		},
 		{
 			dependencies: ["A11A050100000008"]
+			hide_dependency_lines: false
 			description: ["Освойте базовую алхимию Eidolon: Repraised."]
 			id: "A11A05010000000A"
 			icon: "minecraft:book"
@@ -183,11 +191,12 @@
 				}
 			]
 			title: "Алхимия Eidolon"
-			x: 4.0d
-			y: -2.0d
+			x: 6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A05010000000A"]
+			hide_dependency_lines: false
 			description: ["Изготовьте несколько характерных компонентов школы.", "(ID предметов Eidolon сверьте в JEI)"]
 			id: "A11A05010000000B"
 			icon: "minecraft:book"
@@ -199,11 +208,12 @@
 				}
 			]
 			title: "Характерные компоненты"
-			x: 4.0d
-			y: -0.5d
+			x: 8.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A05010000000B"]
+			hide_dependency_lines: false
 			description: ["Постройте городскую арканную лабораторию:", "отдельные линии для источника, маны и ритуальных компонентов.", "Достаточно базового достижения в каждой школе."]
 			id: "A11A05010000000C"
 			icon: "minecolonies:blockhutlibrary"
@@ -233,11 +243,12 @@
 				}
 			]
 			title: "Ключевой проект: арканная лаборатория"
-			x: 0.0d
-			y: 2.0d
+			x: 8.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A05010000000C"]
+			hide_dependency_lines: false
 			description: ["Самоцветы источника — топливо магии."]
 			id: "A11A05010000000D"
 			icon: "ars_nouveau:source_gem"
@@ -250,11 +261,12 @@
 				}
 			]
 			title: "Резерв самоцветов"
-			x: -4.0d
-			y: -3.5d
+			x: 6.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A05010000000D"]
+			hide_dependency_lines: false
 			description: ["Террасталь подтверждает союз с дриадами."]
 			id: "A11A05010000000E"
 			icon: "botania:terrasteel_ingot"
@@ -267,11 +279,12 @@
 				}
 			]
 			title: "Союз с дриадами"
-			x: -2.0d
-			y: -3.5d
+			x: 4.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A05010000000E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 36 жителей."]
 			id: "A11A05010000000F"
 			icon: "minecraft:villager_spawn_egg"
@@ -283,11 +296,12 @@
 				}
 			]
 			title: "Тридцать шесть жителей"
-			x: -15.0d
-			y: 4.0d
+			x: 2.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A05010000000F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 40 жителей."]
 			id: "A11A050100000010"
 			icon: "minecraft:villager_spawn_egg"
@@ -299,11 +313,12 @@
 				}
 			]
 			title: "Сорок жителей"
-			x: -15.0d
-			y: 2.3d
+			x: 0.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A050100000010"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «library» до 4 уровня."]
 			id: "A11A050100000011"
 			icon: "minecolonies:blockhutlibrary"
@@ -315,11 +330,12 @@
 				}
 			]
 			title: "Библиотека IV уровня"
-			x: -15.0d
-			y: 0.6000000000000001d
+			x: -2.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A050100000011"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «university» до 3 уровня."]
 			id: "A11A050100000012"
 			icon: "minecolonies:blockhutuniversity"
@@ -331,11 +347,12 @@
 				}
 			]
 			title: "Университет III уровня"
-			x: -15.0d
-			y: -1.0999999999999996d
+			x: -4.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A050100000012"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «school» до 3 уровня."]
 			id: "A11A050100000013"
 			icon: "minecolonies:blockhutschool"
@@ -347,11 +364,12 @@
 				}
 			]
 			title: "Школа III уровня"
-			x: -15.0d
-			y: -2.8d
+			x: -6.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A050100000013"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «hospital» до 3 уровня."]
 			id: "A11A050100000014"
 			icon: "minecolonies:blockhuthospital"
@@ -363,11 +381,12 @@
 				}
 			]
 			title: "Госпиталь III уровня"
-			x: -15.0d
-			y: -4.5d
+			x: -8.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A050100000014"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 3 уровня."]
 			id: "A11A050100000015"
 			icon: "minecolonies:blockhutmechanic"
@@ -379,11 +398,12 @@
 				}
 			]
 			title: "Механик III уровня"
-			x: -15.0d
-			y: -6.199999999999999d
+			x: -8.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A050100000015"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «cook» до 5 уровня."]
 			id: "A11A050100000016"
 			icon: "minecolonies:blockhutcook"
@@ -395,11 +415,12 @@
 				}
 			]
 			title: "Повар V уровня"
-			x: -15.0d
-			y: -7.9d
+			x: -6.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A050100000016"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «guard» до 5 уровня."]
 			id: "A11A050100000017"
 			icon: "minecolonies:blockhutguardtower"
@@ -411,11 +432,12 @@
 				}
 			]
 			title: "Стража V уровня"
-			x: -15.0d
-			y: -9.6d
+			x: -4.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A050100000017"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «warehouse» до 5 уровня."]
 			id: "A11A050100000018"
 			icon: "minecolonies:blockhutwarehouse"
@@ -427,11 +449,12 @@
 				}
 			]
 			title: "Склад V уровня"
-			x: -15.0d
-			y: -11.299999999999999d
+			x: -2.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A050100000018"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:source_gem ×64."]
 			id: "A11A050100000019"
 			icon: "ars_nouveau:source_gem"
@@ -444,11 +467,12 @@
 				}
 			]
 			title: "Самоцветы источника"
-			x: -9.0d
-			y: 4.0d
+			x: 0.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A050100000019"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:sourcestone ×128."]
 			id: "A11A05010000001A"
 			icon: "ars_nouveau:sourcestone"
@@ -461,11 +485,12 @@
 				}
 			]
 			title: "Источниковый камень"
-			x: -9.0d
-			y: 2.3d
+			x: 2.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A05010000001A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:experience_bottle ×32."]
 			id: "A11A05010000001B"
 			icon: "minecraft:experience_bottle"
@@ -478,11 +503,12 @@
 				}
 			]
 			title: "Опыт для чар"
-			x: -9.0d
-			y: 0.6000000000000001d
+			x: 4.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A05010000001B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:potion ×16, minecraft:glass_bottle ×16"]
 			id: "A11A05010000001C"
 			icon: "minecraft:potion"
@@ -494,11 +520,12 @@
 				}
 			]
 			title: "Зелья силы"
-			x: -9.0d
-			y: -1.0999999999999996d
+			x: 6.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A05010000001C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A05010000001D"
 			icon: "minecraft:book"
@@ -516,11 +543,12 @@
 				}
 			]
 			title: "Чародейская библиотека"
-			x: -9.0d
-			y: -2.8d
+			x: 8.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A05010000001D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:enchanting_table ×2."]
 			id: "A11A05010000001E"
 			icon: "minecraft:enchanting_table"
@@ -533,11 +561,12 @@
 				}
 			]
 			title: "Алтарь чар"
-			x: -9.0d
-			y: -4.5d
+			x: 8.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A05010000001E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A05010000001F"
 			icon: "ars_nouveau:source_gem"
@@ -555,11 +584,12 @@
 				}
 			]
 			title: "Магические помощники"
-			x: -9.0d
-			y: -6.199999999999999d
+			x: 6.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A05010000001F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A050100000020"
 			icon: "minecraft:experience_bottle"
@@ -577,11 +607,12 @@
 				}
 			]
 			title: "Мастерская заклинаний"
-			x: -9.0d
-			y: -7.9d
+			x: 4.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A050100000020"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:livingwood ×64, minecraft:oak_log ×64"]
 			id: "A11A050100000021"
 			icon: "botania:livingwood"
@@ -593,11 +624,12 @@
 				}
 			]
 			title: "Живое дерево"
-			x: -3.0d
-			y: 4.0d
+			x: 2.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A050100000021"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:livingrock ×64, minecraft:stone ×64"]
 			id: "A11A050100000022"
 			icon: "botania:livingrock"
@@ -609,11 +641,12 @@
 				}
 			]
 			title: "Живой камень"
-			x: -3.0d
-			y: 2.3d
+			x: 0.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A050100000022"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:manasteel_ingot ×32, minecraft:iron_ingot ×32"]
 			id: "A11A050100000023"
 			icon: "botania:manasteel_ingot"
@@ -625,11 +658,12 @@
 				}
 			]
 			title: "Манасталь"
-			x: -3.0d
-			y: 0.6000000000000001d
+			x: -2.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A050100000023"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:mana_diamond ×8, minecraft:diamond ×8"]
 			id: "A11A050100000024"
 			icon: "botania:mana_diamond"
@@ -641,11 +675,12 @@
 				}
 			]
 			title: "Мана-алмаз"
-			x: -3.0d
-			y: -1.0999999999999996d
+			x: -4.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A050100000024"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: botania:mana_pearl ×16."]
 			id: "A11A050100000025"
 			icon: "botania:mana_pearl"
@@ -658,11 +693,12 @@
 				}
 			]
 			title: "Мана-жемчуг"
-			x: -3.0d
-			y: -2.8d
+			x: -6.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A050100000025"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: botania:mana_pool ×2."]
 			id: "A11A050100000026"
 			icon: "botania:mana_pool"
@@ -675,11 +711,12 @@
 				}
 			]
 			title: "Мана-пул"
-			x: -3.0d
-			y: -4.5d
+			x: -8.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A050100000026"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:rune ×16, minecraft:stone ×16"]
 			id: "A11A050100000027"
 			icon: "botania:rune"
@@ -691,11 +728,12 @@
 				}
 			]
 			title: "Руны"
-			x: -3.0d
-			y: -6.199999999999999d
+			x: -8.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A050100000027"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: botania:terrasteel_ingot ×4."]
 			id: "A11A050100000028"
 			icon: "botania:terrasteel_ingot"
@@ -708,11 +746,12 @@
 				}
 			]
 			title: "Террасталь"
-			x: -3.0d
-			y: -7.9d
+			x: -6.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A050100000028"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A050100000029"
 			icon: "botania:terrasteel_ingot"
@@ -730,11 +769,12 @@
 				}
 			]
 			title: "Союз с дриадами"
-			x: -3.0d
-			y: -9.6d
+			x: -4.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A050100000029"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: bloodmagic:altar ×2."]
 			id: "A11A05010000002A"
 			icon: "bloodmagic:altar"
@@ -747,11 +787,12 @@
 				}
 			]
 			title: "Алтарь крови"
-			x: 3.0d
-			y: 4.0d
+			x: -2.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A05010000002A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: bloodmagic:blankslate ×32."]
 			id: "A11A05010000002B"
 			icon: "bloodmagic:blankslate"
@@ -764,11 +805,12 @@
 				}
 			]
 			title: "Кровавые плиты"
-			x: 3.0d
-			y: 2.3d
+			x: 0.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A05010000002B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: bloodmagic:reinforcedslate ×16, minecraft:stone_slab ×16"]
 			id: "A11A05010000002C"
 			icon: "bloodmagic:reinforcedslate"
@@ -780,11 +822,12 @@
 				}
 			]
 			title: "Усиленные плиты"
-			x: 3.0d
-			y: 0.6000000000000001d
+			x: 2.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A05010000002C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: bloodmagic:blood_rune ×16, minecraft:stone_bricks ×16"]
 			id: "A11A05010000002D"
 			icon: "bloodmagic:blood_rune"
@@ -796,11 +839,12 @@
 				}
 			]
 			title: "Кровавые руны"
-			x: 3.0d
-			y: -1.0999999999999996d
+			x: 4.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A05010000002D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: bloodmagic:sacrificial_dagger ×1, minecraft:iron_sword ×1"]
 			id: "A11A05010000002E"
 			icon: "bloodmagic:sacrificial_dagger"
@@ -812,11 +856,12 @@
 				}
 			]
 			title: "Жертвенный нож"
-			x: 3.0d
-			y: -2.8d
+			x: 6.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A05010000002E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A05010000002F"
 			icon: "bloodmagic:blankslate"
@@ -834,11 +879,12 @@
 				}
 			]
 			title: "Ритуал крови"
-			x: 3.0d
-			y: -4.5d
+			x: 8.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A05010000002F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: eidolon:pewter_ingot ×16, minecraft:iron_ingot ×16"]
 			id: "A11A050100000030"
 			icon: "eidolon:pewter_ingot"
@@ -850,11 +896,12 @@
 				}
 			]
 			title: "Пьютер"
-			x: 9.0d
-			y: 4.0d
+			x: 8.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000030"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: eidolon:arcane_gold_ingot ×16, minecraft:gold_ingot ×16"]
 			id: "A11A050100000031"
 			icon: "eidolon:arcane_gold_ingot"
@@ -866,11 +913,12 @@
 				}
 			]
 			title: "Арканное золото"
-			x: 9.0d
-			y: 2.3d
+			x: 6.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000031"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: eidolon:crucible ×1, minecraft:cauldron ×1"]
 			id: "A11A050100000032"
 			icon: "eidolon:crucible"
@@ -882,11 +930,12 @@
 				}
 			]
 			title: "Котёл алхимии"
-			x: 9.0d
-			y: 0.6000000000000001d
+			x: 4.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000032"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:paper ×32."]
 			id: "A11A050100000033"
 			icon: "minecraft:paper"
@@ -899,11 +948,12 @@
 				}
 			]
 			title: "Свитки ритуалов"
-			x: 9.0d
-			y: -1.0999999999999996d
+			x: 2.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000033"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A050100000034"
 			icon: "eidolon:pewter_ingot"
@@ -920,11 +970,12 @@
 				}
 			]
 			title: "Алхимия Eidolon"
-			x: 9.0d
-			y: -2.8d
+			x: 0.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000034"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:ritual_regulator ×2."]
 			id: "A11A050100000035"
 			icon: "arcanopolis:ritual_regulator"
@@ -937,11 +988,12 @@
 				}
 			]
 			title: "Регулятор ритуалов"
-			x: 9.0d
-			y: -4.5d
+			x: -2.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000035"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A050100000036"
 			icon: "arcanopolis:ritual_regulator"
@@ -959,11 +1011,12 @@
 				}
 			]
 			title: "Арканная лаборатория"
-			x: 9.0d
-			y: -6.199999999999999d
+			x: -4.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000036"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glowstone_dust ×64."]
 			id: "A11A050100000037"
 			icon: "minecraft:glowstone_dust"
@@ -976,11 +1029,12 @@
 				}
 			]
 			title: "Магическая индустрия"
-			x: -15.0d
-			y: -22.0d
+			x: -6.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000037"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:redstone ×128."]
 			id: "A11A050100000038"
 			icon: "minecraft:redstone"
@@ -993,11 +1047,12 @@
 				}
 			]
 			title: "Красный камень ритуалов"
-			x: -15.0d
-			y: -23.7d
+			x: -8.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A050100000038"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:quartz ×64."]
 			id: "A11A050100000039"
 			icon: "minecraft:quartz"
@@ -1010,11 +1065,12 @@
 				}
 			]
 			title: "Кварц порталов"
-			x: -15.0d
-			y: -25.4d
+			x: -8.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A050100000039"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:amethyst_shard ×32."]
 			id: "A11A05010000003A"
 			icon: "minecraft:amethyst_shard"
@@ -1027,11 +1083,12 @@
 				}
 			]
 			title: "Аметист кристаллов"
-			x: -15.0d
-			y: -27.1d
+			x: -6.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A05010000003A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:gunpowder ×32."]
 			id: "A11A05010000003B"
 			icon: "minecraft:gunpowder"
@@ -1044,11 +1101,12 @@
 				}
 			]
 			title: "Порох для алхимии"
-			x: -15.0d
-			y: -28.8d
+			x: -4.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A05010000003B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:slime_ball ×16."]
 			id: "A11A05010000003C"
 			icon: "minecraft:slime_ball"
@@ -1061,11 +1119,12 @@
 				}
 			]
 			title: "Слизь компонентов"
-			x: -15.0d
-			y: -30.5d
+			x: -2.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A05010000003C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:spider_eye ×16."]
 			id: "A11A05010000003D"
 			icon: "minecraft:spider_eye"
@@ -1078,11 +1137,12 @@
 				}
 			]
 			title: "Паучьи глаза"
-			x: -15.0d
-			y: -32.2d
+			x: 0.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A05010000003D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:chorus_fruit ×32."]
 			id: "A11A05010000003E"
 			icon: "minecraft:chorus_fruit"
@@ -1095,11 +1155,12 @@
 				}
 			]
 			title: "Плод хоруса"
-			x: -15.0d
-			y: -33.9d
+			x: 2.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A05010000003E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:nether_wart ×16."]
 			id: "A11A05010000003F"
 			icon: "minecraft:nether_wart"
@@ -1112,11 +1173,12 @@
 				}
 			]
 			title: "Зельеварение: основа"
-			x: -9.0d
-			y: -22.0d
+			x: 4.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A05010000003F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:potion ×8, minecraft:glass_bottle ×8"]
 			id: "A11A050100000040"
 			icon: "minecraft:potion"
@@ -1128,11 +1190,12 @@
 				}
 			]
 			title: "Зелья лечения"
-			x: -9.0d
-			y: -23.7d
+			x: 6.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A050100000040"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:blaze_powder ×16."]
 			id: "A11A050100000041"
 			icon: "minecraft:blaze_powder"
@@ -1145,11 +1208,12 @@
 				}
 			]
 			title: "Зелья силы"
-			x: -9.0d
-			y: -25.4d
+			x: 8.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A050100000041"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ghast_tear ×4."]
 			id: "A11A050100000042"
 			icon: "minecraft:ghast_tear"
@@ -1162,11 +1226,12 @@
 				}
 			]
 			title: "Слеза гаста"
-			x: -9.0d
-			y: -27.1d
+			x: 8.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000042"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:magma_cream ×8."]
 			id: "A11A050100000043"
 			icon: "minecraft:magma_cream"
@@ -1179,11 +1244,12 @@
 				}
 			]
 			title: "Лавовый крем"
-			x: -9.0d
-			y: -28.8d
+			x: 6.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000043"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glistering_melon_slice ×8."]
 			id: "A11A050100000044"
 			icon: "minecraft:glistering_melon_slice"
@@ -1196,11 +1262,12 @@
 				}
 			]
 			title: "Светящийся арбуз"
-			x: -9.0d
-			y: -30.5d
+			x: 4.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000044"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A050100000045"
 			icon: "minecraft:nether_wart"
@@ -1218,11 +1285,12 @@
 				}
 			]
 			title: "Мастерская зелий"
-			x: -9.0d
-			y: -32.2d
+			x: 2.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000045"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A050100000046"
 			icon: "minecraft:glass_bottle"
@@ -1240,11 +1308,12 @@
 				}
 			]
 			title: "Ящик алхимии"
-			x: -15.0d
-			y: -34.0d
+			x: 0.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000046"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:nether_wart ×32."]
 			id: "A11A050100000047"
 			icon: "minecraft:nether_wart"
@@ -1257,11 +1326,12 @@
 				}
 			]
 			title: "Склад зелья"
-			x: -15.0d
-			y: -35.7d
+			x: -2.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000047"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A050100000048"
 			icon: "minecraft:quartz"
@@ -1279,11 +1349,12 @@
 				}
 			]
 			title: "Алхимический портал"
-			x: -15.0d
-			y: -37.4d
+			x: -4.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000048"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:source_gem ×256.", "Постройте или улучшите здание «library» до 4 уровня."]
 			id: "A11A050100000049"
 			icon: "ars_nouveau:source_gem"
@@ -1301,11 +1372,12 @@
 				}
 			]
 			title: "Магическая фабрика"
-			x: 15.0d
-			y: -12.0d
+			x: -6.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A050100000049"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:ritual_regulator ×3.", "Постройте или улучшите здание «mech» до 3 уровня."]
 			id: "A11A05010000004A"
 			icon: "arcanopolis:ritual_regulator"
@@ -1323,11 +1395,12 @@
 				}
 			]
 			title: "Ритуальный конвейер"
-			x: 15.0d
-			y: -13.7d
+			x: -8.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A05010000004A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass_bottle ×256.", "Постройте или улучшите здание «hospital» до 3 уровня."]
 			id: "A11A05010000004B"
 			icon: "minecraft:glass_bottle"
@@ -1345,11 +1418,12 @@
 				}
 			]
 			title: "Алхимическое производство"
-			x: 15.0d
-			y: -15.4d
+			x: -8.0d
+			y: -16.0d
 		},
 		{
 			dependencies: ["A11A05010000004B"]
+			hide_dependency_lines: false
 			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
 			id: "A11A05010000004C"
 			icon: "minecraft:chest"
@@ -1380,8 +1454,8 @@
 				}
 			]
 			title: "Сокровищница эпохи IV"
-			x: -20.0d
-			y: -12.0d
+			x: -6.0d
+			y: -16.0d
 		}
 	]
 	title: "Эпоха IV. «Расцвет магии»"

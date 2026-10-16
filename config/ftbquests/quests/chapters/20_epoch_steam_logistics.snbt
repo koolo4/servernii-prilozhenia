@@ -12,6 +12,7 @@
 	quests: [
 		{
 			dependencies: ["A11A020100000054"]
+			hide_dependency_lines: false
 			description: ["Пар и логистика: город переходит к промышленным методам.", "Эпоха II. Пар вырывается из-под колпаков, поезда", "связывают кварталы, и колония впервые дышит как единое целое."]
 			id: "A11A030100000001"
 			icon: "arcanopolis:seal_steam"
@@ -23,11 +24,12 @@
 				}
 			]
 			title: "Эпоха II"
-			x: 0.0d
+			x: -8.0d
 			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000001"]
+			hide_dependency_lines: false
 			description: ["Продолжайте расширять центр колонии."]
 			id: "A11A030100000002"
 			icon: "minecolonies:blockhuttownhall"
@@ -39,11 +41,12 @@
 				}
 			]
 			title: "Ратуша II–III уровня"
-			x: -2.0d
+			x: -6.0d
 			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000002"]
+			hide_dependency_lines: false
 			description: ["Продвинутый строитель возводит крупные здания."]
 			id: "A11A030100000003"
 			icon: "minecolonies:blockhutbuilder"
@@ -55,11 +58,12 @@
 				}
 			]
 			title: "Строитель III уровня"
-			x: -2.0d
-			y: 1.5d
+			x: -4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000003"]
+			hide_dependency_lines: false
 			description: ["Растущий город требует большего склада."]
 			id: "A11A030100000004"
 			icon: "minecolonies:blockhutwarehouse"
@@ -71,11 +75,12 @@
 				}
 			]
 			title: "Склад II уровня"
-			x: -4.0d
+			x: -2.0d
 			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000004"]
+			hide_dependency_lines: false
 			description: ["Город растёт."]
 			id: "A11A030100000005"
 			icon: "minecraft:villager_spawn_egg"
@@ -87,11 +92,12 @@
 				}
 			]
 			title: "Двенадцать жителей"
-			x: -2.0d
-			y: -1.5d
+			x: 0.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000005"]
+			hide_dependency_lines: false
 			description: ["Городские исследования — условие будущих эпох.", "Постройте университет (или выбранное здание исследований)."]
 			id: "A11A030100000006"
 			icon: "minecolonies:blockhutuniversity"
@@ -111,11 +117,12 @@
 				}
 			]
 			title: "Университет"
-			x: -4.0d
-			y: 1.5d
+			x: 2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000006"]
+			hide_dependency_lines: false
 			description: ["Производство пищи должно быть регулярным."]
 			id: "A11A030100000007"
 			icon: "minecolonies:blockhutcook"
@@ -127,11 +134,12 @@
 				}
 			]
 			title: "Стабильная еда"
-			x: -4.0d
-			y: -1.5d
+			x: 4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000007"]
+			hide_dependency_lines: false
 			description: ["Латунь Create — материал точных механизмов."]
 			id: "A11A030100000008"
 			icon: "create:brass_ingot"
@@ -144,11 +152,12 @@
 				}
 			]
 			title: "Латунная автоматизация"
-			x: 2.0d
+			x: 6.0d
 			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000008"]
+			hide_dependency_lines: false
 			description: ["Паровая энергия питает тяжёлые механизмы."]
 			id: "A11A030100000009"
 			icon: "create:steam_engine"
@@ -160,11 +169,12 @@
 				}
 			]
 			title: "Паровой двигатель"
-			x: 2.0d
-			y: 1.5d
+			x: 8.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A030100000009"]
+			hide_dependency_lines: false
 			description: ["Точные механизмы — сердце автоматических линий."]
 			id: "A11A03010000000A"
 			icon: "create:precision_mechanism"
@@ -177,11 +187,11 @@
 				}
 			]
 			title: "Точная механика"
-			x: 4.0d
-			y: 1.5d
+			x: 8.0d
+			y: -2.0d
 		},
 		{
-			dependencies: ["A11A03010000000A"]
+			dependencies: [ ]
 			description: ["Поезда или конвейеры — выбирайте транспорт города."]
 			id: "A11A03010000000B"
 			icon: "create:railway_casing"
@@ -203,11 +213,12 @@
 				}
 			]
 			title: "Железнодорожная логистика"
-			x: 4.0d
-			y: 0.0d
+			x: -4.0d
+			y: -21.0d
 		},
 		{
 			dependencies: ["A11A03010000000A"]
+			hide_dependency_lines: false
 			description: ["Источник и первые устройства Ars Nouveau обслуживают ремёсла."]
 			id: "A11A03010000000C"
 			icon: "minecraft:book"
@@ -219,11 +230,12 @@
 				}
 			]
 			title: "Первая магическая автоматизация"
-			x: 2.0d
-			y: -1.5d
+			x: 6.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A03010000000C"]
+			hide_dependency_lines: false
 			description: ["Городская мастерская автоматически производит", "пластины, шестерни и стандартные строительные компоненты.", "Подтвердите централизованное снабжение рабочих."]
 			id: "A11A03010000000D"
 			icon: "minecolonies:supplycamp"
@@ -254,11 +266,12 @@
 				}
 			]
 			title: "Ключевой проект: мастерская компонентов"
-			x: 6.0d
-			y: 0.0d
+			x: 4.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A03010000000D"]
+			hide_dependency_lines: false
 			description: ["Латунь — основа точной механики."]
 			id: "A11A03010000000E"
 			icon: "create:brass_ingot"
@@ -272,10 +285,11 @@
 			]
 			title: "Латунный запас"
 			x: 2.0d
-			y: 3.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A03010000000E"]
+			hide_dependency_lines: false
 			description: ["Передачи для будущих линий автоматизации."]
 			id: "A11A03010000000F"
 			icon: "create:cogwheel"
@@ -288,11 +302,12 @@
 				}
 			]
 			title: "Зубчатые колёса"
-			x: 4.0d
-			y: 3.0d
+			x: 0.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A03010000000F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Ратуша колонии должна достигнуть 3 уровня."]
 			id: "A11A030100000010"
 			icon: "minecolonies:blockhuttownhall"
@@ -304,11 +319,12 @@
 				}
 			]
 			title: "Ратуша III уровня"
-			x: -15.0d
-			y: 4.0d
+			x: -2.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A030100000010"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 14 жителей."]
 			id: "A11A030100000011"
 			icon: "minecraft:villager_spawn_egg"
@@ -320,11 +336,12 @@
 				}
 			]
 			title: "Четырнадцать жителей"
-			x: -15.0d
-			y: 2.3d
+			x: -4.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A030100000011"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 16 жителей."]
 			id: "A11A030100000012"
 			icon: "minecraft:villager_spawn_egg"
@@ -336,11 +353,12 @@
 				}
 			]
 			title: "Шестнадцать жителей"
-			x: -15.0d
-			y: 0.6000000000000001d
+			x: -6.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A030100000012"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 18 жителей."]
 			id: "A11A030100000013"
 			icon: "minecraft:villager_spawn_egg"
@@ -352,11 +370,12 @@
 				}
 			]
 			title: "Восемнадцать жителей"
-			x: -15.0d
-			y: -1.0999999999999996d
+			x: -8.0d
+			y: -2.0d
 		},
 		{
 			dependencies: ["A11A030100000013"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 20 жителей."]
 			id: "A11A030100000014"
 			icon: "minecraft:villager_spawn_egg"
@@ -368,11 +387,12 @@
 				}
 			]
 			title: "Двадцать жителей"
-			x: -15.0d
-			y: -2.8d
+			x: -8.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A030100000014"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «builder» до 3 уровня."]
 			id: "A11A030100000015"
 			icon: "minecolonies:blockhutbuilder"
@@ -384,11 +404,12 @@
 				}
 			]
 			title: "Строитель III уровня"
-			x: -15.0d
-			y: -4.5d
+			x: -6.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A030100000015"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «warehouse» до 3 уровня."]
 			id: "A11A030100000016"
 			icon: "minecolonies:blockhutwarehouse"
@@ -400,11 +421,12 @@
 				}
 			]
 			title: "Склад III уровня"
-			x: -15.0d
-			y: -6.199999999999999d
+			x: -4.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A030100000016"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 1 уровня."]
 			id: "A11A030100000017"
 			icon: "minecolonies:blockhutmechanic"
@@ -416,11 +438,12 @@
 				}
 			]
 			title: "Механик"
-			x: -15.0d
-			y: -7.9d
+			x: -2.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A030100000017"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «university» до 1 уровня."]
 			id: "A11A030100000018"
 			icon: "minecolonies:blockhutuniversity"
@@ -432,11 +455,12 @@
 				}
 			]
 			title: "Университет"
-			x: -15.0d
-			y: -9.6d
+			x: 0.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A030100000018"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «library» до 2 уровня."]
 			id: "A11A030100000019"
 			icon: "minecolonies:blockhutlibrary"
@@ -448,11 +472,12 @@
 				}
 			]
 			title: "Библиотека II уровня"
-			x: -15.0d
-			y: -11.299999999999999d
+			x: 2.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A030100000019"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «school» до 1 уровня."]
 			id: "A11A03010000001A"
 			icon: "minecolonies:blockhutschool"
@@ -464,11 +489,12 @@
 				}
 			]
 			title: "Школа"
-			x: -15.0d
-			y: -13.0d
+			x: 4.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A03010000001A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «hospital» до 1 уровня."]
 			id: "A11A03010000001B"
 			icon: "minecolonies:blockhuthospital"
@@ -480,11 +506,12 @@
 				}
 			]
 			title: "Госпиталь"
-			x: -15.0d
-			y: -14.7d
+			x: 6.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A03010000001B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «cook» до 3 уровня."]
 			id: "A11A03010000001C"
 			icon: "minecolonies:blockhutcook"
@@ -496,11 +523,12 @@
 				}
 			]
 			title: "Повар III уровня"
-			x: -15.0d
-			y: -16.4d
+			x: 8.0d
+			y: -4.0d
 		},
 		{
 			dependencies: ["A11A03010000001C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «farm» до 3 уровня."]
 			id: "A11A03010000001D"
 			icon: "minecolonies:blockhutfarmer"
@@ -512,11 +540,12 @@
 				}
 			]
 			title: "Фермер III уровня"
-			x: -15.0d
-			y: -18.099999999999998d
+			x: 8.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A03010000001D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «guard» до 3 уровня."]
 			id: "A11A03010000001E"
 			icon: "minecolonies:blockhutguardtower"
@@ -528,11 +557,12 @@
 				}
 			]
 			title: "Стража III уровня"
-			x: -15.0d
-			y: -19.8d
+			x: 6.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A03010000001E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «home» до 4 уровня."]
 			id: "A11A03010000001F"
 			icon: "minecolonies:blockhutcitizen"
@@ -544,11 +574,12 @@
 				}
 			]
 			title: "Жилой квартал III"
-			x: -15.0d
-			y: -21.5d
+			x: 4.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A03010000001F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:steam_engine ×2."]
 			id: "A11A030100000020"
 			icon: "create:steam_engine"
@@ -561,11 +592,12 @@
 				}
 			]
 			title: "Второй паровой двигатель"
-			x: -9.0d
-			y: 4.0d
+			x: 2.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A030100000020"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:steam_whistle ×4."]
 			id: "A11A030100000021"
 			icon: "create:steam_whistle"
@@ -578,11 +610,12 @@
 				}
 			]
 			title: "Свистки паровоза"
-			x: -9.0d
-			y: 2.3d
+			x: 0.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A030100000021"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:railway_casing ×16."]
 			id: "A11A030100000022"
 			icon: "create:railway_casing"
@@ -595,11 +628,12 @@
 				}
 			]
 			title: "Железнодорожная обвязка"
-			x: -9.0d
-			y: 0.6000000000000001d
+			x: -2.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A030100000022"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:blaze_burner ×4."]
 			id: "A11A030100000023"
 			icon: "create:blaze_burner"
@@ -612,11 +646,12 @@
 				}
 			]
 			title: "Пламенные горелки"
-			x: -9.0d
-			y: -1.0999999999999996d
+			x: -4.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A030100000023"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:blaze_cake ×8."]
 			id: "A11A030100000024"
 			icon: "create:blaze_cake"
@@ -629,11 +664,12 @@
 				}
 			]
 			title: "Торт из пламени"
-			x: -9.0d
-			y: -2.8d
+			x: -6.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A030100000024"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_arm ×2."]
 			id: "A11A030100000025"
 			icon: "create:mechanical_arm"
@@ -646,11 +682,12 @@
 				}
 			]
 			title: "Механическая рука"
-			x: -9.0d
-			y: -4.5d
+			x: -8.0d
+			y: -6.0d
 		},
 		{
 			dependencies: ["A11A030100000025"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:rotation_speed_controller ×1."]
 			id: "A11A030100000026"
 			icon: "create:rotation_speed_controller"
@@ -663,11 +700,12 @@
 				}
 			]
 			title: "Контроллер скорости"
-			x: -9.0d
-			y: -6.199999999999999d
+			x: -8.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A030100000026"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:speedometer ×2."]
 			id: "A11A030100000027"
 			icon: "create:speedometer"
@@ -680,11 +718,12 @@
 				}
 			]
 			title: "Спидометр"
-			x: -9.0d
-			y: -7.9d
+			x: -6.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A030100000027"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:stressometer ×2."]
 			id: "A11A030100000028"
 			icon: "create:stressometer"
@@ -697,11 +736,12 @@
 				}
 			]
 			title: "Стрессометр"
-			x: -9.0d
-			y: -9.6d
+			x: -4.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A030100000028"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:brass_funnel ×8."]
 			id: "A11A030100000029"
 			icon: "create:brass_funnel"
@@ -714,11 +754,12 @@
 				}
 			]
 			title: "Латунные воронки"
-			x: -9.0d
-			y: -11.299999999999999d
+			x: -2.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A030100000029"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:brass_tunnel ×8."]
 			id: "A11A03010000002A"
 			icon: "create:brass_tunnel"
@@ -731,11 +772,12 @@
 				}
 			]
 			title: "Латунные тоннели"
-			x: -9.0d
-			y: -13.0d
+			x: 0.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A03010000002A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:electron_tube ×16."]
 			id: "A11A03010000002B"
 			icon: "create:electron_tube"
@@ -748,11 +790,12 @@
 				}
 			]
 			title: "Электронные лампы"
-			x: -9.0d
-			y: -14.7d
+			x: 2.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A03010000002B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:super_glue ×4."]
 			id: "A11A03010000002C"
 			icon: "create:super_glue"
@@ -765,11 +808,12 @@
 				}
 			]
 			title: "Суперклей впрок"
-			x: -9.0d
-			y: -16.4d
+			x: 4.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A03010000002C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:copper_ingot ×32.", "Постройте или улучшите здание «mech» до 1 уровня."]
 			id: "A11A03010000002D"
 			icon: "minecraft:copper_ingot"
@@ -787,11 +831,12 @@
 				}
 			]
 			title: "Медная проводка"
-			x: -3.0d
-			y: 4.0d
+			x: 6.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A03010000002D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:copper_wire ×32, minecraft:copper_ingot ×32"]
 			id: "A11A03010000002E"
 			icon: "createaddition:copper_wire"
@@ -803,11 +848,12 @@
 				}
 			]
 			title: "Электрический контур"
-			x: -3.0d
-			y: 2.3d
+			x: 8.0d
+			y: -8.0d
 		},
 		{
 			dependencies: ["A11A03010000002E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:steel_rod ×16, minecraft:iron_ingot ×16"]
 			id: "A11A03010000002F"
 			icon: "createaddition:steel_rod"
@@ -819,11 +865,12 @@
 				}
 			]
 			title: "Стальные стержни"
-			x: -3.0d
-			y: 0.6000000000000001d
+			x: 8.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A03010000002F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:modular_accumulator ×2, minecraft:redstone_block ×2"]
 			id: "A11A030100000030"
 			icon: "createaddition:modular_accumulator"
@@ -835,11 +882,12 @@
 				}
 			]
 			title: "Ротор генератора"
-			x: -3.0d
-			y: -1.0999999999999996d
+			x: 6.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000030"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:electric_motor ×2, minecraft:redstone ×2"]
 			id: "A11A030100000031"
 			icon: "createaddition:electric_motor"
@@ -851,11 +899,12 @@
 				}
 			]
 			title: "Электромотор"
-			x: -3.0d
-			y: -2.8d
+			x: 4.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000031"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:rolling_mill ×1, minecraft:iron_block ×1"]
 			id: "A11A030100000032"
 			icon: "createaddition:rolling_mill"
@@ -867,11 +916,12 @@
 				}
 			]
 			title: "Роллинговая мельница"
-			x: -3.0d
-			y: -4.5d
+			x: 2.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000032"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: createaddition:tesla_coil ×1, minecraft:lightning_rod ×1"]
 			id: "A11A030100000033"
 			icon: "createaddition:tesla_coil"
@@ -883,11 +933,12 @@
 				}
 			]
 			title: "Зарядная станция"
-			x: -3.0d
-			y: -6.199999999999999d
+			x: 0.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000033"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A030100000034"
 			icon: "minecraft:redstone"
@@ -905,11 +956,12 @@
 				}
 			]
 			title: "Энергия на склад"
-			x: -3.0d
-			y: -7.9d
+			x: -2.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000034"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:coal ×128."]
 			id: "A11A030100000035"
 			icon: "minecraft:coal"
@@ -922,11 +974,12 @@
 				}
 			]
 			title: "Паровой котёл на угле"
-			x: 3.0d
-			y: 4.0d
+			x: -4.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000035"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:brass_ingot ×32."]
 			id: "A11A030100000036"
 			icon: "create:brass_ingot"
@@ -939,11 +992,12 @@
 				}
 			]
 			title: "Латунный запас"
-			x: 3.0d
-			y: 2.3d
+			x: -6.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000036"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:precision_mechanism ×16."]
 			id: "A11A030100000037"
 			icon: "create:precision_mechanism"
@@ -956,11 +1010,12 @@
 				}
 			]
 			title: "Точная механика впрок"
-			x: 3.0d
-			y: 0.6000000000000001d
+			x: -8.0d
+			y: -10.0d
 		},
 		{
 			dependencies: ["A11A030100000037"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:andesite_alloy ×64."]
 			id: "A11A030100000038"
 			icon: "create:andesite_alloy"
@@ -973,11 +1028,12 @@
 				}
 			]
 			title: "Андрезит на конвейеры"
-			x: 3.0d
-			y: -1.0999999999999996d
+			x: -8.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A030100000038"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass ×128."]
 			id: "A11A030100000039"
 			icon: "minecraft:glass"
@@ -990,11 +1046,12 @@
 				}
 			]
 			title: "Стекло для теплиц"
-			x: 3.0d
-			y: -2.8d
+			x: -6.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A030100000039"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:chest ×32."]
 			id: "A11A03010000003A"
 			icon: "minecraft:chest"
@@ -1007,11 +1064,12 @@
 				}
 			]
 			title: "Сундуки складов"
-			x: 3.0d
-			y: -4.5d
+			x: -4.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A03010000003A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:barrel ×16."]
 			id: "A11A03010000003B"
 			icon: "minecraft:barrel"
@@ -1024,11 +1082,12 @@
 				}
 			]
 			title: "Бочки"
-			x: 3.0d
-			y: -6.199999999999999d
+			x: -2.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A03010000003B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:brick ×128."]
 			id: "A11A03010000003C"
 			icon: "minecraft:brick"
@@ -1041,11 +1100,12 @@
 				}
 			]
 			title: "Кирпичи города"
-			x: 3.0d
-			y: -7.9d
+			x: 0.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A03010000003C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A03010000003D"
 			icon: "minecraft:bread"
@@ -1063,11 +1123,12 @@
 				}
 			]
 			title: "Автоматическая пекарня"
-			x: 3.0d
-			y: -9.6d
+			x: 2.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A03010000003D"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A03010000003E"
 			icon: "minecraft:iron_ingot"
@@ -1085,11 +1146,12 @@
 				}
 			]
 			title: "Ремонтный фонд"
-			x: 3.0d
-			y: -11.299999999999999d
+			x: 4.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A03010000003E"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A03010000003F"
 			icon: "create:railway_casing"
@@ -1107,11 +1169,12 @@
 				}
 			]
 			title: "Поезда снабжения"
-			x: 9.0d
-			y: 4.0d
+			x: 6.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A03010000003F"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A030100000040"
 			icon: "create:mechanical_mixer"
@@ -1129,11 +1192,12 @@
 				}
 			]
 			title: "Готовка механизмами"
-			x: 9.0d
-			y: 2.3d
+			x: 8.0d
+			y: -12.0d
 		},
 		{
 			dependencies: ["A11A030100000040"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A030100000041"
 			icon: "minecraft:raw_iron"
@@ -1151,11 +1215,12 @@
 				}
 			]
 			title: "Сырьё со складов"
-			x: 9.0d
-			y: 0.6000000000000001d
+			x: 8.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000041"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A030100000042"
 			icon: "create:precision_mechanism"
@@ -1173,11 +1238,12 @@
 				}
 			]
 			title: "Механика и университет"
-			x: 9.0d
-			y: -1.0999999999999996d
+			x: 6.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000042"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A030100000043"
 			icon: "createaddition:copper_wire"
@@ -1194,11 +1260,12 @@
 				}
 			]
 			title: "Энергия и логистика"
-			x: 9.0d
-			y: -2.8d
+			x: 4.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000043"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A030100000044"
 			icon: "ars_nouveau:source_gem"
@@ -1216,11 +1283,12 @@
 				}
 			]
 			title: "Магическая автоматизация"
-			x: 9.0d
-			y: -4.5d
+			x: 2.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000044"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:golden_carrot ×16."]
 			id: "A11A030100000045"
 			icon: "minecraft:golden_carrot"
@@ -1233,11 +1301,12 @@
 				}
 			]
 			title: "Городская кухня"
-			x: 15.0d
-			y: 4.0d
+			x: 0.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000045"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:baked_potato ×64."]
 			id: "A11A030100000046"
 			icon: "minecraft:baked_potato"
@@ -1250,11 +1319,12 @@
 				}
 			]
 			title: "Печёный картофель"
-			x: 15.0d
-			y: 2.3d
+			x: -2.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000046"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:cooked_beef ×64, minecraft:cooked_porkchop ×64"]
 			id: "A11A030100000047"
 			icon: "minecraft:cooked_beef"
@@ -1266,11 +1336,12 @@
 				}
 			]
 			title: "Мясные запасы"
-			x: 15.0d
-			y: 0.6000000000000001d
+			x: -4.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000047"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:honey_bottle ×8.", "Требуется: minecraft:sugar ×32."]
 			id: "A11A030100000048"
 			icon: "minecraft:honey_bottle"
@@ -1289,11 +1360,12 @@
 				}
 			]
 			title: "Мёд и сахар"
-			x: 15.0d
-			y: -1.0999999999999996d
+			x: -6.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000048"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:cake ×2."]
 			id: "A11A030100000049"
 			icon: "minecraft:cake"
@@ -1306,11 +1378,12 @@
 				}
 			]
 			title: "Торты к праздникам"
-			x: 15.0d
-			y: -2.8d
+			x: -8.0d
+			y: -14.0d
 		},
 		{
 			dependencies: ["A11A030100000049"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:steam_engine ×2.", "Требуется: minecraft:coal ×256."]
 			id: "A11A03010000004A"
 			icon: "create:steam_engine"
@@ -1329,11 +1402,12 @@
 				}
 			]
 			title: "Паровой каскад"
-			x: 15.0d
-			y: -12.0d
+			x: -8.0d
+			y: -16.0d
 		},
 		{
 			dependencies: ["A11A03010000004A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:depot ×4.", "Требуется: create:belt_connector ×32.", "Постройте или улучшите здание «warehouse» до 3 уровня."]
 			id: "A11A03010000004B"
 			icon: "create:depot"
@@ -1357,11 +1431,12 @@
 				}
 			]
 			title: "Конвейерный узел"
-			x: 15.0d
-			y: -13.7d
+			x: -6.0d
+			y: -16.0d
 		},
 		{
 			dependencies: ["A11A03010000004B"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bread ×256.", "Постройте или улучшите здание «cook» до 3 уровня."]
 			id: "A11A03010000004C"
 			icon: "minecraft:bread"
@@ -1379,11 +1454,12 @@
 				}
 			]
 			title: "Автоматическая пекарня"
-			x: 15.0d
-			y: -15.4d
+			x: -4.0d
+			y: -16.0d
 		},
 		{
 			dependencies: ["A11A03010000004C"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: create:mechanical_crafter ×8.", "Требуется: create:precision_mechanism ×8."]
 			id: "A11A03010000004D"
 			icon: "create:mechanical_crafter"
@@ -1402,11 +1478,12 @@
 				}
 			]
 			title: "Механическая сборка"
-			x: 15.0d
-			y: -17.1d
+			x: -2.0d
+			y: -16.0d
 		},
 		{
 			dependencies: ["A11A03010000004D"]
+			hide_dependency_lines: false
 			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
 			id: "A11A03010000004E"
 			icon: "minecraft:chest"
@@ -1437,8 +1514,8 @@
 				}
 			]
 			title: "Сокровищница эпохи II"
-			x: -20.0d
-			y: -12.0d
+			x: 0.0d
+			y: -16.0d
 		}
 	]
 	title: "Эпоха II. «Пар и логистика»"

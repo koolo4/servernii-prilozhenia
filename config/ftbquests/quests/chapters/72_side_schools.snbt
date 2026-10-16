@@ -23,11 +23,11 @@
 				}
 			]
 			title: "Магистры школы"
-			x: 0.0d
+			x: -8.0d
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0A0100000001"]
+			dependencies: [ ]
 			description: ["Освойте продвинутые заклинания и автоматизацию Ars Nouveau."]
 			id: "A11A0A0100000002"
 			icon: "minecraft:book"
@@ -48,11 +48,11 @@
 				}
 			]
 			title: "Магистр Источника"
-			x: -2.0d
-			y: 0.0d
+			x: -4.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0A0100000001"]
+			dependencies: [ ]
 			description: ["Продвинутая инфраструктура маны и преобразование ресурсов."]
 			id: "A11A0A0100000003"
 			icon: "minecraft:book"
@@ -74,10 +74,10 @@
 			]
 			title: "Магистр Маны"
 			x: -2.0d
-			y: 1.5d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0A0100000001"]
+			dependencies: [ ]
 			description: ["Продвинутые ритуалы и кровавая алхимия."]
 			id: "A11A0A0100000004"
 			icon: "minecraft:book"
@@ -98,11 +98,11 @@
 				}
 			]
 			title: "Магистр Крови"
-			x: 2.0d
-			y: 0.0d
+			x: 0.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0A0100000001"]
+			dependencies: [ ]
 			description: ["Продвинутая алхимия и ритуалы Eidolon."]
 			id: "A11A0A0100000005"
 			icon: "minecraft:book"
@@ -124,10 +124,11 @@
 			]
 			title: "Магистр Алхимии"
 			x: 2.0d
-			y: 1.5d
+			y: -5.0d
 		},
 		{
 			dependencies: ["A11A0A0100000001"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:book ×16."]
 			id: "A11A0A0100000006"
 			icon: "minecraft:book"
@@ -140,11 +141,12 @@
 				}
 			]
 			title: "Учебные материалы"
-			x: 6.0d
-			y: 2.0d
+			x: -6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0A0100000006"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:lectern ×2."]
 			id: "A11A0A0100000007"
 			icon: "minecraft:lectern"
@@ -157,11 +159,12 @@
 				}
 			]
 			title: "Школьные доски"
-			x: 6.0d
-			y: 0.30000000000000004d
+			x: -4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0A0100000007"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «school» до 2 уровня."]
 			id: "A11A0A0100000008"
 			icon: "minecolonies:blockhutschool"
@@ -173,11 +176,12 @@
 				}
 			]
 			title: "Студенты школы"
-			x: 6.0d
-			y: -1.4d
+			x: -2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0A0100000008"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «university» до 2 уровня."]
 			id: "A11A0A0100000009"
 			icon: "minecolonies:blockhutuniversity"
@@ -189,11 +193,12 @@
 				}
 			]
 			title: "Магистры университета"
-			x: 6.0d
-			y: -3.0999999999999996d
+			x: 0.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A0A0100000009"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A0A010000000A"
 			icon: "minecra_book"
@@ -211,8 +216,8 @@
 				}
 			]
 			title: "Научная работа"
-			x: 6.0d
-			y: -4.8d
+			x: 2.0d
+			y: 0.0d
 		}
 	]
 	title: "Необязательное: «Магистры школы»"

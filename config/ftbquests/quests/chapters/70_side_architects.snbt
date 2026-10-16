@@ -23,11 +23,11 @@
 				}
 			]
 			title: "Архитекторы"
-			x: 0.0d
+			x: -8.0d
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A080100000001"]
+			dependencies: [ ]
 			description: ["Выберите единый архитектурный стиль колонии."]
 			id: "A11A080100000002"
 			icon: "minecraft:book"
@@ -48,11 +48,11 @@
 				}
 			]
 			title: "Стиль города"
-			x: -2.0d
-			y: 0.0d
+			x: -4.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A080100000001"]
+			dependencies: [ ]
 			description: ["Жилой, ремесленный и торговый кварталы."]
 			id: "A11A080100000003"
 			icon: "minecraft:book"
@@ -73,11 +73,11 @@
 				}
 			]
 			title: "Три квартала"
-			x: 2.0d
-			y: 0.0d
+			x: -2.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A080100000001"]
+			dependencies: [ ]
 			description: ["Зелёное пространство для жителей."]
 			id: "A11A080100000004"
 			icon: "minecraft:book"
@@ -98,11 +98,11 @@
 				}
 			]
 			title: "Городской парк"
-			x: -2.0d
-			y: 1.5d
+			x: 0.0d
+			y: -5.0d
 		},
 		{
-			dependencies: ["A11A080100000001"]
+			dependencies: [ ]
 			description: ["Памятник городу, который станет машиной."]
 			id: "A11A080100000005"
 			icon: "minecraft:book"
@@ -123,10 +123,11 @@
 			]
 			title: "Монумент"
 			x: 2.0d
-			y: 1.5d
+			y: -5.0d
 		},
 		{
 			dependencies: ["A11A080100000001"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:stone_bricks ×128."]
 			id: "A11A080100000006"
 			icon: "minecraft:stone_bricks"
@@ -139,11 +140,12 @@
 				}
 			]
 			title: "Каменные кварталы"
-			x: 6.0d
-			y: 2.0d
+			x: -6.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A080100000006"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass_pane ×64."]
 			id: "A11A080100000007"
 			icon: "minecraft:glass_pane"
@@ -156,11 +158,12 @@
 				}
 			]
 			title: "Стеклянные фасады"
-			x: 6.0d
-			y: 0.30000000000000004d
+			x: -4.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A080100000007"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:copper_block ×16."]
 			id: "A11A080100000008"
 			icon: "minecraft:copper_block"
@@ -173,11 +176,12 @@
 				}
 			]
 			title: "Медные крыши"
-			x: 6.0d
-			y: -1.4d
+			x: -2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A080100000008"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bricks ×32."]
 			id: "A11A080100000009"
 			icon: "minecraft:bricks"
@@ -190,11 +194,12 @@
 				}
 			]
 			title: "Кирпичные особняки"
-			x: 6.0d
-			y: -3.0999999999999996d
+			x: 0.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A080100000009"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A08010000000A"
 			icon: "minecraft:quartz_block"
@@ -212,11 +217,12 @@
 				}
 			]
 			title: "Архитектурный ансамбль"
-			x: 6.0d
-			y: -4.8d
+			x: 2.0d
+			y: 0.0d
 		},
 		{
 			dependencies: ["A11A08010000000A"]
+			hide_dependency_lines: false
 			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
 			id: "A11A08010000000B"
 			icon: "minecraft:oak_sapling"
@@ -234,8 +240,8 @@
 				}
 			]
 			title: "Парк и сады"
-			x: 6.0d
-			y: -6.5d
+			x: 4.0d
+			y: 0.0d
 		}
 	]
 	title: "Необязательное: «Архитекторы»"
