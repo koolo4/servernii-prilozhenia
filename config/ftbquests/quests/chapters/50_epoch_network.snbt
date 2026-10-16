@@ -768,8 +768,8 @@
 				},
 				{
 					id: "0A11060200000030"
-					title: "Здание courier (ур. 3)"
-					icon: "minecolonies:blockhutcourier"
+					title: "Здание deliveryman (ур. 3)"
+					icon: "minecolonies:blockhutdeliveryman"
 					type: "custom"
 				}
 			]
@@ -1333,8 +1333,8 @@
 				},
 				{
 					id: "0A11060200000056"
-					title: "Здание courier (ур. 3)"
-					icon: "minecolonies:blockhutcourier"
+					title: "Здание deliveryman (ур. 3)"
+					icon: "minecolonies:blockhutdeliveryman"
 					type: "custom"
 				}
 			]

@@ -591,7 +591,7 @@
 			tasks: [
 				{
 					id: "0A11040200000020"
-					title: "Здание home (ур. 5)"
+					title: "Здание residence (ур. 5)"
 					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}

@@ -123,12 +123,12 @@
 			hide_dependency_lines: false
 			description: ["Курьер развозит материалы по хижинам.", "Постройте или улучшите хижину курьера — нужен уровень не ниже 1. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A11020100000007"
-			icon: "minecolonies:blockhutcourier"
+			icon: "minecolonies:blockhutdeliveryman"
 			tasks: [
 				{
 					id: "0A11020200000007"
 					title: "Курьер нанят"
-					icon: "minecolonies:blockhutcourier"
+					icon: "minecolonies:blockhutdeliveryman"
 					type: "custom"
 				}
 			]
@@ -392,7 +392,7 @@
 			tasks: [
 				{
 					id: "0A11020200000015"
-					title: "Здание home (ур. 3)"
+					title: "Здание residence (ур. 3)"
 					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
@@ -658,12 +658,12 @@
 			hide_dependency_lines: false
 			description: ["Постройте или улучшите хижину курьера — нужен уровень не ниже 2. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
 			id: "0A11020100000023"
-			icon: "minecolonies:blockhutcourier"
+			icon: "minecolonies:blockhutdeliveryman"
 			tasks: [
 				{
 					id: "0A11020200000024"
-					title: "Здание courier (ур. 2)"
-					icon: "minecolonies:blockhutcourier"
+					title: "Здание deliveryman (ур. 2)"
+					icon: "minecolonies:blockhutdeliveryman"
 					type: "custom"
 				}
 			]
@@ -1478,7 +1478,7 @@
 				},
 				{
 					id: "0A11020200000056"
-					title: "Здание home (ур. 3)"
+					title: "Здание residence (ур. 3)"
 					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}

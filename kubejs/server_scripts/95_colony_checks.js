@@ -13,7 +13,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11010200000002", "kind": "building", "word": "builder", "n": 1, "q": "orders", "f": "00_prologue", "deps": ["0A11010200000001"]},
     {"task": "0A11010200000003", "kind": "townhall", "n": 1, "q": "town_hall", "f": "00_prologue", "deps": ["0A11010200000002"]},
     {"task": "0A11010200000004", "kind": "building", "word": "builder", "n": 2, "q": "builder", "f": "00_prologue", "deps": ["0A11010200000003"]},
-    {"task": "0A11010200000005", "kind": "building", "word": "home", "n": 1, "q": "home", "f": "00_prologue", "deps": ["0A11010200000004"]},
+    {"task": "0A11010200000005", "kind": "building", "word": "residence", "n": 1, "q": "home", "f": "00_prologue", "deps": ["0A11010200000004"]},
     {"task": "0A11010200000006", "kind": "item_any", "items": "minecraft:bread", "n": 16, "q": "food", "f": "00_prologue", "deps": ["0A11010200000001"]},
     {"task": "0A11010200000007", "kind": "citizens", "n": 3, "q": "workers", "f": "00_prologue", "deps": ["0A11010200000003"]},
     {"task": "0A11010200000009", "kind": "citizens", "n": 5, "q": "charter", "f": "00_prologue", "deps": ["0A11010200000003", "0A11010200000004", "0A11010200000005", "0A11010200000006", "0A11010200000007", "0A1101020000000A", "0A1101020000000B", "0A1101020000000C", "0A1101020000000D", "0A1101020000000E", "0A1101020000000F", "0A11010200000010", "0A11010200000011", "0A11010200000012", "0A11010200000013", "0A11010200000014", "0A11010200000015", "0A11010200000016", "0A11010200000017", "0A11010200000018", "0A11010200000019", "0A1101020000001A", "0A1101020000001B", "0A1101020000001C", "0A1101020000001D", "0A1101020000001E", "0A1101020000001F", "0A11010200000020", "0A11010200000021", "0A11010200000022", "0A11010200000023", "0A11010200000024", "0A11010200000025", "0A11010200000026", "0A11010200000027", "0A11010200000028", "0A11010200000029", "0A1101020000002A", "0A1101020000002B", "0A1101020000002C", "0A1101020000002D", "0A1101020000002E", "0A1101020000002F", "0A11010200000030", "0A11010200000031", "0A11010200000032", "0A11010200000033", "0A11010200000034", "0A11010200000035", "0A11010200000036", "0A11010200000037", "0A11010200000038", "0A11010200000039", "0A1101020000003A", "0A1101020000003B", "0A1101020000003C", "0A1101020000003D", "0A1101020000003E", "0A1101020000003F", "0A11010200000040", "0A11010200000041", "0A11010200000042", "0A11010200000043", "0A11010200000044", "0A11010200000045", "0A11010200000046", "0A11010200000047", "0A11010200000048", "0A11010200000049", "0A1101020000004A", "0A1101020000004B", "0A1101020000004C", "0A1101020000004D", "0A1101020000004E", "0A1101020000004F"]},
@@ -22,7 +22,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A1101020000000C", "kind": "building", "word": "cook", "n": 1, "q": "p_b01", "f": "00_prologue", "deps": ["0A11010200000006"]},
     {"task": "0A1101020000000D", "kind": "building", "word": "farm", "n": 1, "q": "p_b02", "f": "00_prologue", "deps": ["0A1101020000000C"]},
     {"task": "0A1101020000000E", "kind": "building", "word": "fish", "n": 1, "q": "p_b03", "f": "00_prologue", "deps": ["0A1101020000000D"]},
-    {"task": "0A1101020000000F", "kind": "building", "word": "home", "n": 2, "q": "p_b04", "f": "00_prologue", "deps": ["0A1101020000000E"]},
+    {"task": "0A1101020000000F", "kind": "building", "word": "residence", "n": 2, "q": "p_b04", "f": "00_prologue", "deps": ["0A1101020000000E"]},
     {"task": "0A11010200000010", "kind": "citizens", "n": 4, "q": "p_b05", "f": "00_prologue", "deps": ["0A1101020000000F"]},
     {"task": "0A11010200000011", "kind": "citizens", "n": 6, "q": "p_b06", "f": "00_prologue", "deps": ["0A11010200000010"]},
     {"task": "0A11010200000012", "kind": "citizens", "n": 8, "q": "p_b07", "f": "00_prologue", "deps": ["0A11010200000011"]},
@@ -57,7 +57,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A1101020000002F", "kind": "item_any", "items": "minecraft:cobblestone", "n": 64, "q": "p_i04", "f": "00_prologue", "deps": ["0A1101020000002D", "0A1101020000002E"]},
     {"task": "0A11010200000030", "kind": "citizens", "n": 4, "q": "p_i04", "f": "00_prologue", "deps": ["0A1101020000002D", "0A1101020000002E"]},
     {"task": "0A11010200000031", "kind": "item_any", "items": "minecraft:stone", "n": 64, "q": "p_i05", "f": "00_prologue", "deps": ["0A1101020000002F", "0A11010200000030"]},
-    {"task": "0A11010200000032", "kind": "building", "word": "home", "n": 2, "q": "p_i05", "f": "00_prologue", "deps": ["0A1101020000002F", "0A11010200000030"]},
+    {"task": "0A11010200000032", "kind": "building", "word": "residence", "n": 2, "q": "p_i05", "f": "00_prologue", "deps": ["0A1101020000002F", "0A11010200000030"]},
     {"task": "0A11010200000033", "kind": "item_any", "items": "minecraft:apple", "n": 16, "q": "p_h01", "f": "00_prologue", "deps": ["0A1101020000000D"]},
     {"task": "0A11010200000034", "kind": "item_any", "items": "minecraft:carrot", "n": 16, "q": "p_h02", "f": "00_prologue", "deps": ["0A11010200000033"]},
     {"task": "0A11010200000035", "kind": "item_any", "items": "minecraft:potato", "n": 16, "q": "p_h02", "f": "00_prologue", "deps": ["0A11010200000033"]},
@@ -94,7 +94,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11020200000004", "kind": "building", "word": "lumberjack", "n": 1, "q": "forester", "f": "10_epoch_wood_water", "deps": ["0A11020200000002"]},
     {"task": "0A11020200000005", "kind": "building", "word": "miner", "n": 1, "q": "miner", "f": "10_epoch_wood_water", "deps": ["0A11020200000002"]},
     {"task": "0A11020200000006", "kind": "building", "word": "warehouse", "n": 1, "q": "warehouse", "f": "10_epoch_wood_water", "deps": ["0A11020200000002"]},
-    {"task": "0A11020200000007", "kind": "building", "word": "courier", "n": 1, "q": "courier", "f": "10_epoch_wood_water", "deps": ["0A11020200000006"]},
+    {"task": "0A11020200000007", "kind": "building", "word": "deliveryman", "n": 1, "q": "courier", "f": "10_epoch_wood_water", "deps": ["0A11020200000006"]},
     {"task": "0A11020200000008", "kind": "building", "word": "farm", "n": 1, "q": "food_prod", "f": "10_epoch_wood_water", "deps": ["0A11020200000001"]},
     {"task": "0A11020200000009", "kind": "item_any", "items": "create:water_wheel", "n": 1, "q": "water_wheel", "f": "10_epoch_wood_water", "deps": ["0A11020200000001"]},
     {"task": "0A1102020000000A", "kind": "item_any", "items": "create:shaft", "n": 16, "q": "shaft", "f": "10_epoch_wood_water", "deps": ["0A11020200000009"]},
@@ -108,7 +108,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11020200000012", "kind": "item_any", "items": "create:iron_sheet", "n": 16, "q": "project", "f": "10_epoch_wood_water", "deps": ["0A11020200000003", "0A11020200000004", "0A11020200000005", "0A11020200000007", "0A11020200000008", "0A1102020000000D", "0A1102020000000E", "0A11020200000010", "0A11020200000013", "0A11020200000014", "0A11020200000015", "0A11020200000016", "0A11020200000017", "0A11020200000018", "0A11020200000019", "0A1102020000001A", "0A1102020000001B", "0A1102020000001C", "0A1102020000001D", "0A1102020000001E", "0A1102020000001F", "0A11020200000020", "0A11020200000021", "0A11020200000022", "0A11020200000023", "0A11020200000024", "0A11020200000025", "0A11020200000026", "0A11020200000027", "0A11020200000028", "0A11020200000029", "0A1102020000002A", "0A1102020000002B", "0A1102020000002C", "0A1102020000002D", "0A1102020000002E", "0A1102020000002F", "0A11020200000030", "0A11020200000031", "0A11020200000032", "0A11020200000033", "0A11020200000034", "0A11020200000035", "0A11020200000036", "0A11020200000037", "0A11020200000038", "0A11020200000039", "0A1102020000003A", "0A1102020000003B", "0A1102020000003C", "0A1102020000003D", "0A1102020000003E", "0A1102020000003F", "0A11020200000040", "0A11020200000041", "0A11020200000042", "0A11020200000043", "0A11020200000044", "0A11020200000045", "0A11020200000046", "0A11020200000047", "0A11020200000048", "0A11020200000049", "0A1102020000004A", "0A1102020000004B", "0A1102020000004C", "0A1102020000004D", "0A1102020000004E", "0A1102020000004F", "0A11020200000050", "0A11020200000051", "0A11020200000052", "0A11020200000053", "0A11020200000054", "0A11020200000055", "0A11020200000056", "0A11020200000057", "0A11020200000058", "0A11020200000059", "0A1102020000005A", "0A1102020000005B", "0A1102020000005C", "0A1102020000005D", "0A1102020000005E", "0A1102020000005F", "0A11020200000060", "0A11020200000061", "0A11020200000062"]},
     {"task": "0A11020200000013", "kind": "item_any", "items": "minecraft:iron_pickaxe", "n": 4, "q": "ir_tools", "f": "10_epoch_wood_water", "deps": ["0A11020200000005"]},
     {"task": "0A11020200000014", "kind": "item_any", "items": "minecraft:oak_sapling", "n": 16, "q": "saplings", "f": "10_epoch_wood_water", "deps": ["0A11020200000004"]},
-    {"task": "0A11020200000015", "kind": "building", "word": "home", "n": 3, "q": "e1_c01", "f": "10_epoch_wood_water", "deps": ["0A11020200000001"]},
+    {"task": "0A11020200000015", "kind": "building", "word": "residence", "n": 3, "q": "e1_c01", "f": "10_epoch_wood_water", "deps": ["0A11020200000001"]},
     {"task": "0A11020200000016", "kind": "citizens", "n": 4, "q": "e1_c02", "f": "10_epoch_wood_water", "deps": ["0A11020200000015"]},
     {"task": "0A11020200000017", "kind": "citizens", "n": 6, "q": "e1_c03", "f": "10_epoch_wood_water", "deps": ["0A11020200000016"]},
     {"task": "0A11020200000018", "kind": "citizens", "n": 10, "q": "e1_c04", "f": "10_epoch_wood_water", "deps": ["0A11020200000017"]},
@@ -123,7 +123,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11020200000021", "kind": "building", "word": "black", "n": 2, "q": "e1_c13", "f": "10_epoch_wood_water", "deps": ["0A11020200000020"]},
     {"task": "0A11020200000022", "kind": "building", "word": "guard", "n": 2, "q": "e1_c14", "f": "10_epoch_wood_water", "deps": ["0A11020200000021"]},
     {"task": "0A11020200000023", "kind": "building", "word": "warehouse", "n": 2, "q": "e1_c15", "f": "10_epoch_wood_water", "deps": ["0A11020200000022"]},
-    {"task": "0A11020200000024", "kind": "building", "word": "courier", "n": 2, "q": "e1_c16", "f": "10_epoch_wood_water", "deps": ["0A11020200000023"]},
+    {"task": "0A11020200000024", "kind": "building", "word": "deliveryman", "n": 2, "q": "e1_c16", "f": "10_epoch_wood_water", "deps": ["0A11020200000023"]},
     {"task": "0A11020200000025", "kind": "item_any", "items": "create:cogwheel", "n": 16, "q": "e1_m01", "f": "10_epoch_wood_water", "deps": ["0A11020200000009"]},
     {"task": "0A11020200000026", "kind": "item_any", "items": "create:large_cogwheel", "n": 8, "q": "e1_m02", "f": "10_epoch_wood_water", "deps": ["0A11020200000025"]},
     {"task": "0A11020200000027", "kind": "item_any", "items": "create:shaft", "n": 16, "q": "e1_m03", "f": "10_epoch_wood_water", "deps": ["0A11020200000026"]},
@@ -173,7 +173,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11020200000053", "kind": "item_any", "items": "create:cogwheel", "n": 32, "q": "e1_x04", "f": "10_epoch_wood_water", "deps": ["0A11020200000025", "0A11020200000051", "0A11020200000052"]},
     {"task": "0A11020200000054", "kind": "building", "word": "black", "n": 2, "q": "e1_x04", "f": "10_epoch_wood_water", "deps": ["0A11020200000025", "0A11020200000051", "0A11020200000052"]},
     {"task": "0A11020200000055", "kind": "item_any", "items": "ars_nouveau:sourcestone", "n": 64, "q": "e1_x05", "f": "10_epoch_wood_water", "deps": ["0A11020200000038", "0A11020200000053", "0A11020200000054"]},
-    {"task": "0A11020200000056", "kind": "building", "word": "home", "n": 3, "q": "e1_x05", "f": "10_epoch_wood_water", "deps": ["0A11020200000038", "0A11020200000053", "0A11020200000054"]},
+    {"task": "0A11020200000056", "kind": "building", "word": "residence", "n": 3, "q": "e1_x05", "f": "10_epoch_wood_water", "deps": ["0A11020200000038", "0A11020200000053", "0A11020200000054"]},
     {"task": "0A11020200000057", "kind": "item_any", "items": "create:andesite_alloy", "n": 16, "q": "e1_x06", "f": "10_epoch_wood_water", "deps": ["0A11020200000055", "0A11020200000056"]},
     {"task": "0A11020200000058", "kind": "building", "word": "warehouse", "n": 2, "q": "e1_x06", "f": "10_epoch_wood_water", "deps": ["0A11020200000055", "0A11020200000056"]},
     {"task": "0A11020200000059", "kind": "item_any", "items": "create:mechanical_saw", "n": 2, "q": "e1pz01", "f": "10_epoch_wood_water", "deps": ["0A11020200000001"]},
@@ -217,7 +217,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A1103020000001D", "kind": "building", "word": "cook", "n": 3, "q": "e2_c13", "f": "20_epoch_steam_logistics", "deps": ["0A1103020000001C"]},
     {"task": "0A1103020000001E", "kind": "building", "word": "farm", "n": 3, "q": "e2_c14", "f": "20_epoch_steam_logistics", "deps": ["0A1103020000001D"]},
     {"task": "0A1103020000001F", "kind": "building", "word": "guard", "n": 3, "q": "e2_c15", "f": "20_epoch_steam_logistics", "deps": ["0A1103020000001E"]},
-    {"task": "0A11030200000020", "kind": "building", "word": "home", "n": 4, "q": "e2_c16", "f": "20_epoch_steam_logistics", "deps": ["0A1103020000001F"]},
+    {"task": "0A11030200000020", "kind": "building", "word": "residence", "n": 4, "q": "e2_c16", "f": "20_epoch_steam_logistics", "deps": ["0A1103020000001F"]},
     {"task": "0A11030200000021", "kind": "item_any", "items": "create:steam_engine", "n": 2, "q": "e2_s01", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000009"]},
     {"task": "0A11030200000022", "kind": "item_any", "items": "create:steam_whistle", "n": 4, "q": "e2_s02", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000021"]},
     {"task": "0A11030200000023", "kind": "item_any", "items": "create:railway_casing", "n": 16, "q": "e2_s03", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000017", "0A11030200000022"]},
@@ -254,7 +254,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11030200000042", "kind": "item_any", "items": "minecraft:iron_ingot", "n": 32, "q": "e2_l10", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000040", "0A11030200000041"]},
     {"task": "0A11030200000043", "kind": "building", "word": "black", "n": 3, "q": "e2_l10", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000040", "0A11030200000041"]},
     {"task": "0A11030200000044", "kind": "item_any", "items": "create:railway_casing", "n": 8, "q": "e2_x01", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000023"]},
-    {"task": "0A11030200000045", "kind": "building", "word": "courier", "n": 2, "q": "e2_x01", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000023"]},
+    {"task": "0A11030200000045", "kind": "building", "word": "deliveryman", "n": 2, "q": "e2_x01", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000023"]},
     {"task": "0A11030200000046", "kind": "item_any", "items": "create:mechanical_mixer", "n": 2, "q": "e2_x02", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000044", "0A11030200000045"]},
     {"task": "0A11030200000047", "kind": "building", "word": "cook", "n": 3, "q": "e2_x02", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000044", "0A11030200000045"]},
     {"task": "0A11030200000048", "kind": "item_any", "items": "minecraft:raw_iron", "n": 32, "q": "e2_x03", "f": "20_epoch_steam_logistics", "deps": ["0A11030200000046", "0A11030200000047"]},
@@ -312,7 +312,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A1104020000001D", "kind": "building", "word": "saw", "n": 3, "q": "e3_c13", "f": "30_epoch_industry", "deps": ["0A1104020000001C"]},
     {"task": "0A1104020000001E", "kind": "building", "word": "guard", "n": 4, "q": "e3_c14", "f": "30_epoch_industry", "deps": ["0A1104020000001D"]},
     {"task": "0A1104020000001F", "kind": "building", "word": "cook", "n": 4, "q": "e3_c15", "f": "30_epoch_industry", "deps": ["0A1104020000001E"]},
-    {"task": "0A11040200000020", "kind": "building", "word": "home", "n": 5, "q": "e3_c16", "f": "30_epoch_industry", "deps": ["0A1104020000001F"]},
+    {"task": "0A11040200000020", "kind": "building", "word": "residence", "n": 5, "q": "e3_c16", "f": "30_epoch_industry", "deps": ["0A1104020000001F"]},
     {"task": "0A11040200000021", "kind": "item_any", "items": "thermal:machine_frame", "n": 4, "q": "e3_t01", "f": "30_epoch_industry", "deps": ["0A11040200000007"]},
     {"task": "0A11040200000022", "kind": "item_any", "items": "thermal:iron_gear", "n": 16, "q": "e3_t02", "f": "30_epoch_industry", "deps": ["0A11040200000021"]},
     {"task": "0A11040200000023", "kind": "item_any", "items": "thermal:gold_gear|minecraft:gold_ingot", "n": 8, "q": "e3_t03", "f": "30_epoch_industry", "deps": ["0A11040200000022"]},
@@ -506,7 +506,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A1106020000002D", "kind": "item_any", "items": "arcanopolis:reinforced_casing", "n": 32, "q": "e5_x04", "f": "50_epoch_network", "deps": ["0A1106020000002B", "0A1106020000002C"]},
     {"task": "0A1106020000002E", "kind": "building", "word": "mech", "n": 4, "q": "e5_x04", "f": "50_epoch_network", "deps": ["0A1106020000002B", "0A1106020000002C"]},
     {"task": "0A1106020000002F", "kind": "item_any", "items": "minecraft:ender_pearl", "n": 16, "q": "e5_x05", "f": "50_epoch_network", "deps": ["0A1106020000002D", "0A1106020000002E"]},
-    {"task": "0A11060200000030", "kind": "building", "word": "courier", "n": 3, "q": "e5_x05", "f": "50_epoch_network", "deps": ["0A1106020000002D", "0A1106020000002E"]},
+    {"task": "0A11060200000030", "kind": "building", "word": "deliveryman", "n": 3, "q": "e5_x05", "f": "50_epoch_network", "deps": ["0A1106020000002D", "0A1106020000002E"]},
     {"task": "0A11060200000031", "kind": "item_any", "items": "arcanopolis:automation_core", "n": 1, "q": "e5_x06", "f": "50_epoch_network", "deps": ["0A11060200000007", "0A11060200000008", "0A1106020000002F", "0A11060200000030"]},
     {"task": "0A11060200000032", "kind": "townhall", "n": 5, "q": "e5_x06", "f": "50_epoch_network", "deps": ["0A11060200000007", "0A11060200000008", "0A1106020000002F", "0A11060200000030"]},
     {"task": "0A11060200000033", "kind": "item_any", "items": "mekanism:ultimate_control_circuit", "n": 32, "q": "e5_p01", "f": "50_epoch_network", "deps": ["0A1106020000001F"]},
@@ -544,7 +544,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11060200000053", "kind": "item_any", "items": "ae2:blank_pattern|minecraft:paper", "n": 16, "q": "e5_b06", "f": "50_epoch_network", "deps": ["0A11060200000051", "0A11060200000052"]},
     {"task": "0A11060200000054", "kind": "building", "word": "mech", "n": 4, "q": "e5_b06", "f": "50_epoch_network", "deps": ["0A11060200000051", "0A11060200000052"]},
     {"task": "0A11060200000055", "kind": "item_any", "items": "minecraft:ender_pearl", "n": 32, "q": "e5_b07", "f": "50_epoch_network", "deps": ["0A11060200000053", "0A11060200000054"]},
-    {"task": "0A11060200000056", "kind": "building", "word": "courier", "n": 3, "q": "e5_b07", "f": "50_epoch_network", "deps": ["0A11060200000053", "0A11060200000054"]},
+    {"task": "0A11060200000056", "kind": "building", "word": "deliveryman", "n": 3, "q": "e5_b07", "f": "50_epoch_network", "deps": ["0A11060200000053", "0A11060200000054"]},
     {"task": "0A11060200000057", "kind": "item_any", "items": "minecraft:ender_eye", "n": 8, "q": "e5_g01", "f": "50_epoch_network", "deps": ["0A11060200000055", "0A11060200000056"]},
     {"task": "0A11060200000058", "kind": "item_any", "items": "minecraft:end_crystal", "n": 2, "q": "e5_g02", "f": "50_epoch_network", "deps": ["0A11060200000057"]},
     {"task": "0A11060200000059", "kind": "item_any", "items": "minecraft:beacon", "n": 1, "q": "e5_g03", "f": "50_epoch_network", "deps": ["0A11060200000058"]},
@@ -557,7 +557,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11060200000060", "kind": "item_any", "items": "minecraft:ender_chest", "n": 4, "q": "e5pz03", "f": "50_epoch_network", "deps": ["0A1106020000005D", "0A1106020000005E"]},
     {"task": "0A11060200000061", "kind": "building", "word": "warehouse", "n": 5, "q": "e5pz03", "f": "50_epoch_network", "deps": ["0A1106020000005D", "0A1106020000005E"]},
     {"task": "0A11060200000062", "kind": "always", "q": "e5_tr", "f": "50_epoch_network", "deps": ["0A11060200000007", "0A11060200000008"]},
-    {"task": "0A11070200000001", "kind": "townhall", "n": 6, "q": "hub", "f": "60_epoch_cosmos", "deps": ["0A11060200000007", "0A11060200000008"]},
+    {"task": "0A11070200000001", "kind": "townhall", "n": 5, "q": "hub", "f": "60_epoch_cosmos", "deps": ["0A11060200000007", "0A11060200000008"]},
     {"task": "0A11070200000002", "kind": "item_any", "items": "mekanism:alloy_atomic", "n": 16, "q": "mek_late", "f": "60_epoch_cosmos", "deps": ["0A11070200000001"]},
     {"task": "0A11070200000003", "kind": "item_any", "items": "thermal:enderium_ingot", "n": 8, "q": "thermal_late", "f": "60_epoch_cosmos", "deps": ["0A11070200000001"]},
     {"task": "0A11070200000004", "kind": "item_any", "items": "minecraft:nether_star", "n": 2, "q": "rare", "f": "60_epoch_cosmos", "deps": ["0A11070200000001"]},
@@ -656,7 +656,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11070200000061", "kind": "always", "q": "e6_tr", "f": "60_epoch_cosmos", "deps": ["0A11070200000008", "0A11070200000009"]}
   ],
   "00_prologue#free": [
-    {"task": "0A11010200000008", "kind": "building", "word": "courier", "n": 1, "q": "logistics", "f": "00_prologue", "deps": []},
+    {"task": "0A11010200000008", "kind": "building", "word": "deliveryman", "n": 1, "q": "logistics", "f": "00_prologue", "deps": []},
     {"task": "0A11010200000051", "kind": "item_any", "items": "minecraft:cake", "n": 1, "q": "sec_cake", "f": "00_prologue", "deps": []},
     {"task": "0A11010200000052", "kind": "item_any", "items": "minecraft:egg", "n": 16, "q": "sec_eggs", "f": "00_prologue", "deps": []}
   ],
@@ -688,7 +688,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A11080200000008", "kind": "item_any", "items": "minecraft:copper_block", "n": 16, "q": "s_ar03", "f": "70_side_architects", "deps": ["0A11080200000007"]},
     {"task": "0A11080200000009", "kind": "item_any", "items": "minecraft:bricks", "n": 32, "q": "s_ar04", "f": "70_side_architects", "deps": ["0A11080200000008"]},
     {"task": "0A1108020000000A", "kind": "item_any", "items": "minecraft:quartz_block", "n": 16, "q": "s_ar05", "f": "70_side_architects", "deps": ["0A11080200000009"]},
-    {"task": "0A1108020000000B", "kind": "building", "word": "home", "n": 3, "q": "s_ar05", "f": "70_side_architects", "deps": ["0A11080200000009"]},
+    {"task": "0A1108020000000B", "kind": "building", "word": "residence", "n": 3, "q": "s_ar05", "f": "70_side_architects", "deps": ["0A11080200000009"]},
     {"task": "0A1108020000000C", "kind": "item_any", "items": "minecraft:oak_sapling", "n": 32, "q": "s_ar06", "f": "70_side_architects", "deps": ["0A1108020000000A", "0A1108020000000B"]},
     {"task": "0A1108020000000D", "kind": "building", "word": "farm", "n": 2, "q": "s_ar06", "f": "70_side_architects", "deps": ["0A1108020000000A", "0A1108020000000B"]}
   ],
@@ -803,7 +803,7 @@ const CHAPTER_CHAINS = {
     {"task": "0A110C0200000009", "kind": "item_any", "items": "minecraft:golden_apple", "n": 2, "q": "s_su05", "f": "74_side_supply", "deps": ["0A110C0200000008"]},
     {"task": "0A110C020000000A", "kind": "building", "word": "warehouse", "n": 3, "q": "s_su05", "f": "74_side_supply", "deps": ["0A110C0200000008"]},
     {"task": "0A110C020000000B", "kind": "item_any", "items": "minecraft:chest", "n": 16, "q": "s_su06", "f": "74_side_supply", "deps": ["0A110C0200000009", "0A110C020000000A"]},
-    {"task": "0A110C020000000C", "kind": "building", "word": "courier", "n": 2, "q": "s_su06", "f": "74_side_supply", "deps": ["0A110C0200000009", "0A110C020000000A"]}
+    {"task": "0A110C020000000C", "kind": "building", "word": "deliveryman", "n": 2, "q": "s_su06", "f": "74_side_supply", "deps": ["0A110C0200000009", "0A110C020000000A"]}
   ],
   "74_side_supply#free": [
     {"task": "0A110C0200000002", "kind": "always", "q": "week", "f": "74_side_supply", "deps": []},
@@ -875,7 +875,12 @@ function arcanopolis_colonyOf(player) {
     if (lvl == null) return null
     const mgr = IColonyManager.getInstance()
     let col = null
-    try { col = mgr.getIColony(lvl, player.blockPosition()) } catch (e) {}
+    // сначала колония самого игрока-владельца: условия засчитываются из любой
+    // точки мира, а не только рядом с городом
+    try { col = mgr.getIColonyByOwner(lvl, player) } catch (e) {}
+    if (col == null) {
+      try { col = mgr.getIColony(lvl, player.blockPosition()) } catch (e) {}
+    }
     if (col == null) {
       try { col = mgr.getClosestColony(lvl, player.blockPosition()) } catch (e) {}
     }
@@ -1000,7 +1005,7 @@ function arcanopolis_rowOk(player, row) {
         try { hay += ' ' + String(b.getSchematicName()) } catch (e) {}
         try { hay += ' ' + String(b.getBuildingType().getRegistryName()) } catch (e) {}
         try { hay += ' ' + String(b.getBuildingType().getSerializedName()) } catch (e) {}
-        if (hay.toLowerCase().indexOf(row.word) >= 0) return b.getBuildingLevel() >= row.n
+        if (hay.toLowerCase().indexOf(row.word) >= 0 && b.getBuildingLevel() >= row.n) return true
       }
     }
   } catch (e) {}

@@ -49,8 +49,8 @@ HUT_ICONS = {
     "black": "minecolonies:blockhutblacksmith",
     "guard": "minecolonies:blockhutguardtower",
     "warehouse": "minecolonies:blockhutwarehouse",
-    "courier": "minecolonies:blockhutcourier",
-    "home": "minecolonies:blockhutcitizen",
+    "deliveryman": "minecolonies:blockhutdeliveryman",
+    "residence": "minecolonies:blockhutcitizen",
     "townhall": "minecolonies:blockhuttownhall",
     "university": "minecolonies:blockhutuniversity",
     "library": "minecolonies:blockhutlibrary",
@@ -212,7 +212,7 @@ HUT_RU = {
     "cook": "поваренную хижину", "saw": "лесопилку",
     "stone": "хижину каменщика", "black": "кузницу",
     "guard": "сторожевую башню", "warehouse": "склад",
-    "courier": "хижину курьера", "home": "жилой дом",
+    "deliveryman": "хижину курьера", "residence": "жилой дом",
     "townhall": "ратушу", "university": "университет",
     "library": "библиотеку", "school": "школу", "hospital": "больницу",
     "mech": "мастерскую механика",
@@ -1197,10 +1197,10 @@ _CHAIN = [
     ("00_prologue", "orders", custom("building:builder:1", "Хижина строителя построена")),
     ("00_prologue", "town_hall", custom("townhall:1", "Ратуша построена")),
     ("00_prologue", "builder", custom("building:builder:2", "Хижина строителя II уровня")),
-    ("00_prologue", "home", custom("building:home:1", "Первый жилой дом заселён")),
+    ("00_prologue", "home", custom("building:residence:1", "Первый жилой дом заселён")),
     ("00_prologue", "food", item_task("minecraft:bread", 32, "Запас хлеба собран")),
     ("00_prologue", "workers", custom("citizens:3", "Три жителя в колонии")),
-    ("00_prologue", "logistics", custom("building:courier:1", "Курьерская служба запущена")),
+    ("00_prologue", "logistics", custom("building:deliveryman:1", "Курьерская служба запущена")),
     ("00_prologue", "charter", custom("citizens:5", "Пять жителей в колонии")),
 
     ("10_epoch_wood_water", "hub", custom("townhall:2", "Ратуша II уровня достигнута")),
@@ -1209,7 +1209,7 @@ _CHAIN = [
     ("10_epoch_wood_water", "forester", custom("building:lumberjack:1", "Хижина лесоруба построена")),
     ("10_epoch_wood_water", "miner", custom("building:miner:1", "Хижина шахтёра построена")),
     ("10_epoch_wood_water", "warehouse", custom("building:warehouse:1", "Склад построен")),
-    ("10_epoch_wood_water", "courier", custom("building:courier:1", "Курьер нанят")),
+    ("10_epoch_wood_water", "courier", custom("building:deliveryman:1", "Курьер нанят")),
     ("10_epoch_wood_water", "food_prod", custom("building:farm:1", "Ферма работает")),
     ("10_epoch_wood_water", "water_wheel", item_task("create:water_wheel", 1, "Водяное колесо собрано")),
     ("10_epoch_wood_water", "shaft", item_task("create:cogwheel", 16, "Передачи изготовлены")),
@@ -1271,7 +1271,7 @@ _CHAIN = [
     ("50_epoch_network", "lines", item_task("mekanism:ultimate_control_circuit", 4, "Высшие контуры изготовлены")),
     ("50_epoch_network", "project", custom("building:mechanic:3", "Линия «от руды до корпуса» готова")),
 
-    ("60_epoch_cosmos", "hub", custom("townhall:6", "Эпоха VI достигнута")),
+    ("60_epoch_cosmos", "hub", custom("townhall:5", "Эпоха VI достигнута")),
     ("60_epoch_cosmos", "mek_late", item_task("mekanism:alloy_atomic", 16, "Поздняя переработка налажена")),
     ("60_epoch_cosmos", "thermal_late", item_task("thermal:enderium_ingot", 8, "Эндерий изготовлен")),
     ("60_epoch_cosmos", "rare", item_task("minecraft:nether_star", 2, "Звёзды Нижнего мира добыты")),
@@ -1658,7 +1658,12 @@ function arcanopolis_colonyOf(player) {
     if (lvl == null) return null
     const mgr = IColonyManager.getInstance()
     let col = null
-    try { col = mgr.getIColony(lvl, player.blockPosition()) } catch (e) {}
+    // сначала колония самого игрока-владельца: условия засчитываются из любой
+    // точки мира, а не только рядом с городом
+    try { col = mgr.getIColonyByOwner(lvl, player) } catch (e) {}
+    if (col == null) {
+      try { col = mgr.getIColony(lvl, player.blockPosition()) } catch (e) {}
+    }
     if (col == null) {
       try { col = mgr.getClosestColony(lvl, player.blockPosition()) } catch (e) {}
     }
@@ -1783,7 +1788,7 @@ function arcanopolis_rowOk(player, row) {
         try { hay += ' ' + String(b.getSchematicName()) } catch (e) {}
         try { hay += ' ' + String(b.getBuildingType().getRegistryName()) } catch (e) {}
         try { hay += ' ' + String(b.getBuildingType().getSerializedName()) } catch (e) {}
-        if (hay.toLowerCase().indexOf(row.word) >= 0) return b.getBuildingLevel() >= row.n
+        if (hay.toLowerCase().indexOf(row.word) >= 0 && b.getBuildingLevel() >= row.n) return true
       }
     }
   } catch (e) {}

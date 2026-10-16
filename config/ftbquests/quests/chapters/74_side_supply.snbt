@@ -215,8 +215,8 @@
 				},
 				{
 					id: "0A110C020000000C"
-					title: "Здание courier (ур. 2)"
-					icon: "minecolonies:blockhutcourier"
+					title: "Здание deliveryman (ур. 2)"
+					icon: "minecolonies:blockhutdeliveryman"
 					type: "custom"
 				}
 			]

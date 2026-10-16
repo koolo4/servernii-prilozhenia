@@ -164,7 +164,7 @@ def _prologue():
         ("Поваренная хижина", C("building:cook:1")),
         ("Первая ферма", C("building:farm:1")),
         ("Рыбацкая хижина", C("building:fish:1")),
-        ("Дома для семей", C("building:home:2")),
+        ("Дома для семей", C("building:residence:2")),
         ("Четверо жителей", C("citizens:4")),
         ("Шестеро жителей", C("citizens:6")),
         ("Восьмеро жителей", C("citizens:8")),
@@ -199,7 +199,7 @@ def _prologue():
         ("Снабжение лагеря", B("minecraft:chest", "building:warehouse:1", 4)),
         ("Инструменты для рабочих", B("minecraft:iron_pickaxe", "building:black:1", 4)),
         ("Дороги и тротуары", B("minecraft:cobblestone", "citizens:4", 64)),
-        ("Городская площадь", B("minecraft:stone", "building:home:2", 64)),
+        ("Городская площадь", B("minecraft:stone", "building:residence:2", 64)),
     ], cross={0: ["p_b02"], 1: ["p_s07"], 2: ["p_t03"]})
     return q
 
@@ -211,7 +211,7 @@ def _prologue():
 def _era1():
     q = []
     q += track(-15, 4, "e1_c", [
-        ("Квартал жилья", C("building:home:3")),
+        ("Квартал жилья", C("building:residence:3")),
         ("Четыре жителя", C("citizens:4")),
         ("Шесть жителей", C("citizens:6")),
         ("Десять жителей", C("citizens:10")),
@@ -226,7 +226,7 @@ def _era1():
         ("Кузнец II уровня", C("building:black:2")),
         ("Стража II уровня", C("building:guard:2")),
         ("Склад II уровня", C("building:warehouse:2")),
-        ("Почта II уровня", C("building:courier:2")),
+        ("Почта II уровня", C("building:deliveryman:2")),
     ], dep0="hub")
     q += track(-9, 4, "e1_m", [
         ("Зубчатые колёса", I("create:cogwheel", 16)),
@@ -277,7 +277,7 @@ def _era1():
         ("Железо из шахты", B("minecraft:iron_ingot", "building:miner:2", 16)),
         ("Лес на балансе", B("minecraft:oak_log", "building:lumberjack:2", 64)),
         ("Механика и ремесло", B("create:cogwheel", "building:black:2", 32)),
-        ("Магия и стройка", B("ars_nouveau:sourcestone", "building:home:3", 64)),
+        ("Магия и стройка", B("ars_nouveau:sourcestone", "building:residence:3", 64)),
         ("Снабжение цехов", B("create:andesite_alloy", "building:warehouse:2", 16)),
     ], cross={0: ["e1_p03"], 3: ["e1_m01"], 4: ["e1_a02"]})
     return q
@@ -305,7 +305,7 @@ def _era2():
         ("Повар III уровня", C("building:cook:3")),
         ("Фермер III уровня", C("building:farm:3")),
         ("Стража III уровня", C("building:guard:3")),
-        ("Жилой квартал III", C("building:home:4")),
+        ("Жилой квартал III", C("building:residence:4")),
     ], dep0="hub")
     q += track(-9, 4, "e2_s", [
         ("Второй паровой двигатель", I("create:steam_engine", 2)),
@@ -345,7 +345,7 @@ def _era2():
         ("Ремонтный фонд", B("minecraft:iron_ingot", "building:black:3", 32)),
     ], cross={2: ["e2_s01"], 8: ["e2_c13"]})
     q += track(9, 4, "e2_x", [
-        ("Поезда снабжения", B("create:railway_casing", "building:courier:2", 8)),
+        ("Поезда снабжения", B("create:railway_casing", "building:deliveryman:2", 8)),
         ("Готовка механизмами", B("create:mechanical_mixer", "building:cook:3", 2)),
         ("Сырьё со складов", B("minecraft:raw_iron", "building:miner:3", 32)),
         ("Механика и университет", B("create:precision_mechanism", "building:university:1", 8)),
@@ -377,7 +377,7 @@ def _era3():
         ("Лесопилка III уровня", C("building:saw:3")),
         ("Стража IV уровня", C("building:guard:4")),
         ("Повар IV уровня", C("building:cook:4")),
-        ("Жилой квартал V", C("building:home:5")),
+        ("Жилой квартал V", C("building:residence:5")),
     ], dep0="hub")
     q += track(-9, 4, "e3_t", [
         ("Рама машин Thermal", I("thermal:machine_frame", 4)),
@@ -527,7 +527,7 @@ def _era5():
         ("Автозаказы склада", B("ae2:blank_pattern|minecraft:paper", "building:warehouse:5", 16)),
         ("Энергия для сети", B("mekanism:basic_energy_cube|minecraft:redstone_block", "building:mech:4", 2)),
         ("Линия «от руды до корпуса»", B("arcanopolis:reinforced_casing", "building:mech:4", 32)),
-        ("Продвинутая логистика", B("minecraft:ender_pearl", "building:courier:3", 16)),
+        ("Продвинутая логистика", B("minecraft:ender_pearl", "building:deliveryman:3", 16)),
         ("Ядро автоматизации", B("arcanopolis:automation_core", "townhall:5", 1)),
     ], cross={5: ["project"]})
     q += track(9, 4, "e5_p", [
@@ -598,7 +598,7 @@ def _sides():
         ("Стеклянные фасады", I("minecraft:glass_pane", 64)),
         ("Медные крыши", I("minecraft:copper_block", 16)),
         ("Кирпичные особняки", I("minecraft:bricks", 32)),
-        ("Архитектурный ансамбль", B("minecraft:quartz_block", "building:home:3", 16)),
+        ("Архитектурный ансамбль", B("minecraft:quartz_block", "building:residence:3", 16)),
         ("Парк и сады", B("minecraft:oak_sapling", "building:farm:2", 32)),
     ])
     out["71_side_expeditions"] = track(6, 2, "s_ex", [
@@ -629,7 +629,7 @@ def _sides():
         ("Строительный резерв", I("minecraft:oak_planks", 256)),
         ("Резерв железа", I("minecraft:iron_ingot", 64)),
         ("Город без дефицита", B("minecraft:golden_apple", "building:warehouse:3", 2)),
-        ("Логистика снабжения", B("minecraft:chest", "building:courier:2", 16)),
+        ("Логистика снабжения", B("minecraft:chest", "building:deliveryman:2", 16)),
     ])
     out["80_reference"] = [
         extra_quest("ref_sys", "Как работают цепочки", 4, -2,
@@ -770,7 +770,7 @@ def _era5b():
         ("Энергия и школа", B("minecraft:redstone_block", "building:school:3", 8)),
         ("Ячейки и склад", B("minecraft:ender_chest", "building:warehouse:5", 2)),
         ("Шаблоны и механик", B("ae2:blank_pattern|minecraft:paper", "building:mech:4", 16)),
-        ("Пространство и почта", B("minecraft:ender_pearl", "building:courier:3", 32)),
+        ("Пространство и почта", B("minecraft:ender_pearl", "building:deliveryman:3", 32)),
     ], cross={0: ["e5_c05"]})
     return q
 

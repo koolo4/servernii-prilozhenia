@@ -163,7 +163,7 @@
 			dependencies: [ ]
 			description: ["Курьеры и склад — кровеносная система города.", "Постройте или улучшите хижину курьера — нужен уровень не ниже 1. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
 			id: "0A11010100000008"
-			icon: "minecolonies:blockhutcourier"
+			icon: "minecolonies:blockhutdeliveryman"
 			optional: true
 			rewards: [
 				{
@@ -177,7 +177,7 @@
 				{
 					id: "0A11010200000008"
 					title: "Курьерская служба запущена"
-					icon: "minecolonies:blockhutcourier"
+					icon: "minecolonies:blockhutdeliveryman"
 					type: "custom"
 				}
 			]
@@ -315,7 +315,7 @@
 			tasks: [
 				{
 					id: "0A1101020000000F"
-					title: "Здание home (ур. 2)"
+					title: "Здание residence (ур. 2)"
 					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
@@ -873,7 +873,7 @@
 				},
 				{
 					id: "0A11010200000032"
-					title: "Здание home (ур. 2)"
+					title: "Здание residence (ур. 2)"
 					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}

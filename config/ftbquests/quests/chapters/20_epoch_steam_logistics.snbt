@@ -593,7 +593,7 @@
 			tasks: [
 				{
 					id: "0A11030200000020"
-					title: "Здание home (ур. 4)"
+					title: "Здание residence (ур. 4)"
 					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
@@ -1199,8 +1199,8 @@
 				},
 				{
 					id: "0A11030200000045"
-					title: "Здание courier (ур. 2)"
-					icon: "minecolonies:blockhutcourier"
+					title: "Здание deliveryman (ур. 2)"
+					icon: "minecolonies:blockhutdeliveryman"
 					type: "custom"
 				}
 			]
