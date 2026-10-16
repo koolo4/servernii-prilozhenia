@@ -1146,12 +1146,24 @@ def restructure_dag(chapters: list[Chapter]) -> None:
                 if q.key in desc_gate and q.key != gate.key \
                         and not q.independent:
                     q.optional = True
-            for q in ch.quests:
-                if q.independent or q.key == gate.key:
-                    continue
-                if q.key in anc_gate or q.key in desc_gate:
-                    continue
-                if q.key not in gate.deps:
+            # Ворота зависят только от ВЕРШИН веток (обязательных квестов,
+            # от которых не зависит ни один другой обязательный квест):
+            # строгость сохраняется транзитивно (каждая ветка дожимается
+            # до своей вершины), но в ворота сходится не веер из ~60 линий,
+            # а по одной линии от каждой ветки — граф читается.
+            req = [q for q in ch.quests
+                   if not q.independent and not q.optional
+                   and q.key != gate.key
+                   and q.key not in anc_gate and q.key not in desc_gate]
+            req_keys = {q.key for q in req}
+            has_req_child: set = set()
+            for q in req:
+                for d in q.deps:
+                    f, k = split_dep(d, ch.file)
+                    if f == ch.file and k in req_keys:
+                        has_req_child.add(k)
+            for q in req:
+                if q.key not in has_req_child and q.key not in gate.deps:
                     gate.deps.append(q.key)
 
     # --- глобальные проверки: все зависимости разрешаются, циклов нет ---
@@ -1193,7 +1205,10 @@ def restructure_dag(chapters: list[Chapter]) -> None:
 
 TASK_MAP: dict[tuple[str, str], Task] = {}
 _CHAIN = [
-    ("00_prologue", "start", custom("camp", "Лагерь или корабль снабжения установлен")),
+    # Корабль/лагерь засчитывает сам MineColonies: advancement
+    # minecolonies:minecraft/craft_supply выдаётся триггером supply_placed
+    # при установке снабжения (проверено по тегу v1.20.1-1.1.1301).
+    ("00_prologue", "start", adv_task("minecolonies:minecraft/craft_supply")),
     ("00_prologue", "orders", custom("building:builder:1", "Хижина строителя построена")),
     ("00_prologue", "town_hall", custom("townhall:1", "Ратуша построена")),
     ("00_prologue", "builder", custom("building:builder:2", "Хижина строителя II уровня")),
@@ -1417,40 +1432,64 @@ def layout_chapters(chapters: list[Chapter]) -> None:
         for q in chained:
             _depth(q.key, frozenset())
         maxd = max(depth.values(), default=0)
-        lane: dict = {}
+        # Полосы по веткам: полоса квеста наследуется от его первой
+        # зависимости — каждая ветка идёт своей горизонтальной лентой
+        # слева направо (раскладка «зеброй» поломала читаемость: ветки
+        # перемешивались). Полоса входа главы — по центру, ворота эпохи —
+        # в центре крайней правой колонки. Коллизии внутри полосы
+        # разводятся небольшим вертикальным сдвигом.
+        order = {q.key: i for i, q in enumerate(ch.quests)}
+        band: dict = {}
+
+        def _band(k: str, guard: frozenset) -> str:
+            if k in band:
+                return band[k]
+            ds = intra.get(k, [])
+            if not ds or k in guard:
+                band[k] = k
+            else:
+                band[k] = _band(ds[0], guard | {k})
+            return band[k]
+
+        for q in chained:
+            _band(q.key, frozenset())
+        # Полоса определяется предком на глубине 1 (головой ветки под
+        # входом главы), а не самим входом: иначе все ветки, уходящие от
+        # первого квеста, слипаются в одну центральную полосу.
+        for q in chained:
+            cur, guard = q.key, set()
+            while depth.get(cur, 0) > 1 and cur not in guard:
+                guard.add(cur)
+                ds = intra.get(cur, [])
+                if not ds:
+                    break
+                cur = max(ds, key=lambda d: depth.get(d, 0))
+            band[q.key] = cur
+        heads: list = []
+        for q in chained:
+            b = band[q.key]
+            if b not in heads:
+                heads.append(b)
+        if heads and chained:
+            entry_band = band[chained[0].key]
+            if entry_band in heads:
+                heads.remove(entry_band)
+                heads.insert(len(heads) // 2, entry_band)
+        row_of = {b: i for i, b in enumerate(heads)}
+        center = (len(heads) - 1) / 2 if heads else 0
+        gate_key = GATE_KEYS.get(ch.file)
         occupied: set = set()
-        inherited: set = set()
-
-        def _place(q: Quest) -> None:
-            if q.key in lane:
-                return
-            ds = intra[q.key]
-            for d in ds:
-                _place(by_key[d])
-            want = None
-            if len(ds) >= 4:  # ворота сходятся к центру своих веток
-                med = sorted(lane[d] for d in ds)[len(ds) // 2]
-                if (depth[q.key], med) not in occupied:
-                    want = med
-            if want is None and ds and ds[0] not in inherited \
-                    and (depth[q.key], lane[ds[0]]) not in occupied:
-                want = lane[ds[0]]
-                inherited.add(ds[0])
-            if want is None:
-                want = 0
-                while (depth[q.key], want) in occupied:
-                    want += 1
-            lane[q.key] = want
-            occupied.add((depth[q.key], want))
-
-        for q in chained:
-            _place(q)
-        maxlane = max(lane.values(), default=0)
-        for q in chained:
-            q.x = (depth[q.key] - maxd / 2) * 2.2
-            q.y = (lane[q.key] - maxlane / 2) * 2.0
+        for q in sorted(chained, key=lambda qq: (depth[qq.key], order[qq.key])):
+            y = (row_of[band[q.key]] - center) * 2.6
+            if q.key == gate_key:
+                y = 0.0
+            while (depth[q.key], round(y, 2)) in occupied:
+                y += 0.85
+            occupied.add((depth[q.key], round(y, 2)))
+            q.x = (depth[q.key] - maxd / 2) * 2.6
+            q.y = y
         if free:
-            y0 = (maxlane / 2 + 2.5) * 2.0
+            y0 = (len(heads) - center) * 2.6 + 1.2
             for i, q in enumerate(free):
                 row, col = divmod(i, 5)
                 q.x = (col - 2) * 2.0
@@ -1646,6 +1685,28 @@ const CHAPTER_CHAINS = {
 
 const IColonyManager = Java.loadClass('com.minecolonies.api.colony.IColonyManager')
 
+// Диагностика: первая ошибка каждого места пишется в лог один раз —
+// если API колонии в вашей версии MineColonies отличается, лог скажет где.
+const _arcErrSeen = {}
+function arcanopolis_logErr(where, e) {
+  if (_arcErrSeen[where]) return
+  _arcErrSeen[where] = true
+  try { console.error('[Arcanopolis] ошибка проверки колонии (' + where + '): ' + e) } catch (ignored) {}
+}
+
+const _arcColonySeen = {}
+function arcanopolis_noteColony(player, col) {
+  try {
+    const name = String(player.username)
+    if (_arcColonySeen[name]) return
+    _arcColonySeen[name] = true
+    let cn = '?', cz = -1
+    try { cn = String(col.getName()) } catch (e) {}
+    try { cz = col.getCitizenManager().getCitizens().size() } catch (e) {}
+    console.info('[Arcanopolis] колония игрока ' + name + ': \u00ab' + cn + '\u00bb, жителей ' + cz + ' — проверки MineColonies работают')
+  } catch (e) {}
+}
+
 function arcanopolis_level(player) {
   try { const l = player.level; if (l) return l } catch (e) {}
   try { return player.getLevel() } catch (e) {}
@@ -1656,7 +1717,12 @@ function arcanopolis_colonyOf(player) {
   try {
     const lvl = arcanopolis_level(player)
     if (lvl == null) return null
-    const mgr = IColonyManager.getInstance()
+    let mgr = null
+    try { mgr = IColonyManager.getInstance() } catch (e) { arcanopolis_logErr('manager.getInstance', e) }
+    if (mgr == null) {
+      try { mgr = Java.loadClass('com.minecolonies.api.IMinecoloniesAPI').getInstance().getColonyManager() } catch (e) { arcanopolis_logErr('manager.api', e) }
+    }
+    if (mgr == null) return null
     let col = null
     // сначала колония самого игрока-владельца: условия засчитываются из любой
     // точки мира, а не только рядом с городом
@@ -1667,14 +1733,40 @@ function arcanopolis_colonyOf(player) {
     if (col == null) {
       try { col = mgr.getClosestColony(lvl, player.blockPosition()) } catch (e) {}
     }
+    if (col != null) arcanopolis_noteColony(player, col)
     return col
-  } catch (e) { return null }
+  } catch (e) { arcanopolis_logErr('colonyOf', e); return null }
 }
 
 function arcanopolis_buildingManager(col) {
+  // имена менеджера зданий гуляли между версиями — пробуем все
   try { if (col.getServerBuildingManager) return col.getServerBuildingManager() } catch (e) {}
-  try { return col.getBuildingManager() } catch (e) {}
+  try { if (col.getCommonBuildingManager) return col.getCommonBuildingManager() } catch (e) {}
+  try { if (col.getBuildingManager) return col.getBuildingManager() } catch (e) {}
+  arcanopolis_logErr('buildingManager', 'нет ни одного менеджера зданий')
   return null
+}
+
+function arcanopolis_buildingLevel(col, word) {
+  // максимальный уровень здания, в id/имени которого есть word; -1 — не нашли
+  const bm = arcanopolis_buildingManager(col)
+  if (bm == null) return -1
+  let best = -1
+  try {
+    const it = bm.getBuildings().values().iterator()
+    while (it.hasNext()) {
+      const b = it.next()
+      let hay = ''
+      try { hay += ' ' + String(b.getSchematicName()) } catch (e) {}
+      try { hay += ' ' + String(b.getBuildingType().getRegistryName()) } catch (e) {}
+      try { hay += ' ' + String(b.getBuildingType().getSerializedName()) } catch (e) {}
+      if (hay.toLowerCase().indexOf(word) >= 0) {
+        const lv = b.getBuildingLevel()
+        if (lv > best) best = lv
+      }
+    }
+  } catch (e) { arcanopolis_logErr('buildings.scan', e) }
+  return best
 }
 
 function arcanopolis_itemCount(player, id) {
@@ -1693,69 +1785,13 @@ function arcanopolis_itemCount(player, id) {
   } catch (e) { return 0 }
 }
 
-// --- Лагерь / корабль снабжения -------------------------------------------
-// В MineColonies 1.20.1 блок «supplyship» НЕ существует: лагерь ставит блок
-// minecolonies:supplycamp, а корабль снабжения — блок minecolonies:supplychest
-// (предметы-развёртыватели: supplycampdeployer и supplychestdeployer).
-// Старый поиск блока supplyship был причиной, что первый квест не засчитывался.
-const arcanopolis_campScan = {}
-
-function arcanopolis_findCampNow(player) {
-  try {
-    const lvl = arcanopolis_level(player)
-    if (lvl == null) return false
-    const px = Math.floor(player.x)
-    const py = Math.floor(player.y)
-    const pz = Math.floor(player.z)
-    for (let dx = -32; dx <= 32; dx++) {
-      for (let dz = -32; dz <= 32; dz++) {
-        for (let dy = -20; dy <= 20; dy++) {
-          const b = lvl.getBlock(px + dx, py + dy, pz + dz)
-          if (b && (b.id === 'minecolonies:supplycamp' || b.id === 'minecolonies:supplychest')) return true
-        }
-      }
-    }
-  } catch (e) {}
-  return false
-}
-
-function arcanopolis_findCamp(player) {
-  // скан окрестности тяжёлый — результат кэшируется на 5 секунд на игрока
-  try {
-    const name = String(player.username)
-    const now = Date.now()
-    const c = arcanopolis_campScan[name]
-    if (c && now - c.t < 5000) return c.ok
-    const ok = arcanopolis_findCampNow(player)
-    arcanopolis_campScan[name] = { t: now, ok: ok }
-    return ok
-  } catch (e) { return false }
-}
-
-BlockEvents.placed(event => {
-  try {
-    const id = String(event.block.id)
-    if (id === 'minecolonies:supplycamp' || id === 'minecolonies:supplychest') {
-      const p = event.entity
-      if (p && p.isPlayer()) p.persistentData.putBoolean('arcanopolis_camp', true)
-    }
-  } catch (e) {}
-})
+// Лагерь / корабль снабжения засчитывает сам MineColonies: первый квест
+// пролога — нативная FTB-задача на advancement
+// minecolonies:minecraft/craft_supply (триггер supply_placed при установке
+// снабжения, проверено по релизу v1.20.1-1.1.1301). JS-здесь не нужен.
 
 function arcanopolis_rowOk(player, row) {
   if (row.kind === 'always') return true
-  if (row.kind === 'camp') {
-    try { if (player.persistentData.getBoolean('arcanopolis_camp')) return true } catch (e) {}
-    try { if (arcanopolis_itemCount(player, 'minecolonies:supplycampdeployer') + arcanopolis_itemCount(player, 'minecolonies:supplychestdeployer') >= 1) return true } catch (e) {}
-    try {
-      const col = arcanopolis_colonyOf(player)
-      if (col != null) {
-        const bm = arcanopolis_buildingManager(col)
-        if (bm != null && bm.getTownHall() != null) return true
-      }
-    } catch (e) {}
-    return arcanopolis_findCamp(player)
-  }
   if (row.kind === 'item_any') {
     try {
       const ids = String(row.items).split('|')
@@ -1772,26 +1808,21 @@ function arcanopolis_rowOk(player, row) {
     if (col == null) return false
     if (row.kind === 'townhall') {
       const bm = arcanopolis_buildingManager(col)
-      const th = bm != null ? bm.getTownHall() : null
-      return th != null && th.getBuildingLevel() >= row.n
+      let lvl = -1
+      try {
+        const th = bm != null ? bm.getTownHall() : null
+        if (th != null) lvl = th.getBuildingLevel()
+      } catch (e) { arcanopolis_logErr('townhall.get', e) }
+      if (lvl < 0) lvl = arcanopolis_buildingLevel(col, 'townhall')
+      return lvl >= row.n
     }
     if (row.kind === 'citizens') {
       return col.getCitizenManager().getCitizens().size() >= row.n
     }
     if (row.kind === 'building') {
-      const bm = arcanopolis_buildingManager(col)
-      if (bm == null) return false
-      const it = bm.getBuildings().values().iterator()
-      while (it.hasNext()) {
-        const b = it.next()
-        let hay = ''
-        try { hay += ' ' + String(b.getSchematicName()) } catch (e) {}
-        try { hay += ' ' + String(b.getBuildingType().getRegistryName()) } catch (e) {}
-        try { hay += ' ' + String(b.getBuildingType().getSerializedName()) } catch (e) {}
-        if (hay.toLowerCase().indexOf(row.word) >= 0 && b.getBuildingLevel() >= row.n) return true
-      }
+      return arcanopolis_buildingLevel(col, row.word) >= row.n
     }
-  } catch (e) {}
+  } catch (e) { arcanopolis_logErr('rowOk.' + row.kind, e) }
   return false
 }
 

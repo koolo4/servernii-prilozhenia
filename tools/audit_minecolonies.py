@@ -9,7 +9,11 @@
     жилой дом, deliveryman — курьер, farmer/fisherman/stonemason/blacksmith/
     sawmill/guardtower — по подстроке);
   - citizens:N — минимум 1 житель;
-  - camp — строка первого квеста на месте.
+  - первый квест пролога — нативная FTB-задача на advancement
+    minecolonies:minecraft/craft_supply (MineColonies выдаёт его триггером
+    supply_placed при установке лагеря/корабля снабжения; проверено по
+    релизу v1.20.1-1.1.1301 — файл advancements/minecraft/craft_supply.json
+    упаковывается в jar мода).
 Плюс иконки minecolonies:* в главах сверяются со списком реально
 существующих блоков/предметов (blockstates + deployer-предметы).
 
@@ -74,7 +78,7 @@ def main() -> int:
     from collections import Counter
     kinds = Counter(r["kind"] for r in rows)
     print("=== СТРОКИ УСЛОВИЙ КОЛОНИИ ===")
-    for kind in ("camp", "townhall", "citizens", "building"):
+    for kind in ("townhall", "citizens", "building"):
         part = [r for r in rows if r["kind"] == kind]
         print(f"  {kind}: {len(part)}")
     print()
@@ -93,8 +97,13 @@ def main() -> int:
         elif r["kind"] == "citizens" and r["n"] < 1:
             problems.append(f"{tag}: citizens:{r['n']}")
 
-    if not any(r["kind"] == "camp" for r in rows):
-        problems.append("нет строки camp (первый квест пролога)")
+    prologue = (CH / "00_prologue.snbt").read_text(encoding="utf-8")
+    if 'advancement: "minecolonies:minecraft/craft_supply"' not in prologue:
+        problems.append(
+            "первый квест пролога: нет advancement-задачи "
+            "minecolonies:minecraft/craft_supply (установка снабжения)")
+    if any(r["kind"] == "camp" for r in rows):
+        problems.append("в JS осталась строка camp — снабжение теперь на advancement")
 
     print("=== ИКОНКИ minecolonies:* ===")
     bad_icons = Counter()
