@@ -1157,20 +1157,30 @@
     },
     {
       "id": "champions",
-      "name": "Champions",
+      "name": "Champions Unofficial",
       "category": "difficulty",
       "side": "both",
       "required": true,
       "modrinth": [
+        "champions-unofficial",
         "champions"
       ],
       "curseforge": [
+        "champions-unofficial",
         "champions"
       ],
+      "curseforge_files": [
+        {
+          "slug": "champions-unofficial",
+          "project_id": 1074990,
+          "file_id": 6923340,
+          "filename": "champions-forge-1.20.1-2.1.12.6.jar"
+        }
+      ],
       "version": "latest",
-      "version_hint": "1.20.1-7.3.x (Forge)",
+      "version_hint": "1.20.1-2.1.12.x (Forge; официальный Champions на 1.20.1 не выходил)",
       "deps": [],
-      "note": "Остринка: элитные мобы с рангами и аффиксами (урон, отрава, блиц и т.п.), награды по рангу"
+      "note": "Остринка: элитные мобы с рангами и аффиксами (урон, отрава, блиц и т.п.), награды по рангу. Официальный Champions (TheIllusiveC4) на 1.20.1 не выходил — берём поддерживаемый порт Champions Unofficial (функционал тот же)"
     },
     {
       "id": "spice-of-life-carrot-edition",
@@ -1353,7 +1363,8 @@
       "version": "latest",
       "version_hint": "0.5.x+ для Forge 1.20.1",
       "deps": [
-        "curios"
+        "curios",
+        "octolib"
       ],
       "note": "Реликвии в сундуках структур по всему миру: каждая качается от использования и открывает способности. Работает на слотах Curios"
     },
@@ -1373,6 +1384,24 @@
       "version_hint": "2.x для Forge 1.20.1",
       "deps": [],
       "note": "Уровни самого персонажа: навыки (бой, добыча, выносливость и др.) дают статы и перки под растущую сложность. ВНИМАНИЕ: по умолчанию есть требования уровней к вещам — на фазе настройки смягчаем, чтобы не конфликтовали с воротами эпох"
+    },
+    {
+      "id": "octolib",
+      "name": "OctoLib",
+      "category": "library",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "octolib"
+      ],
+      "curseforge": [
+        "octo-lib"
+      ],
+      "version": "latest",
+      "version_hint": "для 1.20.1 (библиотека Relics 0.8+; сам OctoLib требует Architectury — уже стоит)",
+      "deps": [
+        "architectury"
+      ]
     }
   ]
 }
