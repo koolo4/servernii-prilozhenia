@@ -284,8 +284,15 @@ function Try-ModrinthProject([string]$slug, $mod, [string]$mc) {
 
         $files = @(Get-Flat $ver.files)
         $f = $null
+        # У мультиплатформенных версий primary-файл может оказаться чужим
+        # загрузчиком (fabric/neoforge) — предпочитаем файл с forge в имени.
         foreach ($file in $files) {
-            if ($file.primary) { $f = $file; break }
+            if ("$($file.filename)" -match '(?i)(?<!neo)forge') { $f = $file; break }
+        }
+        if (-not $f) {
+            foreach ($file in $files) {
+                if ($file.primary) { $f = $file; break }
+            }
         }
         if (-not $f -and $files.Count -gt 0) { $f = $files[0] }
         if (-not $f) { continue }
@@ -711,6 +718,9 @@ foreach ($mod in $modList) {
         $dest = Join-Path $Out $hit.filename
         if (Test-Path $dest) {
             $bad = Test-JarFile $dest
+            if (-not $bad -and $hit.hashes -and -not (Test-Hash $dest $hit.hashes)) {
+                $bad = "контрольная сумма не совпадает с источником"
+            }
             if (-not $bad) {
                 Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
                 $ok++
@@ -775,7 +785,13 @@ foreach ($f in (Get-ChildItem -Path $Out -File | Sort-Object Name)) {
         $broken++
         continue
     }
-    foreach ($mid in @(Get-ModIds $f.FullName)) {
+    $jarIds = @(Get-ModIds $f.FullName)
+    if ($jarIds.Count -eq 0) {
+        Log ("[НЕ МОД] {0} — внутри не найден mods.toml; Forge такой файл проигнорирует (зависимые моды напишут 'not installed')" -f $f.Name)
+        $broken++
+        continue
+    }
+    foreach ($mid in $jarIds) {
         if (-not $mid) { continue }
         if (-not $byId.ContainsKey($mid)) { $byId[$mid] = New-Object System.Collections.Generic.List[string] }
         $byId[$mid].Add($f.Name)
