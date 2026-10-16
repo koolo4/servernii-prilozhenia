@@ -202,14 +202,18 @@ function Remove-Superseded([string]$keepPath) {
     $ids = @(Get-ModIds $keepPath)
     if ($ids.Count -eq 0) { return }
     $keepName = Split-Path -Leaf $keepPath
+    # Главный modId мода — первый в его mods.toml. Сносим только устаревшую
+    # копию ТОГО ЖЕ мода (главные modId совпали). Jar, который просто содержит
+    # библиотеку внутри себя (JarJar/shade), не трогаем: из-за этого могли
+    # исчезать самостоятельные architectury и kubejs.
+    $keepPrimary = $ids[0]
     foreach ($f in (Get-ChildItem -Path $Out -File -Filter *.jar)) {
-        if ($f.FullName -eq $keepPath) { continue }
-        foreach ($mid in @(Get-ModIds $f.FullName)) {
-            if ($ids -contains $mid) {
-                Log ("[ЗАМЕНА] {0} — устаревшая копия мода '{1}', удалён (оставлен {2})" -f $f.Name, $mid, $keepName)
-                Remove-Item $f.FullName -Force
-                break
-            }
+        if ($f.Name -eq $keepName) { continue }
+        $otherIds = @(Get-ModIds $f.FullName)
+        if ($otherIds.Count -eq 0) { continue }
+        if ($otherIds[0] -eq $keepPrimary) {
+            Log ("[ЗАМЕНА] {0} — устаревшая копия мода '{1}', удалён (оставлен {2})" -f $f.Name, $keepPrimary, $keepName)
+            Remove-Item $f.FullName -Force
         }
     }
 }
@@ -723,6 +727,7 @@ Log ("Источники: Modrinth -> Maven -> GitHub -> CurseForge")
 Log ""
 
 $ok = 0; $manual = 0; $failed = 0
+$script:expectedFiles = New-Object System.Collections.ArrayList
 
 $modList = @(Get-Flat $json.mods)
 Log ("Модов в манифесте: {0}" -f $modList.Count)
@@ -762,6 +767,7 @@ foreach ($mod in $modList) {
             if (-not $bad) {
                 Log ("[ЕСТЬ]    {0} (уже скачан) [{1}]" -f $hit.filename, $hit.source)
                 $ok++
+                $script:expectedFiles.Add($hit.filename) | Out-Null
                 Remove-Superseded $dest
                 $finished = $true
                 break
@@ -774,6 +780,7 @@ foreach ($mod in $modList) {
         if (-not $err) {
             Log ("[OK]      {0}  <- {1} ({2}) [{3}]" -f $hit.filename, $name, $hit.version, $hit.source)
             $ok++
+            $script:expectedFiles.Add($hit.filename) | Out-Null
             Remove-Superseded $dest
             $finished = $true
             break
@@ -849,9 +856,21 @@ if ($broken -gt 0) {
     Log "Все jar-файлы целые, дубликатов нет."
 }
 
+# --- Самодиагностика: всё ли скачанное дожило до конца установки -------------
+Log ""
+Log "Проверка: все скачанные файлы на месте:"
+$missing = 0
+foreach ($fn in $script:expectedFiles) {
+    if (-not (Test-Path (Join-Path $Out $fn))) {
+        Log ("[ПРОПАЛ] {0} — был скачан, но к концу установки исчез (ищите строку [ЗАМЕНА] выше; если её нет — проверьте антивирус)" -f $fn)
+        $missing++
+    }
+}
+if ($missing -eq 0) { Log "Все файлы на месте." }
+
 if ($Report) {
     $lines | Set-Content -Encoding UTF8 $Report
     Write-Host "Отчёт сохранён: $Report"
 }
 
-if ($failed -gt 0 -or $manual -gt 0 -or $broken -gt 0) { Finish 1 } else { Finish 0 }
+if ($failed -gt 0 -or $manual -gt 0 -or $broken -gt 0 -or $missing -gt 0) { Finish 1 } else { Finish 0 }
