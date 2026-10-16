@@ -136,32 +136,27 @@ function Test-JarFile([string]$path) {
 }
 
 function Get-ModIdsFromZip($zip) {
+    # Только modId из секций [[mods]] самого jar. Зависимости ([[dependencies.*]])
+    # мод не предоставляет, а JarJar-вложения Forge разрешает сам и дублями не
+    # считает. Иначе парсер принимал зависимости за моды (так Champions
+    # «предоставлял» architectury и kubejs, и их сносили как копии).
     $ids = New-Object System.Collections.Generic.List[string]
     foreach ($entry in $zip.Entries) {
         if ($entry.FullName -ieq 'META-INF/mods.toml') {
             $sr = New-Object System.IO.StreamReader($entry.Open())
             try { $txt = $sr.ReadToEnd() } finally { $sr.Close() }
-            # modId самого мода — только до секции зависимостей
-            $cut = $txt.IndexOf('[[dependencies')
-            if ($cut -ge 0) { $txt = $txt.Substring(0, $cut) }
-            foreach ($m in [regex]::Matches($txt, '(?im)^\s*modId\s*=\s*["'']([^"'']+)["'']')) {
-                $ids.Add($m.Groups[1].Value)
+            $inMods = $false
+            foreach ($line in ($txt -split "`n")) {
+                $t = $line.Trim()
+                if ($t -match '^\[\[') {
+                    $inMods = ($t -match '^\[\[\s*mods\s*\]\]')
+                    continue
+                }
+                if ($t.StartsWith('[')) { $inMods = $false; continue }
+                if ($inMods -and $t -match '^modId\s*=\s*["'']([^"'']+)["'']') {
+                    $ids.Add($Matches[1])
+                }
             }
-        }
-    }
-    # JarJar: моды, вложенные внутрь jar (например, KotlinForForge-all)
-    foreach ($entry in @($zip.Entries)) {
-        if ($entry.FullName -imatch '^META-INF/jarjar/.+\.jar$') {
-            try {
-                $ms = New-Object System.IO.MemoryStream
-                $src = $entry.Open()
-                try { $src.CopyTo($ms) } finally { $src.Close() }
-                $ms.Position = 0
-                $inner = New-Object System.IO.Compression.ZipArchive($ms, [System.IO.Compression.ZipArchiveMode]::Read)
-                try {
-                    foreach ($i in @(Get-ModIdsFromZip $inner)) { $ids.Add($i) }
-                } finally { $inner.Dispose(); $ms.Dispose() }
-            } catch { }
         }
     }
     foreach ($i in $ids) { Write-Output $i }

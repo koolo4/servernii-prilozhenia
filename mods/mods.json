@@ -1178,8 +1178,10 @@
         }
       ],
       "version": "latest",
-      "version_hint": "1.20.1-2.1.12.x (Forge; официальный Champions на 1.20.1 не выходил)",
-      "deps": [],
+      "version_hint": "Forge 1.20.1 (файлы 2.1.12.x / 20.1.1.x; официальный Champions на 1.20.1 не выходил). Требует Architectury; KubeJS — опционально",
+      "deps": [
+        "architectury"
+      ],
       "note": "Остринка: элитные мобы с рангами и аффиксами (урон, отрава, блиц и т.п.), награды по рангу. Официальный Champions (TheIllusiveC4) на 1.20.1 не выходил — берём поддерживаемый порт Champions Unofficial (функционал тот же)"
     },
     {
