@@ -1251,8 +1251,11 @@
       ],
       "version": "latest",
       "version_hint": "2.x-3.x для Forge 1.20.1",
-      "deps": [],
-      "note": "Ядро (эндгейм): боссы и данжи под эпоху VI и экспедиции. Боссы могут разрушать блоки — не вызывать рядом с колонией"
+      "deps": [
+        "curios",
+        "lionfish-api"
+      ],
+      "note": "Ядро (эндгейм): боссы и данжи под эпоху VI и экспедиции. Боссы могут разрушать блоки — не вызывать рядом с колонией. Требует Lionfish API 3.0+ и Curios"
     },
     {
       "id": "when-dungeons-arise",
@@ -1402,6 +1405,23 @@
       "deps": [
         "architectury"
       ]
+    },
+    {
+      "id": "lionfish-api",
+      "name": "Lionfish API",
+      "category": "library",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "lionfish-api",
+        "lionfishapi"
+      ],
+      "curseforge": [
+        "lionfish-api"
+      ],
+      "version": "latest",
+      "version_hint": "3.x для 1.20.1 (обязательная библиотека L_Ender's Cataclysm)",
+      "deps": []
     }
   ]
 }
