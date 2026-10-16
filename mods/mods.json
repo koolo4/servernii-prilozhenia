@@ -1118,6 +1118,236 @@
       "version": "latest",
       "version_hint": "20.1.7+ (требует Applied Energistics 2)",
       "deps": []
+    },
+    {
+      "id": "majrusz-library",
+      "name": "Majrusz Library",
+      "category": "library",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "majrusz-library"
+      ],
+      "curseforge": [
+        "majrusz-library"
+      ],
+      "version": "latest",
+      "version_hint": "1.20.1-1.6.x (библиотека для Progressive Difficulty)",
+      "deps": []
+    },
+    {
+      "id": "majruszs-progressive-difficulty",
+      "name": "Majrusz's Progressive Difficulty",
+      "category": "difficulty",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "majruszs-progressive-difficulty",
+        "majruszs-difficulty"
+      ],
+      "curseforge": [
+        "majruszs-progressive-difficulty"
+      ],
+      "version": "latest",
+      "version_hint": "1.20.1-1.9.x",
+      "deps": [
+        "majrusz-library"
+      ],
+      "note": "Остринка: сложность мира растёт стадиями — мобы получают усиления и экипировку, появляются усиленные боссы"
+    },
+    {
+      "id": "champions",
+      "name": "Champions",
+      "category": "difficulty",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "champions"
+      ],
+      "curseforge": [
+        "champions"
+      ],
+      "version": "latest",
+      "version_hint": "1.20.1-7.3.x (Forge)",
+      "deps": [],
+      "note": "Остринка: элитные мобы с рангами и аффиксами (урон, отрава, блиц и т.п.), награды по рангу"
+    },
+    {
+      "id": "spice-of-life-carrot-edition",
+      "name": "Spice of Life: Carrot Edition",
+      "category": "difficulty",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "spice-of-life-carrot-edition"
+      ],
+      "curseforge": [
+        "spice-of-life-carrot-edition"
+      ],
+      "version": "latest",
+      "version_hint": "версия для Forge 1.20.1",
+      "deps": [],
+      "note": "Остринка мягкая: разнообразие еды даёт макс. здоровье — моно-диета из хлеба перестаёт работать, кухня колонии в деле"
+    },
+    {
+      "id": "silent-lib",
+      "name": "Silent Lib",
+      "category": "library",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "silent-lib"
+      ],
+      "curseforge": [
+        "silent-lib"
+      ],
+      "version": "latest",
+      "version_hint": "1.20.1-7.x (библиотека для Scaling Health)",
+      "deps": []
+    },
+    {
+      "id": "scaling-health",
+      "name": "Scaling Health",
+      "category": "difficulty",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "scaling-health"
+      ],
+      "curseforge": [
+        "scaling-health"
+      ],
+      "version": "latest",
+      "version_hint": "1.20.1-8.x",
+      "deps": [
+        "silent-lib"
+      ],
+      "note": "ОПЦИЯ: здоровье мобов растёт со временем/пройденной дистанцией. Не разгонять на максимум вместе с Majrusz PD и Champions — выбрать потолок"
+    },
+    {
+      "id": "l-enders-cataclysm",
+      "name": "L_Ender's Cataclysm",
+      "category": "difficulty",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "l-enders-cataclysm",
+        "l_enders-cataclysm",
+        "cataclysm"
+      ],
+      "curseforge": [
+        "l-enders-cataclysm"
+      ],
+      "version": "latest",
+      "version_hint": "2.x для Forge 1.20.1",
+      "deps": [],
+      "note": "ОПЦИЯ (эндгейм): боссы и данжи под эпоху VI и экспедиции. Боссы могут разрушать блоки — держать подальше от колонии"
+    },
+    {
+      "id": "when-dungeons-arise",
+      "name": "When Dungeons Arise",
+      "category": "difficulty",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "when-dungeons-arise"
+      ],
+      "curseforge": [
+        "when-dungeons-arise"
+      ],
+      "version": "latest",
+      "version_hint": "2.1.x для 1.20.1",
+      "deps": [],
+      "note": "ОПЦИЯ: крупные опасные данжи в мире — цели для экспедиций (глава 71)"
+    },
+    {
+      "id": "citadel",
+      "name": "Citadel",
+      "category": "library",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "citadel"
+      ],
+      "curseforge": [
+        "citadel"
+      ],
+      "version": "latest",
+      "version_hint": "2.5.x для 1.20.1 (библиотека для Alex's Mobs)",
+      "deps": []
+    },
+    {
+      "id": "alexs-mobs",
+      "name": "Alex's Mobs",
+      "category": "difficulty",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "alexs-mobs"
+      ],
+      "curseforge": [
+        "alexs-mobs"
+      ],
+      "version": "latest",
+      "version_hint": "1.22.x для 1.20.1",
+      "deps": [
+        "citadel"
+      ],
+      "note": "ОПЦИЯ: дикая фауна — медведи, крокодилы и прочие делают вылазки за ресурсами рискованнее"
+    },
+    {
+      "id": "glitchcore",
+      "name": "GlitchCore",
+      "category": "library",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "glitchcore"
+      ],
+      "curseforge": [
+        "glitchcore"
+      ],
+      "version": "latest",
+      "version_hint": "версия для 1.20.1 (библиотека для Tough As Nails и Serene Seasons)",
+      "deps": []
+    },
+    {
+      "id": "tough-as-nails",
+      "name": "Tough As Nails",
+      "category": "difficulty",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "tough-as-nails"
+      ],
+      "curseforge": [
+        "tough-as-nails"
+      ],
+      "version": "latest",
+      "version_hint": "9.x для 1.20.1",
+      "deps": [
+        "glitchcore"
+      ],
+      "note": "ХАРДКОР-ОПЦИЯ: жажда и температура. Сильно меняет темп — включать только осознанно, колонисты от температуры не страдают, а вы — да"
+    },
+    {
+      "id": "serene-seasons",
+      "name": "Serene Seasons",
+      "category": "difficulty",
+      "side": "both",
+      "required": false,
+      "modrinth": [
+        "serene-seasons"
+      ],
+      "curseforge": [
+        "serene-seasons"
+      ],
+      "version": "latest",
+      "version_hint": "версия для 1.20.1",
+      "deps": [
+        "glitchcore"
+      ],
+      "note": "ОПЦИЯ: сезоны влияют на урожай — продовольственную безопасность колонии придётся планировать (теплицы, запасы)"
     }
   ]
 }

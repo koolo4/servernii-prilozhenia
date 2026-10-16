@@ -125,36 +125,46 @@ def main() -> int:
         if args.side == "client" and side == "server":
             continue
 
-        slug = mod.get("modrinth")
+        raw_slug = mod.get("modrinth")
+        slugs = raw_slug if isinstance(raw_slug, list) else ([raw_slug] if raw_slug else [])
         want = mod.get("version", "latest")
 
-        if not slug:
+        if not slugs:
             cf = mod.get("curseforge", mid)
             log(f"[ВРУЧНУЮ] {name}: нет slug в Modrinth → "
                 f"https://www.curseforge.com/minecraft/mc-mods/{cf}")
             manual += 1
             continue
 
-        try:
-            q = urllib.parse.urlencode({
-                "game_versions": json.dumps([pack.get("minecraft", "1.20.1")]),
-                "loaders": json.dumps(["forge"]),
-            })
-            versions = api_get(f"{API}/project/{slug}/version?{q}")
-            time.sleep(args.sleep)
-        except urllib.error.HTTPError as e:
-            if e.code == 404:
-                cf = mod.get("curseforge", mid)
-                log(f"[ВРУЧНУЮ] {name}: проект '{slug}' не найден в Modrinth → "
-                    f"https://www.curseforge.com/minecraft/mc-mods/{cf}")
-                manual += 1
-                continue
-            log(f"[ОШИБКА] {name}: API {e.code}")
+        versions = None
+        hard_error = False
+        for slug in slugs:
+            try:
+                q = urllib.parse.urlencode({
+                    "game_versions": json.dumps([pack.get("minecraft", "1.20.1")]),
+                    "loaders": json.dumps(["forge"]),
+                })
+                versions = api_get(f"{API}/project/{slug}/version?{q}")
+                time.sleep(args.sleep)
+                break
+            except urllib.error.HTTPError as e:
+                if e.code == 404:
+                    continue  # пробуем следующий slug-кандидат
+                log(f"[ОШИБКА] {name}: API {e.code}")
+                hard_error = True
+                break
+            except Exception as e:  # noqa: BLE001
+                log(f"[ОШИБКА] {name}: {e}")
+                hard_error = True
+                break
+        if hard_error:
             failed += 1
             continue
-        except Exception as e:  # noqa: BLE001
-            log(f"[ОШИБКА] {name}: {e}")
-            failed += 1
+        if versions is None:
+            cf = mod.get("curseforge", mid)
+            log(f"[ВРУЧНУЮ] {name}: проекты {slugs} не найдены в Modrinth → "
+                f"https://www.curseforge.com/minecraft/mc-mods/{cf}")
+            manual += 1
             continue
 
         ver = pick_version(versions, want)
