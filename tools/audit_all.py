@@ -233,7 +233,7 @@ def main() -> int:
         if gui.get("Display Skill List") is not False:
             bad('pmmo-client: "Display Skill List" не false')
         perks = tomllib.loads(
-            (ROOT / "config" / "pmmo-Perks.toml").read_text(encoding="utf-8"))
+            (ROOT / "defaultconfigs" / "pmmo-Perks.toml").read_text(encoding="utf-8"))
         fe = perks.get("Perks", {}).get("For_Event", {})
         fw = [e for ev in fe.values() for e in ev
               if e.get("perk") == "pmmo:fireworks"]

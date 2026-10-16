@@ -169,6 +169,7 @@ class Quest:
     repeatable: bool = False
     independent: bool = False  # независимый квест: без цепочки и без линии к соседям
     secret: bool = False  # секретный: без линий, невидим до выполнения (invisible)
+    band: str = ""  # полоса раскладки; для треков big_quests — префикс ключа
 
 
 @dataclass
@@ -346,18 +347,26 @@ def build_chapters() -> list[Chapter]:
                "Начните с выбора площадки и поставьте лагерь снабжения."],
               [check("Выберите площадку и поставьте лагерь или корабль снабжения")],
               [ir("minecraft:bread", 16)], []),
-        Quest("orders", "Строительные заказы", 2, 0,
-              ["Освойте систему заказов MineColonies:",
-               "рабочие запрашивают материалы, а вы обеспечиваете поставки."],
-              [check("Выполните первый строительный заказ")], [], ["start"]),
         Quest("town_hall", "Ратуша", 2, 1.5,
-              ["Сердце колонии — ратуша. С неё начинается развитие города."],
+              ["Сердце колонии — ратуша. С неё начинается город:",
+               "поставьте блок ратуши на выбранной площадке — в этот момент",
+               "колония будет основана.",
+               "Хижины ставятся только ВНУТРИ границ колонии: удерживая блок",
+               "хижины в руке, вы увидите подсвеченную границу. Если игра не",
+               "даёт поставить хижину — встаньте ближе к ратуше."],
               [check("Возведите ратушу I уровня")],
-              [ir("minecraft:emerald", 8)], ["orders"]),
-        Quest("builder", "Хижина строителя", 4, 1.5,
+              [ir("minecraft:emerald", 8)], ["start"]),
+        Quest("orders", "Хижина строителя", 2, 0,
+              ["Поставьте блок хижины строителя рядом с ратушей (внутри",
+               "границ колонии) и назначьте жителя строителем — клик по",
+               "блоку хижины открывает её интерфейс.",
+               "Строитель сам возведёт и свою хижину, и ратушу до I уровня:",
+               "просто выдайте ему время и материалы."],
+              [check("Выполните первый строительный заказ")], [], ["town_hall"]),
+        Quest("builder", "Хижина строителя II", 4, 1.5,
               ["Строитель возводит здания по вашим заказам.",
                "Без хижины строителя колония не вырастет."],
-              [check("Постройте хижину строителя")], [], ["town_hall"]),
+              [check("Постройте хижину строителя")], [], ["orders"]),
         Quest("home", "Первый жилой дом", 4, 3,
               ["Жителям нужна крыша над головой."],
               [check("Постройте первое жилое здание")],
@@ -1465,13 +1474,17 @@ def layout_chapters(chapters: list[Chapter]) -> None:
                     break
                 cur = max(ds, key=lambda d: depth.get(d, 0))
             band[q.key] = cur
+        # Эффективная полоса: у треков big_quests — свой префикс ключа
+        # (e1_c, e1_m, p_b...): трек НИКОГДА не делит полосу с ручной
+        # веткой, иначе две цепочки в одной ленте идут «волной».
+        eff = {q.key: (q.band or band[q.key]) for q in chained}
         heads: list = []
         for q in chained:
-            b = band[q.key]
+            b = eff[q.key]
             if b not in heads:
                 heads.append(b)
         if heads and chained:
-            entry_band = band[chained[0].key]
+            entry_band = eff[chained[0].key]
             if entry_band in heads:
                 heads.remove(entry_band)
                 heads.insert(len(heads) // 2, entry_band)
@@ -1480,7 +1493,7 @@ def layout_chapters(chapters: list[Chapter]) -> None:
         gate_key = GATE_KEYS.get(ch.file)
         occupied: set = set()
         for q in sorted(chained, key=lambda qq: (depth[qq.key], order[qq.key])):
-            y = (row_of[band[q.key]] - center) * 2.6
+            y = (row_of[eff[q.key]] - center) * 2.6
             if q.key == gate_key:
                 y = 0.0
             while (depth[q.key], round(y, 2)) in occupied:
@@ -1586,7 +1599,8 @@ def polish(chapters: list[Chapter]) -> None:
             ch.quests.append(Quest(spec["key"], spec["title"], spec["x"], spec["y"],
                                    spec["desc"], tasks, rewards, spec["deps"],
                                    optional=bool(spec.get("optional")),
-                                   repeatable=bool(spec.get("repeatable"))))
+                                   repeatable=bool(spec.get("repeatable")),
+                                   band=spec["key"].rstrip("0123456789")))
         _add_bonus_content(ch)
         for (lf, lk), lines in HUB_LORE.items():
             if ch.file == lf:
@@ -2022,8 +2036,12 @@ def emit_chapter(ch: Chapter, chapter_no: int, qmap_all: dict, cmap_all: dict) -
         else:
             b[-1] = "\t\t\tdependencies: [ ]"
         if q.deps and not q.independent:
-            # линия к предыдущему квесту цепочки должна быть видна всегда
-            b.append("\t\t\thide_dependency_lines: false")
+            # Линия к предыдущему квесту цепочки должна быть видна всегда;
+            # исключение — ворота эпохи: их полтора десятка линий от вершин
+            # веток веером пересекают всю главу. Линии скрыты, но сама
+            # зависимость (и замок на воротах) работает как раньше.
+            _hide = "true" if q.key == GATE_KEYS.get(ch.file) else "false"
+            b.append(f"\t\t\thide_dependency_lines: {_hide}")
         if q.secret:
             b.append("\t\t\thide_dependency_lines: true")
             b.append("\t\t\thide_dependent_lines: true")
