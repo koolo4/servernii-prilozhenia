@@ -1348,6 +1348,83 @@
         "glitchcore"
       ],
       "note": "ОПЦИЯ: сезоны влияют на урожай — продовольственную безопасность колонии придётся планировать (теплицы, запасы)"
+    },
+    {
+      "id": "mantle",
+      "name": "Mantle",
+      "category": "library",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "mantle"
+      ],
+      "curseforge": [
+        "mantle"
+      ],
+      "github": [
+        "SlimeKnights/Mantle"
+      ],
+      "version": "latest",
+      "version_hint": "1.11.x для 1.20.1 (библиотека Tinkers' Construct)",
+      "deps": []
+    },
+    {
+      "id": "tinkers-construct",
+      "name": "Tinkers' Construct",
+      "category": "progression",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "tinkers-construct"
+      ],
+      "curseforge": [
+        "tinkers-construct"
+      ],
+      "github": [
+        "SlimeKnights/TinkersConstruct"
+      ],
+      "version": "latest",
+      "version_hint": "3.10.x для Forge 1.20.1",
+      "deps": [
+        "mantle"
+      ],
+      "note": "Прокачка снаряжения: личные инструменты и оружие из материалов всех эпох (бронза → сталь → кобальт → маньюлин), модификаторы и перековка. Инструменты, а не машины — машинные ворота эпох не обходит"
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "category": "progression",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "relics"
+      ],
+      "curseforge": [
+        "relics"
+      ],
+      "version": "latest",
+      "version_hint": "0.6.x для Forge 1.20.1",
+      "deps": [
+        "curios"
+      ],
+      "note": "Реликвии в сундуках структур по всему миру: каждая качается от использования и открывает способности. Работает на слотах Curios"
+    },
+    {
+      "id": "project-mmo",
+      "name": "Project MMO",
+      "category": "progression",
+      "side": "both",
+      "required": true,
+      "modrinth": [
+        "project-mmo"
+      ],
+      "curseforge": [
+        "project-mmo"
+      ],
+      "version": "latest",
+      "version_hint": "2.x для Forge 1.20.1",
+      "deps": [],
+      "note": "Уровни самого персонажа: навыки (бой, добыча, выносливость и др.) дают статы и перки под растущую сложность. ВНИМАНИЕ: по умолчанию есть требования уровней к вещам — на фазе настройки смягчаем, чтобы не конфликтовали с воротами эпох"
     }
   ]
 }

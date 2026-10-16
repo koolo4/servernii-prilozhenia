@@ -121,6 +121,9 @@
 | **Majrusz Library** | `1.20.1-1.6.x` | [B] | Библиотека для Progressive Difficulty |
 | **Champions** | `1.20.1-7.3.x` | [B] | Элитные мобы: ранги и аффиксы |
 | **Spice of Life: Carrot Edition** | Forge 1.20.1 | [B] | Здоровье от разнообразия еды — кухня колонии в деле |
+| **Tinkers' Construct** (+ Mantle) | `3.10.x` | [B] | Прокачка личных инструментов и оружия из материалов эпох |
+| **Project MMO** | `2.x` | [B] | Уровни самого персонажа: статы и перки; требования к вещам смягчаем на фазе настроек |
+| **Relics** | `0.6.x` | [B] | Реликвии в сундуках структур; качаются от использования (слоты Curios) |
 | Scaling Health (+ Silent Lib) | `1.20.1-8.x` | [B] | *Опция*: рост HP мобов; не разгонять вместе с Majrusz PD |
 | L_Ender's Cataclysm | `2.x` Forge | [B] | *Опция*: эндгейм-боссы; ломают блоки — вдали от города |
 | When Dungeons Arise | `2.1.x` | [B] | *Опция*: крупные данжи под экспедиции |
@@ -136,6 +139,7 @@
 | **GeckoLib** | `4.x` (4.4.4+) | Ars Nouveau, Eidolon: Repraised |
 | **Patchouli** | `1.20.1-84`+ | Ars Nouveau, Botania |
 | **Bookshelf** | `23.x` для 1.20.1 | Ars Elemental |
+| **Mantle** | `1.11.x` для 1.20.1 | Tinkers' Construct |
 
 ---
 
@@ -153,6 +157,6 @@
 
 ## Порядок установки библиотек
 
-1. Forge 47.x → 2. Architectury API, Curios, GeckoLib, Patchouli, Bookshelf, Rhino → 3. FTB Library, FTB Teams, FTB Quests → 4. MineColonies-стек → 5. Create и аддоны → 6. Mekanism-модули → 7. Thermal-модули → 8. AE2 и Applied Mekanistics → 9. Магические моды → 10. KubeJS и аддоны → 11. Оптимизация и интерфейс.
+1. Forge 47.x → 2. Architectury API, Curios, GeckoLib, Patchouli, Bookshelf, Rhino → 3. FTB Library, FTB Teams, FTB Quests → 4. MineColonies-стек → 5. Create и аддоны → 6. Mekanism-модули → 7. Thermal-модули → 8. AE2 и Applied Mekanistics → 9. Магические моды → 10. KubeJS и аддоны → 11. Оптимизация и интерфейс → 12. Сложность и прогрессия персонажа (Mantle до Tinkers' Construct; Curios уже стоит для Relics).
 
 Точные файлы (имена jar) смотрите в `mods/mods.json` — скрипт `tools/download_mods.py` подставит их автоматически.
