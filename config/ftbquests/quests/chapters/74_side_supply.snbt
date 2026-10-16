@@ -2,9 +2,9 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "74_side_supply"
-	group: "A11A000000000002"
+	group: "011A000000000002"
 	icon: "minecraft:bread"
-	id: "A11A0C0000000001"
+	id: "0A110C0000000001"
 	dependencies: [ ]
 	order_index: 11
 	progression_mode: "linear"
@@ -12,12 +12,12 @@
 	quests: [
 		{
 			dependencies: [ ]
-			description: ["Испытание на длительное автоматическое снабжение колонии."]
-			id: "A11A0C0100000001"
+			description: ["Испытание на длительное автоматическое снабжение колонии.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A110C0100000001"
 			icon: "minecraft:book"
 			tasks: [
 				{
-					id: "A11A0C0200000001"
+					id: "0A110C0200000001"
 					title: "Приступить к испытанию снабжения"
 					type: "custom"
 				}
@@ -28,13 +28,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Семь игровых дней колония живёт без ручной доставки."]
-			id: "A11A0C0100000002"
+			description: ["Семь игровых дней колония живёт без ручной доставки.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A110C0100000002"
 			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
-					id: "A11A0C0300000001"
+					id: "0A110C0300000001"
 					item: "minecraft:bread"
 					count: 32
 					type: "item"
@@ -42,7 +42,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000002"
+					id: "0A110C0200000002"
 					title: "7 игровых дней снабжение работает автоматически"
 					type: "custom"
 				}
@@ -53,13 +53,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Тридцать дней: еда, топливо, стройматериалы — всё в достатке."]
-			id: "A11A0C0100000003"
+			description: ["Тридцать дней: еда, топливо, стройматериалы — всё в достатке.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A110C0100000003"
 			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
-					id: "A11A0C0300000002"
+					id: "0A110C0300000002"
 					item: "minecraft:emerald_block"
 					count: 4
 					type: "item"
@@ -67,7 +67,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000003"
+					id: "0A110C0200000003"
 					title: "30 игровых дней без дефицита в колонии"
 					type: "custom"
 				}
@@ -78,20 +78,20 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Город-машина работает сам."]
-			id: "A11A0C0100000004"
+			description: ["Город-машина работает сам.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A110C0100000004"
 			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
-					id: "A11A0C0300000003"
+					id: "0A110C0300000003"
 					item: "arcanopolis:city_charter"
 					type: "item"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000004"
+					id: "0A110C0200000004"
 					title: "Колония функционирует без вашего участия"
 					type: "custom"
 				}
@@ -101,14 +101,14 @@
 			y: -5.0d
 		},
 		{
-			dependencies: ["A11A0C0100000001"]
+			dependencies: ["0A110C0100000001"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:bread ×128."]
-			id: "A11A0C0100000005"
+			description: ["Добудьте или изготовьте: bread [minecraft:bread] ×128. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A110C0100000005"
 			icon: "minecraft:bread"
 			tasks: [
 				{
-					id: "A11A0C0200000005"
+					id: "0A110C0200000005"
 					item: "minecraft:bread"
 					count: 128
 					type: "item"
@@ -119,14 +119,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0C0100000005"]
+			dependencies: ["0A110C0100000005"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:coal ×128."]
-			id: "A11A0C0100000006"
+			description: ["Добудьте или изготовьте: coal [minecraft:coal] ×128. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A110C0100000006"
 			icon: "minecraft:coal"
 			tasks: [
 				{
-					id: "A11A0C0200000006"
+					id: "0A110C0200000006"
 					item: "minecraft:coal"
 					count: 128
 					type: "item"
@@ -137,14 +137,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0C0100000006"]
+			dependencies: ["0A110C0100000006"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:oak_planks ×256."]
-			id: "A11A0C0100000007"
+			description: ["Добудьте или изготовьте: oak planks [minecraft:oak_planks] ×256. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A110C0100000007"
 			icon: "minecraft:oak_planks"
 			tasks: [
 				{
-					id: "A11A0C0200000007"
+					id: "0A110C0200000007"
 					item: "minecraft:oak_planks"
 					count: 256
 					type: "item"
@@ -155,14 +155,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0C0100000007"]
+			dependencies: ["0A110C0100000007"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_ingot ×64."]
-			id: "A11A0C0100000008"
+			description: ["Добудьте или изготовьте: iron ingot [minecraft:iron_ingot] ×64. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A110C0100000008"
 			icon: "minecraft:iron_ingot"
 			tasks: [
 				{
-					id: "A11A0C0200000008"
+					id: "0A110C0200000008"
 					item: "minecraft:iron_ingot"
 					count: 64
 					type: "item"
@@ -173,20 +173,20 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0C0100000008"]
+			dependencies: ["0A110C0100000008"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A0C0100000009"
+			description: ["Добудьте или изготовьте: golden apple [minecraft:golden_apple] ×2. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите склад — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A110C0100000009"
 			icon: "minecraft:golden_apple"
 			tasks: [
 				{
-					id: "A11A0C0200000009"
+					id: "0A110C0200000009"
 					item: "minecraft:golden_apple"
 					count: 2
 					type: "item"
 				},
 				{
-					id: "A11A0C020000000A"
+					id: "0A110C020000000A"
 					title: "Здание warehouse (ур. 3)"
 					type: "custom"
 				}
@@ -196,20 +196,20 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A0C0100000009"]
+			dependencies: ["0A110C0100000009"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A0C010000000A"
+			description: ["Добудьте или изготовьте: chest [minecraft:chest] ×16. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите хижину курьера — нужен уровень не ниже 2. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A110C010000000A"
 			icon: "minecraft:chest"
 			tasks: [
 				{
-					id: "A11A0C020000000B"
+					id: "0A110C020000000B"
 					item: "minecraft:chest"
 					count: 16
 					type: "item"
 				},
 				{
-					id: "A11A0C020000000C"
+					id: "0A110C020000000C"
 					title: "Здание courier (ур. 2)"
 					type: "custom"
 				}
@@ -221,25 +221,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C010000000B"
+			id: "0A110C010000000B"
 			icon: "minecraft:bread"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C0300000004"
+					id: "0A110C0300000004"
 					item: "minecraft:emerald"
 					count: 2
 					type: "item"
 				},
 				{
-					id: "A11A0C0300000005"
+					id: "0A110C0300000005"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C020000000D"
+					id: "0A110C020000000D"
 					item: "minecraft:bread"
 					count: 64
 					consume_items: true
@@ -253,25 +253,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C010000000C"
+			id: "0A110C010000000C"
 			icon: "minecraft:oak_log"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C0300000006"
+					id: "0A110C0300000006"
 					item: "minecraft:emerald"
 					count: 2
 					type: "item"
 				},
 				{
-					id: "A11A0C0300000007"
+					id: "0A110C0300000007"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C020000000E"
+					id: "0A110C020000000E"
 					item: "minecraft:oak_log"
 					count: 256
 					consume_items: true
@@ -285,24 +285,24 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C010000000D"
+			id: "0A110C010000000D"
 			icon: "minecraft:cobblestone"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C0300000008"
+					id: "0A110C0300000008"
 					item: "minecraft:emerald"
 					type: "item"
 				},
 				{
-					id: "A11A0C0300000009"
+					id: "0A110C0300000009"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C020000000F"
+					id: "0A110C020000000F"
 					item: "minecraft:cobblestone"
 					count: 256
 					consume_items: true
@@ -316,25 +316,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C010000000E"
+			id: "0A110C010000000E"
 			icon: "minecraft:iron_ingot"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C030000000A"
+					id: "0A110C030000000A"
 					item: "minecraft:emerald"
 					count: 3
 					type: "item"
 				},
 				{
-					id: "A11A0C030000000B"
+					id: "0A110C030000000B"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000010"
+					id: "0A110C0200000010"
 					item: "minecraft:iron_ingot"
 					count: 32
 					consume_items: true
@@ -348,25 +348,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C010000000F"
+			id: "0A110C010000000F"
 			icon: "minecraft:gold_ingot"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C030000000C"
+					id: "0A110C030000000C"
 					item: "minecraft:emerald"
 					count: 4
 					type: "item"
 				},
 				{
-					id: "A11A0C030000000D"
+					id: "0A110C030000000D"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000011"
+					id: "0A110C0200000011"
 					item: "minecraft:gold_ingot"
 					count: 16
 					consume_items: true
@@ -380,25 +380,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C0100000010"
+			id: "0A110C0100000010"
 			icon: "minecraft:diamond"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C030000000E"
+					id: "0A110C030000000E"
 					item: "minecraft:emerald"
 					count: 6
 					type: "item"
 				},
 				{
-					id: "A11A0C030000000F"
+					id: "0A110C030000000F"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000012"
+					id: "0A110C0200000012"
 					item: "minecraft:diamond"
 					count: 4
 					consume_items: true
@@ -412,25 +412,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C0100000011"
+			id: "0A110C0100000011"
 			icon: "mekanism:ingot_steel"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C0300000010"
+					id: "0A110C0300000010"
 					item: "minecraft:emerald"
 					count: 5
 					type: "item"
 				},
 				{
-					id: "A11A0C0300000011"
+					id: "0A110C0300000011"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000013"
+					id: "0A110C0200000013"
 					item: "mekanism:ingot_steel"
 					count: 16
 					consume_items: true
@@ -444,25 +444,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C0100000012"
+			id: "0A110C0100000012"
 			icon: "create:precision_mechanism"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C0300000012"
+					id: "0A110C0300000012"
 					item: "minecraft:diamond"
 					count: 2
 					type: "item"
 				},
 				{
-					id: "A11A0C0300000013"
+					id: "0A110C0300000013"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000014"
+					id: "0A110C0200000014"
 					item: "create:precision_mechanism"
 					count: 4
 					consume_items: true
@@ -476,24 +476,24 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C0100000013"
+			id: "0A110C0100000013"
 			icon: "minecraft:golden_carrot"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C0300000014"
+					id: "0A110C0300000014"
 					item: "minecraft:diamond"
 					type: "item"
 				},
 				{
-					id: "A11A0C0300000015"
+					id: "0A110C0300000015"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000015"
+					id: "0A110C0200000015"
 					item: "minecraft:golden_carrot"
 					count: 16
 					consume_items: true
@@ -507,25 +507,25 @@
 		{
 			dependencies: [ ]
 			description: ["Регулярные поставки в колонию.", "Квест ПОВТОРЯЕМЫЙ: выполняйте снова и снова.", "Предметы потребляются при сдаче."]
-			id: "A11A0C0100000014"
+			id: "0A110C0100000014"
 			icon: "botania:mana_pearl"
 			can_repeat: true
 			rewards: [
 				{
-					id: "A11A0C0300000016"
+					id: "0A110C0300000016"
 					item: "minecraft:diamond"
 					count: 3
 					type: "item"
 				},
 				{
-					id: "A11A0C0300000017"
+					id: "0A110C0300000017"
 					xp: 100
 					type: "xp"
 				}
 			]
 			tasks: [
 				{
-					id: "A11A0C0200000016"
+					id: "0A110C0200000016"
 					item: "botania:mana_pearl"
 					count: 4
 					consume_items: true

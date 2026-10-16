@@ -2,23 +2,23 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "40_epoch_magic"
-	group: "A11A000000000001"
+	group: "011A000000000001"
 	icon: "ars_nouveau:source_gem"
-	id: "A11A050000000001"
-	dependencies: ["A11A040000000001"]
+	id: "0A11050000000001"
+	dependencies: ["0A11040000000001"]
 	order_index: 4
 	progression_mode: "linear"
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["A11A04010000004D"]
+			dependencies: ["0A1104010000004D"]
 			hide_dependency_lines: false
 			description: ["Магия — самостоятельная система производства", "со своими материалами, инфраструктурой и специализациями.", "Эпоха IV. Источник пробуждается: ритуалы, мана и алхимия", "становятся такой же частью производства, как шестерни."]
-			id: "A11A050100000001"
+			id: "0A11050100000001"
 			icon: "arcanopolis:seal_arcana"
 			tasks: [
 				{
-					id: "A11A050200000001"
+					id: "0A11050200000001"
 					title: "Эпоха IV достигнута"
 					type: "custom"
 				}
@@ -28,14 +28,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A050100000001"]
+			dependencies: ["0A11050100000001"]
 			hide_dependency_lines: false
-			description: ["Освойте книгу заклинаний и сбор источника."]
-			id: "A11A050100000002"
+			description: ["Освойте книгу заклинаний и сбор источника.", "Добудьте или изготовьте: source gem [ars_nouveau:source_gem] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000002"
 			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
-					id: "A11A050200000002"
+					id: "0A11050200000002"
 					item: "ars_nouveau:source_gem"
 					count: 32
 					type: "item"
@@ -46,14 +46,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A050100000002"]
+			dependencies: ["0A11050100000002"]
 			hide_dependency_lines: false
-			description: ["Слуги и устройства Ars Nouveau обслуживают производство."]
-			id: "A11A050100000003"
+			description: ["Слуги и устройства Ars Nouveau обслуживают производство.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000003"
 			icon: "minecraft:book"
 			tasks: [
 				{
-					id: "A11A050200000003"
+					id: "0A11050200000003"
 					title: "Магические помощники призваны"
 					type: "custom"
 				}
@@ -64,13 +64,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Свяжите Ars Nouveau с Create (Ars Creo)."]
-			id: "A11A050100000004"
+			description: ["Свяжите Ars Nouveau с Create (Ars Creo).", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A11050100000004"
 			icon: "minecraft:book"
 			optional: true
 			tasks: [
 				{
-					id: "A11A050200000004"
+					id: "0A11050200000004"
 					title: "Магия и механизмы объединены"
 					type: "custom"
 				}
@@ -80,14 +80,14 @@
 			y: -21.0d
 		},
 		{
-			dependencies: ["A11A050100000003"]
+			dependencies: ["0A11050100000003"]
 			hide_dependency_lines: false
-			description: ["Начните цветочную инфраструктуру Botania."]
-			id: "A11A050100000005"
+			description: ["Начните цветочную инфраструктуру Botania.", "Добудьте или изготовьте: mana pool [botania:mana_pool] ×1. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000005"
 			icon: "botania:mana_pool"
 			tasks: [
 				{
-					id: "A11A050200000005"
+					id: "0A11050200000005"
 					item: "botania:mana_pool"
 					count: 1
 					type: "item"
@@ -98,14 +98,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A050100000005"]
+			dependencies: ["0A11050100000005"]
 			hide_dependency_lines: false
-			description: ["Мана должна производиться автоматически."]
-			id: "A11A050100000006"
+			description: ["Мана должна производиться автоматически.", "Добудьте или изготовьте: terrasteel ingot [botania:terrasteel_ingot] ×2. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000006"
 			icon: "botania:terrasteel_ingot"
 			rewards: [
 				{
-					id: "A11A050300000001"
+					id: "0A11050300000001"
 					item: "minecraft:poppy"
 					count: 16
 					type: "item"
@@ -113,7 +113,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A050200000006"
+					id: "0A11050200000006"
 					item: "botania:terrasteel_ingot"
 					count: 2
 					type: "item"
@@ -124,14 +124,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A050100000006"]
+			dependencies: ["0A11050100000006"]
 			hide_dependency_lines: false
-			description: ["Поставьте алтарь Blood Magic и развивайте его."]
-			id: "A11A050100000007"
+			description: ["Поставьте алтарь Blood Magic и развивайте его.", "Добудьте или изготовьте: altar [bloodmagic:altar] ×1. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000007"
 			icon: "bloodmagic:altar"
 			tasks: [
 				{
-					id: "A11A050200000007"
+					id: "0A11050200000007"
 					item: "bloodmagic:altar"
 					count: 1
 					type: "item"
@@ -142,14 +142,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A050100000007"]
+			dependencies: ["0A11050100000007"]
 			hide_dependency_lines: false
-			description: ["Первые компоненты прогрессии Blood Magic."]
-			id: "A11A050100000008"
+			description: ["Первые компоненты прогрессии Blood Magic.", "Добудьте или изготовьте: blankslate [bloodmagic:blankslate] ×4. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000008"
 			icon: "bloodmagic:blankslate"
 			tasks: [
 				{
-					id: "A11A050200000008"
+					id: "0A11050200000008"
 					item: "bloodmagic:blankslate"
 					count: 4
 					type: "item"
@@ -161,13 +161,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Проведите ритуал как контрольное испытание школы."]
-			id: "A11A050100000009"
+			description: ["Проведите ритуал как контрольное испытание школы.", "Добудьте или изготовьте: ritual regulator [arcanopolis:ritual_regulator] ×1. Засчитывается, пока предмет находится у вас в инвентаре.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A11050100000009"
 			icon: "arcanopolis:ritual_regulator"
 			optional: true
 			tasks: [
 				{
-					id: "A11A050200000009"
+					id: "0A11050200000009"
 					item: "arcanopolis:ritual_regulator"
 					count: 1
 					type: "item"
@@ -178,14 +178,14 @@
 			y: -21.0d
 		},
 		{
-			dependencies: ["A11A050100000008"]
+			dependencies: ["0A11050100000008"]
 			hide_dependency_lines: false
-			description: ["Освойте базовую алхимию Eidolon: Repraised."]
-			id: "A11A05010000000A"
+			description: ["Освойте базовую алхимию Eidolon: Repraised.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000000A"
 			icon: "minecraft:book"
 			tasks: [
 				{
-					id: "A11A05020000000A"
+					id: "0A1105020000000A"
 					title: "Алхимия Eidolon освоена"
 					type: "custom"
 				}
@@ -195,14 +195,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A05010000000A"]
+			dependencies: ["0A1105010000000A"]
 			hide_dependency_lines: false
 			description: ["Изготовьте несколько характерных компонентов школы.", "(ID предметов Eidolon сверьте в JEI)"]
-			id: "A11A05010000000B"
+			id: "0A1105010000000B"
 			icon: "minecraft:book"
 			tasks: [
 				{
-					id: "A11A05020000000B"
+					id: "0A1105020000000B"
 					title: "Характерные компоненты изготовлены"
 					type: "custom"
 				}
@@ -212,19 +212,19 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A05010000000B"]
+			dependencies: ["0A1105010000000B"]
 			hide_dependency_lines: false
 			description: ["Постройте городскую арканную лабораторию:", "отдельные линии для источника, маны и ритуальных компонентов.", "Достаточно базового достижения в каждой школе."]
-			id: "A11A05010000000C"
+			id: "0A1105010000000C"
 			icon: "minecolonies:blockhutlibrary"
 			rewards: [
 				{
-					id: "A11A050300000002"
+					id: "0A11050300000002"
 					item: "arcanopolis:seal_arcana"
 					type: "item"
 				},
 				{
-					id: "A11A050300000003"
+					id: "0A11050300000003"
 					item: "minecraft:experience_bottle"
 					count: 24
 					type: "item"
@@ -232,12 +232,12 @@
 			]
 			tasks: [
 				{
-					id: "A11A05020000000C"
+					id: "0A1105020000000C"
 					title: "Арканная лаборатория построена"
 					type: "custom"
 				},
 				{
-					id: "A11A05020000000D"
+					id: "0A1105020000000D"
 					title: "Арканная лаборатория построена"
 					type: "custom"
 				}
@@ -247,14 +247,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A05010000000C"]
+			dependencies: ["0A1105010000000C"]
 			hide_dependency_lines: false
-			description: ["Самоцветы источника — топливо магии."]
-			id: "A11A05010000000D"
+			description: ["Самоцветы источника — топливо магии.", "Добудьте или изготовьте: source gem [ars_nouveau:source_gem] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000000D"
 			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
-					id: "A11A05020000000E"
+					id: "0A1105020000000E"
 					item: "ars_nouveau:source_gem"
 					count: 32
 					type: "item"
@@ -265,14 +265,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A05010000000D"]
+			dependencies: ["0A1105010000000D"]
 			hide_dependency_lines: false
-			description: ["Террасталь подтверждает союз с дриадами."]
-			id: "A11A05010000000E"
+			description: ["Террасталь подтверждает союз с дриадами.", "Добудьте или изготовьте: terrasteel ingot [botania:terrasteel_ingot] ×4. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000000E"
 			icon: "botania:terrasteel_ingot"
 			tasks: [
 				{
-					id: "A11A05020000000F"
+					id: "0A1105020000000F"
 					item: "botania:terrasteel_ingot"
 					count: 4
 					type: "item"
@@ -283,14 +283,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A05010000000E"]
+			dependencies: ["0A1105010000000E"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 36 жителей."]
-			id: "A11A05010000000F"
+			description: ["Население колонии: не меньше 36 жителей. Принимайте новых жителей, когда есть свободные жилые дома и еда.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000000F"
 			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
-					id: "A11A050200000010"
+					id: "0A11050200000010"
 					title: "Жителей: 36"
 					type: "custom"
 				}
@@ -300,14 +300,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A05010000000F"]
+			dependencies: ["0A1105010000000F"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "В колонии должно быть не менее 40 жителей."]
-			id: "A11A050100000010"
+			description: ["Население колонии: не меньше 40 жителей. Принимайте новых жителей, когда есть свободные жилые дома и еда.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000010"
 			icon: "minecraft:villager_spawn_egg"
 			tasks: [
 				{
-					id: "A11A050200000011"
+					id: "0A11050200000011"
 					title: "Жителей: 40"
 					type: "custom"
 				}
@@ -317,14 +317,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A050100000010"]
+			dependencies: ["0A11050100000010"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «library» до 4 уровня."]
-			id: "A11A050100000011"
+			description: ["Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000011"
 			icon: "minecolonies:blockhutlibrary"
 			tasks: [
 				{
-					id: "A11A050200000012"
+					id: "0A11050200000012"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -334,14 +334,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A050100000011"]
+			dependencies: ["0A11050100000011"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «university» до 3 уровня."]
-			id: "A11A050100000012"
+			description: ["Постройте или улучшите университет — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000012"
 			icon: "minecolonies:blockhutuniversity"
 			tasks: [
 				{
-					id: "A11A050200000013"
+					id: "0A11050200000013"
 					title: "Здание university (ур. 3)"
 					type: "custom"
 				}
@@ -351,14 +351,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A050100000012"]
+			dependencies: ["0A11050100000012"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «school» до 3 уровня."]
-			id: "A11A050100000013"
+			description: ["Постройте или улучшите школу — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000013"
 			icon: "minecolonies:blockhutschool"
 			tasks: [
 				{
-					id: "A11A050200000014"
+					id: "0A11050200000014"
 					title: "Здание school (ур. 3)"
 					type: "custom"
 				}
@@ -368,14 +368,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A050100000013"]
+			dependencies: ["0A11050100000013"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «hospital» до 3 уровня."]
-			id: "A11A050100000014"
+			description: ["Постройте или улучшите больницу — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000014"
 			icon: "minecolonies:blockhuthospital"
 			tasks: [
 				{
-					id: "A11A050200000015"
+					id: "0A11050200000015"
 					title: "Здание hospital (ур. 3)"
 					type: "custom"
 				}
@@ -385,14 +385,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A050100000014"]
+			dependencies: ["0A11050100000014"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «mech» до 3 уровня."]
-			id: "A11A050100000015"
+			description: ["Постройте или улучшите мастерскую механика — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000015"
 			icon: "minecolonies:blockhutmechanic"
 			tasks: [
 				{
-					id: "A11A050200000016"
+					id: "0A11050200000016"
 					title: "Здание mech (ур. 3)"
 					type: "custom"
 				}
@@ -402,14 +402,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A050100000015"]
+			dependencies: ["0A11050100000015"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «cook» до 5 уровня."]
-			id: "A11A050100000016"
+			description: ["Постройте или улучшите поваренную хижину — нужен уровень не ниже 5. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000016"
 			icon: "minecolonies:blockhutcook"
 			tasks: [
 				{
-					id: "A11A050200000017"
+					id: "0A11050200000017"
 					title: "Здание cook (ур. 5)"
 					type: "custom"
 				}
@@ -419,14 +419,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A050100000016"]
+			dependencies: ["0A11050100000016"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «guard» до 5 уровня."]
-			id: "A11A050100000017"
+			description: ["Постройте или улучшите сторожевую башню — нужен уровень не ниже 5. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000017"
 			icon: "minecolonies:blockhutguardtower"
 			tasks: [
 				{
-					id: "A11A050200000018"
+					id: "0A11050200000018"
 					title: "Здание guard (ур. 5)"
 					type: "custom"
 				}
@@ -436,14 +436,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A050100000017"]
+			dependencies: ["0A11050100000017"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Постройте или улучшите здание «warehouse» до 5 уровня."]
-			id: "A11A050100000018"
+			description: ["Постройте или улучшите склад — нужен уровень не ниже 5. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000018"
 			icon: "minecolonies:blockhutwarehouse"
 			tasks: [
 				{
-					id: "A11A050200000019"
+					id: "0A11050200000019"
 					title: "Здание warehouse (ур. 5)"
 					type: "custom"
 				}
@@ -453,14 +453,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A050100000018"]
+			dependencies: ["0A11050100000018"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:source_gem ×64."]
-			id: "A11A050100000019"
+			description: ["Добудьте или изготовьте: source gem [ars_nouveau:source_gem] ×64. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000019"
 			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
-					id: "A11A05020000001A"
+					id: "0A1105020000001A"
 					item: "ars_nouveau:source_gem"
 					count: 64
 					type: "item"
@@ -471,14 +471,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A050100000019"]
+			dependencies: ["0A11050100000019"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:sourcestone ×128."]
-			id: "A11A05010000001A"
+			description: ["Добудьте или изготовьте: sourcestone [ars_nouveau:sourcestone] ×128. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000001A"
 			icon: "ars_nouveau:sourcestone"
 			tasks: [
 				{
-					id: "A11A05020000001B"
+					id: "0A1105020000001B"
 					item: "ars_nouveau:sourcestone"
 					count: 128
 					type: "item"
@@ -489,14 +489,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A05010000001A"]
+			dependencies: ["0A1105010000001A"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:experience_bottle ×32."]
-			id: "A11A05010000001B"
+			description: ["Добудьте или изготовьте: experience bottle [minecraft:experience_bottle] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000001B"
 			icon: "minecraft:experience_bottle"
 			tasks: [
 				{
-					id: "A11A05020000001C"
+					id: "0A1105020000001C"
 					item: "minecraft:experience_bottle"
 					count: 32
 					type: "item"
@@ -507,14 +507,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A05010000001B"]
+			dependencies: ["0A1105010000001B"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:potion ×16, minecraft:glass_bottle ×16"]
-			id: "A11A05010000001C"
+			description: ["Получите любой из вариантов: potion [minecraft:potion], glass bottle [minecraft:glass_bottle] — всего ×16.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000001C"
 			icon: "minecraft:potion"
 			tasks: [
 				{
-					id: "A11A05020000001D"
+					id: "0A1105020000001D"
 					title: "Получите: minecraft:potion / minecraft:glass_bottle"
 					type: "custom"
 				}
@@ -524,20 +524,20 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A05010000001C"]
+			dependencies: ["0A1105010000001C"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A05010000001D"
+			description: ["Добудьте или изготовьте: book [minecraft:book] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000001D"
 			icon: "minecraft:book"
 			tasks: [
 				{
-					id: "A11A05020000001E"
+					id: "0A1105020000001E"
 					item: "minecraft:book"
 					count: 32
 					type: "item"
 				},
 				{
-					id: "A11A05020000001F"
+					id: "0A1105020000001F"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -547,14 +547,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A05010000001D"]
+			dependencies: ["0A1105010000001D"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:enchanting_table ×2."]
-			id: "A11A05010000001E"
+			description: ["Добудьте или изготовьте: enchanting table [minecraft:enchanting_table] ×2. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000001E"
 			icon: "minecraft:enchanting_table"
 			tasks: [
 				{
-					id: "A11A050200000020"
+					id: "0A11050200000020"
 					item: "minecraft:enchanting_table"
 					count: 2
 					type: "item"
@@ -565,20 +565,20 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A05010000001E"]
+			dependencies: ["0A1105010000001E"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A05010000001F"
+			description: ["Добудьте или изготовьте: source gem [ars_nouveau:source_gem] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите университет — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000001F"
 			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
-					id: "A11A050200000021"
+					id: "0A11050200000021"
 					item: "ars_nouveau:source_gem"
 					count: 32
 					type: "item"
 				},
 				{
-					id: "A11A050200000022"
+					id: "0A11050200000022"
 					title: "Здание university (ур. 3)"
 					type: "custom"
 				}
@@ -588,20 +588,20 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A05010000001F"]
+			dependencies: ["0A1105010000001F"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A050100000020"
+			description: ["Добудьте или изготовьте: experience bottle [minecraft:experience_bottle] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите мастерскую механика — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000020"
 			icon: "minecraft:experience_bottle"
 			tasks: [
 				{
-					id: "A11A050200000023"
+					id: "0A11050200000023"
 					item: "minecraft:experience_bottle"
 					count: 8
 					type: "item"
 				},
 				{
-					id: "A11A050200000024"
+					id: "0A11050200000024"
 					title: "Здание mech (ур. 3)"
 					type: "custom"
 				}
@@ -611,14 +611,14 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A050100000020"]
+			dependencies: ["0A11050100000020"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:livingwood ×64, minecraft:oak_log ×64"]
-			id: "A11A050100000021"
+			description: ["Получите любой из вариантов: livingwood [botania:livingwood], oak log [minecraft:oak_log] — всего ×64.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000021"
 			icon: "botania:livingwood"
 			tasks: [
 				{
-					id: "A11A050200000025"
+					id: "0A11050200000025"
 					title: "Получите: botania:livingwood / minecraft:oak_log"
 					type: "custom"
 				}
@@ -628,14 +628,14 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A050100000021"]
+			dependencies: ["0A11050100000021"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:livingrock ×64, minecraft:stone ×64"]
-			id: "A11A050100000022"
+			description: ["Получите любой из вариантов: livingrock [botania:livingrock], stone [minecraft:stone] — всего ×64.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000022"
 			icon: "botania:livingrock"
 			tasks: [
 				{
-					id: "A11A050200000026"
+					id: "0A11050200000026"
 					title: "Получите: botania:livingrock / minecraft:stone"
 					type: "custom"
 				}
@@ -645,14 +645,14 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A050100000022"]
+			dependencies: ["0A11050100000022"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:manasteel_ingot ×32, minecraft:iron_ingot ×32"]
-			id: "A11A050100000023"
+			description: ["Получите любой из вариантов: manasteel ingot [botania:manasteel_ingot], iron ingot [minecraft:iron_ingot] — всего ×32.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000023"
 			icon: "botania:manasteel_ingot"
 			tasks: [
 				{
-					id: "A11A050200000027"
+					id: "0A11050200000027"
 					title: "Получите: botania:manasteel_ingot / minecraft:iron_ingot"
 					type: "custom"
 				}
@@ -662,14 +662,14 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A050100000023"]
+			dependencies: ["0A11050100000023"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:mana_diamond ×8, minecraft:diamond ×8"]
-			id: "A11A050100000024"
+			description: ["Получите любой из вариантов: mana diamond [botania:mana_diamond], diamond [minecraft:diamond] — всего ×8.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000024"
 			icon: "botania:mana_diamond"
 			tasks: [
 				{
-					id: "A11A050200000028"
+					id: "0A11050200000028"
 					title: "Получите: botania:mana_diamond / minecraft:diamond"
 					type: "custom"
 				}
@@ -679,14 +679,14 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A050100000024"]
+			dependencies: ["0A11050100000024"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: botania:mana_pearl ×16."]
-			id: "A11A050100000025"
+			description: ["Добудьте или изготовьте: mana pearl [botania:mana_pearl] ×16. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000025"
 			icon: "botania:mana_pearl"
 			tasks: [
 				{
-					id: "A11A050200000029"
+					id: "0A11050200000029"
 					item: "botania:mana_pearl"
 					count: 16
 					type: "item"
@@ -697,14 +697,14 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A050100000025"]
+			dependencies: ["0A11050100000025"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: botania:mana_pool ×2."]
-			id: "A11A050100000026"
+			description: ["Добудьте или изготовьте: mana pool [botania:mana_pool] ×2. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000026"
 			icon: "botania:mana_pool"
 			tasks: [
 				{
-					id: "A11A05020000002A"
+					id: "0A1105020000002A"
 					item: "botania:mana_pool"
 					count: 2
 					type: "item"
@@ -715,14 +715,14 @@
 			y: -6.0d
 		},
 		{
-			dependencies: ["A11A050100000026"]
+			dependencies: ["0A11050100000026"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: botania:rune ×16, minecraft:stone ×16"]
-			id: "A11A050100000027"
+			description: ["Получите любой из вариантов: rune [botania:rune], stone [minecraft:stone] — всего ×16.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000027"
 			icon: "botania:rune"
 			tasks: [
 				{
-					id: "A11A05020000002B"
+					id: "0A1105020000002B"
 					title: "Получите: botania:rune / minecraft:stone"
 					type: "custom"
 				}
@@ -732,14 +732,14 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A050100000027"]
+			dependencies: ["0A11050100000027"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: botania:terrasteel_ingot ×4."]
-			id: "A11A050100000028"
+			description: ["Добудьте или изготовьте: terrasteel ingot [botania:terrasteel_ingot] ×4. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000028"
 			icon: "botania:terrasteel_ingot"
 			tasks: [
 				{
-					id: "A11A05020000002C"
+					id: "0A1105020000002C"
 					item: "botania:terrasteel_ingot"
 					count: 4
 					type: "item"
@@ -750,20 +750,20 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A050100000028"]
+			dependencies: ["0A11050100000028"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A050100000029"
+			description: ["Добудьте или изготовьте: terrasteel ingot [botania:terrasteel_ingot] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000029"
 			icon: "botania:terrasteel_ingot"
 			tasks: [
 				{
-					id: "A11A05020000002D"
+					id: "0A1105020000002D"
 					item: "botania:terrasteel_ingot"
 					count: 8
 					type: "item"
 				},
 				{
-					id: "A11A05020000002E"
+					id: "0A1105020000002E"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -773,14 +773,14 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A050100000029"]
+			dependencies: ["0A11050100000029"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: bloodmagic:altar ×2."]
-			id: "A11A05010000002A"
+			description: ["Добудьте или изготовьте: altar [bloodmagic:altar] ×2. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000002A"
 			icon: "bloodmagic:altar"
 			tasks: [
 				{
-					id: "A11A05020000002F"
+					id: "0A1105020000002F"
 					item: "bloodmagic:altar"
 					count: 2
 					type: "item"
@@ -791,14 +791,14 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A05010000002A"]
+			dependencies: ["0A1105010000002A"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: bloodmagic:blankslate ×32."]
-			id: "A11A05010000002B"
+			description: ["Добудьте или изготовьте: blankslate [bloodmagic:blankslate] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000002B"
 			icon: "bloodmagic:blankslate"
 			tasks: [
 				{
-					id: "A11A050200000030"
+					id: "0A11050200000030"
 					item: "bloodmagic:blankslate"
 					count: 32
 					type: "item"
@@ -809,14 +809,14 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A05010000002B"]
+			dependencies: ["0A1105010000002B"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: bloodmagic:reinforcedslate ×16, minecraft:stone_slab ×16"]
-			id: "A11A05010000002C"
+			description: ["Получите любой из вариантов: reinforcedslate [bloodmagic:reinforcedslate], stone slab [minecraft:stone_slab] — всего ×16.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000002C"
 			icon: "bloodmagic:reinforcedslate"
 			tasks: [
 				{
-					id: "A11A050200000031"
+					id: "0A11050200000031"
 					title: "Получите: bloodmagic:reinforcedslate / minecraft:stone_slab"
 					type: "custom"
 				}
@@ -826,14 +826,14 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A05010000002C"]
+			dependencies: ["0A1105010000002C"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: bloodmagic:blood_rune ×16, minecraft:stone_bricks ×16"]
-			id: "A11A05010000002D"
+			description: ["Получите любой из вариантов: blood rune [bloodmagic:blood_rune], stone bricks [minecraft:stone_bricks] — всего ×16.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000002D"
 			icon: "bloodmagic:blood_rune"
 			tasks: [
 				{
-					id: "A11A050200000032"
+					id: "0A11050200000032"
 					title: "Получите: bloodmagic:blood_rune / minecraft:stone_bricks"
 					type: "custom"
 				}
@@ -843,14 +843,14 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A05010000002D"]
+			dependencies: ["0A1105010000002D"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: bloodmagic:sacrificial_dagger ×1, minecraft:iron_sword ×1"]
-			id: "A11A05010000002E"
+			description: ["Получите любой из вариантов: sacrificial dagger [bloodmagic:sacrificial_dagger], iron sword [minecraft:iron_sword] — всего ×1.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000002E"
 			icon: "bloodmagic:sacrificial_dagger"
 			tasks: [
 				{
-					id: "A11A050200000033"
+					id: "0A11050200000033"
 					title: "Получите: bloodmagic:sacrificial_dagger / minecraft:iron_sword"
 					type: "custom"
 				}
@@ -860,20 +860,20 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A05010000002E"]
+			dependencies: ["0A1105010000002E"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A05010000002F"
+			description: ["Добудьте или изготовьте: blankslate [bloodmagic:blankslate] ×16. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000002F"
 			icon: "bloodmagic:blankslate"
 			tasks: [
 				{
-					id: "A11A050200000034"
+					id: "0A11050200000034"
 					item: "bloodmagic:blankslate"
 					count: 16
 					type: "item"
 				},
 				{
-					id: "A11A050200000035"
+					id: "0A11050200000035"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -883,14 +883,14 @@
 			y: -8.0d
 		},
 		{
-			dependencies: ["A11A05010000002F"]
+			dependencies: ["0A1105010000002F"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: eidolon:pewter_ingot ×16, minecraft:iron_ingot ×16"]
-			id: "A11A050100000030"
+			description: ["Получите любой из вариантов: pewter ingot [eidolon:pewter_ingot], iron ingot [minecraft:iron_ingot] — всего ×16.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000030"
 			icon: "eidolon:pewter_ingot"
 			tasks: [
 				{
-					id: "A11A050200000036"
+					id: "0A11050200000036"
 					title: "Получите: eidolon:pewter_ingot / minecraft:iron_ingot"
 					type: "custom"
 				}
@@ -900,14 +900,14 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000030"]
+			dependencies: ["0A11050100000030"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: eidolon:arcane_gold_ingot ×16, minecraft:gold_ingot ×16"]
-			id: "A11A050100000031"
+			description: ["Получите любой из вариантов: arcane gold ingot [eidolon:arcane_gold_ingot], gold ingot [minecraft:gold_ingot] — всего ×16.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000031"
 			icon: "eidolon:arcane_gold_ingot"
 			tasks: [
 				{
-					id: "A11A050200000037"
+					id: "0A11050200000037"
 					title: "Получите: eidolon:arcane_gold_ingot / minecraft:gold_ingot"
 					type: "custom"
 				}
@@ -917,14 +917,14 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000031"]
+			dependencies: ["0A11050100000031"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: eidolon:crucible ×1, minecraft:cauldron ×1"]
-			id: "A11A050100000032"
+			description: ["Получите любой из вариантов: crucible [eidolon:crucible], cauldron [minecraft:cauldron] — всего ×1.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000032"
 			icon: "eidolon:crucible"
 			tasks: [
 				{
-					id: "A11A050200000038"
+					id: "0A11050200000038"
 					title: "Получите: eidolon:crucible / minecraft:cauldron"
 					type: "custom"
 				}
@@ -934,14 +934,14 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000032"]
+			dependencies: ["0A11050100000032"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:paper ×32."]
-			id: "A11A050100000033"
+			description: ["Добудьте или изготовьте: paper [minecraft:paper] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000033"
 			icon: "minecraft:paper"
 			tasks: [
 				{
-					id: "A11A050200000039"
+					id: "0A11050200000039"
 					item: "minecraft:paper"
 					count: 32
 					type: "item"
@@ -952,19 +952,19 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000033"]
+			dependencies: ["0A11050100000033"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A050100000034"
+			description: ["Получите любой из вариантов: pewter ingot [eidolon:pewter_ingot], iron ingot [minecraft:iron_ingot] — всего ×8.", "Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000034"
 			icon: "eidolon:pewter_ingot"
 			tasks: [
 				{
-					id: "A11A05020000003A"
+					id: "0A1105020000003A"
 					title: "Получите: eidolon:pewter_ingot / minecraft:iron_ingot"
 					type: "custom"
 				},
 				{
-					id: "A11A05020000003B"
+					id: "0A1105020000003B"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -974,14 +974,14 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000034"]
+			dependencies: ["0A11050100000034"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:ritual_regulator ×2."]
-			id: "A11A050100000035"
+			description: ["Добудьте или изготовьте: ritual regulator [arcanopolis:ritual_regulator] ×2. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000035"
 			icon: "arcanopolis:ritual_regulator"
 			tasks: [
 				{
-					id: "A11A05020000003C"
+					id: "0A1105020000003C"
 					item: "arcanopolis:ritual_regulator"
 					count: 2
 					type: "item"
@@ -992,20 +992,20 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000035"]
+			dependencies: ["0A11050100000035"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A050100000036"
+			description: ["Добудьте или изготовьте: ritual regulator [arcanopolis:ritual_regulator] ×1. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000036"
 			icon: "arcanopolis:ritual_regulator"
 			tasks: [
 				{
-					id: "A11A05020000003D"
+					id: "0A1105020000003D"
 					item: "arcanopolis:ritual_regulator"
 					count: 1
 					type: "item"
 				},
 				{
-					id: "A11A05020000003E"
+					id: "0A1105020000003E"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -1015,14 +1015,14 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000036"]
+			dependencies: ["0A11050100000036"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glowstone_dust ×64."]
-			id: "A11A050100000037"
+			description: ["Добудьте или изготовьте: glowstone dust [minecraft:glowstone_dust] ×64. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000037"
 			icon: "minecraft:glowstone_dust"
 			tasks: [
 				{
-					id: "A11A05020000003F"
+					id: "0A1105020000003F"
 					item: "minecraft:glowstone_dust"
 					count: 64
 					type: "item"
@@ -1033,14 +1033,14 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000037"]
+			dependencies: ["0A11050100000037"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:redstone ×128."]
-			id: "A11A050100000038"
+			description: ["Добудьте или изготовьте: redstone [minecraft:redstone] ×128. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000038"
 			icon: "minecraft:redstone"
 			tasks: [
 				{
-					id: "A11A050200000040"
+					id: "0A11050200000040"
 					item: "minecraft:redstone"
 					count: 128
 					type: "item"
@@ -1051,14 +1051,14 @@
 			y: -10.0d
 		},
 		{
-			dependencies: ["A11A050100000038"]
+			dependencies: ["0A11050100000038"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:quartz ×64."]
-			id: "A11A050100000039"
+			description: ["Добудьте или изготовьте: quartz [minecraft:quartz] ×64. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000039"
 			icon: "minecraft:quartz"
 			tasks: [
 				{
-					id: "A11A050200000041"
+					id: "0A11050200000041"
 					item: "minecraft:quartz"
 					count: 64
 					type: "item"
@@ -1069,14 +1069,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A050100000039"]
+			dependencies: ["0A11050100000039"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:amethyst_shard ×32."]
-			id: "A11A05010000003A"
+			description: ["Добудьте или изготовьте: amethyst shard [minecraft:amethyst_shard] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000003A"
 			icon: "minecraft:amethyst_shard"
 			tasks: [
 				{
-					id: "A11A050200000042"
+					id: "0A11050200000042"
 					item: "minecraft:amethyst_shard"
 					count: 32
 					type: "item"
@@ -1087,14 +1087,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A05010000003A"]
+			dependencies: ["0A1105010000003A"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:gunpowder ×32."]
-			id: "A11A05010000003B"
+			description: ["Добудьте или изготовьте: gunpowder [minecraft:gunpowder] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000003B"
 			icon: "minecraft:gunpowder"
 			tasks: [
 				{
-					id: "A11A050200000043"
+					id: "0A11050200000043"
 					item: "minecraft:gunpowder"
 					count: 32
 					type: "item"
@@ -1105,14 +1105,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A05010000003B"]
+			dependencies: ["0A1105010000003B"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:slime_ball ×16."]
-			id: "A11A05010000003C"
+			description: ["Добудьте или изготовьте: slime ball [minecraft:slime_ball] ×16. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000003C"
 			icon: "minecraft:slime_ball"
 			tasks: [
 				{
-					id: "A11A050200000044"
+					id: "0A11050200000044"
 					item: "minecraft:slime_ball"
 					count: 16
 					type: "item"
@@ -1123,14 +1123,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A05010000003C"]
+			dependencies: ["0A1105010000003C"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:spider_eye ×16."]
-			id: "A11A05010000003D"
+			description: ["Добудьте или изготовьте: spider eye [minecraft:spider_eye] ×16. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000003D"
 			icon: "minecraft:spider_eye"
 			tasks: [
 				{
-					id: "A11A050200000045"
+					id: "0A11050200000045"
 					item: "minecraft:spider_eye"
 					count: 16
 					type: "item"
@@ -1141,14 +1141,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A05010000003D"]
+			dependencies: ["0A1105010000003D"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:chorus_fruit ×32."]
-			id: "A11A05010000003E"
+			description: ["Добудьте или изготовьте: chorus fruit [minecraft:chorus_fruit] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000003E"
 			icon: "minecraft:chorus_fruit"
 			tasks: [
 				{
-					id: "A11A050200000046"
+					id: "0A11050200000046"
 					item: "minecraft:chorus_fruit"
 					count: 32
 					type: "item"
@@ -1159,14 +1159,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A05010000003E"]
+			dependencies: ["0A1105010000003E"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:nether_wart ×16."]
-			id: "A11A05010000003F"
+			description: ["Добудьте или изготовьте: nether wart [minecraft:nether_wart] ×16. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000003F"
 			icon: "minecraft:nether_wart"
 			tasks: [
 				{
-					id: "A11A050200000047"
+					id: "0A11050200000047"
 					item: "minecraft:nether_wart"
 					count: 16
 					type: "item"
@@ -1177,14 +1177,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A05010000003F"]
+			dependencies: ["0A1105010000003F"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: любой из вариантов: minecraft:potion ×8, minecraft:glass_bottle ×8"]
-			id: "A11A050100000040"
+			description: ["Получите любой из вариантов: potion [minecraft:potion], glass bottle [minecraft:glass_bottle] — всего ×8.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000040"
 			icon: "minecraft:potion"
 			tasks: [
 				{
-					id: "A11A050200000048"
+					id: "0A11050200000048"
 					title: "Получите: minecraft:potion / minecraft:glass_bottle"
 					type: "custom"
 				}
@@ -1194,14 +1194,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A050100000040"]
+			dependencies: ["0A11050100000040"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:blaze_powder ×16."]
-			id: "A11A050100000041"
+			description: ["Добудьте или изготовьте: blaze powder [minecraft:blaze_powder] ×16. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000041"
 			icon: "minecraft:blaze_powder"
 			tasks: [
 				{
-					id: "A11A050200000049"
+					id: "0A11050200000049"
 					item: "minecraft:blaze_powder"
 					count: 16
 					type: "item"
@@ -1212,14 +1212,14 @@
 			y: -12.0d
 		},
 		{
-			dependencies: ["A11A050100000041"]
+			dependencies: ["0A11050100000041"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ghast_tear ×4."]
-			id: "A11A050100000042"
+			description: ["Добудьте или изготовьте: ghast tear [minecraft:ghast_tear] ×4. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000042"
 			icon: "minecraft:ghast_tear"
 			tasks: [
 				{
-					id: "A11A05020000004A"
+					id: "0A1105020000004A"
 					item: "minecraft:ghast_tear"
 					count: 4
 					type: "item"
@@ -1230,14 +1230,14 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000042"]
+			dependencies: ["0A11050100000042"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:magma_cream ×8."]
-			id: "A11A050100000043"
+			description: ["Добудьте или изготовьте: magma cream [minecraft:magma_cream] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000043"
 			icon: "minecraft:magma_cream"
 			tasks: [
 				{
-					id: "A11A05020000004B"
+					id: "0A1105020000004B"
 					item: "minecraft:magma_cream"
 					count: 8
 					type: "item"
@@ -1248,14 +1248,14 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000043"]
+			dependencies: ["0A11050100000043"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glistering_melon_slice ×8."]
-			id: "A11A050100000044"
+			description: ["Добудьте или изготовьте: glistering melon slice [minecraft:glistering_melon_slice] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000044"
 			icon: "minecraft:glistering_melon_slice"
 			tasks: [
 				{
-					id: "A11A05020000004C"
+					id: "0A1105020000004C"
 					item: "minecraft:glistering_melon_slice"
 					count: 8
 					type: "item"
@@ -1266,20 +1266,20 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000044"]
+			dependencies: ["0A11050100000044"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A050100000045"
+			description: ["Добудьте или изготовьте: nether wart [minecraft:nether_wart] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите больницу — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000045"
 			icon: "minecraft:nether_wart"
 			tasks: [
 				{
-					id: "A11A05020000004D"
+					id: "0A1105020000004D"
 					item: "minecraft:nether_wart"
 					count: 8
 					type: "item"
 				},
 				{
-					id: "A11A05020000004E"
+					id: "0A1105020000004E"
 					title: "Здание hospital (ур. 3)"
 					type: "custom"
 				}
@@ -1289,20 +1289,20 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000045"]
+			dependencies: ["0A11050100000045"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A050100000046"
+			description: ["Добудьте или изготовьте: glass bottle [minecraft:glass_bottle] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите больницу — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000046"
 			icon: "minecraft:glass_bottle"
 			tasks: [
 				{
-					id: "A11A05020000004F"
+					id: "0A1105020000004F"
 					item: "minecraft:glass_bottle"
 					count: 32
 					type: "item"
 				},
 				{
-					id: "A11A050200000050"
+					id: "0A11050200000050"
 					title: "Здание hospital (ур. 3)"
 					type: "custom"
 				}
@@ -1312,14 +1312,14 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000046"]
+			dependencies: ["0A11050100000046"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:nether_wart ×32."]
-			id: "A11A050100000047"
+			description: ["Добудьте или изготовьте: nether wart [minecraft:nether_wart] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000047"
 			icon: "minecraft:nether_wart"
 			tasks: [
 				{
-					id: "A11A050200000051"
+					id: "0A11050200000051"
 					item: "minecraft:nether_wart"
 					count: 32
 					type: "item"
@@ -1330,20 +1330,20 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000047"]
+			dependencies: ["0A11050100000047"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A050100000048"
+			description: ["Добудьте или изготовьте: quartz [minecraft:quartz] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000048"
 			icon: "minecraft:quartz"
 			tasks: [
 				{
-					id: "A11A050200000052"
+					id: "0A11050200000052"
 					item: "minecraft:quartz"
 					count: 32
 					type: "item"
 				},
 				{
-					id: "A11A050200000053"
+					id: "0A11050200000053"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -1353,20 +1353,20 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000048"]
+			dependencies: ["0A11050100000048"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: ars_nouveau:source_gem ×256.", "Постройте или улучшите здание «library» до 4 уровня."]
-			id: "A11A050100000049"
+			description: ["Добудьте или изготовьте: source gem [ars_nouveau:source_gem] ×256. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите библиотеку — нужен уровень не ниже 4. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11050100000049"
 			icon: "ars_nouveau:source_gem"
 			tasks: [
 				{
-					id: "A11A050200000054"
+					id: "0A11050200000054"
 					item: "ars_nouveau:source_gem"
 					count: 256
 					type: "item"
 				},
 				{
-					id: "A11A050200000055"
+					id: "0A11050200000055"
 					title: "Здание library (ур. 4)"
 					type: "custom"
 				}
@@ -1376,20 +1376,20 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A050100000049"]
+			dependencies: ["0A11050100000049"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: arcanopolis:ritual_regulator ×3.", "Постройте или улучшите здание «mech» до 3 уровня."]
-			id: "A11A05010000004A"
+			description: ["Добудьте или изготовьте: ritual regulator [arcanopolis:ritual_regulator] ×3. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите мастерскую механика — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000004A"
 			icon: "arcanopolis:ritual_regulator"
 			tasks: [
 				{
-					id: "A11A050200000056"
+					id: "0A11050200000056"
 					item: "arcanopolis:ritual_regulator"
 					count: 3
 					type: "item"
 				},
 				{
-					id: "A11A050200000057"
+					id: "0A11050200000057"
 					title: "Здание mech (ур. 3)"
 					type: "custom"
 				}
@@ -1399,20 +1399,20 @@
 			y: -14.0d
 		},
 		{
-			dependencies: ["A11A05010000004A"]
+			dependencies: ["0A1105010000004A"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:glass_bottle ×256.", "Постройте или улучшите здание «hospital» до 3 уровня."]
-			id: "A11A05010000004B"
+			description: ["Добудьте или изготовьте: glass bottle [minecraft:glass_bottle] ×256. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите больницу — нужен уровень не ниже 3. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1105010000004B"
 			icon: "minecraft:glass_bottle"
 			tasks: [
 				{
-					id: "A11A050200000058"
+					id: "0A11050200000058"
 					item: "minecraft:glass_bottle"
 					count: 256
 					type: "item"
 				},
 				{
-					id: "A11A050200000059"
+					id: "0A11050200000059"
 					title: "Здание hospital (ур. 3)"
 					type: "custom"
 				}
@@ -1422,25 +1422,25 @@
 			y: -16.0d
 		},
 		{
-			dependencies: ["A11A05010000004B"]
+			dependencies: ["0A1105010000004B"]
 			hide_dependency_lines: false
 			description: ["Веха эпохи пройдена — заберите награду:", "сундук с сокровищами и опыт мастера."]
-			id: "A11A05010000004C"
+			id: "0A1105010000004C"
 			icon: "minecraft:chest"
 			rewards: [
 				{
-					id: "A11A050300000004"
+					id: "0A11050300000004"
 					command: "/loot give @p loot minecraft:chests/buried_treasure"
 					permission_level: 2
 					type: "command"
 				},
 				{
-					id: "A11A050300000005"
+					id: "0A11050300000005"
 					xp: 500
 					type: "xp"
 				},
 				{
-					id: "A11A050300000006"
+					id: "0A11050300000006"
 					item: "minecraft:emerald"
 					count: 8
 					type: "item"
@@ -1448,7 +1448,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A05020000005A"
+					id: "0A1105020000005A"
 					title: "Условие выполнено"
 					type: "custom"
 				}

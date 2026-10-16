@@ -2,9 +2,9 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "71_side_expeditions"
-	group: "A11A000000000002"
+	group: "011A000000000002"
 	icon: "minecraft:compass"
-	id: "A11A090000000001"
+	id: "0A11090000000001"
 	dependencies: [ ]
 	order_index: 8
 	progression_mode: "linear"
@@ -12,12 +12,12 @@
 	quests: [
 		{
 			dependencies: [ ]
-			description: ["Исследование мира и поиск редких материалов."]
-			id: "A11A090100000001"
+			description: ["Исследование мира и поиск редких материалов.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000001"
 			icon: "minecraft:book"
 			tasks: [
 				{
-					id: "A11A090200000001"
+					id: "0A11090200000001"
 					title: "Отправиться в первую экспедицию"
 					type: "custom"
 				}
@@ -28,13 +28,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Ищите структуры и руины — источник редких ресурсов."]
-			id: "A11A090100000002"
+			description: ["Ищите структуры и руины — источник редких ресурсов.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A11090100000002"
 			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
-					id: "A11A090300000001"
+					id: "0A11090300000001"
 					item: "minecraft:golden_apple"
 					count: 4
 					type: "item"
@@ -42,7 +42,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A090200000002"
+					id: "0A11090200000002"
 					title: "Найдите и обыщите структуру вдали от дома"
 					type: "custom"
 				}
@@ -53,13 +53,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Незер — источник энергии и редких материалов."]
-			id: "A11A090100000003"
+			description: ["Незер — источник энергии и редких материалов.", "Получите достижение: story/enter the nether [minecraft:story/enter_the_nether].", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A11090100000003"
 			icon: "minecraft:emerald"
 			optional: true
 			rewards: [
 				{
-					id: "A11A090300000002"
+					id: "0A11090300000002"
 					item: "minecraft:blaze_rod"
 					count: 8
 					type: "item"
@@ -67,7 +67,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A090200000003"
+					id: "0A11090200000003"
 					advancement: "minecraft:story/enter_the_nether"
 					criterion: ""
 					type: "advancement"
@@ -79,13 +79,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Энд — финальный рубеж для эндгейм-материалов."]
-			id: "A11A090100000004"
+			description: ["Энд — финальный рубеж для эндгейм-материалов.", "Получите достижение: story/enter the end [minecraft:story/enter_the_end].", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A11090100000004"
 			icon: "minecraft:emerald"
 			optional: true
 			rewards: [
 				{
-					id: "A11A090300000003"
+					id: "0A11090300000003"
 					item: "minecraft:ender_pearl"
 					count: 16
 					type: "item"
@@ -93,7 +93,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A090200000004"
+					id: "0A11090200000004"
 					advancement: "minecraft:story/enter_the_end"
 					criterion: ""
 					type: "advancement"
@@ -105,13 +105,13 @@
 		},
 		{
 			dependencies: [ ]
-			description: ["Структуры MineColonies в дикой природе."]
-			id: "A11A090100000005"
+			description: ["Структуры MineColonies в дикой природе.", "Ознакомительный шаг: специальных действий не нужно, он засчитается сам.", "Независимый квест: он не входит в основную цепочку, не блокирует другие квесты и не требует выполнения предыдущих."]
+			id: "0A11090100000005"
 			icon: "minecraft:book"
 			optional: true
 			rewards: [
 				{
-					id: "A11A090300000004"
+					id: "0A11090300000004"
 					item: "minecraft:emerald"
 					count: 16
 					type: "item"
@@ -119,7 +119,7 @@
 			]
 			tasks: [
 				{
-					id: "A11A090200000005"
+					id: "0A11090200000005"
 					title: "Найдите заброшенное поселение MineColonies"
 					type: "custom"
 				}
@@ -129,14 +129,14 @@
 			y: -9.0d
 		},
 		{
-			dependencies: ["A11A090100000001"]
+			dependencies: ["0A11090100000001"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:cooked_beef ×32."]
-			id: "A11A090100000006"
+			description: ["Добудьте или изготовьте: cooked beef [minecraft:cooked_beef] ×32. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000006"
 			icon: "minecraft:cooked_beef"
 			tasks: [
 				{
-					id: "A11A090200000006"
+					id: "0A11090200000006"
 					item: "minecraft:cooked_beef"
 					count: 32
 					type: "item"
@@ -147,14 +147,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A090100000006"]
+			dependencies: ["0A11090100000006"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:iron_sword ×2."]
-			id: "A11A090100000007"
+			description: ["Добудьте или изготовьте: iron sword [minecraft:iron_sword] ×2. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000007"
 			icon: "minecraft:iron_sword"
 			tasks: [
 				{
-					id: "A11A090200000007"
+					id: "0A11090200000007"
 					item: "minecraft:iron_sword"
 					count: 2
 					type: "item"
@@ -165,14 +165,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A090100000007"]
+			dependencies: ["0A11090100000007"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:blaze_rod ×8."]
-			id: "A11A090100000008"
+			description: ["Добудьте или изготовьте: blaze rod [minecraft:blaze_rod] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000008"
 			icon: "minecraft:blaze_rod"
 			tasks: [
 				{
-					id: "A11A090200000008"
+					id: "0A11090200000008"
 					item: "minecraft:blaze_rod"
 					count: 8
 					type: "item"
@@ -183,14 +183,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A090100000008"]
+			dependencies: ["0A11090100000008"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Требуется: minecraft:ender_pearl ×8."]
-			id: "A11A090100000009"
+			description: ["Добудьте или изготовьте: ender pearl [minecraft:ender_pearl] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000009"
 			icon: "minecraft:ender_pearl"
 			tasks: [
 				{
-					id: "A11A090200000009"
+					id: "0A11090200000009"
 					item: "minecraft:ender_pearl"
 					count: 8
 					type: "item"
@@ -201,20 +201,20 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A090100000009"]
+			dependencies: ["0A11090100000009"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A09010000000A"
+			description: ["Добудьте или изготовьте: minecrp [minecrp] ×8. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите университет — нужен уровень не ниже 1. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000000A"
 			icon: "minecrp"
 			tasks: [
 				{
-					id: "A11A09020000000A"
+					id: "0A1109020000000A"
 					item: "minecrp"
 					count: 8
 					type: "item"
 				},
 				{
-					id: "A11A09020000000B"
+					id: "0A1109020000000B"
 					title: "Здание university (ур. 1)"
 					type: "custom"
 				}
@@ -224,20 +224,20 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A09010000000A"]
+			dependencies: ["0A1109010000000A"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A09010000000B"
+			description: ["Добудьте или изготовьте: name tag [minecraft:name_tag] ×4. Засчитывается, пока предмет находится у вас в инвентаре.", "Постройте или улучшите библиотеку — нужен уровень не ниже 2. Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.", "Условия колонии проверяются автоматически каждые несколько секунд, пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000000B"
 			icon: "minecraft:name_tag"
 			tasks: [
 				{
-					id: "A11A09020000000C"
+					id: "0A1109020000000C"
 					item: "minecraft:name_tag"
 					count: 4
 					type: "item"
 				},
 				{
-					id: "A11A09020000000D"
+					id: "0A1109020000000D"
 					title: "Здание library (ур. 2)"
 					type: "custom"
 				}
@@ -247,14 +247,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A09010000000B"]
+			dependencies: ["0A1109010000000B"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:zombie ×16."]
-			id: "A11A09010000000C"
+			description: ["Победите существ: зомби — 16 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000000C"
 			icon: "minecraft:zombie_spawn_egg"
 			tasks: [
 				{
-					id: "A11A09020000000E"
+					id: "0A1109020000000E"
 					entity: "minecraft:zombie"
 					value: 16L
 					type: "kill"
@@ -265,14 +265,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A09010000000C"]
+			dependencies: ["0A1109010000000C"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:skeleton ×16."]
-			id: "A11A09010000000D"
+			description: ["Победите существ: скелетов — 16 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000000D"
 			icon: "minecraft:skeleton_spawn_egg"
 			tasks: [
 				{
-					id: "A11A09020000000F"
+					id: "0A1109020000000F"
 					entity: "minecraft:skeleton"
 					value: 16L
 					type: "kill"
@@ -283,14 +283,14 @@
 			y: 0.0d
 		},
 		{
-			dependencies: ["A11A09010000000D"]
+			dependencies: ["0A1109010000000D"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:spider ×8."]
-			id: "A11A09010000000E"
+			description: ["Победите существ: пауков — 8 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000000E"
 			icon: "minecraft:spider_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000010"
+					id: "0A11090200000010"
 					entity: "minecraft:spider"
 					value: 8L
 					type: "kill"
@@ -301,14 +301,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A09010000000E"]
+			dependencies: ["0A1109010000000E"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:creeper ×8."]
-			id: "A11A09010000000F"
+			description: ["Победите существ: криперов — 8 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000000F"
 			icon: "minecraft:creeper_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000011"
+					id: "0A11090200000011"
 					entity: "minecraft:creeper"
 					value: 8L
 					type: "kill"
@@ -319,14 +319,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A09010000000F"]
+			dependencies: ["0A1109010000000F"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:blaze ×8."]
-			id: "A11A090100000010"
+			description: ["Победите существ: ифритов (блейзов) — 8 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000010"
 			icon: "minecraft:blaze_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000012"
+					id: "0A11090200000012"
 					entity: "minecraft:blaze"
 					value: 8L
 					type: "kill"
@@ -337,14 +337,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A090100000010"]
+			dependencies: ["0A11090100000010"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:enderman ×6."]
-			id: "A11A090100000011"
+			description: ["Победите существ: эндерменов — 6 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000011"
 			icon: "minecraft:enderman_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000013"
+					id: "0A11090200000013"
 					entity: "minecraft:enderman"
 					value: 6L
 					type: "kill"
@@ -355,14 +355,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A090100000011"]
+			dependencies: ["0A11090100000011"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:wither_skeleton ×6."]
-			id: "A11A090100000012"
+			description: ["Победите существ: визер-скелетов — 6 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000012"
 			icon: "minecraft:wither_skeleton_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000014"
+					id: "0A11090200000014"
 					entity: "minecraft:wither_skeleton"
 					value: 6L
 					type: "kill"
@@ -373,14 +373,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A090100000012"]
+			dependencies: ["0A11090100000012"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:pillager ×10."]
-			id: "A11A090100000013"
+			description: ["Победите существ: разбойников (пиллагеров) — 10 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000013"
 			icon: "minecraft:pillager_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000015"
+					id: "0A11090200000015"
 					entity: "minecraft:pillager"
 					value: 10L
 					type: "kill"
@@ -391,14 +391,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A090100000013"]
+			dependencies: ["0A11090100000013"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:vindicator ×4."]
-			id: "A11A090100000014"
+			description: ["Победите существ: поборников (виндикаторов) — 4 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000014"
 			icon: "minecraft:vindicator_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000016"
+					id: "0A11090200000016"
 					entity: "minecraft:vindicator"
 					value: 4L
 					type: "kill"
@@ -409,14 +409,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A090100000014"]
+			dependencies: ["0A11090100000014"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Убить существ: minecraft:ravager ×2."]
-			id: "A11A090100000015"
+			description: ["Победите существ: разорителей (рейвагеров) — 2 шт.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000015"
 			icon: "minecraft:ravager_spawn_egg"
 			tasks: [
 				{
-					id: "A11A090200000017"
+					id: "0A11090200000017"
 					entity: "minecraft:ravager"
 					value: 2L
 					type: "kill"
@@ -427,14 +427,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A090100000015"]
+			dependencies: ["0A11090100000015"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_nether."]
-			id: "A11A090100000016"
+			description: ["Отправьтесь в измерение: Нижний мир (Незер).", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000016"
 			icon: "minecraft:obsidian"
 			tasks: [
 				{
-					id: "A11A090200000018"
+					id: "0A11090200000018"
 					dimension: "minecraft:the_nether"
 					type: "dimension"
 				}
@@ -444,14 +444,14 @@
 			y: -2.0d
 		},
 		{
-			dependencies: ["A11A090100000016"]
+			dependencies: ["0A11090100000016"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/mine_diamond."]
-			id: "A11A090100000017"
+			description: ["Получите достижение: story/mine diamond [minecraft:story/mine_diamond].", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000017"
 			icon: "minecraft:emerald"
 			tasks: [
 				{
-					id: "A11A090200000019"
+					id: "0A11090200000019"
 					advancement: "minecraft:story/mine_diamond"
 					criterion: ""
 					type: "advancement"
@@ -462,14 +462,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A090100000017"]
+			dependencies: ["0A11090100000017"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Получить достижение: minecraft:story/enter_the_nether."]
-			id: "A11A090100000018"
+			description: ["Получите достижение: story/enter the nether [minecraft:story/enter_the_nether].", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000018"
 			icon: "minecraft:emerald"
 			tasks: [
 				{
-					id: "A11A09020000001A"
+					id: "0A1109020000001A"
 					advancement: "minecraft:story/enter_the_nether"
 					criterion: ""
 					type: "advancement"
@@ -480,14 +480,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A090100000018"]
+			dependencies: ["0A11090100000018"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Побывать в измерении: minecraft:the_end."]
-			id: "A11A090100000019"
+			description: ["Отправьтесь в измерение: Край (Энд).", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A11090100000019"
 			icon: "minecraft:end_stone"
 			tasks: [
 				{
-					id: "A11A09020000001B"
+					id: "0A1109020000001B"
 					dimension: "minecraft:the_end"
 					type: "dimension"
 				}
@@ -497,14 +497,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A090100000019"]
+			dependencies: ["0A11090100000019"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A09010000001A"
+			description: ["Найдите и посетите: крепость (стронгхолд). Зайдите внутрь, чтобы сервер зафиксировал визит.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000001A"
 			icon: "minecraft:ender_eye"
 			tasks: [
 				{
-					id: "A11A09020000001C"
+					id: "0A1109020000001C"
 					structure: "minecraft:stronghold"
 					type: "structure"
 				}
@@ -514,14 +514,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A09010000001A"]
+			dependencies: ["0A1109010000001A"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A09010000001B"
+			description: ["Найдите и посетите: развалины бастиона. Зайдите внутрь, чтобы сервер зафиксировал визит.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000001B"
 			icon: "minecraft:gilded_blackstone"
 			tasks: [
 				{
-					id: "A11A09020000001D"
+					id: "0A1109020000001D"
 					structure: "minecraft:bastion_remnant"
 					type: "structure"
 				}
@@ -531,14 +531,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A09010000001B"]
+			dependencies: ["0A1109010000001B"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A09010000001C"
+			description: ["Найдите и посетите: город Края. Зайдите внутрь, чтобы сервер зафиксировал визит.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000001C"
 			icon: "minecraft:purpur_block"
 			tasks: [
 				{
-					id: "A11A09020000001E"
+					id: "0A1109020000001E"
 					structure: "minecraft:end_city"
 					type: "structure"
 				}
@@ -548,14 +548,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A09010000001C"]
+			dependencies: ["0A1109010000001C"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Условие проверяется автоматически."]
-			id: "A11A09010000001D"
+			description: ["Найдите и посетите: древний город. Зайдите внутрь, чтобы сервер зафиксировал визит.", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000001D"
 			icon: "minecraft:sculk"
 			tasks: [
 				{
-					id: "A11A09020000001F"
+					id: "0A1109020000001F"
 					structure: "minecraft:ancient_city"
 					type: "structure"
 				}
@@ -565,14 +565,14 @@
 			y: -4.0d
 		},
 		{
-			dependencies: ["A11A09010000001D"]
+			dependencies: ["0A1109010000001D"]
 			hide_dependency_lines: false
-			description: ["Задача цепочки квестов Арканополиса.", "Достичь статистику minecraft:walk_one_cm ≥ 500000."]
-			id: "A11A09010000001E"
+			description: ["Пройдите пешком суммарно 5 км (считает ванильная статистика).", "Квест цепочки: следующий квест по линии откроется только после выполнения этого."]
+			id: "0A1109010000001E"
 			icon: "minecraft:leather_boots"
 			tasks: [
 				{
-					id: "A11A090200000020"
+					id: "0A11090200000020"
 					stat: "minecraft:walk_one_cm"
 					value: 500000
 					type: "stat"
@@ -585,12 +585,12 @@
 		{
 			dependencies: [ ]
 			description: ["Ходят слухи, что герой, спасший деревню", "от нашествия рейдеров, получает дар..."]
-			id: "A11A09010000001F"
+			id: "0A1109010000001F"
 			icon: "minecraft:emerald"
 			optional: true
 			tasks: [
 				{
-					id: "A11A090200000021"
+					id: "0A11090200000021"
 					advancement: "minecraft:adventure/hero_of_the_village"
 					criterion: ""
 					type: "advancement"
@@ -603,12 +603,12 @@
 		{
 			dependencies: [ ]
 			description: ["Древние хроники говорят о змееподобном", "твари, чья смерть откроет тайну Края..."]
-			id: "A11A090100000020"
+			id: "0A11090100000020"
 			icon: "minecraft:emerald"
 			optional: true
 			tasks: [
 				{
-					id: "A11A090200000022"
+					id: "0A11090200000022"
 					advancement: "minecraft:end/kill_dragon"
 					criterion: ""
 					type: "advancement"

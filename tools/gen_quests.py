@@ -20,9 +20,13 @@ OUT = ROOT / "config" / "ftbquests" / "quests"
 CHAPTERS = OUT / "chapters"
 
 # Группы глав
-G_MAIN = "A11A000000000001"
-G_SIDE = "A11A000000000002"
-G_REF = "A11A000000000003"
+# ВАЖНО: ID в FTB Quests парсятся через Long.parseLong(hex, 16) и должны быть
+# МЕНЬШЕ 2^63 (первая hex-цифра 0-7). Префикс «A11A» переполнял long: FTB
+# присваивал объектам случайные ID и молча отбрасывал все зависимости —
+# из-за этого в игре не было ни линий, ни блокировок цепочки. Не возвращать!
+G_MAIN = "011A000000000001"
+G_SIDE = "011A000000000002"
+G_REF = "011A000000000003"
 
 _counters: dict[str, int] = {}
 
@@ -116,10 +120,14 @@ def auto_icon(q) -> str:
 
 
 def uid(kind: str, chapter: int) -> str:
-    """Уникальный 16-символьный HEX id: A11A | глава(2) | тип(2) | счётчик(8)."""
+    """Уникальный 16-символьный HEX id: 0A11 | глава(2) | тип(2) | счётчик(8).
+
+    Первая цифра 0 обязательна: id обязан помещаться в signed long (< 2^63),
+    иначе FTB Quests не может распарсить его и отбрасывает зависимости.
+    """
     k = f"{chapter:02X}{kind}"
     _counters[k] = _counters.get(k, 0) + 1
-    return f"A11A{chapter:02X}{kind}{_counters[k]:08X}"
+    return f"0A11{chapter:02X}{kind}{_counters[k]:08X}"
 
 
 def esc(s: str) -> str:
@@ -190,6 +198,107 @@ def custom(cond: str, title: str = "") -> Task:
 
 def adv_task(advancement: str) -> Task:
     return Task("advancement", advancement=advancement)
+
+
+def _pretty(item_id: str) -> str:
+    return item_id.split(":")[-1].replace("_", " ")
+
+
+HUT_RU = {
+    "builder": "хижину строителя", "lumberjack": "хижину лесоруба",
+    "miner": "хижину шахтёра", "farm": "ферму", "fish": "хижину рыбака",
+    "cook": "поваренную хижину", "saw": "лесопилку",
+    "stone": "хижину каменщика", "black": "кузницу",
+    "guard": "сторожевую башню", "warehouse": "склад",
+    "courier": "хижину курьера", "home": "жилой дом",
+    "townhall": "ратушу", "university": "университет",
+    "library": "библиотеку", "school": "школу", "hospital": "больницу",
+    "mech": "мастерскую механика",
+}
+
+MOB_RU = {
+    "zombie": "зомби", "skeleton": "скелетов", "spider": "пауков",
+    "creeper": "криперов", "blaze": "ифритов (блейзов)",
+    "enderman": "эндерменов", "wither_skeleton": "визер-скелетов",
+    "pillager": "разбойников (пиллагеров)", "vindicator": "поборников (виндикаторов)",
+    "ravager": "разорителей (рейвагеров)",
+}
+
+DIM_RU = {
+    "minecraft:the_nether": "Нижний мир (Незер)",
+    "minecraft:the_end": "Край (Энд)",
+    "minecraft:overworld": "обычный мир",
+}
+
+STRUCT_RU = {
+    "minecraft:stronghold": "крепость (стронгхолд)",
+    "minecraft:bastion_remnant": "развалины бастиона",
+    "minecraft:end_city": "город Края",
+    "minecraft:ancient_city": "древний город",
+}
+
+
+def task_instruction(t: Task) -> str:
+    """Человекочитаемая строка «что сделать» для одной задачи."""
+    if t.ttype == "item":
+        n = t.count or 1
+        if t.consume:
+            return (f"Сдайте: {_pretty(t.item)} [{t.item}] ×{n}. "
+                    "Предметы будут потрачены при сдаче квеста.")
+        return (f"Добудьте или изготовьте: {_pretty(t.item)} [{t.item}] ×{n}. "
+                "Засчитывается, пока предмет находится у вас в инвентаре.")
+    if t.ttype == "kill":
+        mob = MOB_RU.get(t.entity.split(":")[-1], _pretty(t.entity))
+        return f"Победите существ: {mob} — {t.count} шт."
+    if t.ttype == "dimension":
+        return f"Отправьтесь в измерение: {DIM_RU.get(t.entity, t.entity)}."
+    if t.ttype == "structure":
+        return (f"Найдите и посетите: {STRUCT_RU.get(t.entity, t.entity)}. "
+                "Зайдите внутрь, чтобы сервер зафиксировал визит.")
+    if t.ttype == "advancement":
+        return f"Получите достижение: {_pretty(t.advancement)} [{t.advancement}]."
+    if t.ttype == "stat":
+        if "walk" in t.entity:
+            return f"Пройдите пешком суммарно {t.count // 100000} км (считает ванильная статистика)."
+        return f"Доведите статистику {t.entity} до {t.count}."
+    if t.ttype == "custom":
+        cond = t.cond or "always"
+        if cond.startswith("item_any:"):
+            rest = cond[len("item_any:"):]
+            items, n = rest.rsplit("@", 1)
+            opts = ", ".join(f"{_pretty(x)} [{x}]" for x in items.split("|"))
+            return f"Получите любой из вариантов: {opts} — всего ×{n}."
+        p = cond.split(":")
+        if p[0] == "townhall":
+            return (f"Улучшите ратушу своей колонии до уровня {p[1]} "
+                    "(заказ на улучшение выдаётся строителю).")
+        if p[0] == "citizens":
+            return (f"Население колонии: не меньше {p[1]} жителей. "
+                    "Принимайте новых жителей, когда есть свободные жилые дома и еда.")
+        if p[0] == "building" and len(p) >= 3:
+            hut = HUT_RU.get(p[1], p[1])
+            return (f"Постройте или улучшите {hut} — нужен уровень не ниже {p[2]}. "
+                    "Заказ на постройку/улучшение кладётся строителю, материалы подвезёт курьер.")
+        return "Ознакомительный шаг: специальных действий не нужно, он засчитается сам."
+    return "Условие проверяется автоматически."
+
+
+def describe_quest(q: Quest) -> list[str]:
+    """Полноценное описание квеста: что сделать по каждой задаче + подсказки."""
+    lines = [task_instruction(t) for t in q.tasks]
+    kinds = {t.ttype for t in q.tasks}
+    conds = [(t.cond or "") for t in q.tasks if t.ttype == "custom"]
+    if any(c.startswith(("townhall:", "citizens:", "building:")) for c in conds):
+        lines.append("Условия колонии проверяются автоматически каждые несколько секунд, "
+                     "пока вы рядом со своим городом. Вручную отмечать ничего нельзя и не нужно.")
+    if q.repeatable:
+        lines.append("Повторяемый квест: после получения награды его можно выполнять снова и снова.")
+    elif q.independent:
+        lines.append("Независимый квест: он не входит в основную цепочку, не блокирует другие квесты "
+                     "и не требует выполнения предыдущих.")
+    else:
+        lines.append("Квест цепочки: следующий квест по линии откроется только после выполнения этого.")
+    return lines
 
 
 def ir(item: str, count: int = 1) -> Reward:
@@ -1084,6 +1193,17 @@ def polish(chapters: list[Chapter]) -> None:
         for q in ch.quests:
             q.independent = bool(q.repeatable or q.optional
                                  or ch.file == "80_reference")
+        # Описание — каждому квесту: что именно сделать и как это засчитается.
+        # Рукописные описания не трогаем; генерируем там, где пусто или стоит
+        # шаблонная заглушка «Задача цепочки квестов Арканополиса.»
+        for q in ch.quests:
+            if not q.tasks:
+                continue
+            if not q.desc or q.desc[0] == "Задача цепочки квестов Арканополиса.":
+                q.desc = describe_quest(q)
+            elif len(q.desc) < 2:
+                # однострочная рукописная аннотация + конкретные инструкции
+                q.desc = list(q.desc) + describe_quest(q)
         # строгая цепочка: без прошлого квеста следующий недоступен
         last_key = None
         for q in ch.quests:
@@ -1410,7 +1530,7 @@ def main() -> None:
         for q in ch.quests:
             qmap[(ch.file, q.key)] = uid("01", idx)
     cmap: dict[str, str] = {
-        ch.file: f"A11A{idx:02X}0000000001" for idx, ch in enumerate(chapters, start=1)
+        ch.file: f"0A11{idx:02X}0000000001" for idx, ch in enumerate(chapters, start=1)
     }
     _counters.clear()
     _counters.update(saved)
