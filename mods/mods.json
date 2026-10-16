@@ -1194,7 +1194,7 @@
       "name": "Silent Lib",
       "category": "library",
       "side": "both",
-      "required": false,
+      "required": true,
       "modrinth": [
         "silent-lib"
       ],
@@ -1210,7 +1210,7 @@
       "name": "Scaling Health",
       "category": "difficulty",
       "side": "both",
-      "required": false,
+      "required": true,
       "modrinth": [
         "scaling-health"
       ],
@@ -1222,33 +1222,34 @@
       "deps": [
         "silent-lib"
       ],
-      "note": "ОПЦИЯ: здоровье мобов растёт со временем/пройденной дистанцией. Не разгонять на максимум вместе с Majrusz PD и Champions — выбрать потолок"
+      "note": "Ядро: здоровье мобов растёт со временем/дистанцией. Не разгонять потолок вместе с Majrusz PD и Champions; рост HP игрока отключить (здоровье игрока — система Spice of Life), настройки — датапаком"
     },
     {
       "id": "l-enders-cataclysm",
       "name": "L_Ender's Cataclysm",
       "category": "difficulty",
       "side": "both",
-      "required": false,
+      "required": true,
       "modrinth": [
         "l-enders-cataclysm",
         "l_enders-cataclysm",
         "cataclysm"
       ],
       "curseforge": [
+        "lendercataclysm",
         "l-enders-cataclysm"
       ],
       "version": "latest",
-      "version_hint": "2.x для Forge 1.20.1",
+      "version_hint": "2.x-3.x для Forge 1.20.1",
       "deps": [],
-      "note": "ОПЦИЯ (эндгейм): боссы и данжи под эпоху VI и экспедиции. Боссы могут разрушать блоки — держать подальше от колонии"
+      "note": "Ядро (эндгейм): боссы и данжи под эпоху VI и экспедиции. Боссы могут разрушать блоки — не вызывать рядом с колонией"
     },
     {
       "id": "when-dungeons-arise",
       "name": "When Dungeons Arise",
       "category": "difficulty",
       "side": "both",
-      "required": false,
+      "required": true,
       "modrinth": [
         "when-dungeons-arise"
       ],
@@ -1258,14 +1259,14 @@
       "version": "latest",
       "version_hint": "2.1.x для 1.20.1",
       "deps": [],
-      "note": "ОПЦИЯ: крупные опасные данжи в мире — цели для экспедиций (глава 71)"
+      "note": "Ядро: крупные опасные данжи в мире — цели для экспедиций (глава 71)"
     },
     {
       "id": "citadel",
       "name": "Citadel",
       "category": "library",
       "side": "both",
-      "required": false,
+      "required": true,
       "modrinth": [
         "citadel"
       ],
@@ -1281,7 +1282,7 @@
       "name": "Alex's Mobs",
       "category": "difficulty",
       "side": "both",
-      "required": false,
+      "required": true,
       "modrinth": [
         "alexs-mobs"
       ],
@@ -1293,7 +1294,7 @@
       "deps": [
         "citadel"
       ],
-      "note": "ОПЦИЯ: дикая фауна — медведи, крокодилы и прочие делают вылазки за ресурсами рискованнее"
+      "note": "Ядро: дикая фауна — медведи, крокодилы и прочие делают вылазки за ресурсами рискованнее; следить за спавном у колонии"
     },
     {
       "id": "mantle",
@@ -1330,7 +1331,7 @@
         "SlimeKnights/TinkersConstruct"
       ],
       "version": "latest",
-      "version_hint": "3.10.x для Forge 1.20.1",
+      "version_hint": "3.9.x для Forge 1.20.1 (требуется Mantle 1.11.36+)",
       "deps": [
         "mantle"
       ],
@@ -1343,13 +1344,14 @@
       "side": "both",
       "required": true,
       "modrinth": [
+        "relics-mod",
         "relics"
       ],
       "curseforge": [
-        "relics"
+        "relics-mod"
       ],
       "version": "latest",
-      "version_hint": "0.6.x для Forge 1.20.1",
+      "version_hint": "0.5.x+ для Forge 1.20.1",
       "deps": [
         "curios"
       ],
