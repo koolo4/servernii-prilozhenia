@@ -135,27 +135,65 @@ function Test-JarFile([string]$path) {
     }
 }
 
-function Get-ModIds([string]$path) {
+function Get-ModIdsFromZip($zip) {
     $ids = New-Object System.Collections.Generic.List[string]
+    foreach ($entry in $zip.Entries) {
+        if ($entry.FullName -ieq 'META-INF/mods.toml') {
+            $sr = New-Object System.IO.StreamReader($entry.Open())
+            try { $txt = $sr.ReadToEnd() } finally { $sr.Close() }
+            # modId самого мода — только до секции зависимостей
+            $cut = $txt.IndexOf('[[dependencies')
+            if ($cut -ge 0) { $txt = $txt.Substring(0, $cut) }
+            foreach ($m in [regex]::Matches($txt, '(?im)^\s*modId\s*=\s*["'']([^"'']+)["'']')) {
+                $ids.Add($m.Groups[1].Value)
+            }
+        }
+    }
+    # JarJar: моды, вложенные внутрь jar (например, KotlinForForge-all)
+    foreach ($entry in @($zip.Entries)) {
+        if ($entry.FullName -imatch '^META-INF/jarjar/.+\.jar$') {
+            try {
+                $ms = New-Object System.IO.MemoryStream
+                $src = $entry.Open()
+                try { $src.CopyTo($ms) } finally { $src.Close() }
+                $ms.Position = 0
+                $inner = New-Object System.IO.Compression.ZipArchive($ms, [System.IO.Compression.ZipArchiveMode]::Read)
+                try {
+                    foreach ($i in @(Get-ModIdsFromZip $inner)) { $ids.Add($i) }
+                } finally { $inner.Dispose(); $ms.Dispose() }
+            } catch { }
+        }
+    }
+    foreach ($i in $ids) { Write-Output $i }
+}
+
+function Get-ModIds([string]$path) {
+    try {
+        Add-Type -AssemblyName System.IO.Compression | Out-Null
+        Add-Type -AssemblyName System.IO.Compression.FileSystem | Out-Null
+        $zip = [System.IO.Compression.ZipFile]::OpenRead($path)
+        try { Get-ModIdsFromZip $zip } finally { $zip.Dispose() }
+    } catch { }
+}
+
+# Признан ли jar модом: есть modId, либо это JarJar-контейнер, либо языковой
+# провайдер FML (META-INF/services/...IModLanguageProvider, как KotlinForForge),
+# либо просто есть mods.toml. Такой jar Forge загрузит — «не модом» не считаем.
+function Test-IsModJar([string]$path) {
+    if (@(Get-ModIds $path).Count -gt 0) { return $true }
     try {
         Add-Type -AssemblyName System.IO.Compression.FileSystem | Out-Null
         $zip = [System.IO.Compression.ZipFile]::OpenRead($path)
         try {
             foreach ($entry in $zip.Entries) {
-                if ($entry.FullName -ieq 'META-INF/mods.toml') {
-                    $sr = New-Object System.IO.StreamReader($entry.Open())
-                    try { $txt = $sr.ReadToEnd() } finally { $sr.Close() }
-                    # modId самого мода — только до секции зависимостей
-                    $cut = $txt.IndexOf('[[dependencies')
-                    if ($cut -ge 0) { $txt = $txt.Substring(0, $cut) }
-                    foreach ($m in [regex]::Matches($txt, '(?im)^\s*modId\s*=\s*"([^"]+)"')) {
-                        $ids.Add($m.Groups[1].Value)
-                    }
-                }
+                $n = $entry.FullName
+                if ($n -ieq 'META-INF/mods.toml') { return $true }
+                if ($n -imatch '^META-INF/jarjar/.+\.jar$') { return $true }
+                if ($n -imatch '^META-INF/services/net\.minecraftforge\.forgespi\.language\.IModLanguageProvider') { return $true }
             }
         } finally { $zip.Dispose() }
     } catch { }
-    foreach ($i in $ids) { Write-Output $i }
+    return $false
 }
 
 # Удаляет устаревшие копии мода: если рядом лежит другой jar с тем же modId
@@ -775,7 +813,9 @@ $broken = 0
 $byId = @{}
 foreach ($f in (Get-ChildItem -Path $Out -File | Sort-Object Name)) {
     if ($f.Name -notmatch '\.jar$') {
-        Log ("[ФАЙЛ]   {0} — не jar (Forge не загрузит; можно убрать из папки mods)" -f $f.Name)
+        # Служебные файлы самой сборки в этой папке не трогаем и не ругаем.
+        if ($f.Name -ieq 'mods.json' -or $f.Name -ieq 'README.md') { continue }
+        Log ("[ФАЙЛ]   {0} — не jar, Forge его просто пропустит" -f $f.Name)
         continue
     }
     $bad = Test-JarFile $f.FullName
@@ -786,7 +826,7 @@ foreach ($f in (Get-ChildItem -Path $Out -File | Sort-Object Name)) {
         continue
     }
     $jarIds = @(Get-ModIds $f.FullName)
-    if ($jarIds.Count -eq 0) {
+    if ($jarIds.Count -eq 0 -and -not (Test-IsModJar $f.FullName)) {
         Log ("[НЕ МОД] {0} — внутри не найден mods.toml; Forge такой файл проигнорирует (зависимые моды напишут 'not installed')" -f $f.Name)
         $broken++
         continue
