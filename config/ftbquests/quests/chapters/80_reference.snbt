@@ -19,6 +19,7 @@
 				{
 					id: "0A110D0200000001"
 					title: "Разобраться в системе печатей"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -35,6 +36,7 @@
 				{
 					id: "0A110D0200000002"
 					title: "Изучить список кастомных предметов"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -51,6 +53,7 @@
 				{
 					id: "0A110D0200000003"
 					title: "Изучить условия перехода между эпохами"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -67,6 +70,7 @@
 				{
 					id: "0A110D0200000004"
 					title: "Изучить механики заказов и доставки"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -83,6 +87,7 @@
 				{
 					id: "0A110D0200000005"
 					title: "Запомнить, где лежат настройки сборки"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -99,6 +104,7 @@
 				{
 					id: "0A110D0200000006"
 					title: "Условие выполнено"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]

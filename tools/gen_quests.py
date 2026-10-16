@@ -269,6 +269,9 @@ def task_instruction(t: Task) -> str:
             opts = ", ".join(f"{_pretty(x)} [{x}]" for x in items.split("|"))
             return f"Получите любой из вариантов: {opts} — всего ×{n}."
         p = cond.split(":")
+        if p[0] == "camp":
+            return ("Установите лагерь или корабль снабжения MineColonies в выбранном месте. "
+                    "Сервер сам найдёт постройку рядом с вами (или засчитает шаг, когда появится ратуша).")
         if p[0] == "townhall":
             return (f"Улучшите ратушу своей колонии до уровня {p[1]} "
                     "(заказ на улучшение выдаётся строителю).")
@@ -867,8 +870,7 @@ def build_chapters() -> list[Chapter]:
 
 TASK_MAP: dict[tuple[str, str], Task] = {}
 _CHAIN = [
-    ("00_prologue", "start", item_task("minecolonies:supplycamp|minecolonies:supplyship", 0,
-                                      "Лагерь или корабль снабжения установлен")),
+    ("00_prologue", "start", custom("camp", "Лагерь или корабль снабжения установлен")),
     ("00_prologue", "orders", custom("building:builder:1", "Хижина строителя построена")),
     ("00_prologue", "town_hall", custom("townhall:1", "Ратуша построена")),
     ("00_prologue", "builder", custom("building:builder:2", "Хижина строителя II уровня")),
@@ -1243,7 +1245,9 @@ def write_colony_js() -> None:
     js = f"""// 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
 // Строгая цепочка квестов: прогресс выдаётся только по порядку, звено за звеном.
 // Независимые квесты (ключи глав с суффиксом #free) проверяются отдельно и цепочку не блокируют.
-// Условия MineColonies и наличие предметов проверяются сервером раз в 5 секунд.
+// Условия MineColonies и наличие предметов проверяются сервером раз в секунду.
+
+console.info('[Arcanopolis] 95_colony_checks: проверка условий колонии активна')
 
 const CHAPTER_CHAINS = {{
 {table}
@@ -1285,8 +1289,37 @@ function arcanopolis_itemCount(player, id) {{
   }} catch (e) {{ return 0 }}
 }}
 
+function arcanopolis_findCamp(player) {{
+  // установленный лагерь/корабль снабжения: ищем блок рядом с игроком
+  try {{
+    const lvl = player.getLevel()
+    const pos = player.blockPosition()
+    for (let dx = -24; dx <= 24; dx++) {{
+      for (let dz = -24; dz <= 24; dz++) {{
+        for (let dy = -12; dy <= 12; dy++) {{
+          const st = lvl.getBlockState(pos.offset(dx, dy, dz))
+          const bs = String(st.getBlock())
+          if (bs.indexOf('minecolonies:supplycamp') >= 0 || bs.indexOf('minecolonies:supplyship') >= 0) return true
+        }}
+      }}
+    }}
+  }} catch (e) {{}}
+  return false
+}}
+
 function arcanopolis_rowOk(player, row) {{
   if (row.kind === 'always') return true
+  if (row.kind === 'camp') {{
+    try {{ if (arcanopolis_itemCount(player, 'minecolonies:supplycamp') + arcanopolis_itemCount(player, 'minecolonies:supplyship') >= 1) return true }} catch (e) {{}}
+    try {{
+      const col = arcanopolis_colonyOf(player)
+      if (col != null) {{
+        const bm = arcanopolis_buildingManager(col)
+        if (bm != null && bm.getTownHall() != null) return true
+      }}
+    }} catch (e) {{}}
+    return arcanopolis_findCamp(player)
+  }}
   if (row.kind === 'item_any') {{
     try {{
       const ids = String(row.items).split('|')
@@ -1331,7 +1364,7 @@ const _arcanopolis_done = {{}}
 ServerEvents.tick(event => {{
   const s = event.server || event
   try {{
-    if (s.getTickCount() % 100 !== 0) return  // раз в 5 секунд
+    if (s.getTickCount() % 20 !== 0) return  // раз в секунду
     const players = s.players
     if (!players) return
     for (const p of players) {{
@@ -1369,6 +1402,25 @@ def snbt_item(item: str) -> str:
     return f'"{esc(item)}"'
 
 
+def task_icon(t: Task) -> str:
+    """Иконка задачи: без неё FTB показывает радужный шар у custom-задач."""
+    if t.ttype != "custom":
+        return ""
+    cond = t.cond or "always"
+    if cond.startswith("item_any:"):
+        return cond[len("item_any:"):].split("@")[0].split("|")[0]
+    pp = cond.split(":")
+    if pp[0] == "camp":
+        return "minecolonies:supplycamp"
+    if pp[0] == "townhall":
+        return "minecolonies:blockhuttownhall"
+    if pp[0] == "citizens":
+        return "minecraft:villager_spawn_egg"
+    if pp[0] == "building" and len(pp) >= 2:
+        return HUT_ICONS.get(pp[1], "minecolonies:supplycamp")
+    return "minecraft:book"
+
+
 def emit_task(t: Task, chapter_no: int, indent: str) -> str:
     tid = uid("02", chapter_no)
     lines = [f"{indent}{{", f"{indent}\tid: \"{tid}\""]
@@ -1387,6 +1439,9 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
     elif t.ttype in ("checkmark", "custom"):
         if t.title:
             lines.append(f"{indent}\ttitle: \"{esc(t.title)}\"")
+        _ticon = task_icon(t)
+        if _ticon:
+            lines.append(f"{indent}\ticon: \"{esc(_ticon)}\"")
     elif t.ttype == "advancement":
         lines.append(f"{indent}\tadvancement: \"{esc(t.advancement)}\"")
         lines.append(f"{indent}\tcriterion: \"\"")
@@ -1416,6 +1471,8 @@ def emit_task(t: Task, chapter_no: int, indent: str) -> str:
                 row = {"task": tid, "kind": "building", "word": pp[1], "n": int(pp[2])}
             elif len(pp) >= 2 and pp[0] in ("townhall", "citizens"):
                 row = {"task": tid, "kind": pp[0], "n": int(pp[1])}
+            elif pp[0] == "camp":
+                row = {"task": tid, "kind": "camp"}
             else:
                 row = {"task": tid, "kind": "always"}
     elif t.ttype == "item" and not t.consume:

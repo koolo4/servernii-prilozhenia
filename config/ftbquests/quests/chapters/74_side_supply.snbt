@@ -19,6 +19,7 @@
 				{
 					id: "0A110C0200000001"
 					title: "Приступить к испытанию снабжения"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -44,6 +45,7 @@
 				{
 					id: "0A110C0200000002"
 					title: "7 игровых дней снабжение работает автоматически"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -69,6 +71,7 @@
 				{
 					id: "0A110C0200000003"
 					title: "30 игровых дней без дефицита в колонии"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -93,6 +96,7 @@
 				{
 					id: "0A110C0200000004"
 					title: "Колония функционирует без вашего участия"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -188,6 +192,7 @@
 				{
 					id: "0A110C020000000A"
 					title: "Здание warehouse (ур. 3)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -211,6 +216,7 @@
 				{
 					id: "0A110C020000000C"
 					title: "Здание courier (ур. 2)"
+					icon: "minecolonies:blockhutcourier"
 					type: "custom"
 				}
 			]

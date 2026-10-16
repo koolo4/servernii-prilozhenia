@@ -27,6 +27,7 @@
 				{
 					id: "0A11010200000001"
 					title: "Лагерь или корабль снабжения установлен"
+					icon: "minecolonies:supplycamp"
 					type: "custom"
 				}
 			]
@@ -44,6 +45,7 @@
 				{
 					id: "0A11010200000002"
 					title: "Хижина строителя построена"
+					icon: "minecolonies:blockhutbuilder"
 					type: "custom"
 				}
 			]
@@ -69,6 +71,7 @@
 				{
 					id: "0A11010200000003"
 					title: "Ратуша построена"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -86,6 +89,7 @@
 				{
 					id: "0A11010200000004"
 					title: "Хижина строителя II уровня"
+					icon: "minecolonies:blockhutbuilder"
 					type: "custom"
 				}
 			]
@@ -111,6 +115,7 @@
 				{
 					id: "0A11010200000005"
 					title: "Первый жилой дом заселён"
+					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
 			]
@@ -146,6 +151,7 @@
 				{
 					id: "0A11010200000007"
 					title: "Три жителя в колонии"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -171,6 +177,7 @@
 				{
 					id: "0A11010200000008"
 					title: "Курьерская служба запущена"
+					icon: "minecolonies:blockhutcourier"
 					type: "custom"
 				}
 			]
@@ -201,6 +208,7 @@
 				{
 					id: "0A11010200000009"
 					title: "Пять жителей в колонии"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -254,6 +262,7 @@
 				{
 					id: "0A1101020000000C"
 					title: "Здание cook (ур. 1)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -271,6 +280,7 @@
 				{
 					id: "0A1101020000000D"
 					title: "Здание farm (ур. 1)"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]
@@ -288,6 +298,7 @@
 				{
 					id: "0A1101020000000E"
 					title: "Здание fish (ур. 1)"
+					icon: "minecolonies:blockhutfisherman"
 					type: "custom"
 				}
 			]
@@ -305,6 +316,7 @@
 				{
 					id: "0A1101020000000F"
 					title: "Здание home (ур. 2)"
+					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
 			]
@@ -322,6 +334,7 @@
 				{
 					id: "0A11010200000010"
 					title: "Жителей: 4"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -339,6 +352,7 @@
 				{
 					id: "0A11010200000011"
 					title: "Жителей: 6"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -356,6 +370,7 @@
 				{
 					id: "0A11010200000012"
 					title: "Жителей: 8"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -373,6 +388,7 @@
 				{
 					id: "0A11010200000013"
 					title: "Здание guard (ур. 1)"
+					icon: "minecolonies:blockhutguardtower"
 					type: "custom"
 				}
 			]
@@ -390,6 +406,7 @@
 				{
 					id: "0A11010200000014"
 					title: "Здание black (ур. 1)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -407,6 +424,7 @@
 				{
 					id: "0A11010200000015"
 					title: "Здание stone (ур. 1)"
+					icon: "minecolonies:blockhutstonemason"
 					type: "custom"
 				}
 			]
@@ -610,6 +628,7 @@
 				{
 					id: "0A11010200000021"
 					title: "Здание builder (ур. 1)"
+					icon: "minecolonies:blockhutbuilder"
 					type: "custom"
 				}
 			]
@@ -759,6 +778,7 @@
 				{
 					id: "0A1101020000002A"
 					title: "Здание farm (ур. 2)"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]
@@ -782,6 +802,7 @@
 				{
 					id: "0A1101020000002C"
 					title: "Здание warehouse (ур. 1)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -805,6 +826,7 @@
 				{
 					id: "0A1101020000002E"
 					title: "Здание black (ур. 1)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -828,6 +850,7 @@
 				{
 					id: "0A11010200000030"
 					title: "Жителей: 4"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -851,6 +874,7 @@
 				{
 					id: "0A11010200000032"
 					title: "Здание home (ур. 2)"
+					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
 			]
@@ -988,6 +1012,7 @@
 				{
 					id: "0A1101020000003B"
 					title: "Получите: minecraft:mutton / minecraft:porkchop"
+					icon: "minecraft:mutton"
 					type: "custom"
 				}
 			]
@@ -1245,6 +1270,7 @@
 				{
 					id: "0A1101020000004A"
 					title: "Здание farm (ур. 2)"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]
@@ -1371,6 +1397,7 @@
 				{
 					id: "0A11010200000050"
 					title: "Условие выполнено"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]

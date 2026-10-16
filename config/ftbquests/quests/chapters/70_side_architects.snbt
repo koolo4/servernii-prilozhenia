@@ -19,6 +19,7 @@
 				{
 					id: "0A11080200000001"
 					title: "Приступить к развитию архитектуры"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -44,6 +45,7 @@
 				{
 					id: "0A11080200000002"
 					title: "Оформите ратушу и центр в едином стиле"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -69,6 +71,7 @@
 				{
 					id: "0A11080200000003"
 					title: "Выстройте три различимых квартала"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -94,6 +97,7 @@
 				{
 					id: "0A11080200000004"
 					title: "Разбейте парк или площадь"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -118,6 +122,7 @@
 				{
 					id: "0A11080200000005"
 					title: "Постройте городской монумент"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -213,6 +218,7 @@
 				{
 					id: "0A1108020000000B"
 					title: "Здание home (ур. 3)"
+					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
 			]
@@ -236,6 +242,7 @@
 				{
 					id: "0A1108020000000D"
 					title: "Здание farm (ур. 2)"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]

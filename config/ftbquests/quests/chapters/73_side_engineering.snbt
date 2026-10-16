@@ -19,6 +19,7 @@
 				{
 					id: "0A110B0200000001"
 					title: "Взять первую инженерную задачу"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -44,6 +45,7 @@
 				{
 					id: "0A110B0200000002"
 					title: "Постройте компактную фабрику"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -69,6 +71,7 @@
 				{
 					id: "0A110B0200000003"
 					title: "Постройте транспортную сеть между цехами"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -94,6 +97,7 @@
 				{
 					id: "0A110B0200000004"
 					title: "Создайте энергомост между цехами"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -119,6 +123,7 @@
 				{
 					id: "0A110B0200000005"
 					title: "Постройте сортировочную станцию"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -136,6 +141,7 @@
 				{
 					id: "0A110B0200000006"
 					title: "Получите: create:toolbox / minecraft:chest"
+					icon: "create:toolbox"
 					type: "custom"
 				}
 			]
@@ -171,6 +177,7 @@
 				{
 					id: "0A110B0200000008"
 					title: "Здание mech (ур. 2)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -194,6 +201,7 @@
 				{
 					id: "0A110B020000000A"
 					title: "Здание mech (ур. 2)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -217,6 +225,7 @@
 				{
 					id: "0A110B020000000C"
 					title: "Здание university (ур. 1)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]

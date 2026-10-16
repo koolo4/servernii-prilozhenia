@@ -20,6 +20,7 @@
 				{
 					id: "0A11050200000001"
 					title: "Эпоха IV достигнута"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -55,6 +56,7 @@
 				{
 					id: "0A11050200000003"
 					title: "Магические помощники призваны"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -72,6 +74,7 @@
 				{
 					id: "0A11050200000004"
 					title: "Магия и механизмы объединены"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -187,6 +190,7 @@
 				{
 					id: "0A1105020000000A"
 					title: "Алхимия Eidolon освоена"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -204,6 +208,7 @@
 				{
 					id: "0A1105020000000B"
 					title: "Характерные компоненты изготовлены"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -234,11 +239,13 @@
 				{
 					id: "0A1105020000000C"
 					title: "Арканная лаборатория построена"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				},
 				{
 					id: "0A1105020000000D"
 					title: "Арканная лаборатория построена"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -292,6 +299,7 @@
 				{
 					id: "0A11050200000010"
 					title: "Жителей: 36"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -309,6 +317,7 @@
 				{
 					id: "0A11050200000011"
 					title: "Жителей: 40"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -326,6 +335,7 @@
 				{
 					id: "0A11050200000012"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -343,6 +353,7 @@
 				{
 					id: "0A11050200000013"
 					title: "Здание university (ур. 3)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -360,6 +371,7 @@
 				{
 					id: "0A11050200000014"
 					title: "Здание school (ур. 3)"
+					icon: "minecolonies:blockhutschool"
 					type: "custom"
 				}
 			]
@@ -377,6 +389,7 @@
 				{
 					id: "0A11050200000015"
 					title: "Здание hospital (ур. 3)"
+					icon: "minecolonies:blockhuthospital"
 					type: "custom"
 				}
 			]
@@ -394,6 +407,7 @@
 				{
 					id: "0A11050200000016"
 					title: "Здание mech (ур. 3)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -411,6 +425,7 @@
 				{
 					id: "0A11050200000017"
 					title: "Здание cook (ур. 5)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -428,6 +443,7 @@
 				{
 					id: "0A11050200000018"
 					title: "Здание guard (ур. 5)"
+					icon: "minecolonies:blockhutguardtower"
 					type: "custom"
 				}
 			]
@@ -445,6 +461,7 @@
 				{
 					id: "0A11050200000019"
 					title: "Здание warehouse (ур. 5)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -516,6 +533,7 @@
 				{
 					id: "0A1105020000001D"
 					title: "Получите: minecraft:potion / minecraft:glass_bottle"
+					icon: "minecraft:potion"
 					type: "custom"
 				}
 			]
@@ -539,6 +557,7 @@
 				{
 					id: "0A1105020000001F"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -580,6 +599,7 @@
 				{
 					id: "0A11050200000022"
 					title: "Здание university (ур. 3)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -603,6 +623,7 @@
 				{
 					id: "0A11050200000024"
 					title: "Здание mech (ур. 3)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -620,6 +641,7 @@
 				{
 					id: "0A11050200000025"
 					title: "Получите: botania:livingwood / minecraft:oak_log"
+					icon: "botania:livingwood"
 					type: "custom"
 				}
 			]
@@ -637,6 +659,7 @@
 				{
 					id: "0A11050200000026"
 					title: "Получите: botania:livingrock / minecraft:stone"
+					icon: "botania:livingrock"
 					type: "custom"
 				}
 			]
@@ -654,6 +677,7 @@
 				{
 					id: "0A11050200000027"
 					title: "Получите: botania:manasteel_ingot / minecraft:iron_ingot"
+					icon: "botania:manasteel_ingot"
 					type: "custom"
 				}
 			]
@@ -671,6 +695,7 @@
 				{
 					id: "0A11050200000028"
 					title: "Получите: botania:mana_diamond / minecraft:diamond"
+					icon: "botania:mana_diamond"
 					type: "custom"
 				}
 			]
@@ -724,6 +749,7 @@
 				{
 					id: "0A1105020000002B"
 					title: "Получите: botania:rune / minecraft:stone"
+					icon: "botania:rune"
 					type: "custom"
 				}
 			]
@@ -765,6 +791,7 @@
 				{
 					id: "0A1105020000002E"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -818,6 +845,7 @@
 				{
 					id: "0A11050200000031"
 					title: "Получите: bloodmagic:reinforcedslate / minecraft:stone_slab"
+					icon: "bloodmagic:reinforcedslate"
 					type: "custom"
 				}
 			]
@@ -835,6 +863,7 @@
 				{
 					id: "0A11050200000032"
 					title: "Получите: bloodmagic:blood_rune / minecraft:stone_bricks"
+					icon: "bloodmagic:blood_rune"
 					type: "custom"
 				}
 			]
@@ -852,6 +881,7 @@
 				{
 					id: "0A11050200000033"
 					title: "Получите: bloodmagic:sacrificial_dagger / minecraft:iron_sword"
+					icon: "bloodmagic:sacrificial_dagger"
 					type: "custom"
 				}
 			]
@@ -875,6 +905,7 @@
 				{
 					id: "0A11050200000035"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -892,6 +923,7 @@
 				{
 					id: "0A11050200000036"
 					title: "Получите: eidolon:pewter_ingot / minecraft:iron_ingot"
+					icon: "eidolon:pewter_ingot"
 					type: "custom"
 				}
 			]
@@ -909,6 +941,7 @@
 				{
 					id: "0A11050200000037"
 					title: "Получите: eidolon:arcane_gold_ingot / minecraft:gold_ingot"
+					icon: "eidolon:arcane_gold_ingot"
 					type: "custom"
 				}
 			]
@@ -926,6 +959,7 @@
 				{
 					id: "0A11050200000038"
 					title: "Получите: eidolon:crucible / minecraft:cauldron"
+					icon: "eidolon:crucible"
 					type: "custom"
 				}
 			]
@@ -961,11 +995,13 @@
 				{
 					id: "0A1105020000003A"
 					title: "Получите: eidolon:pewter_ingot / minecraft:iron_ingot"
+					icon: "eidolon:pewter_ingot"
 					type: "custom"
 				},
 				{
 					id: "0A1105020000003B"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -1007,6 +1043,7 @@
 				{
 					id: "0A1105020000003E"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -1186,6 +1223,7 @@
 				{
 					id: "0A11050200000048"
 					title: "Получите: minecraft:potion / minecraft:glass_bottle"
+					icon: "minecraft:potion"
 					type: "custom"
 				}
 			]
@@ -1281,6 +1319,7 @@
 				{
 					id: "0A1105020000004E"
 					title: "Здание hospital (ур. 3)"
+					icon: "minecolonies:blockhuthospital"
 					type: "custom"
 				}
 			]
@@ -1304,6 +1343,7 @@
 				{
 					id: "0A11050200000050"
 					title: "Здание hospital (ур. 3)"
+					icon: "minecolonies:blockhuthospital"
 					type: "custom"
 				}
 			]
@@ -1345,6 +1385,7 @@
 				{
 					id: "0A11050200000053"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -1368,6 +1409,7 @@
 				{
 					id: "0A11050200000055"
 					title: "Здание library (ур. 4)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -1391,6 +1433,7 @@
 				{
 					id: "0A11050200000057"
 					title: "Здание mech (ур. 3)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -1414,6 +1457,7 @@
 				{
 					id: "0A11050200000059"
 					title: "Здание hospital (ур. 3)"
+					icon: "minecolonies:blockhuthospital"
 					type: "custom"
 				}
 			]
@@ -1450,6 +1494,7 @@
 				{
 					id: "0A1105020000005A"
 					title: "Условие выполнено"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]

@@ -19,6 +19,7 @@
 				{
 					id: "0A110A0200000001"
 					title: "Выбрать школу для углублённого изучения"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -44,6 +45,7 @@
 				{
 					id: "0A110A0200000002"
 					title: "Завершите испытание школы Источника"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -69,6 +71,7 @@
 				{
 					id: "0A110A0200000003"
 					title: "Завершите испытание школы Маны"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -94,6 +97,7 @@
 				{
 					id: "0A110A0200000004"
 					title: "Завершите испытание школы Крови"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -119,6 +123,7 @@
 				{
 					id: "0A110A0200000005"
 					title: "Завершите испытание школы Алхимии"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -172,6 +177,7 @@
 				{
 					id: "0A110A0200000008"
 					title: "Здание school (ур. 2)"
+					icon: "minecolonies:blockhutschool"
 					type: "custom"
 				}
 			]
@@ -189,6 +195,7 @@
 				{
 					id: "0A110A0200000009"
 					title: "Здание university (ур. 2)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -212,6 +219,7 @@
 				{
 					id: "0A110A020000000B"
 					title: "Здание library (ур. 2)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]

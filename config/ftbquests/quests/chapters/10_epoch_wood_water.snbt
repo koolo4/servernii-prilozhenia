@@ -20,6 +20,7 @@
 				{
 					id: "0A11020200000001"
 					title: "Ратуша II уровня достигнута"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -37,6 +38,7 @@
 				{
 					id: "0A11020200000002"
 					title: "Ратуша II уровня построена"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -54,6 +56,7 @@
 				{
 					id: "0A11020200000003"
 					title: "Восемь жителей"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -71,6 +74,7 @@
 				{
 					id: "0A11020200000004"
 					title: "Хижина лесоруба построена"
+					icon: "minecolonies:blockhutlumberjack"
 					type: "custom"
 				}
 			]
@@ -88,6 +92,7 @@
 				{
 					id: "0A11020200000005"
 					title: "Хижина шахтёра построена"
+					icon: "minecolonies:blockhutminer"
 					type: "custom"
 				}
 			]
@@ -105,6 +110,7 @@
 				{
 					id: "0A11020200000006"
 					title: "Склад построен"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -122,6 +128,7 @@
 				{
 					id: "0A11020200000007"
 					title: "Курьер нанят"
+					icon: "minecolonies:blockhutcourier"
 					type: "custom"
 				}
 			]
@@ -139,6 +146,7 @@
 				{
 					id: "0A11020200000008"
 					title: "Ферма работает"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]
@@ -276,6 +284,7 @@
 				{
 					id: "0A1102020000000F"
 					title: "Книга заклинаний изучена"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -324,6 +333,7 @@
 				{
 					id: "0A11020200000011"
 					title: "Городская мастерская построена"
+					icon: "minecolonies:supplycamp"
 					type: "custom"
 				},
 				{
@@ -383,6 +393,7 @@
 				{
 					id: "0A11020200000015"
 					title: "Здание home (ур. 3)"
+					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
 			]
@@ -400,6 +411,7 @@
 				{
 					id: "0A11020200000016"
 					title: "Жителей: 4"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -417,6 +429,7 @@
 				{
 					id: "0A11020200000017"
 					title: "Жителей: 6"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -434,6 +447,7 @@
 				{
 					id: "0A11020200000018"
 					title: "Жителей: 10"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -451,6 +465,7 @@
 				{
 					id: "0A11020200000019"
 					title: "Жителей: 12"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -468,6 +483,7 @@
 				{
 					id: "0A1102020000001A"
 					title: "Здание lumberjack (ур. 2)"
+					icon: "minecolonies:blockhutlumberjack"
 					type: "custom"
 				}
 			]
@@ -485,6 +501,7 @@
 				{
 					id: "0A1102020000001B"
 					title: "Здание miner (ур. 2)"
+					icon: "minecolonies:blockhutminer"
 					type: "custom"
 				}
 			]
@@ -502,6 +519,7 @@
 				{
 					id: "0A1102020000001C"
 					title: "Здание farm (ур. 2)"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]
@@ -519,6 +537,7 @@
 				{
 					id: "0A1102020000001D"
 					title: "Здание cook (ур. 2)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -536,6 +555,7 @@
 				{
 					id: "0A1102020000001E"
 					title: "Здание fish (ур. 2)"
+					icon: "minecolonies:blockhutfisherman"
 					type: "custom"
 				}
 			]
@@ -553,6 +573,7 @@
 				{
 					id: "0A1102020000001F"
 					title: "Здание saw (ур. 1)"
+					icon: "minecolonies:blockhutsawmill"
 					type: "custom"
 				}
 			]
@@ -570,6 +591,7 @@
 				{
 					id: "0A11020200000020"
 					title: "Здание stone (ур. 2)"
+					icon: "minecolonies:blockhutstonemason"
 					type: "custom"
 				}
 			]
@@ -587,6 +609,7 @@
 				{
 					id: "0A11020200000021"
 					title: "Здание black (ур. 2)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -604,6 +627,7 @@
 				{
 					id: "0A11020200000022"
 					title: "Здание guard (ур. 2)"
+					icon: "minecolonies:blockhutguardtower"
 					type: "custom"
 				}
 			]
@@ -621,6 +645,7 @@
 				{
 					id: "0A11020200000023"
 					title: "Здание warehouse (ур. 2)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -638,6 +663,7 @@
 				{
 					id: "0A11020200000024"
 					title: "Здание courier (ур. 2)"
+					icon: "minecolonies:blockhutcourier"
 					type: "custom"
 				}
 			]
@@ -1075,6 +1101,7 @@
 				{
 					id: "0A1102020000003D"
 					title: "Здание library (ур. 1)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -1098,6 +1125,7 @@
 				{
 					id: "0A1102020000003F"
 					title: "Здание saw (ур. 1)"
+					icon: "minecolonies:blockhutsawmill"
 					type: "custom"
 				}
 			]
@@ -1355,6 +1383,7 @@
 				{
 					id: "0A1102020000004E"
 					title: "Здание cook (ур. 2)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -1378,6 +1407,7 @@
 				{
 					id: "0A11020200000050"
 					title: "Здание miner (ур. 2)"
+					icon: "minecolonies:blockhutminer"
 					type: "custom"
 				}
 			]
@@ -1401,6 +1431,7 @@
 				{
 					id: "0A11020200000052"
 					title: "Здание lumberjack (ур. 2)"
+					icon: "minecolonies:blockhutlumberjack"
 					type: "custom"
 				}
 			]
@@ -1424,6 +1455,7 @@
 				{
 					id: "0A11020200000054"
 					title: "Здание black (ур. 2)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -1447,6 +1479,7 @@
 				{
 					id: "0A11020200000056"
 					title: "Здание home (ур. 3)"
+					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
 			]
@@ -1470,6 +1503,7 @@
 				{
 					id: "0A11020200000058"
 					title: "Здание warehouse (ур. 2)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1499,6 +1533,7 @@
 				{
 					id: "0A1102020000005B"
 					title: "Здание saw (ур. 2)"
+					icon: "minecolonies:blockhutsawmill"
 					type: "custom"
 				}
 			]
@@ -1552,6 +1587,7 @@
 				{
 					id: "0A11020200000060"
 					title: "Здание black (ур. 2)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -1575,6 +1611,7 @@
 				{
 					id: "0A11020200000062"
 					title: "Здание warehouse (ур. 2)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1611,6 +1648,7 @@
 				{
 					id: "0A11020200000063"
 					title: "Условие выполнено"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]

@@ -20,6 +20,7 @@
 				{
 					id: "0A11070200000001"
 					title: "Эпоха VI достигнута"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -177,11 +178,13 @@
 				{
 					id: "0A11070200000008"
 					title: "Первый импульс Сердца"
+					icon: "minecraft:book"
 					type: "custom"
 				},
 				{
 					id: "0A11070200000009"
 					title: "Первый импульс Сердца"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -235,6 +238,7 @@
 				{
 					id: "0A1107020000000C"
 					title: "Жителей: 56"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -252,6 +256,7 @@
 				{
 					id: "0A1107020000000D"
 					title: "Жителей: 60"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -269,6 +274,7 @@
 				{
 					id: "0A1107020000000E"
 					title: "Здание mech (ур. 5)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -286,6 +292,7 @@
 				{
 					id: "0A1107020000000F"
 					title: "Здание university (ур. 5)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -303,6 +310,7 @@
 				{
 					id: "0A11070200000010"
 					title: "Здание hospital (ур. 5)"
+					icon: "minecolonies:blockhuthospital"
 					type: "custom"
 				}
 			]
@@ -320,6 +328,7 @@
 				{
 					id: "0A11070200000011"
 					title: "Здание black (ур. 5)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -337,11 +346,13 @@
 				{
 					id: "0A11070200000012"
 					title: "Здание miner (ур. 5)"
+					icon: "minecolonies:blockhutminer"
 					type: "custom"
 				},
 				{
 					id: "0A11070200000013"
 					title: "Здание lumberjack (ур. 5)"
+					icon: "minecolonies:blockhutlumberjack"
 					type: "custom"
 				}
 			]
@@ -395,6 +406,7 @@
 				{
 					id: "0A11070200000016"
 					title: "Получите: mekanism:pellet_plutonium / minecraft:nether_star"
+					icon: "mekanism:pellet_plutonium"
 					type: "custom"
 				}
 			]
@@ -412,6 +424,7 @@
 				{
 					id: "0A11070200000017"
 					title: "Получите: mekanism:pellet_antimatter / minecraft:dragon_breath"
+					icon: "mekanism:pellet_antimatter"
 					type: "custom"
 				}
 			]
@@ -435,6 +448,7 @@
 				{
 					id: "0A11070200000019"
 					title: "Здание mech (ур. 5)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -470,6 +484,7 @@
 				{
 					id: "0A1107020000001B"
 					title: "Получите: thermal:signalum_ingot / minecraft:redstone"
+					icon: "thermal:signalum_ingot"
 					type: "custom"
 				}
 			]
@@ -487,6 +502,7 @@
 				{
 					id: "0A1107020000001C"
 					title: "Получите: thermal:lumium_ingot / minecraft:glowstone_dust"
+					icon: "thermal:lumium_ingot"
 					type: "custom"
 				}
 			]
@@ -528,6 +544,7 @@
 				{
 					id: "0A1107020000001F"
 					title: "Здание mech (ур. 5)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -605,6 +622,7 @@
 				{
 					id: "0A11070200000024"
 					title: "Здание library (ур. 5)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -628,6 +646,7 @@
 				{
 					id: "0A11070200000026"
 					title: "Здание university (ур. 5)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -669,6 +688,7 @@
 				{
 					id: "0A11070200000029"
 					title: "Ратуша 5 уровня"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -728,6 +748,7 @@
 				{
 					id: "0A1107020000002D"
 					title: "Жителей: 60"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -835,6 +856,7 @@
 				{
 					id: "0A11070200000033"
 					title: "Получите: minecraft:elytra / minecraft:firework_rocket"
+					icon: "minecraft:elytra"
 					type: "custom"
 				}
 			]
@@ -1092,6 +1114,7 @@
 				{
 					id: "0A11070200000042"
 					title: "Здание black (ур. 5)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -1115,6 +1138,7 @@
 				{
 					id: "0A11070200000044"
 					title: "Здание library (ур. 5)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -1138,6 +1162,7 @@
 				{
 					id: "0A11070200000046"
 					title: "Здание mech (ур. 5)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -1161,6 +1186,7 @@
 				{
 					id: "0A11070200000048"
 					title: "Здание warehouse (ур. 5)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1184,6 +1210,7 @@
 				{
 					id: "0A1107020000004A"
 					title: "Жителей: 60"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -1207,6 +1234,7 @@
 				{
 					id: "0A1107020000004C"
 					title: "Здание warehouse (ур. 5)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1230,6 +1258,7 @@
 				{
 					id: "0A1107020000004E"
 					title: "Здание university (ур. 5)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -1253,6 +1282,7 @@
 				{
 					id: "0A11070200000050"
 					title: "Здание hospital (ур. 5)"
+					icon: "minecolonies:blockhuthospital"
 					type: "custom"
 				}
 			]
@@ -1276,6 +1306,7 @@
 				{
 					id: "0A11070200000052"
 					title: "Здание mech (ур. 5)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -1299,6 +1330,7 @@
 				{
 					id: "0A11070200000054"
 					title: "Здание guard (ур. 5)"
+					icon: "minecolonies:blockhutguardtower"
 					type: "custom"
 				}
 			]
@@ -1322,6 +1354,7 @@
 				{
 					id: "0A11070200000056"
 					title: "Здание warehouse (ур. 5)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1345,6 +1378,7 @@
 				{
 					id: "0A11070200000058"
 					title: "Здание farm (ур. 5)"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]
@@ -1368,6 +1402,7 @@
 				{
 					id: "0A1107020000005A"
 					title: "Здание library (ур. 5)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -1391,6 +1426,7 @@
 				{
 					id: "0A1107020000005C"
 					title: "Жителей: 60"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -1414,6 +1450,7 @@
 				{
 					id: "0A1107020000005E"
 					title: "Здание mech (ур. 5)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -1474,6 +1511,7 @@
 				{
 					id: "0A11070200000061"
 					title: "Условие выполнено"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]

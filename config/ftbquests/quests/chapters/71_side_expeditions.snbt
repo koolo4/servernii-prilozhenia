@@ -19,6 +19,7 @@
 				{
 					id: "0A11090200000001"
 					title: "Отправиться в первую экспедицию"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -44,6 +45,7 @@
 				{
 					id: "0A11090200000002"
 					title: "Найдите и обыщите структуру вдали от дома"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -121,6 +123,7 @@
 				{
 					id: "0A11090200000005"
 					title: "Найдите заброшенное поселение MineColonies"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -216,6 +219,7 @@
 				{
 					id: "0A1109020000000B"
 					title: "Здание university (ур. 1)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -239,6 +243,7 @@
 				{
 					id: "0A1109020000000D"
 					title: "Здание library (ур. 2)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]

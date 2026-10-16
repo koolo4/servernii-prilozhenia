@@ -20,6 +20,7 @@
 				{
 					id: "0A11030200000001"
 					title: "Эпоха II достигнута"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -37,6 +38,7 @@
 				{
 					id: "0A11030200000002"
 					title: "Ратуша III уровня построена"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -54,6 +56,7 @@
 				{
 					id: "0A11030200000003"
 					title: "Строитель III уровня"
+					icon: "minecolonies:blockhutbuilder"
 					type: "custom"
 				}
 			]
@@ -71,6 +74,7 @@
 				{
 					id: "0A11030200000004"
 					title: "Склад II уровня"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -88,6 +92,7 @@
 				{
 					id: "0A11030200000005"
 					title: "Двенадцать жителей"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -113,6 +118,7 @@
 				{
 					id: "0A11030200000006"
 					title: "Университет построен"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -130,6 +136,7 @@
 				{
 					id: "0A11030200000007"
 					title: "Повар работает"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -226,6 +233,7 @@
 				{
 					id: "0A1103020000000C"
 					title: "Первая магическая автоматизация запущена"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]
@@ -256,6 +264,7 @@
 				{
 					id: "0A1103020000000D"
 					title: "Мастерская компонентов построена"
+					icon: "minecolonies:supplycamp"
 					type: "custom"
 				},
 				{
@@ -315,6 +324,7 @@
 				{
 					id: "0A11030200000011"
 					title: "Ратуша 3 уровня"
+					icon: "minecolonies:blockhuttownhall"
 					type: "custom"
 				}
 			]
@@ -332,6 +342,7 @@
 				{
 					id: "0A11030200000012"
 					title: "Жителей: 14"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -349,6 +360,7 @@
 				{
 					id: "0A11030200000013"
 					title: "Жителей: 16"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -366,6 +378,7 @@
 				{
 					id: "0A11030200000014"
 					title: "Жителей: 18"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -383,6 +396,7 @@
 				{
 					id: "0A11030200000015"
 					title: "Жителей: 20"
+					icon: "minecraft:villager_spawn_egg"
 					type: "custom"
 				}
 			]
@@ -400,6 +414,7 @@
 				{
 					id: "0A11030200000016"
 					title: "Здание builder (ур. 3)"
+					icon: "minecolonies:blockhutbuilder"
 					type: "custom"
 				}
 			]
@@ -417,6 +432,7 @@
 				{
 					id: "0A11030200000017"
 					title: "Здание warehouse (ур. 3)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -434,6 +450,7 @@
 				{
 					id: "0A11030200000018"
 					title: "Здание mech (ур. 1)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -451,6 +468,7 @@
 				{
 					id: "0A11030200000019"
 					title: "Здание university (ур. 1)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -468,6 +486,7 @@
 				{
 					id: "0A1103020000001A"
 					title: "Здание library (ур. 2)"
+					icon: "minecolonies:blockhutlibrary"
 					type: "custom"
 				}
 			]
@@ -485,6 +504,7 @@
 				{
 					id: "0A1103020000001B"
 					title: "Здание school (ур. 1)"
+					icon: "minecolonies:blockhutschool"
 					type: "custom"
 				}
 			]
@@ -502,6 +522,7 @@
 				{
 					id: "0A1103020000001C"
 					title: "Здание hospital (ур. 1)"
+					icon: "minecolonies:blockhuthospital"
 					type: "custom"
 				}
 			]
@@ -519,6 +540,7 @@
 				{
 					id: "0A1103020000001D"
 					title: "Здание cook (ур. 3)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -536,6 +558,7 @@
 				{
 					id: "0A1103020000001E"
 					title: "Здание farm (ур. 3)"
+					icon: "minecolonies:blockhutfarmer"
 					type: "custom"
 				}
 			]
@@ -553,6 +576,7 @@
 				{
 					id: "0A1103020000001F"
 					title: "Здание guard (ур. 3)"
+					icon: "minecolonies:blockhutguardtower"
 					type: "custom"
 				}
 			]
@@ -570,6 +594,7 @@
 				{
 					id: "0A11030200000020"
 					title: "Здание home (ур. 4)"
+					icon: "minecolonies:blockhutcitizen"
 					type: "custom"
 				}
 			]
@@ -827,6 +852,7 @@
 				{
 					id: "0A1103020000002F"
 					title: "Здание mech (ур. 1)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -844,6 +870,7 @@
 				{
 					id: "0A11030200000030"
 					title: "Получите: createaddition:copper_wire / minecraft:copper_ingot"
+					icon: "createaddition:copper_wire"
 					type: "custom"
 				}
 			]
@@ -861,6 +888,7 @@
 				{
 					id: "0A11030200000031"
 					title: "Получите: createaddition:steel_rod / minecraft:iron_ingot"
+					icon: "createaddition:steel_rod"
 					type: "custom"
 				}
 			]
@@ -878,6 +906,7 @@
 				{
 					id: "0A11030200000032"
 					title: "Получите: createaddition:modular_accumulator / minecraft:redstone_block"
+					icon: "createaddition:modular_accumulator"
 					type: "custom"
 				}
 			]
@@ -895,6 +924,7 @@
 				{
 					id: "0A11030200000033"
 					title: "Получите: createaddition:electric_motor / minecraft:redstone"
+					icon: "createaddition:electric_motor"
 					type: "custom"
 				}
 			]
@@ -912,6 +942,7 @@
 				{
 					id: "0A11030200000034"
 					title: "Получите: createaddition:rolling_mill / minecraft:iron_block"
+					icon: "createaddition:rolling_mill"
 					type: "custom"
 				}
 			]
@@ -929,6 +960,7 @@
 				{
 					id: "0A11030200000035"
 					title: "Получите: createaddition:tesla_coil / minecraft:lightning_rod"
+					icon: "createaddition:tesla_coil"
 					type: "custom"
 				}
 			]
@@ -952,6 +984,7 @@
 				{
 					id: "0A11030200000037"
 					title: "Здание warehouse (ур. 3)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1119,6 +1152,7 @@
 				{
 					id: "0A11030200000041"
 					title: "Здание cook (ур. 3)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -1142,6 +1176,7 @@
 				{
 					id: "0A11030200000043"
 					title: "Здание black (ур. 3)"
+					icon: "minecolonies:blockhutblacksmith"
 					type: "custom"
 				}
 			]
@@ -1165,6 +1200,7 @@
 				{
 					id: "0A11030200000045"
 					title: "Здание courier (ур. 2)"
+					icon: "minecolonies:blockhutcourier"
 					type: "custom"
 				}
 			]
@@ -1188,6 +1224,7 @@
 				{
 					id: "0A11030200000047"
 					title: "Здание cook (ур. 3)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -1211,6 +1248,7 @@
 				{
 					id: "0A11030200000049"
 					title: "Здание miner (ур. 3)"
+					icon: "minecolonies:blockhutminer"
 					type: "custom"
 				}
 			]
@@ -1234,6 +1272,7 @@
 				{
 					id: "0A1103020000004B"
 					title: "Здание university (ур. 1)"
+					icon: "minecolonies:blockhutuniversity"
 					type: "custom"
 				}
 			]
@@ -1251,11 +1290,13 @@
 				{
 					id: "0A1103020000004C"
 					title: "Получите: createaddition:copper_wire / minecraft:copper_ingot"
+					icon: "createaddition:copper_wire"
 					type: "custom"
 				},
 				{
 					id: "0A1103020000004D"
 					title: "Здание warehouse (ур. 3)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1279,6 +1320,7 @@
 				{
 					id: "0A1103020000004F"
 					title: "Здание mech (ур. 1)"
+					icon: "minecolonies:blockhutmechanic"
 					type: "custom"
 				}
 			]
@@ -1332,6 +1374,7 @@
 				{
 					id: "0A11030200000052"
 					title: "Получите: minecraft:cooked_beef / minecraft:cooked_porkchop"
+					icon: "minecraft:cooked_beef"
 					type: "custom"
 				}
 			]
@@ -1427,6 +1470,7 @@
 				{
 					id: "0A1103020000005A"
 					title: "Здание warehouse (ур. 3)"
+					icon: "minecolonies:blockhutwarehouse"
 					type: "custom"
 				}
 			]
@@ -1450,6 +1494,7 @@
 				{
 					id: "0A1103020000005C"
 					title: "Здание cook (ур. 3)"
+					icon: "minecolonies:blockhutcook"
 					type: "custom"
 				}
 			]
@@ -1510,6 +1555,7 @@
 				{
 					id: "0A1103020000005F"
 					title: "Условие выполнено"
+					icon: "minecraft:book"
 					type: "custom"
 				}
 			]

@@ -1,11 +1,13 @@
 // 95_colony_checks.js — СГЕНЕРИРОВАНО tools/gen_quests.py, НЕ редактировать вручную!
 // Строгая цепочка квестов: прогресс выдаётся только по порядку, звено за звеном.
 // Независимые квесты (ключи глав с суффиксом #free) проверяются отдельно и цепочку не блокируют.
-// Условия MineColonies и наличие предметов проверяются сервером раз в 5 секунд.
+// Условия MineColonies и наличие предметов проверяются сервером раз в секунду.
+
+console.info('[Arcanopolis] 95_colony_checks: проверка условий колонии активна')
 
 const CHAPTER_CHAINS = {
   "main": [
-    {"task": "0A11010200000001", "kind": "item_any", "items": "minecolonies:supplycamp|minecolonies:supplyship", "n": 1},
+    {"task": "0A11010200000001", "kind": "camp"},
     {"task": "0A11010200000002", "kind": "building", "word": "builder", "n": 1},
     {"task": "0A11010200000003", "kind": "townhall", "n": 1},
     {"task": "0A11010200000004", "kind": "building", "word": "builder", "n": 2},
@@ -822,8 +824,37 @@ function arcanopolis_itemCount(player, id) {
   } catch (e) { return 0 }
 }
 
+function arcanopolis_findCamp(player) {
+  // установленный лагерь/корабль снабжения: ищем блок рядом с игроком
+  try {
+    const lvl = player.getLevel()
+    const pos = player.blockPosition()
+    for (let dx = -24; dx <= 24; dx++) {
+      for (let dz = -24; dz <= 24; dz++) {
+        for (let dy = -12; dy <= 12; dy++) {
+          const st = lvl.getBlockState(pos.offset(dx, dy, dz))
+          const bs = String(st.getBlock())
+          if (bs.indexOf('minecolonies:supplycamp') >= 0 || bs.indexOf('minecolonies:supplyship') >= 0) return true
+        }
+      }
+    }
+  } catch (e) {}
+  return false
+}
+
 function arcanopolis_rowOk(player, row) {
   if (row.kind === 'always') return true
+  if (row.kind === 'camp') {
+    try { if (arcanopolis_itemCount(player, 'minecolonies:supplycamp') + arcanopolis_itemCount(player, 'minecolonies:supplyship') >= 1) return true } catch (e) {}
+    try {
+      const col = arcanopolis_colonyOf(player)
+      if (col != null) {
+        const bm = arcanopolis_buildingManager(col)
+        if (bm != null && bm.getTownHall() != null) return true
+      }
+    } catch (e) {}
+    return arcanopolis_findCamp(player)
+  }
   if (row.kind === 'item_any') {
     try {
       const ids = String(row.items).split('|')
@@ -868,7 +899,7 @@ const _arcanopolis_done = {}
 ServerEvents.tick(event => {
   const s = event.server || event
   try {
-    if (s.getTickCount() % 100 !== 0) return  // раз в 5 секунд
+    if (s.getTickCount() % 20 !== 0) return  // раз в секунду
     const players = s.players
     if (!players) return
     for (const p of players) {
