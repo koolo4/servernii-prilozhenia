@@ -1608,7 +1608,7 @@ def _lay_wheel(ch: Chapter, ctx: dict) -> None:
     ring = []
     for b in ring_bands:
         ring += [q for q in _bands_quests(ctx, b) if q.key != ctx["gate"]]
-    rw = max(6.5, len(ring) * 1.9 / (2 * math.pi))
+    rw = max(7.5, len(ring) * 2.3 / (2 * math.pi))
     ring_ang: dict = {}
     for i, q in enumerate(ring):
         a = -math.pi / 2 - i * (2 * math.pi / max(1, len(ring)))
@@ -1630,7 +1630,7 @@ def _lay_wheel(ch: Chapter, ctx: dict) -> None:
         root = qs[0]
         att = intra.get(root.key, [])
         ang = None
-        base_r = rw + 2.1
+        base_r = rw + 3.0
         if att:
             a0 = att[0]
             if a0 in ring_ang:
@@ -1673,7 +1673,8 @@ def _lay_wheel(ch: Chapter, ctx: dict) -> None:
     gate = by[ctx["gate"]]
     gate.x, gate.y = 0.0, -(rw * 0.62) - 5.0
     placed.append(gate)
-    _collide(placed, pin=frozenset({hub.key, gate.key}))
+    _collide(placed, pin=frozenset({hub.key, gate.key}
+                                   | {q.key for q in ring}))
 
 
 def _lay_railway(ch: Chapter, ctx: dict) -> None:
@@ -1717,12 +1718,13 @@ def _lay_tree(ch: Chapter, ctx: dict) -> None:
         cur = max(cand, key=lambda c: size[c])
         spine.append(cur)
     spine_set = set(spine)
+    sidx = {k: i for i, k in enumerate(spine)}
     for i, k in enumerate(spine):
-        by[k].x, by[k].y = 0.0, -i * 3.0
+        by[k].x, by[k].y = 0.0, -i * 2.35
     band_side: dict = {}
-    band_slot: dict = {}
     attach: dict = {}
-    placed = [by[k] for k in spine]
+    # точка крепления каждой ветви к стволу
+    band_att: dict = {}
     for q in sorted(chained, key=lambda q: (depth[q.key], ctx["order"][q.key])):
         if q.key in spine_set or q.key == ctx["gate"]:
             continue
@@ -1736,19 +1738,29 @@ def _lay_tree(ch: Chapter, ctx: dict) -> None:
                 if d in attach:
                     a = attach[d]
                     break
-        if a is None:
-            a = spine[-1]
-        attach[q.key] = a
+        attach[q.key] = a or spine[-1]
+        band_att.setdefault(eff[q.key], attach[q.key])
+    # ветви равномерно распределены вдоль ствола: точка старта ветви —
+    # среднее между настоящим креплением и ровным слотом по высоте
+    bands_sorted = sorted(band_att, key=lambda b: (sidx[band_att[b]],
+                                                   -len(_bands_quests(ctx, b))))
+    base_y: dict = {}
+    for k, b in enumerate(bands_sorted):
+        slot = 1.0 + k * (len(spine) - 3) / max(1, len(bands_sorted) - 1)
+        base_y[b] = -(sidx[band_att[b]] * 0.5 + slot * 0.5) * 2.35
+        band_side[b] = 1 if k % 2 == 0 else -1
+    placed = [by[k] for k in spine]
+    for q in sorted(chained, key=lambda q: (depth[q.key], ctx["order"][q.key])):
+        if q.key in spine_set or q.key == ctx["gate"]:
+            continue
         b = eff[q.key]
-        if b not in band_side:
-            band_side[b] = 1 if len(band_side) % 2 == 0 else -1
-            band_slot[b] = len(band_slot) % 3
-        dd = max(1, depth[q.key] - depth[a])
+        qs_b = _bands_quests(ctx, b)
+        dd = max(1, depth[q.key] - depth[qs_b[0].key])
         q.x = band_side[b] * (2.7 + (dd - 1) * 2.35)
-        q.y = by[a].y + dd * 1.02 + band_slot[b] * 0.85
+        q.y = base_y[b] + dd * 1.02
         placed.append(q)
     gate = by[ctx["gate"]]
-    gate.x, gate.y = 0.0, -len(spine) * 3.0
+    gate.x, gate.y = 0.0, -len(spine) * 2.35
     placed.append(gate)
     for q in chained:
         if ctx["gate"] in intra[q.key]:
