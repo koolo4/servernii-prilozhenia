@@ -1406,107 +1406,403 @@ def stitch_chapters(chapters: list[Chapter]) -> None:
                 ch.quests[0].deps = [f"{prev}:{last_key[prev]}"]
 
 
-def layout_chapters(chapters: list[Chapter]) -> None:
-    """Раскладка глав по графу зависимостей (топологии docs/09).
+# ============================================================================
+# Раскладка глав: геометрические формы эпох из docs/09 (согласованы с
+# пользователем): пролог — «Веер основания», I — «Водяное колесо» (кольцо),
+# II — «Магистраль», III — «Дерево технологий», IV — «Пентакль школ»,
+# V — «Созвездие сети», VI — «Спираль к звезде». Побочные главы — полосы
+# по трекам. Координаты — только косметика: граф, ID и задачи не трогаем.
+# ============================================================================
 
-    Раньше квесты выкладывались «змейкой» по списку — цепочка читалась,
-    но веток не было видно. Теперь глава — слоистый граф: глубина квеста
-    (x) — длина самого длинного пути от входа главы, полоса (y) наследуется
-    от первой зависимости, поэтому параллельные ветки (ручные ветки и
-    треки big_quests) идут горизонтальными лентами слева направо, линии
-    зависимостей короткие, а ворота эпохи — крайний правый слой по центру.
-    Независимые квесты (бонусы, секреты, торговля) — отдельной зоной ниже
-    графа, без линий. Справочник сохраняет ручные координаты.
+import math
+
+
+def _layout_ctx(ch: Chapter) -> dict:
+    chained = [q for q in ch.quests if not q.independent]
+    free = [q for q in ch.quests if q.independent]
+    by_key = {q.key: q for q in ch.quests}
+    intra = {q.key: [d for d in q.deps if ":" not in d and d in by_key]
+             for q in chained}
+    depth: dict = {}
+
+    def _depth(k: str, guard: frozenset) -> int:
+        if k in depth:
+            return depth[k]
+        if k in guard:
+            return 0
+        ds = intra.get(k, [])
+        depth[k] = 0 if not ds else 1 + max(
+            _depth(d, guard | {k}) for d in ds)
+        return depth[k]
+
+    for q in chained:
+        _depth(q.key, frozenset())
+    order = {q.key: i for i, q in enumerate(ch.quests)}
+    band: dict = {}
+
+    def _band(k: str, guard: frozenset) -> str:
+        if k in band:
+            return band[k]
+        ds = intra.get(k, [])
+        if not ds or k in guard:
+            band[k] = k
+        else:
+            band[k] = _band(ds[0], guard | {k})
+        return band[k]
+
+    for q in chained:
+        _band(q.key, frozenset())
+    for q in chained:  # якорь полосы — голова ветки на глубине 1
+        cur, guard = q.key, set()
+        while depth.get(cur, 0) > 1 and cur not in guard:
+            guard.add(cur)
+            ds = intra.get(cur, [])
+            if not ds:
+                break
+            cur = max(ds, key=lambda d: depth.get(d, 0))
+        band[q.key] = cur
+    eff = {q.key: (q.band or band[q.key]) for q in chained}
+    heads: list = []
+    for q in chained:
+        b = eff[q.key]
+        if b not in heads:
+            heads.append(b)
+    return {"chained": chained, "free": free, "by_key": by_key,
+            "intra": intra, "depth": depth, "order": order,
+            "eff": eff, "heads": heads,
+            "maxd": max(depth.values(), default=0),
+            "gate": GATE_KEYS.get(ch.file)}
+
+
+def _pol(cx: float, cy: float, r: float, ang: float, sq: float = 0.62):
+    return cx + r * math.cos(ang), cy + r * math.sin(ang) * sq
+
+
+def _collide(quests: list, pin: frozenset = frozenset()) -> None:
+    """Разводит наложения: каждый узел не ближе 1.5 к уже стоящим.
+
+    Закреплённые узлы (pin: хабы, центры, ворота) ставятся первыми и
+    своих координат не меняют — двигаются только обычные квесты.
+    """
+    offs = [(0.0, 0.0)]
+    for r in (1.6, 2.4, 3.3, 4.4):
+        for k in range(12):
+            a = k * math.pi / 6 + r
+            offs.append((r * math.cos(a), r * math.sin(a)))
+    placed: list = []
+
+    def ok(x: float, y: float) -> bool:
+        return all((x - px) ** 2 + (y - py) ** 2 >= 2.25 for px, py in placed)
+
+    for q in sorted(quests, key=lambda qq: qq.key not in pin):
+        if not ok(q.x, q.y):
+            for dx, dy in offs[1:]:
+                if ok(q.x + dx, q.y + dy):
+                    q.x += dx
+                    q.y += dy
+                    break
+        placed.append((q.x, q.y))
+
+
+def _bands_quests(ctx: dict, band: str) -> list:
+    return sorted((q for q in ctx["chained"] if ctx["eff"][q.key] == band),
+                  key=lambda q: (ctx["depth"][q.key], ctx["order"][q.key]))
+
+
+def _lay_rows(ch: Chapter, ctx: dict) -> None:
+    """Полосы по трекам (побочные главы и запасной вариант)."""
+    heads = list(ctx["heads"])
+    chained = ctx["chained"]
+    if heads and chained:
+        entry = ctx["eff"][chained[0].key]
+        if entry in heads:
+            heads.remove(entry)
+            heads.insert(len(heads) // 2, entry)
+    row_of = {b: i for i, b in enumerate(heads)}
+    center = (len(heads) - 1) / 2 if heads else 0
+    for q in sorted(chained,
+                    key=lambda qq: (ctx["depth"][qq.key], ctx["order"][qq.key])):
+        y = (row_of[ctx["eff"][q.key]] - center) * 2.6
+        if q.key == ctx["gate"]:
+            y = 0.0
+        q.x = (ctx["depth"][q.key] - ctx["maxd"] / 2) * 2.6
+        q.y = y
+    _collide(sorted(chained, key=lambda q: ctx["order"][q.key]))
+
+
+def _lay_fan(ch: Chapter, ctx: dict) -> None:
+    """Пролог — «Веер основания»: Ратуша в центре, лучи веток расходятся
+    веером, Лагерь снизу, Хартия (ворота) сверху по центру."""
+    by, depth, eff = ctx["by_key"], ctx["depth"], ctx["eff"]
+    center = by["town_hall"]
+    center.x, center.y = 0.0, 0.0
+    start = by["start"]
+    start.x, start.y = 0.0, 8.0
+    skip = {center.key, start.key, ctx["gate"]}
+    bands = [b for b in ctx["heads"]
+             if b not in ("start", eff[center.key]) and
+             not any(q.key == ctx["gate"] for q in _bands_quests(ctx, b))]
+    # стройка (полоса ратуши) — сильный луч вверх-влево, как на схеме
+    spine_band = eff[center.key]
+    slots = [-2.45, -2.05, -1.62, -1.18, -0.75, -0.32,
+             2.75, 2.35, 1.05, 0.62]
+    ordered = [spine_band] + [b for b in bands if b != spine_band]
+    ang_of = {}
+    for i, b in enumerate(ordered):
+        ang_of[b] = slots[i % len(slots)] + (i // len(slots)) * 0.18
+    placed = [start, center]
+    for q in ctx["chained"]:
+        if q.key in skip:
+            continue
+        r = max(0.0, (depth[q.key] - 1) * 2.7)
+        q.x, q.y = _pol(0.0, 0.0, r, ang_of[eff[q.key]], sq=0.8)
+        placed.append(q)
+    gate = by[ctx["gate"]]
+    gate.x = 0.0
+    gate.y = min(q.y for q in placed) - 4.5
+    placed.append(gate)
+    _collide(sorted(placed, key=lambda q: ctx["order"][q.key]),
+             pin=frozenset({center.key, start.key, gate.key}))
+
+
+def _lay_wheel(ch: Chapter, ctx: dict) -> None:
+    """Эпоха I — «Водяное колесо»: ступица-хаб в центре, кольцо механизмов
+    Create, зубы-линии радиально наружу от своих точек крепления,
+    ворота «Мастерская» сверху."""
+    by, depth, eff, intra = ctx["by_key"], ctx["depth"], ctx["eff"], ctx["intra"]
+    hub = ctx["chained"][0]
+    hub.x, hub.y = 0.0, 0.0
+    ring = [q for q in _bands_quests(ctx, "water_wheel")
+            if q.key != ctx["gate"]]
+    rw = max(6.2, len(ring) * 1.12)
+    ring_ang: dict = {}
+    for i, q in enumerate(ring):
+        a = -math.pi / 2 - i * (2 * math.pi / max(1, len(ring)))
+        ring_ang[q.key] = a
+        q.x, q.y = _pol(0.0, 0.0, rw, a)
+    placed = [hub] + ring
+    teeth = [b for b in ctx["heads"]
+             if b not in ("water_wheel", eff[hub.key])]
+    teeth.sort(key=lambda b: (depth[_bands_quests(ctx, b)[0].key],
+                              ctx["heads"].index(b)))
+    band_ang: dict = {}
+    spread = iter([-2.65, -1.85, -0.35, 0.45, 1.95, 2.7,
+                   -1.1, 1.2, -3.0, 3.05, 0.0])
+    for b in teeth:
+        qs = [q for q in _bands_quests(ctx, b) if q.key != ctx["gate"]]
+        if not qs:
+            continue
+        root = qs[0]
+        att = intra.get(root.key, [])
+        ang = None
+        base_r = rw + 2.1
+        if att:
+            a0 = att[0]
+            if a0 in ring_ang:
+                ang = ring_ang[a0]
+            elif a0 == hub.key:
+                ang = next(spread, 0.0)
+                base_r = 3.0  # спица от ступицы сквозь кольцо
+            elif eff.get(a0) in band_ang:
+                ang = band_ang[eff[a0]] + 0.30
+        if ang is None:
+            ang = next(spread, 0.0)
+        band_ang[b] = ang
+        for q in qs:
+            r = base_r + (depth[q.key] - depth[root.key]) * 1.85
+            q.x, q.y = _pol(0.0, 0.0, r, ang)
+            placed.append(q)
+    gate = by[ctx["gate"]]
+    gate.x, gate.y = 0.0, -(rw * 0.62) - 5.0
+    placed.append(gate)
+    _collide(placed, pin=frozenset({hub.key, gate.key}))
+
+
+def _lay_railway(ch: Chapter, ctx: dict) -> None:
+    """Эпоха II — «Магистраль»: центральная линия станций, депо-ветки
+    попеременно вверх и вниз."""
+    depth, eff = ctx["depth"], ctx["eff"]
+    spine = eff[ctx["chained"][1].key] if len(ctx["chained"]) > 1 else None
+    others = [b for b in ctx["heads"] if b != spine]
+    slot: dict = {}
+    for i, b in enumerate(others):
+        lvl = i // 2 + 1
+        slot[b] = (lvl * 2.7) if i % 2 == 0 else (-lvl * 2.7)
+    for q in ctx["chained"]:
+        q.x = (depth[q.key] - ctx["maxd"] / 2) * 2.6
+        q.y = 0.0 if eff[q.key] == spine or q.key == ctx["gate"] \
+            else slot[eff[q.key]]
+    _collide(sorted(ctx["chained"], key=lambda q: ctx["order"][q.key]),
+             pin=frozenset({ctx["gate"]}))
+
+
+def _lay_tree(ch: Chapter, ctx: dict) -> None:
+    """Эпоха III — «Дерево технологий»: ствол по центру, Thermal сверху,
+    Mekanism снизу, город и остальное — внешними рядами."""
+    depth, eff = ctx["depth"], ctx["eff"]
+    trunk = eff[ctx["chained"][1].key] if len(ctx["chained"]) > 1 else None
+
+    def row_for(b: str) -> float:
+        if b == trunk:
+            return 0.0
+        tok = b.rsplit("_", 1)[-1] if "_" in b else b
+        return {"t": -2.7, "c": -5.4, "pz": -8.1,
+                "k": 2.7, "r": 5.4, "x": 8.1}.get(tok, -2.7)
+
+    free_rows = {"up": -10.8, "down": 10.8}
+    row_cache: dict = {}
+
+    def row_of(b: str) -> float:
+        if b not in row_cache:
+            r = row_for(b)
+            if any(abs(r - v) < 0.1 for v in row_cache.values()) and b != trunk:
+                # неизвестная полоса — на внешний свободный ряд
+                side = "up" if len(row_cache) % 2 == 0 else "down"
+                r = free_rows[side]
+                free_rows[side] += -2.7 if side == "up" else 2.7
+            row_cache[b] = r
+        return row_cache[b]
+
+    for q in ctx["chained"]:
+        q.x = (depth[q.key] - ctx["maxd"] / 2) * 2.6
+        q.y = 0.0 if q.key == ctx["gate"] else row_of(eff[q.key])
+    _collide(sorted(ctx["chained"], key=lambda q: ctx["order"][q.key]),
+             pin=frozenset({ctx["gate"]}))
+
+
+def _lay_pentacle(ch: Chapter, ctx: dict) -> None:
+    """Эпоха IV — «Пентакль школ»: пять школ по вершинам пентаграммы,
+    цепочки углубления — наружу от вершин, Ритуал (ворота) в центре."""
+    by, depth, eff = ctx["by_key"], ctx["depth"], ctx["eff"]
+    hub = ctx["chained"][0]
+    hub.x, hub.y = 0.0, 0.0
+    school_of_band = {}
+    for b in ctx["heads"]:
+        if b in ("ars_base", "e4_n"):
+            school_of_band[b] = "ars"
+        elif b in ("mana_pool", "e4_b"):
+            school_of_band[b] = "bot"
+        elif b in ("altar", "e4_bl"):
+            school_of_band[b] = "blood"
+        elif b in ("alchemy", "e4_e"):
+            school_of_band[b] = "eid"
+        else:
+            school_of_band[b] = "city"
+    vert = {"ars": -math.pi / 2, "bot": -math.pi / 10,
+            "blood": 3 * math.pi / 10, "eid": 7 * math.pi / 10,
+            "city": 11 * math.pi / 10}
+    rv = 11.5
+    subs: dict = {}
+    for b in ctx["heads"]:
+        if b == eff[hub.key]:
+            continue
+        subs.setdefault(school_of_band[b], []).append(b)
+    placed = [hub]
+    gate = by[ctx["gate"]]
+    gate.x, gate.y = 0.0, 3.9
+    placed.append(gate)
+    for school, bands in subs.items():
+        va = vert[school]
+        vx, vy = _pol(0.0, 0.0, rv, va, sq=0.72)
+        for si, b in enumerate(bands):
+            qs = [q for q in _bands_quests(ctx, b) if q.key != ctx["gate"]]
+            if not qs:
+                continue
+            d0 = min(depth[q.key] for q in qs)
+            off = (si - (len(bands) - 1) / 2) * 2.1
+            px, py = -math.sin(va), math.cos(va)
+            for q in qs:
+                r = 2.1 + (depth[q.key] - d0) * 2.35
+                q.x = vx + r * math.cos(va) + px * off
+                q.y = (vy + r * math.sin(va)) * 0.72 + py * off * 0.72
+                placed.append(q)
+    _collide(sorted(placed, key=lambda q: ctx["order"][q.key]),
+             pin=frozenset({hub.key, gate.key}))
+
+
+def _lay_constellation(ch: Chapter, ctx: dict) -> None:
+    """Эпоха V — «Созвездие сети»: ядро AE2 в центре, кластеры-спутники
+    лучами вокруг, ворота у ядра справа."""
+    by, depth, eff = ctx["by_key"], ctx["depth"], ctx["eff"]
+    hub = ctx["chained"][0]
+    hub.x, hub.y = 0.0, 0.0
+    core = [q for q in _bands_quests(ctx, "ae2_base")
+            if q.key not in (hub.key, ctx["gate"])]
+    for i, q in enumerate(core):
+        a = -math.pi / 2 + i * (2 * math.pi / max(1, len(core)))
+        q.x, q.y = _pol(0.0, 0.0, 3.4, a, sq=0.8)
+    clusters = [b for b in ctx["heads"]
+                if b not in ("ae2_base", eff[hub.key])]
+    placed = [hub] + core
+    for j, b in enumerate(clusters):
+        qs = [q for q in _bands_quests(ctx, b) if q.key != ctx["gate"]]
+        if not qs:
+            continue
+        ang = -math.pi / 2 + j * (2 * math.pi / max(1, len(clusters)))
+        root = qs[0]
+        for q in qs:
+            r = 6.4 + (depth[q.key] - depth[root.key]) * 2.4
+            q.x, q.y = _pol(0.0, 0.0, r, ang)
+            placed.append(q)
+    gate = by[ctx["gate"]]
+    gate.x, gate.y = 5.8, 0.0
+    placed.append(gate)
+    _collide(sorted(placed, key=lambda q: ctx["order"][q.key]),
+             pin=frozenset({hub.key, gate.key}))
+
+
+def _lay_spiral(ch: Chapter, ctx: dict) -> None:
+    """Эпоха VI — «Спираль к звезде»: орбиты закручиваются внутрь,
+    Сердце Арканополиса (ворота-финал) — звезда в центре."""
+    by, depth, eff = ctx["by_key"], ctx["depth"], ctx["eff"]
+    hub = ctx["chained"][0]
+    r_out = 6.0 + ctx["maxd"] * 1.08
+    hub.x, hub.y = _pol(0.0, 0.0, r_out, -0.5)
+    band_idx = {b: i for i, b in enumerate(ctx["heads"])}
+    placed = [hub]
+    for q in ctx["chained"]:
+        if q.key in (hub.key, ctx["gate"]):
+            continue
+        ang = 0.60 * depth[q.key] + band_idx[eff[q.key]] * 0.085 - 0.5
+        r = max(5.0, r_out - depth[q.key] * 1.08)
+        q.x, q.y = _pol(0.0, 0.0, r, ang)
+        placed.append(q)
+    gate = by[ctx["gate"]]
+    gate.x, gate.y = 0.0, 0.0
+    placed.append(gate)
+    _collide(sorted(placed, key=lambda q: ctx["order"][q.key]),
+             pin=frozenset({hub.key, gate.key}))
+
+
+_LAYOUTS = {
+    "00_prologue": _lay_fan,
+    "10_epoch_wood_water": _lay_wheel,
+    "20_epoch_steam_logistics": _lay_railway,
+    "30_epoch_industry": _lay_tree,
+    "40_epoch_magic": _lay_pentacle,
+    "50_epoch_network": _lay_constellation,
+    "60_epoch_cosmos": _lay_spiral,
+}
+
+
+def layout_chapters(chapters: list[Chapter]) -> None:
+    """Координаты глав — геометрические формы docs/09 (см. _LAYOUTS).
+
+    Только косметика поверх графа: x/y не влияют ни на зависимости,
+    ни на ID, ни на условия — прогресс миров не страдает.
     """
     for ch in chapters:
         if ch.file == "80_reference":
             continue
-        chained = [q for q in ch.quests if not q.independent]
-        free = [q for q in ch.quests if q.independent]
-        by_key = {q.key: q for q in ch.quests}
-        intra = {q.key: [d for d in q.deps if ":" not in d and d in by_key]
-                 for q in chained}
-        depth: dict = {}
-
-        def _depth(k: str, guard: frozenset) -> int:
-            if k in depth:
-                return depth[k]
-            if k in guard:
-                return 0
-            ds = intra.get(k, [])
-            depth[k] = 0 if not ds else 1 + max(
-                _depth(d, guard | {k}) for d in ds)
-            return depth[k]
-
-        for q in chained:
-            _depth(q.key, frozenset())
-        maxd = max(depth.values(), default=0)
-        # Полосы по веткам: полоса квеста наследуется от его первой
-        # зависимости — каждая ветка идёт своей горизонтальной лентой
-        # слева направо (раскладка «зеброй» поломала читаемость: ветки
-        # перемешивались). Полоса входа главы — по центру, ворота эпохи —
-        # в центре крайней правой колонки. Коллизии внутри полосы
-        # разводятся небольшим вертикальным сдвигом.
-        order = {q.key: i for i, q in enumerate(ch.quests)}
-        band: dict = {}
-
-        def _band(k: str, guard: frozenset) -> str:
-            if k in band:
-                return band[k]
-            ds = intra.get(k, [])
-            if not ds or k in guard:
-                band[k] = k
-            else:
-                band[k] = _band(ds[0], guard | {k})
-            return band[k]
-
-        for q in chained:
-            _band(q.key, frozenset())
-        # Полоса определяется предком на глубине 1 (головой ветки под
-        # входом главы), а не самим входом: иначе все ветки, уходящие от
-        # первого квеста, слипаются в одну центральную полосу.
-        for q in chained:
-            cur, guard = q.key, set()
-            while depth.get(cur, 0) > 1 and cur not in guard:
-                guard.add(cur)
-                ds = intra.get(cur, [])
-                if not ds:
-                    break
-                cur = max(ds, key=lambda d: depth.get(d, 0))
-            band[q.key] = cur
-        # Эффективная полоса: у треков big_quests — свой префикс ключа
-        # (e1_c, e1_m, p_b...): трек НИКОГДА не делит полосу с ручной
-        # веткой, иначе две цепочки в одной ленте идут «волной».
-        eff = {q.key: (q.band or band[q.key]) for q in chained}
-        heads: list = []
-        for q in chained:
-            b = eff[q.key]
-            if b not in heads:
-                heads.append(b)
-        if heads and chained:
-            entry_band = eff[chained[0].key]
-            if entry_band in heads:
-                heads.remove(entry_band)
-                heads.insert(len(heads) // 2, entry_band)
-        row_of = {b: i for i, b in enumerate(heads)}
-        center = (len(heads) - 1) / 2 if heads else 0
-        gate_key = GATE_KEYS.get(ch.file)
-        occupied: set = set()
-        for q in sorted(chained, key=lambda qq: (depth[qq.key], order[qq.key])):
-            y = (row_of[eff[q.key]] - center) * 2.6
-            if q.key == gate_key:
-                y = 0.0
-            while (depth[q.key], round(y, 2)) in occupied:
-                y += 0.85
-            occupied.add((depth[q.key], round(y, 2)))
-            q.x = (depth[q.key] - maxd / 2) * 2.6
-            q.y = y
-        if free:
-            y0 = (len(heads) - center) * 2.6 + 1.2
-            for i, q in enumerate(free):
+        ctx = _layout_ctx(ch)
+        _LAYOUTS.get(ch.file, _lay_rows)(ch, ctx)
+        if ctx["free"]:
+            y0 = max((q.y for q in ctx["chained"]), default=0.0) + 3.4
+            for i, q in enumerate(ctx["free"]):
                 row, col = divmod(i, 5)
                 q.x = (col - 2) * 2.0
                 q.y = y0 + row * 2.0
+
 
 def _or_to_custom(t: Task) -> Task:
     """OR-список предметов -> custom item_any (проверка инвентаря скриптом)."""
